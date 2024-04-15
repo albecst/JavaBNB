@@ -4,7 +4,8 @@
  */
 package Logica;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,22 +14,32 @@ import java.time.LocalDateTime;
 public class Anfitrion extends Cliente {
    
     //Atributos
-    private LocalDateTime fechaRegistro;
+    private LocalDate fechaRegistro;
     private boolean superanfitrion;
-    
+    private ArrayList<Inmueble> inmuebles = new ArrayList<>();
+
     //Constructor
-    public Anfitrion(LocalDateTime fechaRegistro, boolean superanfitrion, String dni, String nombre, String correo, String clave, String telefono) {
+    public Anfitrion(LocalDate fechaRegistro, String dni, String nombre, String correo, String clave, String telefono) {
         super(dni, nombre, correo, clave, telefono);
         this.fechaRegistro = fechaRegistro;
-        this.superanfitrion = superanfitrion;
     }
     
     //Métodos
-    /*Falta añadir si es Superanfitrión o no (si la media de las reseñas de sus inmuebles es superior a 4).
-    
-    */
+    //falta documentar set/add inmuebles y set superanfitrion ##############################
     
     //G&S
+
+    public ArrayList<Inmueble> getInmuebles() {
+        return inmuebles;
+    }
+
+    public void addInmuebles(Inmueble inmueble) {
+        this.inmuebles.add(inmueble);
+        this.setSuperanfitrion();
+    }
+     
+    
+    
     /**
      * Get the value of superanfitrion
      *
@@ -43,8 +54,18 @@ public class Anfitrion extends Cliente {
      *
      * @param superanfitrion new value of superanfitrion
      */
-    public void setSuperanfitrion(boolean superanfitrion) {
-        this.superanfitrion = superanfitrion;
+    public void setSuperanfitrion() {
+        int calificacion=0;
+        int cantidad=0;
+        for (Inmueble i : inmuebles) {
+           calificacion+=i.getCalificacion();
+           cantidad++;
+        }
+        int notamedia = calificacion/cantidad;
+        if (notamedia>=4)
+            this.superanfitrion = true;
+        else
+            this.superanfitrion = false;
     }
 
     
@@ -53,7 +74,7 @@ public class Anfitrion extends Cliente {
      *
      * @return the value of fechaRegistro
      */
-    public LocalDateTime getFechaRegistro() {
+    public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
 
@@ -62,7 +83,7 @@ public class Anfitrion extends Cliente {
      *
      * @param fechaRegistro new value of fechaRegistro
      */
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+    public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
  

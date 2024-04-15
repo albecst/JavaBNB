@@ -41,31 +41,12 @@ public class Administrador {
     }
 
     /**
-     * Set the value of clave
-     *
-     * @param clave new value of clave
-     */
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
-
-    /**
      * Get the value of correo
      *
      * @return the value of correo
      */
     public String getCorreo() {
         return correo;
-    }
-
-    /**
-     * Set the value of correo
-     *
-     * @param correo new value of correo
-     */
-    public void setCorreo(String correo) {
-        this.correo = correo;
     }
 
 }
