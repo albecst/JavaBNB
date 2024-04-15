@@ -19,10 +19,10 @@ public class Tarjeta {
     private double saldo;
 
     //Constructor
-    public Tarjeta(String titular, String numeroTarjeta, int dia, int mes, int año, LocalDate fechaCaducidad, double Saldo) {
+    public Tarjeta(String titular, String numeroTarjeta, int dia, int mes, int anio, LocalDate fechaCaducidad, double Saldo) {
         this.titular = titular;
         this.numeroTarjeta = numeroTarjeta;
-        this.fechaCaducidad = LocalDate.of(año, mes, dia);
+        this.fechaCaducidad = LocalDate.of(anio, mes, dia);
         this.saldo = saldo;
     }
 
@@ -52,8 +52,8 @@ public class Tarjeta {
     public void setFechaCaducidad(LocalDate fechaCaducidad) {
         this.fechaCaducidad = fechaCaducidad;
     }
-    public void setFechaCaducidad(int dia, int mes, int año) {
-        this.fechaCaducidad = LocalDate.of(año, mes, dia);
+    public void setFechaCaducidad(int dia, int mes, int anio) {
+        this.fechaCaducidad = LocalDate.of(anio, mes, dia);
     }
 
 
