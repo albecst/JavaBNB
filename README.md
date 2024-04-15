@@ -7,7 +7,7 @@ Nuestra misión es hacer que la reserva de alojamientos sea lo más simple y flu
 ## ¡Únete a Nosotros!
 Estamos encantados de contar contigo en esta emocionante travesía. Si tienes alguna pregunta, sugerencia o simplemente quieres decir hola, no dudes en ponerte en contacto con nosotros.
 
-- Alberto: https://github.com/AlbeTroll
-- Cristina: https://github.com/Cris30158
+- Alberto J. Castillo Toma: https://github.com/AlbeTroll
+- Cristina Martínez Toledo: https://github.com/Cris30158
 
 ---
