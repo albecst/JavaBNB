@@ -1,5 +1,9 @@
 package Logica;
 
+/**
+ *
+ * @author alber
+ */
 public class Factura {
 
     //Atributos
