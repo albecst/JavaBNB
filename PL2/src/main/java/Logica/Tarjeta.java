@@ -4,28 +4,28 @@
  */
 package Logica;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  *
  * @author alber
  */
 public class Tarjeta {
-    
+
     //Atributos
     private String titular;
     private String numeroTarjeta;
-    private LocalDateTime fechaCaducidad;
+    private LocalDate fechaCaducidad;
     private double saldo;
 
     //Constructor
-    public Tarjeta(String titular, String numeroTarjeta, LocalDateTime fechaCaducidad, double Saldo) {
+    public Tarjeta(String titular, String numeroTarjeta, int dia, int mes, int anio, LocalDate fechaCaducidad, double Saldo) {
         this.titular = titular;
         this.numeroTarjeta = numeroTarjeta;
-        this.fechaCaducidad = fechaCaducidad;
+        this.fechaCaducidad = LocalDate.of(anio, mes, dia);
         this.saldo = saldo;
     }
-    
+
     //Getters & Setters
     public double getSaldo() {
         return saldo;
@@ -34,13 +34,13 @@ public class Tarjeta {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-    
+
     /**
      * Get the value of fechaCaducidad
      *
      * @return the value of fechaCaducidad
      */
-    public LocalDateTime getFechaCaducidad() {
+    public LocalDate getFechaCaducidad() {
         return fechaCaducidad;
     }
 
@@ -49,8 +49,11 @@ public class Tarjeta {
      *
      * @param fechaCaducidad new value of fechaCaducidad
      */
-    public void setFechaCaducidad(LocalDateTime fechaCaducidad) {
+    public void setFechaCaducidad(LocalDate fechaCaducidad) {
         this.fechaCaducidad = fechaCaducidad;
+    }
+    public void setFechaCaducidad(int dia, int mes, int anio) {
+        this.fechaCaducidad = LocalDate.of(anio, mes, dia);
     }
 
 

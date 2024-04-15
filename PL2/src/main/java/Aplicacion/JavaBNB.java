@@ -42,55 +42,61 @@ public class JavaBNB {
 
         return inmueblesDisponiblesEnCiudad;
     }
-
     /**
      * Busca inmuebles disponibles en una ciudad y entre dos fechas, ordenados por precio de menor a mayor.
      */
+
+
     public void ordenarPorPrecioAsc() {
         if (inmueblesDisponibles != null) {
             inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
         }
     }
-
     /**
      * Ordena los inmuebles disponibles por precio de menor a mayor.
      */
+
+
     public void ordenarPorPrecioDesc() {
         if (inmueblesDisponibles != null) {
             inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche).reversed());
         }
     }
-
     /**
      * Ordena los inmuebles disponibles por precio de mayor a menor.
      */
+
+
     public void ordenarPorTipo() {
         if (inmueblesDisponibles != null) {
             inmueblesDisponibles.sort(Comparator.comparing(Inmueble::getTipo));
         }
     }
-
     /**
      * Ordena los inmuebles disponibles por tipo.
      */
+
+
     public void ordenarPorCalificacionAsc() {
         if (inmueblesDisponibles != null) {
             inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getCalificacion));
         }
     }
-
     /**
      * Ordena los inmuebles disponibles por calificación de menor a mayor.
      */
+
+
     public void ordenarPorCalificacionDesc() {
         if (inmueblesDisponibles != null) {
             inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getCalificacion).reversed());
         }
     }
-
     /**
      * Ordena los inmuebles disponibles por calificación de mayor a menor.
      */
+
+
     public double calcularPrecioTotal(Inmueble inmueble, LocalDate fechaEntrada, LocalDate fechaSalida){
         long diasEstancia = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
         double costoTotal = diasEstancia * inmueble.getPrecioNoche();
@@ -100,10 +106,11 @@ public class JavaBNB {
         return costoTotal;
     
     }
-
     /**
      * Calcula el precio total de la estancia en un inmueble para un rango de fechas.
      */
+
+
     public void procesarPagoReserva(double costoTotal){
     double saldoRestanteParticular = particular.getSaldo(); 
         if (saldoRestanteParticular < costoTotal){
@@ -114,5 +121,3 @@ public class JavaBNB {
         }
     }
 }
-
-//sususuuiyuy
