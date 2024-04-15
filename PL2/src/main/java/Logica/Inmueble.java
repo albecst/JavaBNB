@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Logica;
 
 import java.time.LocalDate;
@@ -38,23 +34,33 @@ public class Inmueble {
         this.fechaFinReserva = fechaFinReserva;
     }
 
-    
-    //Métodos
-    /*1º: Método para añadir los servicios al ArrayList.
-      2º: Método para añadir los servicios al ArrayList.*/
+
+    /**
+     * Método para añadir un servicio al inmueble.
+     * @param servicio Servicio a añadir.
+     */
     public void añadirServicio(String servicio){
         if(!servicios.contains(servicio)){
             servicios.add(servicio);
         }
     }
-    
+
+    /**
+     * Método para eliminar un servicio del inmueble.
+     * @param servicio Servicio a eliminar.
+     */
     public void eliminarServicio(String servicio){
         if(servicios.contains(servicio)){
             servicios.remove(servicio);
         }
     }
-    
-    /*3º: Método para ver si está disponible en esas fechas */
+
+    /**
+     * Método para comprobar si un inmueble está disponible en unas fechas concretas.
+     * @param fechaEntrada Fecha de entrada.
+     * @param fechaSalida Fecha de salida.
+     * @return True si está disponible, false si no lo está.
+     */
     public boolean estaDisponible(LocalDate fechaEntrada, LocalDate fechaSalida) {
         // Supongamos que las fechas de reserva están almacenadas en dos atributos de tipo LocalDate
         // llamados fechaInicioReserva y fechaFinReserva.
@@ -62,26 +68,41 @@ public class Inmueble {
         return fechaInicioReserva.isAfter(fechaSalida) || fechaFinReserva.isBefore(fechaEntrada);
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    //G&S
+
+    /**
+     * Getters & Setters
+     *
+     * Get the value of fechaInicioReserva
+     *
+     * @return the value of fechaInicioReserva
+     */
     public LocalDate getFechaInicioReserva() {
         return fechaInicioReserva;
     }
 
+    /**
+     * Set the value of fechaInicioReserva
+     *
+     * @param fechaInicioReserva new value of fechaInicioReserva
+     */
     public void setFechaInicioReserva(LocalDate fechaInicioReserva) {
         this.fechaInicioReserva = fechaInicioReserva;
     }
 
+    /**
+     * Get the value of fechaFinReserva
+     *
+     * @return the value of fechaFinReserva
+     */
     public LocalDate getFechaFinReserva() {
         return fechaFinReserva;
     }
+
+    /**
+     * Set the value of fechaFinReserva
+     *
+     * @param fechaFinReserva new value of fechaFinReserva
+     */
     public void setFechaFinReserva(LocalDate fechaFinReserva) {
         this.fechaFinReserva = fechaFinReserva;
     }
@@ -123,7 +144,6 @@ public class Inmueble {
         this.calificacion = calificacion;
     }
 
-    
     /**
      * Get the value of servicios
      *
@@ -226,5 +246,4 @@ public class Inmueble {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
 }
