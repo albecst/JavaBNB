@@ -12,7 +12,13 @@ public class DatosInmueble {
     private int camas;
     private int baños;
 
-    //Constructor
+    /**
+     * Constructor de la clase DatosInmueble
+     * @param maxHuespedes
+     * @param habitaciones
+     * @param camas
+     * @param baños
+     */
     public DatosInmueble(int maxHuespedes, int habitaciones, int camas, int baños) {
         this.maxHuespedes = maxHuespedes;
         this.habitaciones = habitaciones;
