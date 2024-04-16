@@ -47,7 +47,7 @@ public class Anfitrion extends Cliente {
 
     public void addInmuebles(Inmueble inmueble) {
         this.inmuebles.add(inmueble);
-        this.setSuperanfitrion();
+        this.setSuperAnfitrion();
     }
      
     
@@ -57,16 +57,14 @@ public class Anfitrion extends Cliente {
      *
      * @return the value of superanfitrion
      */
-    public boolean isSuperanfitrion() {
+    public boolean isSuperAnfitrion() {
         return superanfitrion;
     }
 
     /**
      * Set the value of superanfitrion
-     *
-     * @param superanfitrion new value of superanfitrion
      */
-    public void setSuperanfitrion() {
+    public void setSuperAnfitrion() {
         int calificacion=0;
         int cantidad=0;
         for (Inmueble i : inmuebles) {
