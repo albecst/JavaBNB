@@ -1,5 +1,7 @@
 package Logica;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author alber
@@ -12,7 +14,7 @@ public class Cliente {
     private String correo;
     private String clave;
     private String telefono;
-    
+
     //Constructor
     public Cliente(String dni, String nombre, String correo, String clave, String telefono) {
         this.dni = dni;
