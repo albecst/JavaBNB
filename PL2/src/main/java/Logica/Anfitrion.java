@@ -11,7 +11,7 @@ public class Anfitrion extends Cliente {
    
     //Atributos
     private LocalDate fechaRegistro;
-    private boolean superanfitrion;
+    private boolean superAnfitrion;
     private ArrayList<Inmueble> inmuebles = new ArrayList<>();
 
     //Constructor
@@ -21,26 +21,12 @@ public class Anfitrion extends Cliente {
     }
     
     //Métodos
-    //falta documentar set/add inmuebles y set superanfitrion ##############################
 
-
-    public void setSuperAnfitrion() {
-        int calificacion=0;
-        int cantidad=0;
-        for (Inmueble i : inmuebles) {
-           calificacion+=i.getCalificacion();
-           cantidad++;
-        }
-        int notamedia = calificacion/cantidad;
-        if (notamedia>=4)
-            this.superanfitrion = true;
-        else
-            this.superanfitrion = false;
-    }
-
-   
-    //G&S
-
+    /**
+     * Getters & Setters
+     *
+     * Get the value of inmuebles
+     */
     public ArrayList<Inmueble> getInmuebles() {
         return inmuebles;
     }
@@ -58,7 +44,7 @@ public class Anfitrion extends Cliente {
      * @return the value of superanfitrion
      */
     public boolean isSuperAnfitrion() {
-        return superanfitrion;
+        return superAnfitrion;
     }
 
     /**
@@ -73,9 +59,9 @@ public class Anfitrion extends Cliente {
         }
         int notamedia = calificacion/cantidad;
         if (notamedia>=4)
-            this.superanfitrion = true;
+            this.superAnfitrion = true;
         else
-            this.superanfitrion = false;
+            this.superAnfitrion = false;
     }
 
     
