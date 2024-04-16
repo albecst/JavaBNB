@@ -9,15 +9,20 @@ public class Direccion {
     //Atributos
     private String calle; 
     private int numero;
-    private String string;
+    private String cp;
     private String ciudad;
     
-    //Constructor
-
-    public Direccion(String calle, int numero, String string, String ciudad) {
+    /**
+     * Constructor de la clase Direccion
+     * @param calle
+     * @param numero
+     * @param cp
+     * @param ciudad
+     */
+    public Direccion(String calle, int numero, String cp, String ciudad) {
         this.calle = calle;
         this.numero = numero;
-        this.string = string;
+        this.cp = cp;
         this.ciudad = ciudad;
     }
     
@@ -43,21 +48,21 @@ public class Direccion {
 
     
     /**
-     * Get the value of string
+     * Get the value of cp
      *
-     * @return the value of string
+     * @return the value of cp
      */
-    public String getString() {
-        return string;
+    public String getCp() {
+        return cp;
     }
 
     /**
-     * Set the value of string
+     * Set the value of cp
      *
-     * @param string new value of string
+     * @param cp new value of cp
      */
-    public void setString(String string) {
-        this.string = string;
+    public void setCp(String cp) {
+        this.cp = cp;
     }
 
 
