@@ -1,4 +1,6 @@
-package Logica;
+package UI_UX;
+
+import Logica.DatosInmueble;
 
 /**
  *
@@ -15,6 +17,7 @@ public class Factura {
     private String dniCliente;
     private String dniAnfitrion;
     private String idReserva;
+    private DatosInmueble datosInmueble;
 
     /**
      * Constructor de la clase Factura.
@@ -26,8 +29,9 @@ public class Factura {
      * @param dniCliente DNI del cliente.
      * @param dniAnfitrion DNI del anfitrión.
      * @param idReserva Identificador de la reserva.
+     * @param datosInmueble Datos del inmueble.
      */
-    public Factura(int idFactura, double importe, String concepto, String fecha, String hora, String dniCliente, String dniAnfitrion, String idReserva) {
+    public Factura(int idFactura, double importe, String concepto, String fecha, String hora, String dniCliente, String dniAnfitrion, String idReserva, DatosInmueble datosInmueble) {
         this.idFactura = idFactura;
         this.importe = importe;
         this.concepto = concepto;
@@ -36,7 +40,11 @@ public class Factura {
         this.dniCliente = dniCliente;
         this.dniAnfitrion = dniAnfitrion;
         this.idReserva = idReserva;
+        this.datosInmueble = datosInmueble;
     }
+
+    //Faltan métodos para la factura, lo veremos cuando toquemos Swing (UI/UX).
+
 
     /**
      * Getters y Setters.
