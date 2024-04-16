@@ -22,7 +22,23 @@ public class Anfitrion extends Cliente {
     
     //Métodos
     //falta documentar set/add inmuebles y set superanfitrion ##############################
-    
+
+
+    public void setSuperAnfitrion() {
+        int calificacion=0;
+        int cantidad=0;
+        for (Inmueble i : inmuebles) {
+           calificacion+=i.getCalificacion();
+           cantidad++;
+        }
+        int notamedia = calificacion/cantidad;
+        if (notamedia>=4)
+            this.superanfitrion = true;
+        else
+            this.superanfitrion = false;
+    }
+
+   
     //G&S
 
     public ArrayList<Inmueble> getInmuebles() {
