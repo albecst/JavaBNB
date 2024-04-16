@@ -1,5 +1,7 @@
 package Logica;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author alber
@@ -9,28 +11,76 @@ public class Particular extends Cliente {
     //Atributos
     private Tarjeta tarjetaCredito;
     private boolean vip;
+    private ArrayList <Reserva> reservas = new ArrayList<>();
 
-    //Constructor
+    /**
+     * Constructor de la clase Particular
+     *
+     * @param tarjetaCredito
+     * @param vip
+     * @param dni
+     * @param nombre
+     * @param correo
+     * @param clave
+     * @param telefono
+     */
     public Particular(Tarjeta tarjetaCredito, boolean vip, String dni, String nombre, String correo, String clave, String telefono) {
         super(dni, nombre, correo, clave, telefono);
         this.tarjetaCredito = tarjetaCredito;
         this.vip = vip;
     }
 
-    //G&S
-    public double disminuirSaldo(double cantidad) {
+    /**
+     * Método para disminuir el saldo de la tarjeta de crédito
+     * @param cantidad
+     * @return
+     */
+    public String disminuirSaldo(double cantidad) {
         Double saldo = tarjetaCredito.getSaldo();
-        return saldo -= cantidad;
+        saldo -= cantidad;
+        tarjetaCredito.setSaldo(saldo);
+        return "El saldo actual es: "+ saldo + "€";
     }
 
-    public double aumentarSaldo(double cantidad) {
+    /**
+     * Método para aumentar el saldo de la tarjeta de crédito
+     * @param cantidad
+     * @return
+     */
+    public String aumentarSaldo(double cantidad) {
         Double saldo = tarjetaCredito.getSaldo();
-        return saldo += cantidad;
+        saldo += cantidad;
+        tarjetaCredito.setSaldo(saldo);
+        return "El saldo actual es: "+ saldo + "€";
     }
+
+    public void addReserva(Reserva reserva) {
+        if (!reservas.contains(reserva)){
+            reservas.add(reserva);
+        }
+        else{
+            System.out.println("La reserva ya existe");
+        }
+    }
+
+
+    /**
+     * Getters & Setters
+     *
+     * Get the value of saldo
+     *
+     * @return the value of saldo
+     */
 
     public double getSaldo() {
         return tarjetaCredito.getSaldo();
     }
+
+    /**
+     * Set the value of saldo
+     *
+     * @param saldo new value of saldo
+     */
 
     public void setSaldo(double saldo) {
         tarjetaCredito.setSaldo(saldo);
