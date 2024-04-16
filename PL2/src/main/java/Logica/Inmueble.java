@@ -62,9 +62,6 @@ public class Inmueble {
      * @return True si está disponible, false si no lo está.
      */
     public boolean estaDisponible(LocalDate fechaEntrada, LocalDate fechaSalida) {
-        // Supongamos que las fechas de reserva están almacenadas en dos atributos de tipo LocalDate
-        // llamados fechaInicioReserva y fechaFinReserva.
-        // Si no hay reservas que se superpongan con las fechas proporcionadas, el inmueble está disponible.
         return fechaInicioReserva.isAfter(fechaSalida) || fechaFinReserva.isBefore(fechaEntrada);
     }
 
@@ -141,7 +138,12 @@ public class Inmueble {
      * @param calificacion new value of calificacion
      */
     public void setCalificacion(double calificacion) {
-        this.calificacion = calificacion;
+        if (calificacion < 0 || calificacion > 5) {
+            throw new IllegalArgumentException("La calificación debe estar entre 0 y 5.");
+        }
+        else{
+            this.calificacion = calificacion;
+        }
     }
 
     /**
