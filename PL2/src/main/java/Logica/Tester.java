@@ -23,7 +23,7 @@ public class Tester {
          
         a1.addInmuebles(i1);
         //a1.addInmuebles(i2);
-        System.out.println(a1.isSuperanfitrion());
+        System.out.println(a1.isSuperAnfitrion());
         
     }
 }
