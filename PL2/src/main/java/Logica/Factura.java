@@ -1,4 +1,4 @@
-package UI_UX;
+package Logica;
 
 import Logica.DatosInmueble;
 
