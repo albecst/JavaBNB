@@ -98,7 +98,7 @@ public class Login extends javax.swing.JPanel {
 
         userLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userLabel.setForeground(new java.awt.Color(102, 102, 102));
-        userLabel.setText("Usuario *");
+        userLabel.setText("Correo *");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 13;
@@ -117,7 +117,6 @@ public class Login extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 11, 30);
         jPanel1.add(passwordLabel, gridBagConstraints);
 
-        userTextField.setText("Introduzca el usuario");
         userTextField.setToolTipText("");
         userTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         userTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -134,7 +133,7 @@ public class Login extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 14;
-        gridBagConstraints.ipadx = 302;
+        gridBagConstraints.ipadx = 357;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
@@ -150,7 +149,6 @@ public class Login extends javax.swing.JPanel {
         gridBagConstraints.ipady = 32;
         jPanel1.add(space6, gridBagConstraints);
 
-        passwordTextField.setText("Passpass");
         passwordTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         passwordTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         passwordTextField.addMouseListener(new java.awt.event.MouseAdapter() {
