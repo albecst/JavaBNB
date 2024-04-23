@@ -56,8 +56,6 @@ public class Login extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        this.setSize(400,400);
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         titleLabel.setFont(new java.awt.Font("Serif", 0, 48)); // NOI18N
@@ -65,12 +63,13 @@ public class Login extends javax.swing.JPanel {
         titleLabel.setText("¡Bienvenid@ a javabnb!");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.insets = new java.awt.Insets(16, 0, 0, 0);
         jPanel1.add(titleLabel, gridBagConstraints);
 
         photoLabel.setBackground(new java.awt.Color(255, 90, 95));
+        photoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\alber\\Desktop\\airbnb logo - 200x200.png")); // NOI18N
         photoLabel.setBorderPainted(false);
         photoLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         photoLabel.setDefaultCapable(false);
@@ -79,14 +78,9 @@ public class Login extends javax.swing.JPanel {
         photoLabel.setRequestFocusEnabled(false);
         photoLabel.setRolloverEnabled(false);
         photoLabel.setVerifyInputWhenFocusTarget(false);
-        photoLabel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                photoLabelActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
         jPanel1.add(photoLabel, gridBagConstraints);
 
@@ -95,7 +89,7 @@ public class Login extends javax.swing.JPanel {
         loginLabel.setText("INICIO DE SESIÓN");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipady = 15;
         gridBagConstraints.weighty = 5.0;
@@ -104,10 +98,10 @@ public class Login extends javax.swing.JPanel {
 
         userLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userLabel.setForeground(new java.awt.Color(102, 102, 102));
-        userLabel.setText("Usuario *");
+        userLabel.setText("Correo *");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.ipady = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
@@ -118,14 +112,12 @@ public class Login extends javax.swing.JPanel {
         passwordLabel.setText("Contraseña *");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridy = 17;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 11, 30);
         jPanel1.add(passwordLabel, gridBagConstraints);
 
         userTextField.setToolTipText("");
-        userTextField.setActionCommand("<Not Set>");
-        userTextField.setAutoscrolls(false);
         userTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         userTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         userTextField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -140,24 +132,23 @@ public class Login extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.ipadx = 357;
-        gridBagConstraints.ipady = 4;
+        gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(0, 12, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
         jPanel1.add(userTextField, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.ipady = 18;
         jPanel1.add(space5, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridy = 17;
         gridBagConstraints.ipady = 32;
         jPanel1.add(space6, gridBagConstraints);
 
-        passwordTextField.setToolTipText("");
         passwordTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         passwordTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         passwordTextField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -165,14 +156,9 @@ public class Login extends javax.swing.JPanel {
                 passwordTextFieldMousePressed(evt);
             }
         });
-        passwordTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextFieldActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 21;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.ipadx = 357;
         gridBagConstraints.ipady = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
@@ -190,7 +176,7 @@ public class Login extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridy = 21;
         gridBagConstraints.ipadx = 35;
         gridBagConstraints.ipady = 21;
         gridBagConstraints.insets = new java.awt.Insets(16, 0, 0, 0);
@@ -207,10 +193,11 @@ public class Login extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 26;
+        gridBagConstraints.gridy = 23;
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 19, 0);
         jPanel1.add(registerLabel, gridBagConstraints);
 
+        errorLabel.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel.setText("Usuario o contraseña incorrectos");
         errorLabel.setEnabled(false);
         errorLabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -220,14 +207,14 @@ public class Login extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 22;
+        gridBagConstraints.gridy = 19;
         jPanel1.add(errorLabel, gridBagConstraints);
 
         statementLabel.setForeground(new java.awt.Color(102, 102, 102));
         statementLabel.setText("Nota: se deben rellenar todos los campos obligatorios (marcados con *)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 23;
+        gridBagConstraints.gridy = 20;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         jPanel1.add(statementLabel, gridBagConstraints);
 
@@ -236,7 +223,7 @@ public class Login extends javax.swing.JPanel {
         subtitleLabel.setText("Vista al mar o a la montaña: ¡elija usted mismo!");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(12, 0, 0, 0);
         jPanel1.add(subtitleLabel, gridBagConstraints);
 
@@ -252,11 +239,10 @@ public class Login extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 27;
+        gridBagConstraints.gridy = 24;
         jPanel1.add(privacypolicyLabel, gridBagConstraints);
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
-        jPanel1.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void userTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTextFieldActionPerformed
@@ -286,14 +272,6 @@ public class Login extends javax.swing.JPanel {
     private void privacypolicyLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_privacypolicyLabelMouseClicked
         Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla privacypolicy");
     }//GEN-LAST:event_privacypolicyLabelMouseClicked
-
-    private void passwordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextFieldActionPerformed
-
-    private void photoLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoLabelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_photoLabelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

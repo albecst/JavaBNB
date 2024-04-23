@@ -15,6 +15,16 @@ public class Register extends javax.swing.JPanel {
      */
     public Register() {
         initComponents();
+        errorLabel.setVisible(false);
+        errorLabel1.setVisible(false);
+        errorLabel2.setVisible(false);
+        errorLabel6.setVisible(false);
+        errorLabel3.setVisible(false);
+        errorLabel4.setVisible(false);
+        errorLabel5.setVisible(false);
+        CCTextField.setVisible(false);
+        CCLabel.setVisible(false);
+
     }
 
     /**
@@ -34,20 +44,27 @@ public class Register extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         userTextField = new javax.swing.JTextField();
         userLabel = new javax.swing.JLabel();
-        passwordLabel = new javax.swing.JLabel();
+        tlfLabel = new javax.swing.JLabel();
         passwordTextField = new javax.swing.JPasswordField();
         registerButton = new javax.swing.JButton();
         selectComboBox = new javax.swing.JComboBox<>();
         existaccLabel = new javax.swing.JLabel();
         statementLabel = new javax.swing.JLabel();
-        userLabel1 = new javax.swing.JLabel();
-        userTextField3 = new javax.swing.JTextField();
-        userTextField4 = new javax.swing.JTextField();
-        userTextField2 = new javax.swing.JTextField();
-        userTextField1 = new javax.swing.JTextField();
-        userLabel2 = new javax.swing.JLabel();
-        userLabel3 = new javax.swing.JLabel();
-        userLabel4 = new javax.swing.JLabel();
+        DNILabel = new javax.swing.JLabel();
+        DNITextField = new javax.swing.JTextField();
+        emailTextField = new javax.swing.JTextField();
+        CCTextField = new javax.swing.JTextField();
+        tlfTextField = new javax.swing.JTextField();
+        emailLabel = new javax.swing.JLabel();
+        passLabel = new javax.swing.JLabel();
+        CCLabel = new javax.swing.JLabel();
+        errorLabel = new javax.swing.JLabel();
+        errorLabel1 = new javax.swing.JLabel();
+        errorLabel3 = new javax.swing.JLabel();
+        errorLabel4 = new javax.swing.JLabel();
+        errorLabel5 = new javax.swing.JLabel();
+        errorLabel6 = new javax.swing.JLabel();
+        errorLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 250, 248));
         setLayout(new java.awt.BorderLayout());
@@ -101,7 +118,6 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(22, 0, 0, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        userTextField.setText("Introduzca el usuario");
         userTextField.setToolTipText("");
         userTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         userTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -118,7 +134,7 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 14;
-        gridBagConstraints.ipadx = 301;
+        gridBagConstraints.ipadx = 354;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
@@ -135,15 +151,15 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(userLabel, gridBagConstraints);
 
-        passwordLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        passwordLabel.setForeground(new java.awt.Color(102, 102, 102));
-        passwordLabel.setText("Contraseña *");
+        tlfLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tlfLabel.setForeground(new java.awt.Color(102, 102, 102));
+        tlfLabel.setText("Teléfono *");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 17;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
-        jPanel1.add(passwordLabel, gridBagConstraints);
+        jPanel1.add(tlfLabel, gridBagConstraints);
 
         passwordTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         passwordTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -154,7 +170,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridy = 28;
         gridBagConstraints.ipadx = 354;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
@@ -182,6 +198,11 @@ public class Register extends javax.swing.JPanel {
         selectComboBox.setEditable(true);
         selectComboBox.setForeground(new java.awt.Color(255, 255, 255));
         selectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione entre:", "Anfitrión", "Cliente" }));
+        selectComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectComboBoxActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
@@ -211,133 +232,231 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         jPanel1.add(statementLabel, gridBagConstraints);
 
-        userLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        userLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        userLabel1.setText("DNI *");
+        DNILabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DNILabel.setForeground(new java.awt.Color(102, 102, 102));
+        DNILabel.setText("DNI *");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
-        jPanel1.add(userLabel1, gridBagConstraints);
+        jPanel1.add(DNILabel, gridBagConstraints);
 
-        userTextField3.setText("Introduzca el usuario");
-        userTextField3.setToolTipText("");
-        userTextField3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        userTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        userTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
+        DNITextField.setToolTipText("");
+        DNITextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DNITextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        DNITextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTextField3MousePressed(evt);
+                DNITextFieldMousePressed(evt);
             }
         });
-        userTextField3.addActionListener(new java.awt.event.ActionListener() {
+        DNITextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTextField3ActionPerformed(evt);
+                DNITextFieldActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 21;
-        gridBagConstraints.ipadx = 301;
+        gridBagConstraints.ipadx = 354;
         gridBagConstraints.ipady = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
-        jPanel1.add(userTextField3, gridBagConstraints);
-
-        userTextField4.setText("Introduzca el usuario");
-        userTextField4.setToolTipText("");
-        userTextField4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        userTextField4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        userTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTextField4MousePressed(evt);
-            }
-        });
-        userTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTextField4ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 23;
-        gridBagConstraints.ipadx = 301;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
-        jPanel1.add(userTextField4, gridBagConstraints);
-
-        userTextField2.setText("Introduzca el usuario");
-        userTextField2.setToolTipText("");
-        userTextField2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        userTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        userTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTextField2MousePressed(evt);
-            }
-        });
-        userTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTextField2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 25;
-        gridBagConstraints.ipadx = 301;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
-        jPanel1.add(userTextField2, gridBagConstraints);
-
-        userTextField1.setText("Introduzca el usuario");
-        userTextField1.setToolTipText("");
-        userTextField1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        userTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        userTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTextField1MousePressed(evt);
-            }
-        });
-        userTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTextField1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 27;
-        gridBagConstraints.ipadx = 301;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
-        jPanel1.add(userTextField1, gridBagConstraints);
-
-        userLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        userLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        userLabel2.setText("Usuario *");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 22;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
-        jPanel1.add(userLabel2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
+        jPanel1.add(DNITextField, gridBagConstraints);
 
-        userLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        userLabel3.setForeground(new java.awt.Color(102, 102, 102));
-        userLabel3.setText("Usuario *");
+        emailTextField.setToolTipText("");
+        emailTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        emailTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        emailTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                emailTextFieldMousePressed(evt);
+            }
+        });
+        emailTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailTextFieldActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 24;
+        gridBagConstraints.ipadx = 354;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
+        jPanel1.add(emailTextField, gridBagConstraints);
+
+        CCTextField.setToolTipText("");
+        CCTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CCTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        CCTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                CCTextFieldMousePressed(evt);
+            }
+        });
+        CCTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CCTextFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 31;
+        gridBagConstraints.ipadx = 354;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
+        jPanel1.add(CCTextField, gridBagConstraints);
+
+        tlfTextField.setToolTipText("");
+        tlfTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tlfTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        tlfTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tlfTextFieldMousePressed(evt);
+            }
+        });
+        tlfTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tlfTextFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.ipadx = 354;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
+        jPanel1.add(tlfTextField, gridBagConstraints);
+
+        emailLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(102, 102, 102));
+        emailLabel.setText("Correo *");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 23;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
-        jPanel1.add(userLabel3, gridBagConstraints);
+        jPanel1.add(emailLabel, gridBagConstraints);
 
-        userLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        userLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        userLabel4.setText("Usuario *");
+        passLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        passLabel.setForeground(new java.awt.Color(102, 102, 102));
+        passLabel.setText("Contraseña *");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
-        jPanel1.add(userLabel4, gridBagConstraints);
+        jPanel1.add(passLabel, gridBagConstraints);
+
+        CCLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CCLabel.setForeground(new java.awt.Color(102, 102, 102));
+        CCLabel.setText("Tarjeta de crédito *");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 30;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
+        jPanel1.add(CCLabel, gridBagConstraints);
+
+        errorLabel.setForeground(new java.awt.Color(0, 0, 0));
+        errorLabel.setText("Seleccione algo, por favor");
+        errorLabel.setEnabled(false);
+        errorLabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                errorLabelPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.insets = new java.awt.Insets(13, 0, 0, 0);
+        jPanel1.add(errorLabel, gridBagConstraints);
+
+        errorLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        errorLabel1.setText("Esta tarjeta no existe");
+        errorLabel1.setEnabled(false);
+        errorLabel1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                errorLabel1PropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 32;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        jPanel1.add(errorLabel1, gridBagConstraints);
+
+        errorLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        errorLabel3.setText("Usuario o contraseña incorrectos");
+        errorLabel3.setEnabled(false);
+        errorLabel3.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                errorLabel3PropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 29;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        jPanel1.add(errorLabel3, gridBagConstraints);
+
+        errorLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        errorLabel4.setText("Formato no válido");
+        errorLabel4.setEnabled(false);
+        errorLabel4.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                errorLabel4PropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        jPanel1.add(errorLabel4, gridBagConstraints);
+
+        errorLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        errorLabel5.setText("Formato no válido");
+        errorLabel5.setEnabled(false);
+        errorLabel5.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                errorLabel5PropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 19;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        jPanel1.add(errorLabel5, gridBagConstraints);
+
+        errorLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        errorLabel6.setText("Formato no válido");
+        errorLabel6.setEnabled(false);
+        errorLabel6.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                errorLabel6PropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 25;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        jPanel1.add(errorLabel6, gridBagConstraints);
+
+        errorLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        errorLabel2.setText("Formato no válido");
+        errorLabel2.setEnabled(false);
+        errorLabel2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                errorLabel2PropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 22;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        jPanel1.add(errorLabel2, gridBagConstraints);
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
@@ -362,60 +481,108 @@ public class Register extends javax.swing.JPanel {
         Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
     }//GEN-LAST:event_existaccLabelMouseClicked
 
-    private void userTextField1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTextField1MousePressed
+    private void tlfTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tlfTextFieldMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTextField1MousePressed
+    }//GEN-LAST:event_tlfTextFieldMousePressed
 
-    private void userTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTextField1ActionPerformed
+    private void tlfTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tlfTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTextField1ActionPerformed
+    }//GEN-LAST:event_tlfTextFieldActionPerformed
 
-    private void userTextField2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTextField2MousePressed
+    private void CCTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CCTextFieldMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTextField2MousePressed
+    }//GEN-LAST:event_CCTextFieldMousePressed
 
-    private void userTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTextField2ActionPerformed
+    private void CCTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CCTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTextField2ActionPerformed
+    }//GEN-LAST:event_CCTextFieldActionPerformed
 
-    private void userTextField3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTextField3MousePressed
+    private void DNITextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DNITextFieldMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTextField3MousePressed
+    }//GEN-LAST:event_DNITextFieldMousePressed
 
-    private void userTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTextField3ActionPerformed
+    private void DNITextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DNITextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTextField3ActionPerformed
+    }//GEN-LAST:event_DNITextFieldActionPerformed
 
-    private void userTextField4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTextField4MousePressed
+    private void emailTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailTextFieldMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTextField4MousePressed
+    }//GEN-LAST:event_emailTextFieldMousePressed
 
-    private void userTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTextField4ActionPerformed
+    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userTextField4ActionPerformed
+    }//GEN-LAST:event_emailTextFieldActionPerformed
+
+    private void errorLabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabelPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_errorLabelPropertyChange
+
+    private void errorLabel1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabel1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_errorLabel1PropertyChange
+
+    private void errorLabel3PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabel3PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_errorLabel3PropertyChange
+
+    private void errorLabel4PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabel4PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_errorLabel4PropertyChange
+
+    private void errorLabel5PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabel5PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_errorLabel5PropertyChange
+
+    private void errorLabel6PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabel6PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_errorLabel6PropertyChange
+
+    private void selectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectComboBoxActionPerformed
+        String selectedOption = (String) selectComboBox.getSelectedItem();
+        if (selectedOption.equals("Cliente")){
+                    CCTextField.setVisible(true);
+                    CCLabel.setVisible(true);
+        }
+        else{
+                    CCTextField.setVisible(false);
+                    CCLabel.setVisible(false);
+        }
+
+    }//GEN-LAST:event_selectComboBoxActionPerformed
+
+    private void errorLabel2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabel2PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_errorLabel2PropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CCLabel;
+    private javax.swing.JTextField CCTextField;
+    private javax.swing.JLabel DNILabel;
+    private javax.swing.JTextField DNITextField;
     private javax.swing.JLabel createaccLabel;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JTextField emailTextField;
+    private javax.swing.JLabel errorLabel;
+    private javax.swing.JLabel errorLabel1;
+    private javax.swing.JLabel errorLabel2;
+    private javax.swing.JLabel errorLabel3;
+    private javax.swing.JLabel errorLabel4;
+    private javax.swing.JLabel errorLabel5;
+    private javax.swing.JLabel errorLabel6;
     private javax.swing.JLabel existaccLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel passLabel;
     private javax.swing.JPasswordField passwordTextField;
     private javax.swing.JButton photoLabel;
     private javax.swing.JButton registerButton;
     private javax.swing.JComboBox<String> selectComboBox;
     private javax.swing.JLabel statementLabel;
     private javax.swing.JLabel subtitleLabel;
+    private javax.swing.JLabel tlfLabel;
+    private javax.swing.JTextField tlfTextField;
     private javax.swing.JLabel userLabel;
-    private javax.swing.JLabel userLabel1;
-    private javax.swing.JLabel userLabel2;
-    private javax.swing.JLabel userLabel3;
-    private javax.swing.JLabel userLabel4;
     private javax.swing.JTextField userTextField;
-    private javax.swing.JTextField userTextField1;
-    private javax.swing.JTextField userTextField2;
-    private javax.swing.JTextField userTextField3;
-    private javax.swing.JTextField userTextField4;
     // End of variables declaration//GEN-END:variables
 }
