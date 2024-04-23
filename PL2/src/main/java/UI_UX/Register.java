@@ -78,7 +78,6 @@ public class Register extends javax.swing.JPanel {
         jPanel1.add(subtitleLabel, gridBagConstraints);
 
         photoLabel.setBackground(new java.awt.Color(255, 90, 95));
-        photoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\alber\\Desktop\\airbnb logo - 200x200.png")); // NOI18N
         photoLabel.setBorderPainted(false);
         photoLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         photoLabel.setDefaultCapable(false);
@@ -146,7 +145,6 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
         jPanel1.add(passwordLabel, gridBagConstraints);
 
-        passwordTextField.setText("Passpass");
         passwordTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         passwordTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         passwordTextField.addMouseListener(new java.awt.event.MouseAdapter() {

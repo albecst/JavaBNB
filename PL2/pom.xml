@@ -18,4 +18,5 @@
         <maven.compiler.target>21</maven.compiler.target>
         <exec.mainClass>poo.pl2_castillo_toma_23_24.PL2_Castillo_Toma_23_24</exec.mainClass>
     </properties>
+    <name>Java_PL2</name>
 </project>

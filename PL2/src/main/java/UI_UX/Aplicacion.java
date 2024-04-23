@@ -1,6 +1,7 @@
 package UI_UX;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import javax.swing.*;
 
 
@@ -14,10 +15,12 @@ public class Aplicacion {
     static PrivacyPolicy privacypolicy = new PrivacyPolicy();
     
     public static void main(String[] args){
+        
         cards.add(login, "Pantalla login"); //Llamo a toda la lista de pantallas disponibles
         cards.add(register, "Pantalla register");
         cards.add(privacypolicy, "Pantalla privacypolicy");
         
+        frame.setMinimumSize(new Dimension(1000, 700));
         frame.setContentPane(cards); //Muestra por pantalla las cards
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Si le doy a cerrar, se quita la APP
         frame.setVisible(true); //Lo muestro
