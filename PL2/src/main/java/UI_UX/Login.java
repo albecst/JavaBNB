@@ -37,12 +37,8 @@ public class Login extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        space4 = new javax.swing.JLabel();
         photoLabel = new javax.swing.JButton();
         loginLabel = new javax.swing.JLabel();
-        space1 = new javax.swing.JLabel();
-        space2 = new javax.swing.JLabel();
-        space3 = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         userTextField = new javax.swing.JTextField();
@@ -68,16 +64,9 @@ public class Login extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.insets = new java.awt.Insets(16, 0, 0, 0);
         jPanel1.add(titleLabel, gridBagConstraints);
-
-        space4.setFont(new java.awt.Font("Serif", 0, 48)); // NOI18N
-        space4.setForeground(new java.awt.Color(255, 90, 95));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.insets = new java.awt.Insets(0, 264, 20, 189);
-        jPanel1.add(space4, gridBagConstraints);
 
         photoLabel.setBackground(new java.awt.Color(255, 90, 95));
         photoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\alber\\Desktop\\airbnb logo - 200x200.png")); // NOI18N
@@ -92,6 +81,7 @@ public class Login extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
         jPanel1.add(photoLabel, gridBagConstraints);
 
         loginLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -103,24 +93,8 @@ public class Login extends javax.swing.JPanel {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipady = 15;
         gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
         jPanel1.add(loginLabel, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipady = 28;
-        gridBagConstraints.weighty = 0.3;
-        jPanel1.add(space1, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipady = 28;
-        gridBagConstraints.weighty = 0.3;
-        jPanel1.add(space2, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.ipady = 18;
-        jPanel1.add(space3, gridBagConstraints);
 
         userLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userLabel.setForeground(new java.awt.Color(102, 102, 102));
@@ -312,10 +286,6 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JButton photoLabel;
     private javax.swing.JLabel privacypolicyLabel;
     private javax.swing.JLabel registerLabel;
-    private javax.swing.JLabel space1;
-    private javax.swing.JLabel space2;
-    private javax.swing.JLabel space3;
-    private javax.swing.JLabel space4;
     private javax.swing.JLabel space5;
     private javax.swing.JLabel space6;
     private javax.swing.JLabel statementLabel;
