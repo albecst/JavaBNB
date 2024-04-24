@@ -12,7 +12,7 @@ public class Anfitrion extends Cliente {
     //Atributos
     private LocalDate fechaRegistro;
     private boolean superAnfitrion;
-    private ArrayList<Inmueble> inmuebles = new ArrayList<>();
+    private static ArrayList<Inmueble> inmuebles = new ArrayList<>();
 
     //Constructor
     public Anfitrion(LocalDate fechaRegistro, String dni, String nombre, String correo, String clave, String telefono) {

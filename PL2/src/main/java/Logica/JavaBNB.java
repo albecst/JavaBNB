@@ -1,12 +1,13 @@
 package Logica;
 
 import Logica.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class JavaBNB {
+public class JavaBNB implements Serializable {
 
     //Atributos
     private ArrayList<Inmueble> inmueblesDisponibles;

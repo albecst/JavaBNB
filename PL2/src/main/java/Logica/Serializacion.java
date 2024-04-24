@@ -1,5 +1,7 @@
 package Logica;
 
-public class Serializacion {
+import java.io.Serializable;
+
+public class Serializacion implements Serializable {
     /*Cri cri cri*/
 }

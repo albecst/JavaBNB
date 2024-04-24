@@ -1,5 +1,6 @@
 package Logica;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  *
  * @author alber
  */
-public class InicioSesion {
+public class InicioSesion implements Serializable{
 
     //Atributos
     private Administrador administrador;

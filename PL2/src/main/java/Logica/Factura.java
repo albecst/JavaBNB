@@ -1,12 +1,12 @@
 package Logica;
 
-import Logica.DatosInmueble;
+import java.io.Serializable;
 
 /**
  *
  * @author alber
  */
-public class Factura {
+public class Factura implements Serializable {
 
     //Atributos
     private int idFactura;

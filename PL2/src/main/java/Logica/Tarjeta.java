@@ -1,21 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Logica;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author alber
  */
-public class Tarjeta {
+public class Tarjeta implements Serializable {
 
     //Atributos
     private String titular;
     private String numeroTarjeta;
     private LocalDate fechaCaducidad;
+    private String cvv;
     private double saldo;
 
     //Constructor
