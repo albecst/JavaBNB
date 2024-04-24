@@ -69,7 +69,6 @@ public class Login extends javax.swing.JPanel {
         jPanel1.add(titleLabel, gridBagConstraints);
 
         photoLabel.setBackground(new java.awt.Color(255, 90, 95));
-        photoLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\alber\\Desktop\\airbnb logo - 200x200.png")); // NOI18N
         photoLabel.setBorderPainted(false);
         photoLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         photoLabel.setDefaultCapable(false);
@@ -78,6 +77,11 @@ public class Login extends javax.swing.JPanel {
         photoLabel.setRequestFocusEnabled(false);
         photoLabel.setRolloverEnabled(false);
         photoLabel.setVerifyInputWhenFocusTarget(false);
+        photoLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                photoLabelActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -197,7 +201,6 @@ public class Login extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 19, 0);
         jPanel1.add(registerLabel, gridBagConstraints);
 
-        errorLabel.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel.setText("Usuario o contraseña incorrectos");
         errorLabel.setEnabled(false);
         errorLabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -254,7 +257,7 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_passwordTextFieldMousePressed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla userprofile");
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void userTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTextFieldMousePressed
@@ -272,6 +275,10 @@ public class Login extends javax.swing.JPanel {
     private void privacypolicyLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_privacypolicyLabelMouseClicked
         Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla privacypolicy");
     }//GEN-LAST:event_privacypolicyLabelMouseClicked
+
+    private void photoLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_photoLabelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
