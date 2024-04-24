@@ -1,10 +1,12 @@
 package Logica;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alber
  */
-public class DatosInmueble {
+public class DatosInmueble implements Serializable {
     
     //Atributos
     private int maxHuespedes;

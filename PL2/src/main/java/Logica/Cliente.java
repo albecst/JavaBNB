@@ -1,12 +1,12 @@
 package Logica;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  *
  * @author alber
  */
-public class Cliente {
+public class Cliente implements Serializable {
     
     //Atributos
     private String dni;

@@ -1,5 +1,6 @@
 package Logica;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  *
  * @author alber
  */
-public class Inmueble {
+public class Inmueble implements Serializable {
     
     //Atributos
     private String titulo;

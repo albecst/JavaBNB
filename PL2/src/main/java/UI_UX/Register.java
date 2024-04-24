@@ -4,6 +4,8 @@
  */
 package UI_UX;
 
+import Logica.Validacion;
+
 /**
  *
  * @author alber
@@ -22,8 +24,18 @@ public class Register extends javax.swing.JPanel {
         errorLabel3.setVisible(false);
         errorLabel4.setVisible(false);
         errorLabel5.setVisible(false);
+        statementLabel.setVisible(false);
+        requirementsLabel.setVisible(false);
+        dayTextField.setVisible(false);
+        monthTextField.setVisible(false);
+        yearTextField.setVisible(false);
+        cvvTextField.setVisible(false);
         CCTextField.setVisible(false);
         CCLabel.setVisible(false);
+        dayLabel.setVisible(false);
+        monthLabel.setVisible(false);
+        yearLabel.setVisible(false);
+        cvvLabel.setVisible(false);
 
     }
 
@@ -53,9 +65,8 @@ public class Register extends javax.swing.JPanel {
         DNILabel = new javax.swing.JLabel();
         DNITextField = new javax.swing.JTextField();
         emailTextField = new javax.swing.JTextField();
-        CCTextField = new javax.swing.JTextField();
         tlfTextField = new javax.swing.JTextField();
-        emailLabel = new javax.swing.JLabel();
+        dayLabel = new javax.swing.JLabel();
         passLabel = new javax.swing.JLabel();
         CCLabel = new javax.swing.JLabel();
         errorLabel = new javax.swing.JLabel();
@@ -65,6 +76,17 @@ public class Register extends javax.swing.JPanel {
         errorLabel5 = new javax.swing.JLabel();
         errorLabel6 = new javax.swing.JLabel();
         errorLabel2 = new javax.swing.JLabel();
+        requirementsLabel = new javax.swing.JLabel();
+        monthTextField = new javax.swing.JTextField();
+        yearTextField = new javax.swing.JTextField();
+        cvvTextField = new javax.swing.JTextField();
+        CCTextField = new javax.swing.JTextField();
+        monthLabel = new javax.swing.JLabel();
+        yearLabel = new javax.swing.JLabel();
+        cvvLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        statementLabel2 = new javax.swing.JLabel();
+        dayTextField = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 250, 248));
         setLayout(new java.awt.BorderLayout());
@@ -195,7 +217,6 @@ public class Register extends javax.swing.JPanel {
         jPanel1.add(registerButton, gridBagConstraints);
 
         selectComboBox.setBackground(new java.awt.Color(255, 90, 95));
-        selectComboBox.setEditable(true);
         selectComboBox.setForeground(new java.awt.Color(255, 255, 255));
         selectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione entre:", "Anfitrión", "Cliente" }));
         selectComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -225,10 +246,10 @@ public class Register extends javax.swing.JPanel {
         jPanel1.add(existaccLabel, gridBagConstraints);
 
         statementLabel.setForeground(new java.awt.Color(102, 102, 102));
-        statementLabel.setText("Nota: se deben rellenar todos los campos obligatorios (marcados con *)");
+        statementLabel.setText("Introduzca la fecha de caducidad y el CVV");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 37;
+        gridBagConstraints.gridy = 35;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         jPanel1.add(statementLabel, gridBagConstraints);
 
@@ -286,28 +307,6 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
         jPanel1.add(emailTextField, gridBagConstraints);
 
-        CCTextField.setToolTipText("");
-        CCTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CCTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        CCTextField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                CCTextFieldMousePressed(evt);
-            }
-        });
-        CCTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CCTextFieldActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 31;
-        gridBagConstraints.ipadx = 354;
-        gridBagConstraints.ipady = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
-        jPanel1.add(CCTextField, gridBagConstraints);
-
         tlfTextField.setToolTipText("");
         tlfTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tlfTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -330,15 +329,15 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
         jPanel1.add(tlfTextField, gridBagConstraints);
 
-        emailLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        emailLabel.setForeground(new java.awt.Color(102, 102, 102));
-        emailLabel.setText("Correo *");
+        dayLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        dayLabel.setForeground(new java.awt.Color(102, 102, 102));
+        dayLabel.setText("Día:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 23;
+        gridBagConstraints.gridy = 33;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
-        jPanel1.add(emailLabel, gridBagConstraints);
+        jPanel1.add(dayLabel, gridBagConstraints);
 
         passLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         passLabel.setForeground(new java.awt.Color(102, 102, 102));
@@ -355,7 +354,7 @@ public class Register extends javax.swing.JPanel {
         CCLabel.setText("Tarjeta de crédito *");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 30;
+        gridBagConstraints.gridy = 31;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
         jPanel1.add(CCLabel, gridBagConstraints);
@@ -384,12 +383,12 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 32;
+        gridBagConstraints.gridy = 36;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel1, gridBagConstraints);
 
         errorLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        errorLabel3.setText("Usuario o contraseña incorrectos");
+        errorLabel3.setText("Contraseña poco segura");
         errorLabel3.setEnabled(false);
         errorLabel3.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -458,11 +457,181 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel2, gridBagConstraints);
 
+        requirementsLabel.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        requirementsLabel.setForeground(new java.awt.Color(102, 102, 102));
+        requirementsLabel.setText("Al menos una letra mayúscula, minúscula, dígitos y 8 caracteres de longitud");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 30;
+        gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
+        jPanel1.add(requirementsLabel, gridBagConstraints);
+
+        monthTextField.setToolTipText("");
+        monthTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        monthTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        monthTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                monthTextFieldMousePressed(evt);
+            }
+        });
+        monthTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthTextFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 33;
+        gridBagConstraints.gridwidth = 18;
+        gridBagConstraints.ipadx = 27;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(10, 27, 2, 6);
+        jPanel1.add(monthTextField, gridBagConstraints);
+
+        yearTextField.setToolTipText("");
+        yearTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        yearTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        yearTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                yearTextFieldMousePressed(evt);
+            }
+        });
+        yearTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearTextFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 33;
+        gridBagConstraints.ipadx = 27;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(10, 204, 2, 0);
+        jPanel1.add(yearTextField, gridBagConstraints);
+
+        cvvTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        cvvTextField.setToolTipText("");
+        cvvTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cvvTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        cvvTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cvvTextFieldMousePressed(evt);
+            }
+        });
+        cvvTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cvvTextFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 33;
+        gridBagConstraints.ipadx = 27;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(10, 352, 2, 0);
+        jPanel1.add(cvvTextField, gridBagConstraints);
+
+        CCTextField.setToolTipText("");
+        CCTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CCTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        CCTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                CCTextFieldMousePressed(evt);
+            }
+        });
+        CCTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CCTextFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 32;
+        gridBagConstraints.ipadx = 354;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
+        jPanel1.add(CCTextField, gridBagConstraints);
+
+        monthLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        monthLabel.setForeground(new java.awt.Color(102, 102, 102));
+        monthLabel.setText("Mes:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 33;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(11, 80, 0, 30);
+        jPanel1.add(monthLabel, gridBagConstraints);
+
+        yearLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        yearLabel.setForeground(new java.awt.Color(102, 102, 102));
+        yearLabel.setText("Año:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 33;
+        gridBagConstraints.gridwidth = 18;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(11, 171, 0, 0);
+        jPanel1.add(yearLabel, gridBagConstraints);
+
+        cvvLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cvvLabel.setForeground(new java.awt.Color(102, 102, 102));
+        cvvLabel.setText("CVV:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 33;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(11, 315, 0, 0);
+        jPanel1.add(cvvLabel, gridBagConstraints);
+
+        emailLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(102, 102, 102));
+        emailLabel.setText("Correo *");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
+        jPanel1.add(emailLabel, gridBagConstraints);
+
+        statementLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        statementLabel2.setText("Nota: se deben rellenar todos los campos obligatorios (marcados con *)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 37;
+        gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
+        jPanel1.add(statementLabel2, gridBagConstraints);
+
+        dayTextField.setToolTipText("");
+        dayTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dayTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        dayTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                dayTextFieldMousePressed(evt);
+            }
+        });
+        dayTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dayTextFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 33;
+        gridBagConstraints.gridwidth = 13;
+        gridBagConstraints.ipadx = 27;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(10, 113, 2, 0);
+        jPanel1.add(dayTextField, gridBagConstraints);
+
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
     private void userTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTextFieldMousePressed
-        userTextField.setText("");
     }//GEN-LAST:event_userTextFieldMousePressed
 
     private void userTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTextFieldActionPerformed
@@ -470,11 +639,38 @@ public class Register extends javax.swing.JPanel {
     }//GEN-LAST:event_userTextFieldActionPerformed
 
     private void passwordTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextFieldMousePressed
-        passwordTextField.setText("");
     }//GEN-LAST:event_passwordTextFieldMousePressed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        // TODO add your handling code here:
+        String nombre = userTextField.getText();
+        String dni = DNITextField.getText();
+        String correo = emailTextField.getText();
+        String clave = passwordTextField.getText();
+        String telefono = tlfTextField.getText();
+        
+        if (!Validacion.validarNombre(nombre)){
+            errorLabel4.setVisible(true);
+        }
+        if (!Validacion.validarDNI(dni)){
+            errorLabel2.setVisible(true);
+        }
+        if (!Validacion.validarEmail(correo)){
+            errorLabel6.setVisible(true);
+        }
+        if (!Validacion.validarTelefono(telefono)){
+            errorLabel5.setVisible(true);
+        }
+        if (!Validacion.validarContraseña(clave)){
+            errorLabel3.setVisible(true);
+            requirementsLabel.setVisible(true);
+        }
+        if (!Validacion.validarNombre(nombre)){
+            errorLabel4.setVisible(true);
+        }
+        
+     
+
+
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void existaccLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_existaccLabelMouseClicked
@@ -488,14 +684,6 @@ public class Register extends javax.swing.JPanel {
     private void tlfTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tlfTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tlfTextFieldActionPerformed
-
-    private void CCTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CCTextFieldMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CCTextFieldMousePressed
-
-    private void CCTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CCTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CCTextFieldActionPerformed
 
     private void DNITextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DNITextFieldMousePressed
         // TODO add your handling code here:
@@ -540,12 +728,41 @@ public class Register extends javax.swing.JPanel {
     private void selectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectComboBoxActionPerformed
         String selectedOption = (String) selectComboBox.getSelectedItem();
         if (selectedOption.equals("Cliente")){
+                    dayTextField.setVisible(true);
+                    dayLabel.setVisible(true);
+                    monthTextField.setVisible(true);
+                    monthLabel.setVisible(true);
+                    yearTextField.setVisible(true);
+                    yearLabel.setVisible(true);
+                    cvvTextField.setVisible(true);
+                    cvvLabel.setVisible(true);
+                    
                     CCTextField.setVisible(true);
                     CCLabel.setVisible(true);
+                    statementLabel.setVisible(true);
         }
         else{
+                    dayTextField.setVisible(false);
+                    dayLabel.setVisible(false);
+                    monthTextField.setVisible(false);
+                    monthLabel.setVisible(false);
+                    yearTextField.setVisible(false);
+                    yearLabel.setVisible(false);
+                    cvvTextField.setVisible(false);
+                    cvvLabel.setVisible(false);
+                    
                     CCTextField.setVisible(false);
                     CCLabel.setVisible(false);
+                    statementLabel.setVisible(false);
+                    
+                    errorLabel.setVisible(false);
+                    errorLabel1.setVisible(false);
+                    errorLabel2.setVisible(false);
+                    errorLabel6.setVisible(false);
+                    errorLabel3.setVisible(false);
+                    errorLabel4.setVisible(false);
+                    errorLabel5.setVisible(false);
+
         }
 
     }//GEN-LAST:event_selectComboBoxActionPerformed
@@ -554,6 +771,46 @@ public class Register extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_errorLabel2PropertyChange
 
+    private void yearTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_yearTextFieldMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearTextFieldMousePressed
+
+    private void yearTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearTextFieldActionPerformed
+
+    private void cvvTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cvvTextFieldMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cvvTextFieldMousePressed
+
+    private void cvvTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cvvTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cvvTextFieldActionPerformed
+
+    private void CCTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CCTextFieldMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CCTextFieldMousePressed
+
+    private void CCTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CCTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CCTextFieldActionPerformed
+
+    private void monthTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monthTextFieldActionPerformed
+
+    private void monthTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_monthTextFieldMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monthTextFieldMousePressed
+
+    private void dayTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dayTextFieldMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dayTextFieldMousePressed
+
+    private void dayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dayTextFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CCLabel;
@@ -561,6 +818,10 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JLabel DNILabel;
     private javax.swing.JTextField DNITextField;
     private javax.swing.JLabel createaccLabel;
+    private javax.swing.JLabel cvvLabel;
+    private javax.swing.JTextField cvvTextField;
+    private javax.swing.JLabel dayLabel;
+    private javax.swing.JTextField dayTextField;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel errorLabel;
@@ -573,16 +834,22 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JLabel existaccLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel monthLabel;
+    private javax.swing.JTextField monthTextField;
     private javax.swing.JLabel passLabel;
     private javax.swing.JPasswordField passwordTextField;
     private javax.swing.JButton photoLabel;
     private javax.swing.JButton registerButton;
+    private javax.swing.JLabel requirementsLabel;
     private javax.swing.JComboBox<String> selectComboBox;
     private javax.swing.JLabel statementLabel;
+    private javax.swing.JLabel statementLabel2;
     private javax.swing.JLabel subtitleLabel;
     private javax.swing.JLabel tlfLabel;
     private javax.swing.JTextField tlfTextField;
     private javax.swing.JLabel userLabel;
     private javax.swing.JTextField userTextField;
+    private javax.swing.JLabel yearLabel;
+    private javax.swing.JTextField yearTextField;
     // End of variables declaration//GEN-END:variables
 }

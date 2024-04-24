@@ -1,10 +1,12 @@
 package Logica;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alber
  */
-public class Direccion {
+public class Direccion implements Serializable {
    
     //Atributos
     private String calle; 
