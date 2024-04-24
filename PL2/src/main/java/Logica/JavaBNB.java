@@ -10,7 +10,7 @@ public class JavaBNB {
 
     //Atributos
     private ArrayList<Inmueble> inmueblesDisponibles;
-    private Particular particular;  ////////////////////////////////////////////arraylist
+    private Particular particular;  
     private Anfitrion anfitrion;
 
     /**

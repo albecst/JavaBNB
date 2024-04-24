@@ -69,6 +69,7 @@ public class Login extends javax.swing.JPanel {
         jPanel1.add(titleLabel, gridBagConstraints);
 
         photoLabel.setBackground(new java.awt.Color(255, 90, 95));
+        photoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI_UX/user.jpg"))); // NOI18N
         photoLabel.setBorderPainted(false);
         photoLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         photoLabel.setDefaultCapable(false);
@@ -257,7 +258,7 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_passwordTextFieldMousePressed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla userprofile");
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void userTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTextFieldMousePressed
