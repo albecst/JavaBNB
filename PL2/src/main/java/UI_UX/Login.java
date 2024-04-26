@@ -69,7 +69,7 @@ public class Login extends javax.swing.JPanel {
         jPanel1.add(titleLabel, gridBagConstraints);
 
         photoLabel.setBackground(new java.awt.Color(255, 90, 95));
-        photoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI_UX/user.jpg"))); // NOI18N
+        photoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/airbnb logo - 200x200.png"))); // NOI18N
         photoLabel.setBorderPainted(false);
         photoLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         photoLabel.setDefaultCapable(false);
