@@ -119,4 +119,12 @@ public class Cliente implements Serializable {
         this.dni = dni;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" + "dni=" + dni + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + ", telefono=" + telefono + '}';
+    }
+
+    
+    
+    
 }
