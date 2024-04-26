@@ -1,5 +1,6 @@
 package UI_UX;
 
+import Logica.*;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.*;
@@ -27,6 +28,8 @@ public class Aplicacion {
      * @param args Argumentos de la línea de comandos (no se utilizan en este caso).
      */
     public static void main(String[] args) {
+        new InicioSesion();
+
         // Establecer el tamaño mínimo de la ventana.
         frame.setMinimumSize(new Dimension(900, 777));
 
