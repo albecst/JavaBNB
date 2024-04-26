@@ -4,7 +4,10 @@
  */
 package UI_UX;
 
+import Logica.Cliente;
+import Logica.InicioSesion;
 import Logica.Validacion;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,7 +27,7 @@ public class Register extends javax.swing.JPanel {
         errorLabel3.setVisible(false);
         errorLabel4.setVisible(false);
         errorLabel5.setVisible(false);
-        statementLabel.setVisible(false);
+        noselectLabel.setVisible(false);
         requirementsLabel.setVisible(false);
         dayTextField.setVisible(false);
         monthTextField.setVisible(false);
@@ -36,7 +39,7 @@ public class Register extends javax.swing.JPanel {
         monthLabel.setVisible(false);
         yearLabel.setVisible(false);
         cvvLabel.setVisible(false);
-
+        noselectLabel.setVisible(false);
     }
 
     /**
@@ -61,7 +64,7 @@ public class Register extends javax.swing.JPanel {
         registerButton = new javax.swing.JButton();
         selectComboBox = new javax.swing.JComboBox<>();
         existaccLabel = new javax.swing.JLabel();
-        statementLabel = new javax.swing.JLabel();
+        noselectLabel = new javax.swing.JLabel();
         DNILabel = new javax.swing.JLabel();
         DNITextField = new javax.swing.JTextField();
         emailTextField = new javax.swing.JTextField();
@@ -87,6 +90,7 @@ public class Register extends javax.swing.JPanel {
         emailLabel = new javax.swing.JLabel();
         statementLabel2 = new javax.swing.JLabel();
         dayTextField = new javax.swing.JTextField();
+        statementLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 250, 248));
         setLayout(new java.awt.BorderLayout());
@@ -117,6 +121,7 @@ public class Register extends javax.swing.JPanel {
         jPanel1.add(subtitleLabel, gridBagConstraints);
 
         photoLabel.setBackground(new java.awt.Color(255, 90, 95));
+        photoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/airbnb logo - 200x200.png"))); // NOI18N
         photoLabel.setBorderPainted(false);
         photoLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         photoLabel.setDefaultCapable(false);
@@ -210,7 +215,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 38;
+        gridBagConstraints.gridy = 41;
         gridBagConstraints.ipadx = 35;
         gridBagConstraints.ipady = 21;
         gridBagConstraints.insets = new java.awt.Insets(16, 0, 0, 0);
@@ -218,7 +223,7 @@ public class Register extends javax.swing.JPanel {
 
         selectComboBox.setBackground(new java.awt.Color(255, 90, 95));
         selectComboBox.setForeground(new java.awt.Color(255, 255, 255));
-        selectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione entre:", "Anfitrión", "Cliente" }));
+        selectComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione entre:", "Anfitrion", "Particular" }));
         selectComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectComboBoxActionPerformed(evt);
@@ -241,17 +246,18 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 39;
+        gridBagConstraints.gridy = 42;
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 19, 0);
         jPanel1.add(existaccLabel, gridBagConstraints);
 
-        statementLabel.setForeground(new java.awt.Color(102, 102, 102));
-        statementLabel.setText("Introduzca la fecha de caducidad y el CVV");
+        noselectLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        noselectLabel.setForeground(new java.awt.Color(255, 0, 0));
+        noselectLabel.setText("Alguno de los datos no es válido. Rellene todos los campos correctamente");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 35;
+        gridBagConstraints.gridy = 40;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
-        jPanel1.add(statementLabel, gridBagConstraints);
+        jPanel1.add(noselectLabel, gridBagConstraints);
 
         DNILabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         DNILabel.setForeground(new java.awt.Color(102, 102, 102));
@@ -628,6 +634,14 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 113, 2, 0);
         jPanel1.add(dayTextField, gridBagConstraints);
 
+        statementLabel.setForeground(new java.awt.Color(102, 102, 102));
+        statementLabel.setText("Introduzca la fecha de caducidad y el CVV");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 35;
+        gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
+        jPanel1.add(statementLabel, gridBagConstraints);
+
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -642,33 +656,73 @@ public class Register extends javax.swing.JPanel {
     }//GEN-LAST:event_passwordTextFieldMousePressed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+
+        //Inicializamos atributos
         String nombre = userTextField.getText();
         String dni = DNITextField.getText();
         String correo = emailTextField.getText();
         String clave = passwordTextField.getText();
         String telefono = tlfTextField.getText();
+
+        String tarjeta = CCTextField.getText();
+        String dia = dayTextField.getText();
+        String mes = monthTextField.getText();
+        String año = yearTextField.getText();
+        String cvv = cvvTextField.getText();
         
-        if (!Validacion.validarNombre(nombre)){
+
+
+        boolean valido = true;
+
+        //Vemos si son validos los datos
+        if (!Validacion.validarNombre(nombre)) {
             errorLabel4.setVisible(true);
+            valido = false;
         }
-        if (!Validacion.validarDNI(dni)){
+        if (!Validacion.validarDNI(dni)) {
             errorLabel2.setVisible(true);
+            valido = false;
+
         }
-        if (!Validacion.validarEmail(correo)){
+        if (!Validacion.validarEmail(correo)) {
             errorLabel6.setVisible(true);
+            valido = false;
+
         }
-        if (!Validacion.validarTelefono(telefono)){
+        if (!Validacion.validarTelefono(telefono)) {
             errorLabel5.setVisible(true);
+            valido = false;
+
         }
-        if (!Validacion.validarContraseña(clave)){
+        if (!Validacion.validarContraseña(clave)) {
             errorLabel3.setVisible(true);
             requirementsLabel.setVisible(true);
+            valido = false;
+
         }
-        if (!Validacion.validarNombre(nombre)){
-            errorLabel4.setVisible(true);
+
+        /**
+        if (!Validacion.validarTarjeta(tarjeta, dia, mes, año)) {
+            errorLabel1.setVisible(true);
+            valido = false;
+
+        }
+        */
+        
+        String selectedOption = (String) selectComboBox.getSelectedItem();
+        if (selectedOption.equals("Anfitrion") && valido) {
+            
+            InicioSesion.registrarAnfitrion(dni, nombre, correo, clave, telefono);
+            //System.out.println("Registro hecho correctamente");
+            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
+        
         }
         
-     
+
+       
+       
+   
+    
 
 
     }//GEN-LAST:event_registerButtonActionPerformed
@@ -727,41 +781,40 @@ public class Register extends javax.swing.JPanel {
 
     private void selectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectComboBoxActionPerformed
         String selectedOption = (String) selectComboBox.getSelectedItem();
-        if (selectedOption.equals("Cliente")){
-                    dayTextField.setVisible(true);
-                    dayLabel.setVisible(true);
-                    monthTextField.setVisible(true);
-                    monthLabel.setVisible(true);
-                    yearTextField.setVisible(true);
-                    yearLabel.setVisible(true);
-                    cvvTextField.setVisible(true);
-                    cvvLabel.setVisible(true);
-                    
-                    CCTextField.setVisible(true);
-                    CCLabel.setVisible(true);
-                    statementLabel.setVisible(true);
-        }
-        else{
-                    dayTextField.setVisible(false);
-                    dayLabel.setVisible(false);
-                    monthTextField.setVisible(false);
-                    monthLabel.setVisible(false);
-                    yearTextField.setVisible(false);
-                    yearLabel.setVisible(false);
-                    cvvTextField.setVisible(false);
-                    cvvLabel.setVisible(false);
-                    
-                    CCTextField.setVisible(false);
-                    CCLabel.setVisible(false);
-                    statementLabel.setVisible(false);
-                    
-                    errorLabel.setVisible(false);
-                    errorLabel1.setVisible(false);
-                    errorLabel2.setVisible(false);
-                    errorLabel6.setVisible(false);
-                    errorLabel3.setVisible(false);
-                    errorLabel4.setVisible(false);
-                    errorLabel5.setVisible(false);
+        if (selectedOption.equals("Particular")) {
+            dayTextField.setVisible(true);
+            dayLabel.setVisible(true);
+            monthTextField.setVisible(true);
+            monthLabel.setVisible(true);
+            yearTextField.setVisible(true);
+            yearLabel.setVisible(true);
+            cvvTextField.setVisible(true);
+            cvvLabel.setVisible(true);
+
+            CCTextField.setVisible(true);
+            CCLabel.setVisible(true);
+            noselectLabel.setVisible(true);
+        } else {
+            dayTextField.setVisible(false);
+            dayLabel.setVisible(false);
+            monthTextField.setVisible(false);
+            monthLabel.setVisible(false);
+            yearTextField.setVisible(false);
+            yearLabel.setVisible(false);
+            cvvTextField.setVisible(false);
+            cvvLabel.setVisible(false);
+
+            CCTextField.setVisible(false);
+            CCLabel.setVisible(false);
+            noselectLabel.setVisible(false);
+
+            errorLabel.setVisible(false);
+            errorLabel1.setVisible(false);
+            errorLabel2.setVisible(false);
+            errorLabel6.setVisible(false);
+            errorLabel3.setVisible(false);
+            errorLabel4.setVisible(false);
+            errorLabel5.setVisible(false);
 
         }
 
@@ -836,6 +889,7 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel monthLabel;
     private javax.swing.JTextField monthTextField;
+    private javax.swing.JLabel noselectLabel;
     private javax.swing.JLabel passLabel;
     private javax.swing.JPasswordField passwordTextField;
     private javax.swing.JButton photoLabel;
