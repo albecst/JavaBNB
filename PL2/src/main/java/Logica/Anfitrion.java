@@ -15,9 +15,9 @@ public class Anfitrion extends Cliente {
     private static ArrayList<Inmueble> inmuebles = new ArrayList<>();
 
     //Constructor
-    public Anfitrion(LocalDate fechaRegistro, String dni, String nombre, String correo, String clave, String telefono) {
+    public Anfitrion(String dni, String nombre, String correo, String clave, String telefono) {
         super(dni, nombre, correo, clave, telefono);
-        this.fechaRegistro = fechaRegistro;
+        this.fechaRegistro = LocalDate.now();
     }
     
     //Métodos
@@ -82,5 +82,12 @@ public class Anfitrion extends Cliente {
     public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
- 
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Anfitrion{" + "fechaRegistro=" + fechaRegistro + ", superAnfitrion=" + superAnfitrion + '}';
+    }
+
+    
+    
 }
