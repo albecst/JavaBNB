@@ -8,65 +8,68 @@ import java.util.ArrayList;
  *
  * @author alber
  */
-public class InicioSesion implements Serializable{
+public class InicioSesion implements Serializable {
 
     //Atributos
-    private Administrador administrador;
-    private Anfitrion anfitrion;
-    private Particular particular;
-    private ArrayList<Cliente> clientes;
-    private ArrayList<Anfitrion> anfitriones;
-    private ArrayList<Particular> particulares;
+    public static Administrador administrador;
+    public static Anfitrion anfitrion;
+    public static Particular particular;
+    public static ArrayList<Cliente> clientes;
+    public static ArrayList<Anfitrion> anfitriones;
+    public static ArrayList<Particular> particulares;
 
     /**
      * Constructor de la clase InicioSesion.
      *
      * @param administrador
-     * @param anfitrion
-     * @param particular
-     * @param cliente
+     * @param clientes
+     * @param anfitriones
+     * @param particulares
      */
-    public InicioSesion(Administrador administrador, Anfitrion anfitrion, Cliente cliente, Particular particular) {
-        this.administrador = administrador;
-        this.anfitrion = anfitrion;
-        this.particular = particular;
+    public InicioSesion() {
         this.clientes = new ArrayList<>();
+        this.anfitriones = new ArrayList<>();
+        this.particulares = new ArrayList<>();
     }
 
-    public boolean comprobarExistenciaCliente (String correo, String dni, String telefono){
-        boolean statement = false;
-        for (Cliente cliente : clientes) {
-            if (cliente.getCorreo().equals(correo)) {
-                System.out.println("Este correo ya existe");
-                statement = true;
-                break;
-            }
-            else if (cliente.getDni().equals(dni)){
-                System.out.println("Este DNI ya existe");
-                statement = true;
-                break;
-            }
-            else if (cliente.getTelefono().equals(telefono)){
-                System.out.println("Este teléfono ya existe");
-                statement = true;
-                break;
+    public static boolean comprobarExistenciaCliente(String correo, String dni, String telefono) {
+        if (!clientes.isEmpty()) {
+            for (Cliente cliente : clientes) {
+                if (cliente.getCorreo().equals(correo)) {
+                    System.out.println("Este correo ya existe");
+                    return true;
+
+                } else if (cliente.getDni().equals(dni)) {
+                    System.out.println("Este DNI ya existe");
+                    return true;
+
+                } else if (cliente.getTelefono().equals(telefono)) {
+                    System.out.println("Este teléfono ya existe");
+                    return true;
+
+                }
+
             }
         }
-        return statement;
+        return false;
+
     }
 
-
     //Aquí preguntaríamos al usuario si quiere registrarse como anfitrión o particular.
-    public void registrarAnfitrion(LocalDate fechaRegistro, String dni, String nombre, String correo, String clave, String telefono) {
+    public static void registrarAnfitrion(String dni, String nombre, String correo, String clave, String telefono) {
         if (comprobarExistenciaCliente(correo, dni, telefono)) {
             return;
         }
-        Anfitrion nuevoAnfitrion = new Anfitrion(fechaRegistro, dni, nombre, correo, clave, telefono);
+        Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre, correo, clave, telefono);
         clientes.add(nuevoAnfitrion);
         anfitriones.add(nuevoAnfitrion);
+        
+        for (Anfitrion anfitrion:anfitriones){
+            System.out.println(anfitrion.toString());
     }
-
-    public void registrarParticular(Tarjeta tarjetaCredito, boolean vip, String dni, String nombre, String correo, String clave, String telefono) {
+    }
+    
+    public static void registrarParticular(Tarjeta tarjetaCredito, boolean vip, String dni, String nombre, String correo, String clave, String telefono) {
         for (Cliente cliente : clientes) {
             if (comprobarExistenciaCliente(correo, dni, telefono)) {
                 return;
@@ -91,6 +94,4 @@ public class InicioSesion implements Serializable{
         }
     }
 
-
 }
-
