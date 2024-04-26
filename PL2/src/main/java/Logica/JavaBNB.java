@@ -1,6 +1,11 @@
 package Logica;
 
 import Logica.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -10,10 +15,11 @@ import java.time.temporal.ChronoUnit;
 public class JavaBNB implements Serializable {
 
     //Atributos
-    private ArrayList<Inmueble> inmueblesDisponibles;
-    private Particular particular;  
-    private Anfitrion anfitrion;
-
+    private static ArrayList<Inmueble> inmueblesDisponibles;
+    private static ArrayList<Cliente> clientes;
+    private static ArrayList<Anfitrion> anfitriones;
+    private static ArrayList<Particular> particulares;
+    
     /**
      * Constructor de la clase JavaBNB.
      */
@@ -21,11 +27,14 @@ public class JavaBNB implements Serializable {
         inmueblesDisponibles = new ArrayList<>();
     }
 
+    
     /**
-     * Añade inmuebles a la lista de inmuebles disponibles si, y solo si, no existe algún inmueble con la misma dirección.
+     * Añade inmuebles a la lista de inmuebles disponibles si, y solo si, no
+     * existe algún inmueble con la misma dirección.
+     *
      * @param inmueble Inmueble a añadir.
      */
-    public void añadirInmueble(Inmueble inmueble) {
+    public static void añadirInmueble(Inmueble inmueble) {
         boolean existeInmuebleConMismaDireccion = inmueblesDisponibles.stream()
                 .anyMatch(inmuebleExistente -> inmuebleExistente.getDireccion().equals(inmueble.getDireccion()));
 
@@ -39,19 +48,19 @@ public class JavaBNB implements Serializable {
     /**
      * Busca inmuebles disponibles en una ciudad y entre dos fechas
      *
-     * @param ciudad       Ciudad en la que buscar inmuebles.
+     * @param ciudad Ciudad en la que buscar inmuebles.
      * @param fechaEntrada Fecha de inicio de la disponibilidad.
-     * @param fechaSalida  Fecha de fin de la disponibilidad.
-     * @return Lista de inmuebles disponibles en la ciudad y entre las fechas dadas.
+     * @param fechaSalida Fecha de fin de la disponibilidad.
+     * @return Lista de inmuebles disponibles en la ciudad y entre las fechas
+     * dadas.
      */
-    public ArrayList<Inmueble> buscarInmuebles(String ciudad, LocalDate fechaEntrada, LocalDate fechaSalida) {
+    public static ArrayList<Inmueble> buscarInmuebles(String ciudad, LocalDate fechaEntrada, LocalDate fechaSalida) {
         ArrayList<Inmueble> inmueblesDisponiblesEnCiudad = new ArrayList<>();
 
-        if (inmueblesDisponibles.isEmpty() == true){
+        if (inmueblesDisponibles.isEmpty() == true) {
             return inmueblesDisponiblesEnCiudad;
-        }
-        else{
-            for (Inmueble inmueble : this.inmueblesDisponibles) {
+        } else {
+            for (Inmueble inmueble : inmueblesDisponibles) {
                 if (inmueble.getDireccion().getCiudad().equalsIgnoreCase(ciudad) && inmueble.estaDisponible(fechaEntrada, fechaSalida)) {
                     inmueblesDisponiblesEnCiudad.add(inmueble);
                 }
@@ -62,13 +71,16 @@ public class JavaBNB implements Serializable {
         // Vamos a devolver una lista de inmuebles disponibles en esa ciudad y entre las fechas dadas.
     }
 
-    /** Estos 6 primeros métodos son para ordenar los inmuebles disponibles (sin ningún filtro en ciudad, o tiempo) según distintos criterios */
+    /**
+     * Estos 6 primeros métodos son para ordenar los inmuebles disponibles (sin
+     * ningún filtro en ciudad, o tiempo) según distintos criterios
+     */
     /**
      * SF: Sin Filtro
      *
      * Busca inmuebles disponibles ordenados por precio de menor a mayor.
      */
-    public void ordenarPorPrecioAscSF() {
+    public static void ordenarPorPrecioAscSF() {
         if (inmueblesDisponibles != null) {
             inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
         }
@@ -77,16 +89,17 @@ public class JavaBNB implements Serializable {
     /**
      * Ordena los inmuebles disponibles por precio de mayor a menor.
      */
-    public void ordenarPorPrecioDescSF() {
+    public static void ordenarPorPrecioDescSF() {
         if (inmueblesDisponibles != null) {
             inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche).reversed());
         }
     }
 
     /**
-     * Ordena los inmuebles disponibles por tipo, primero casas y luego apartamentos.
+     * Ordena los inmuebles disponibles por tipo, primero casas y luego
+     * apartamentos.
      */
-    public void ordenarPorTipoSF() {
+    public static void ordenarPorTipoSF() {
         if (inmueblesDisponibles != null) {
             inmueblesDisponibles.sort(Comparator.comparing(Inmueble::getTipo));
         }
@@ -95,7 +108,7 @@ public class JavaBNB implements Serializable {
     /**
      * Ordena los inmuebles disponibles por tipo.
      */
-    public void ordenarPorCalificacionAscSF() {
+    public static void ordenarPorCalificacionAscSF() {
         if (inmueblesDisponibles != null) {
             inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getCalificacion));
         }
@@ -104,55 +117,59 @@ public class JavaBNB implements Serializable {
     /**
      * Ordena los inmuebles disponibles por calificación de menor a mayor.
      */
-    public void ordenarPorCalificacionDescSF() {
+    public static void ordenarPorCalificacionDescSF() {
         if (inmueblesDisponibles != null) {
             inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getCalificacion).reversed());
         }
     }
 
-
     /**
      * CF: Con Filtro
      *
-     * Busca inmuebles disponibles tras un filtro de ciudad, fecha de entrada y fecha de salida, ordenados por precio de menor a mayor.
+     * Busca inmuebles disponibles tras un filtro de ciudad, fecha de entrada y
+     * fecha de salida, ordenados por precio de menor a mayor.
      */
-    public void ordenarPorPrecioAscCF(ArrayList <Inmueble> inmueblesDisponiblesEnCiudad) {
+    public static void ordenarPorPrecioAscCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
         if (inmueblesDisponiblesEnCiudad != null) {
             inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
         }
     }
 
     /**
-     * Ordena los inmuebles disponibles tras un filtro de ciudad, fecha de entrada y fecha de salida, por precio de mayor a menor.
+     * Ordena los inmuebles disponibles tras un filtro de ciudad, fecha de
+     * entrada y fecha de salida, por precio de mayor a menor.
      */
-    public void ordenarPorPrecioDescCF(ArrayList <Inmueble> inmueblesDisponiblesEnCiudad) {
+    public static void ordenarPorPrecioDescCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
         if (inmueblesDisponiblesEnCiudad != null) {
             inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche).reversed());
         }
     }
 
     /**
-     * Ordena los inmuebles disponibles tras un filtro de ciudad, fecha de entrada y fecha de salida, por tipo, primero casas y luego apartamentos.
+     * Ordena los inmuebles disponibles tras un filtro de ciudad, fecha de
+     * entrada y fecha de salida, por tipo, primero casas y luego apartamentos.
      */
-    public void ordenarPorTipoCF(ArrayList <Inmueble> inmueblesDisponiblesEnCiudad) {
+    public static void ordenarPorTipoCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
         if (inmueblesDisponiblesEnCiudad != null) {
             inmueblesDisponiblesEnCiudad.sort(Comparator.comparing(Inmueble::getTipo));
         }
     }
 
     /**
-     * Ordena los inmuebles disponibles tras un filtro de ciudad, fecha de entrada y fecha de salida, por calificación de menor a mayor.
+     * Ordena los inmuebles disponibles tras un filtro de ciudad, fecha de
+     * entrada y fecha de salida, por calificación de menor a mayor.
      */
-    public void ordenarPorCalificacionAscCF(ArrayList <Inmueble> inmueblesDisponiblesEnCiudad) {
+    public static void ordenarPorCalificacionAscCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
         if (inmueblesDisponiblesEnCiudad != null) {
             inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getCalificacion));
         }
     }
 
     /**
-     * Ordena los inmuebles disponibles tras un filtro de ciudad, fecha de entrada y fecha de salida, por calificación de mayor a menor.
+     * Ordena los inmuebles disponibles tras un filtro de ciudad, fecha de
+     * entrada y fecha de salida, por calificación de mayor a menor.
      */
-    public void ordenarPorCalificacionDescCF(ArrayList <Inmueble> inmueblesDisponiblesEnCiudad) {
+    public static void ordenarPorCalificacionDescCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
         if (inmueblesDisponiblesEnCiudad != null) {
             inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getCalificacion).reversed());
         }
@@ -161,7 +178,7 @@ public class JavaBNB implements Serializable {
     /**
      * Calcula el precio total de una reserva.
      */
-    public double calcularPrecioTotal(Inmueble inmueble, LocalDate fechaEntrada, LocalDate fechaSalida) {
+    public static double calcularPrecioTotal(Inmueble inmueble, Particular particular, LocalDate fechaEntrada, LocalDate fechaSalida) {
         long diasEstancia = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
         double costoTotal = diasEstancia * inmueble.getPrecioNoche();
         if (particular.isVip()) {
@@ -170,17 +187,17 @@ public class JavaBNB implements Serializable {
         return costoTotal;
     }
 
-
     /**
-     * Procesa el pago de una reserva y la reserva de un inmueble si todo está correcto.
+     * Procesa el pago de una reserva y la reserva de un inmueble si todo está
+     * correcto.
      *
-     * @param inmueble     Inmueble a reservar.
+     * @param inmueble Inmueble a reservar.
      * @param fechaEntrada Día de comienzo de la reserva.
-     * @param fechaSalida  Día de fin de la reserva.
+     * @param fechaSalida Día de fin de la reserva.
      */
-    public void procesarReserva(Inmueble inmueble, LocalDate fechaEntrada, LocalDate fechaSalida) {
+    public static void procesarReserva(Inmueble inmueble, Particular particular, LocalDate fechaEntrada, LocalDate fechaSalida) {
         double saldoRestanteParticular = particular.getSaldo();
-        double costoTotal = calcularPrecioTotal(inmueble, fechaEntrada, fechaSalida);
+        double costoTotal = calcularPrecioTotal(inmueble, particular, fechaEntrada, fechaSalida);
         if (saldoRestanteParticular < costoTotal) {
             System.out.println("No hay dinero suficiente para realizar la reserva");
         } else {
@@ -190,4 +207,109 @@ public class JavaBNB implements Serializable {
             inmueblesDisponibles.remove(inmueble);
         }
     }
+
+    /**
+     * Carga los datos de personas del fichero
+     */
+    public static void cargarDatos() {
+        try {
+            //Lectura de los objetos de tipo persona
+            FileInputStream istreamClientes = new FileInputStream("copiasegClientes.dat");
+            FileInputStream istreamAnfitriones = new FileInputStream("copiasegAnfitriones.dat");
+            FileInputStream istreamParticulares = new FileInputStream("copiasegParticulares.dat");
+            FileInputStream istreamInmuebles = new FileInputStream("copiasegInmuebles.dat");
+            
+            ObjectInputStream oisClientes = new ObjectInputStream(istreamClientes);
+            ObjectInputStream oisAnfitriones = new ObjectInputStream(istreamAnfitriones);
+            ObjectInputStream oisParticulares = new ObjectInputStream(istreamParticulares);
+            ObjectInputStream oisInmuebles = new ObjectInputStream(istreamInmuebles);
+            
+            clientes = (ArrayList<Cliente>) oisClientes.readObject();
+            anfitriones = (ArrayList<Anfitrion>) oisAnfitriones.readObject();
+            particulares = (ArrayList<Particular>) oisParticulares.readObject();
+            inmueblesDisponibles = (ArrayList<Inmueble>) oisInmuebles.readObject();
+            
+            istreamClientes.close();
+            istreamAnfitriones.close();
+            istreamParticulares.close();
+            istreamInmuebles.close();
+            
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }//fin cargarDatos
+
+    /**
+     * Guarda los datos de personas en el fichero
+     */
+    public static void guardarDatos() {
+        try {
+            //Si hay datos los guardamos...
+            if (!clientes.isEmpty()) {
+                /**
+                 * **** Serialización de los objetos *****
+                 */
+                //Serialización de las personas
+                FileOutputStream ostreamClientes = new FileOutputStream("copiasegClientes.dat");
+                ObjectOutputStream oosClientes = new ObjectOutputStream(ostreamClientes);
+                //guardamos el array de personas
+                oosClientes.writeObject(clientes);
+                ostreamClientes.close();
+            } else {
+                System.out.println("Error: No hay datos de clientes...");
+            }
+            
+            if (!anfitriones.isEmpty()) {
+                /**
+                 * **** Serialización de los objetos *****
+                 */
+                //Serialización de las personas
+                FileOutputStream ostreamAnfitriones = new FileOutputStream("copiasegAnfitrion.dat");
+                ObjectOutputStream oosAnfitriones = new ObjectOutputStream(ostreamAnfitriones);
+                //guardamos el array de personas
+                oosAnfitriones.writeObject(anfitriones);
+                ostreamAnfitriones.close();
+            } else {
+                System.out.println("Error: No hay datos de anfitriones...");
+            }
+            
+            if (!particulares.isEmpty()) {
+                /**
+                 * **** Serialización de los objetos *****
+                 */
+                //Serialización de las personas
+                FileOutputStream ostreamParticulares = new FileOutputStream("copiasegParticulares.dat");
+                ObjectOutputStream oosParticulares = new ObjectOutputStream(ostreamParticulares);
+                //guardamos el array de personas
+                oosParticulares.writeObject(particulares);
+                ostreamParticulares.close();
+            } else {
+                System.out.println("Error: No hay datos de particulares...");
+            }
+            
+            if (!inmueblesDisponibles.isEmpty()) {
+                /**
+                 * **** Serialización de los objetos *****
+                 */
+                //Serialización de las personas
+                FileOutputStream ostreamInmuebles = new FileOutputStream("copiasegInmuebles.dat");
+                ObjectOutputStream oosInmuebles = new ObjectOutputStream(ostreamInmuebles);
+                //guardamos el array de personas
+                oosInmuebles.writeObject(inmueblesDisponibles);
+                ostreamInmuebles.close();
+            } else {
+                System.out.println("Error: No hay datos de inmuebles...");
+            }
+
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }//fin guardarDatos
+
 }
