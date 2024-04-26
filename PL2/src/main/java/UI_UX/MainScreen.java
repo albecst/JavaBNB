@@ -85,28 +85,38 @@ public class MainScreen extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 27, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(39, 18, 0, 0);
         barraarriba.add(titleLabel, gridBagConstraints);
 
         logo.setBackground(new java.awt.Color(255, 153, 153));
-        logo.setText("logo");
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/airbnb logo - 100x100.png"))); // NOI18N
+        logo.setBorderPainted(false);
+        logo.setContentAreaFilled(false);
         logo.setDefaultCapable(false);
         logo.setFocusPainted(false);
         logo.setFocusable(false);
         logo.setRequestFocusEnabled(false);
         logo.setRolloverEnabled(false);
         logo.setVerifyInputWhenFocusTarget(false);
+        logo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipady = 18;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = -22;
+        gridBagConstraints.ipady = -32;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 125, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(14, 172, 20, 0);
         barraarriba.add(logo, gridBagConstraints);
 
         user.setBackground(new java.awt.Color(255, 153, 153));
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user (1).jpg"))); // NOI18N
         user.setBorderPainted(false);
+        user.setContentAreaFilled(false);
         user.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,12 +126,13 @@ public class MainScreen extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 980, 18, 77);
+        gridBagConstraints.insets = new java.awt.Insets(24, 993, 0, 107);
         barraarriba.add(user, gridBagConstraints);
 
+        fotocasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/casa1.jpg"))); // NOI18N
         fotocasa.setBorderPainted(false);
         fotocasa.setDefaultCapable(false);
         fotocasa.setFocusPainted(false);
@@ -405,7 +416,7 @@ public class MainScreen extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -443,7 +454,7 @@ public class MainScreen extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(barraarriba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buscaalojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fotocasa, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -497,6 +508,10 @@ public class MainScreen extends javax.swing.JPanel {
             e1.printStackTrace();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
