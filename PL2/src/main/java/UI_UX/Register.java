@@ -4,8 +4,10 @@
  */
 package UI_UX;
 
-import Logica.JavaBNB;
+import Logica.Cliente;
+import Logica.InicioSesion;
 import Logica.Validacion;
+import java.util.ArrayList;
 
 /**
  *
@@ -363,6 +365,7 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
         jPanel1.add(CCLabel, gridBagConstraints);
 
+        errorLabel.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel.setText("Seleccione algo, por favor");
         errorLabel.setEnabled(false);
         errorLabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -376,6 +379,7 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(13, 0, 0, 0);
         jPanel1.add(errorLabel, gridBagConstraints);
 
+        errorLabel1.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel1.setText("Esta tarjeta no existe");
         errorLabel1.setEnabled(false);
         errorLabel1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -389,6 +393,7 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel1, gridBagConstraints);
 
+        errorLabel3.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel3.setText("Contraseña poco segura");
         errorLabel3.setEnabled(false);
         errorLabel3.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -402,6 +407,7 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel3, gridBagConstraints);
 
+        errorLabel4.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel4.setText("Formato no válido");
         errorLabel4.setEnabled(false);
         errorLabel4.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -415,6 +421,7 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel4, gridBagConstraints);
 
+        errorLabel5.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel5.setText("Formato no válido");
         errorLabel5.setEnabled(false);
         errorLabel5.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -428,6 +435,7 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel5, gridBagConstraints);
 
+        errorLabel6.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel6.setText("Formato no válido");
         errorLabel6.setEnabled(false);
         errorLabel6.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -441,6 +449,7 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel6, gridBagConstraints);
 
+        errorLabel2.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel2.setText("Formato no válido");
         errorLabel2.setEnabled(false);
         errorLabel2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -661,61 +670,73 @@ public class Register extends javax.swing.JPanel {
         String año = yearTextField.getText();
         String cvv = cvvTextField.getText();
 
-        //Ocultamos todos los labels de error
-        errorLabel4.setVisible(false);
-        errorLabel2.setVisible(false);
-        errorLabel6.setVisible(false);
-        errorLabel5.setVisible(false);
-        errorLabel3.setVisible(false);
-        errorLabel1.setVisible(false);
-        noselectLabel.setVisible(false);
-
         boolean valido = true;
 
         //Vemos si son validos los datos
         if (!Validacion.validarNombre(nombre)) {
             errorLabel4.setVisible(true);
             valido = false;
+            userTextField.setText("");
+        } else {
+            errorLabel4.setVisible(false);
         }
+
         if (!Validacion.validarDNI(dni)) {
             errorLabel2.setVisible(true);
             valido = false;
-
+            DNITextField.setText("");
+        } else {
+            errorLabel2.setVisible(false);
         }
+
         if (!Validacion.validarEmail(correo)) {
             errorLabel6.setVisible(true);
             valido = false;
-
+            emailTextField.setText("");
+        } else {
+            errorLabel6.setVisible(false);
         }
+
         if (!Validacion.validarTelefono(telefono)) {
             errorLabel5.setVisible(true);
             valido = false;
-
+            tlfTextField.setText("");
+        } else {
+            errorLabel5.setVisible(false);
         }
+
         if (!Validacion.validarContraseña(clave)) {
             errorLabel3.setVisible(true);
             requirementsLabel.setVisible(true);
+            passwordTextField.setText("");
+
             valido = false;
 
+        } else {
+            errorLabel3.setVisible(false);
         }
 
         /**
-         * if (!Validacion.validarTarjeta(tarjeta, dia, mes, año)) {
-         * errorLabel1.setVisible(true); valido = false;
-         *
-         * }
-         */
+        if (!Validacion.validarTarjeta(tarjeta, dia, mes, año)) {
+            errorLabel1.setVisible(true);
+            valido = false;
+            CCTextField.setText("");
+            dayTextField.setText("");
+            monthTextField.setText("");
+            yearTextField.setText("");
+            cvvTextField.setText("");
+        } else {
+            errorLabel1.setVisible(false);
+        }
+        */
+        
         String selectedOption = (String) selectComboBox.getSelectedItem();
-        if (selectedOption.equals("Seleccione entre:")) {
-            noselectLabel.setVisible(true);
-        } else if (selectedOption.equals("Anfitrion") && valido) {
-            noselectLabel.setVisible(false);
-            JavaBNB.registrarAnfitrion(dni, nombre, correo, clave, telefono);
+        if (selectedOption.equals("Anfitrion") && valido) {
+
+            InicioSesion.registrarAnfitrion(dni, nombre, correo, clave, telefono);
             //System.out.println("Registro hecho correctamente");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
-        } else if (selectedOption.equals("Anfitrion") && !valido) {
-            noselectLabel.setVisible(true);
-        } else if (selectedOption.equals("Particular")) {
+        } else {
             noselectLabel.setVisible(true);
         }
 
