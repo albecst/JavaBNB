@@ -405,9 +405,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="errorLabel">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Seleccione algo, por favor"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -422,9 +419,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="errorLabel1">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Esta tarjeta no existe"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -439,9 +433,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="errorLabel3">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Contrase&#xf1;a poco segura"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -456,9 +447,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="errorLabel4">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Formato no v&#xe1;lido"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -473,9 +461,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="errorLabel5">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Formato no v&#xe1;lido"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -490,9 +475,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="errorLabel6">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Formato no v&#xe1;lido"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -507,9 +489,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="errorLabel2">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Formato no v&#xe1;lido"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
