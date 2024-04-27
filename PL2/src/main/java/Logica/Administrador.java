@@ -2,10 +2,11 @@ package Logica;
 
 /**
  * @param correo Atributos
- * @author alber
+ * 
  */
 public record Administrador(String correo, String clave) {
 
+    
     
     /**
      * Método para gestionar los usuarios.

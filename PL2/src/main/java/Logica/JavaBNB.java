@@ -399,5 +399,46 @@ public class JavaBNB implements Serializable {
         clientes.add(nuevoParticular);
         particulares.add(nuevoParticular);
     }
+    
+    
+    
+    
+    //inicio sesion
+    public static boolean comprobarUsuario(String dni) {
+        boolean particularExiste = false;
+        boolean anfitrionExiste = false;
+        for (Particular particular : particulares) {
+            if (particular.getDni().equals(dni)) {
+                particularExiste = true;
+            }
+        }
+        for (Anfitrion anfitrion : anfitriones) {
+            if (anfitrion.getDni().equals(dni)) {
+                anfitrionExiste = true;
+            }
+        }
+        return (anfitrionExiste || particularExiste);
+    }
+    
+
+    public static void iniciarSesion(String correo, String clave) {
+        if (correo.equals("admin@javabnb.com") && clave.equals("admin")) {    //a administrador se deberia poder acceder sin instanciar
+            System.out.println("Sesión iniciada como administrador");
+        } else {
+            for (Particular particular : particulares) {
+                if (particular.getCorreo().equals(correo) && particular.getClave().equals(clave)) {
+                    System.out.println("Sesión iniciada como cliente");
+                }
+                for (Anfitrion anfitrion : anfitriones) {
+                    if (anfitrion.getCorreo().equals(correo) && anfitrion.getClave().equals(clave)) {
+                        System.out.println("Sesión iniciada como anfitrion");
+                    }
+
+                }
+
+            }
+
+        }
+    }
 
 }

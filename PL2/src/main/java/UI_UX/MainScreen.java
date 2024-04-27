@@ -113,10 +113,9 @@ public class MainScreen extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(14, 172, 20, 0);
         barraarriba.add(logo, gridBagConstraints);
 
-        user.setBackground(new java.awt.Color(255, 153, 153));
+        user.setBackground(new java.awt.Color(153, 153, 153));
         user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user (1).jpg"))); // NOI18N
         user.setBorderPainted(false);
-        user.setContentAreaFilled(false);
         user.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -38,6 +38,8 @@ public class Register extends javax.swing.JPanel {
         yearLabel.setVisible(false);
         cvvLabel.setVisible(false);
         noselectLabel.setVisible(false);
+        userExiste.setVisible(false);
+        statementLabel.setVisible(false);
     }
 
     /**
@@ -89,6 +91,7 @@ public class Register extends javax.swing.JPanel {
         statementLabel2 = new javax.swing.JLabel();
         dayTextField = new javax.swing.JTextField();
         statementLabel = new javax.swing.JLabel();
+        userExiste = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 250, 248));
         setLayout(new java.awt.BorderLayout());
@@ -253,7 +256,7 @@ public class Register extends javax.swing.JPanel {
         noselectLabel.setText("Alguno de los datos no es válido. Rellene todos los campos correctamente");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 40;
+        gridBagConstraints.gridy = 39;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         jPanel1.add(noselectLabel, gridBagConstraints);
 
@@ -363,7 +366,6 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 30);
         jPanel1.add(CCLabel, gridBagConstraints);
 
-        errorLabel.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel.setText("Seleccione algo, por favor");
         errorLabel.setEnabled(false);
         errorLabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -377,7 +379,6 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(13, 0, 0, 0);
         jPanel1.add(errorLabel, gridBagConstraints);
 
-        errorLabel1.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel1.setText("Esta tarjeta no existe");
         errorLabel1.setEnabled(false);
         errorLabel1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -391,7 +392,6 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel1, gridBagConstraints);
 
-        errorLabel3.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel3.setText("Contraseña poco segura");
         errorLabel3.setEnabled(false);
         errorLabel3.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -405,7 +405,6 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel3, gridBagConstraints);
 
-        errorLabel4.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel4.setText("Formato no válido");
         errorLabel4.setEnabled(false);
         errorLabel4.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -419,7 +418,6 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel4, gridBagConstraints);
 
-        errorLabel5.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel5.setText("Formato no válido");
         errorLabel5.setEnabled(false);
         errorLabel5.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -433,7 +431,6 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel5, gridBagConstraints);
 
-        errorLabel6.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel6.setText("Formato no válido");
         errorLabel6.setEnabled(false);
         errorLabel6.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -447,7 +444,6 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel6, gridBagConstraints);
 
-        errorLabel2.setForeground(new java.awt.Color(0, 0, 0));
         errorLabel2.setText("Formato no válido");
         errorLabel2.setEnabled(false);
         errorLabel2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -640,6 +636,14 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         jPanel1.add(statementLabel, gridBagConstraints);
 
+        userExiste.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        userExiste.setForeground(new java.awt.Color(0, 153, 51));
+        userExiste.setText("Ya existe una cuenta asociada a este DNI. Por favor, inicie sesión.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 40;
+        jPanel1.add(userExiste, gridBagConstraints);
+
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -669,6 +673,7 @@ public class Register extends javax.swing.JPanel {
         String cvv = cvvTextField.getText();
 
         boolean valido = true;
+        userExiste.setVisible(false);
 
         //Vemos si son validos los datos
         if (!Validacion.validarNombre(nombre)) {
@@ -722,10 +727,18 @@ public class Register extends javax.swing.JPanel {
          * cvvTextField.setText(""); } else { errorLabel1.setVisible(false); }
          */
         String selectedOption = (String) selectComboBox.getSelectedItem();
-
+        
+        boolean usuarioExiste= JavaBNB.comprobarUsuario(dni);
+        
+        
         if (selectedOption.equals("Seleccione entre:")) {
             noselectLabel.setVisible(true);
-        } else if (selectedOption.equals("Anfitrion") && valido) {
+            userExiste.setVisible(false);
+        } else if(usuarioExiste){
+            userExiste.setVisible(true);
+            noselectLabel.setVisible(false);
+        }
+        else if (selectedOption.equals("Anfitrion") && valido) {
             noselectLabel.setVisible(false);
             JavaBNB.registrarAnfitrion(dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
             //System.out.println("Registro hecho correctamente");
@@ -807,6 +820,7 @@ public class Register extends javax.swing.JPanel {
             CCTextField.setVisible(true);
             CCLabel.setVisible(true);
             noselectLabel.setVisible(true);
+            statementLabel.setVisible(true);
         } else {
             dayTextField.setVisible(false);
             dayLabel.setVisible(false);
@@ -828,6 +842,7 @@ public class Register extends javax.swing.JPanel {
             errorLabel3.setVisible(false);
             errorLabel4.setVisible(false);
             errorLabel5.setVisible(false);
+            statementLabel.setVisible(false);
 
         }
 
@@ -914,6 +929,7 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JLabel subtitleLabel;
     private javax.swing.JLabel tlfLabel;
     private javax.swing.JTextField tlfTextField;
+    private javax.swing.JLabel userExiste;
     private javax.swing.JLabel userLabel;
     private javax.swing.JTextField userTextField;
     private javax.swing.JLabel yearLabel;

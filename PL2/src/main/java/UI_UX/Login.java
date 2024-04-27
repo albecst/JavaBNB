@@ -1,5 +1,6 @@
 package UI_UX;
 
+import Logica.*;
 import UI_UX.Aplicacion;
 
 
@@ -17,7 +18,7 @@ public class Login extends javax.swing.JPanel {
     
     //TODO: Si le damos a iniciar sesion y nos equivocamos, que ejecute esto.
     private void resetText(){ 
-        userTextField.setText("");
+        emailTextField.setText("");
         passwordTextField.setText("");
         errorLabel.setVisible(true);
     }
@@ -41,7 +42,7 @@ public class Login extends javax.swing.JPanel {
         loginLabel = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
-        userTextField = new javax.swing.JTextField();
+        emailTextField = new javax.swing.JTextField();
         space5 = new javax.swing.JLabel();
         space6 = new javax.swing.JLabel();
         passwordTextField = new javax.swing.JPasswordField();
@@ -122,17 +123,17 @@ public class Login extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 11, 30);
         jPanel1.add(passwordLabel, gridBagConstraints);
 
-        userTextField.setToolTipText("");
-        userTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        userTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        userTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+        emailTextField.setToolTipText("");
+        emailTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        emailTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        emailTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                userTextFieldMousePressed(evt);
+                emailTextFieldMousePressed(evt);
             }
         });
-        userTextField.addActionListener(new java.awt.event.ActionListener() {
+        emailTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTextFieldActionPerformed(evt);
+                emailTextFieldActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -142,7 +143,7 @@ public class Login extends javax.swing.JPanel {
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
-        jPanel1.add(userTextField, gridBagConstraints);
+        jPanel1.add(emailTextField, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
@@ -249,9 +250,9 @@ public class Login extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTextFieldActionPerformed
+    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
 
-    }//GEN-LAST:event_userTextFieldActionPerformed
+    }//GEN-LAST:event_emailTextFieldActionPerformed
 
     private void passwordTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextFieldMousePressed
         passwordTextField.setText("");
@@ -259,11 +260,18 @@ public class Login extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
+        
+        //Inicializamos atributos
+        String correo = emailTextField.getText();
+        String clave = passwordTextField.getText();     
+        
+        
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
-    private void userTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTextFieldMousePressed
-       userTextField.setText("");
-    }//GEN-LAST:event_userTextFieldMousePressed
+    private void emailTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailTextFieldMousePressed
+       emailTextField.setText("");
+    }//GEN-LAST:event_emailTextFieldMousePressed
 
     private void errorLabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabelPropertyChange
         // TODO add your handling code here:
@@ -283,6 +291,7 @@ public class Login extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel errorLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginButton;
@@ -298,6 +307,5 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel subtitleLabel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userLabel;
-    private javax.swing.JTextField userTextField;
     // End of variables declaration//GEN-END:variables
 }
