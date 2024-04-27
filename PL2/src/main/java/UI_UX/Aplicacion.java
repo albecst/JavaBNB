@@ -3,11 +3,21 @@ package UI_UX;
 import Logica.*;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 /**
  * Clase principal que representa la aplicación de usuario.
  */
+
+class WindowEventHandler extends WindowAdapter {
+  @Override
+  public void windowClosing(WindowEvent evt) {
+    JavaBNB.guardarDatos();
+  }
+}
+
 public class Aplicacion {
     // Se define un CardLayout para gestionar los diferentes paneles de la aplicación.
     static CardLayout cardLayout = new CardLayout();
@@ -29,6 +39,8 @@ public class Aplicacion {
      */
     public static void main(String[] args) {
         new InicioSesion();
+        new JavaBNB();
+        JavaBNB.cargarDatos();
 
         // Establecer el tamaño mínimo de la ventana.
         frame.setMinimumSize(new Dimension(900, 777));
@@ -47,7 +59,9 @@ public class Aplicacion {
         // Establecer el contenido del JFrame como el JScrollPane.
         frame.setContentPane(scrollPane); 
         // Configurar el comportamiento de cierre del JFrame.
+        frame.addWindowListener(new WindowEventHandler());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        
         // Hacer visible el JFrame.
         frame.setVisible(true); 
         // Mostrar inicialmente la pantalla de login.

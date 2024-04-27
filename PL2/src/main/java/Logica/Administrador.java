@@ -6,6 +6,7 @@ package Logica;
  */
 public record Administrador(String correo, String clave) {
 
+    
     /**
      * Método para gestionar los usuarios.
      */
