@@ -4,10 +4,8 @@
  */
 package UI_UX;
 
-import Logica.Cliente;
-import Logica.InicioSesion;
+import Logica.JavaBNB;
 import Logica.Validacion;
-import java.util.ArrayList;
 
 /**
  *
@@ -717,29 +715,28 @@ public class Register extends javax.swing.JPanel {
         }
 
         /**
-        if (!Validacion.validarTarjeta(tarjeta, dia, mes, año)) {
-            errorLabel1.setVisible(true);
-            valido = false;
-            CCTextField.setText("");
-            dayTextField.setText("");
-            monthTextField.setText("");
-            yearTextField.setText("");
-            cvvTextField.setText("");
-        } else {
-            errorLabel1.setVisible(false);
-        }
-        */
-        
+         * if (!Validacion.validarTarjeta(tarjeta, dia, mes, año)) {
+         * errorLabel1.setVisible(true); valido = false;
+         * CCTextField.setText(""); dayTextField.setText("");
+         * monthTextField.setText(""); yearTextField.setText("");
+         * cvvTextField.setText(""); } else { errorLabel1.setVisible(false); }
+         */
         String selectedOption = (String) selectComboBox.getSelectedItem();
-        if (selectedOption.equals("Anfitrion") && valido) {
 
-            InicioSesion.registrarAnfitrion(dni, nombre, correo, clave, telefono);
+        if (selectedOption.equals("Seleccione entre:")) {
+            noselectLabel.setVisible(true);
+        } else if (selectedOption.equals("Anfitrion") && valido) {
+            noselectLabel.setVisible(false);
+            JavaBNB.registrarAnfitrion(dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
             //System.out.println("Registro hecho correctamente");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
+        } else if (selectedOption.equals("Anfitrion") && !valido) {
+            noselectLabel.setVisible(true);
+        } else if (selectedOption.equals("Particular")) {
+            noselectLabel.setVisible(true);
         } else {
             noselectLabel.setVisible(true);
         }
-
 
     }//GEN-LAST:event_registerButtonActionPerformed
 

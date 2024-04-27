@@ -215,27 +215,56 @@ public class JavaBNB implements Serializable {
      */
     public static void cargarDatos() {
         try {
-            //Lectura de los objetos de tipo persona
-            FileInputStream istreamClientes = new FileInputStream("copiasegClientes.dat");
-            FileInputStream istreamAnfitriones = new FileInputStream("copiasegAnfitriones.dat");
-            FileInputStream istreamParticulares = new FileInputStream("copiasegParticulares.dat");
-            FileInputStream istreamInmuebles = new FileInputStream("copiasegInmuebles.dat");
-
+            //datos de todos los clientes
+            FileInputStream istreamClientes = new FileInputStream("./src/main/resources/data/copiasegClientes.dat");
             ObjectInputStream oisClientes = new ObjectInputStream(istreamClientes);
-            ObjectInputStream oisAnfitriones = new ObjectInputStream(istreamAnfitriones);
-            ObjectInputStream oisParticulares = new ObjectInputStream(istreamParticulares);
-            ObjectInputStream oisInmuebles = new ObjectInputStream(istreamInmuebles);
-
             clientes = (ArrayList<Cliente>) oisClientes.readObject();
-            anfitriones = (ArrayList<Anfitrion>) oisAnfitriones.readObject();
-            particulares = (ArrayList<Particular>) oisParticulares.readObject();
-            inmueblesDisponibles = (ArrayList<Inmueble>) oisInmuebles.readObject();
-
             istreamClientes.close();
-            istreamAnfitriones.close();
-            istreamParticulares.close();
-            istreamInmuebles.close();
 
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            //datos de los anfitriones
+            FileInputStream istreamAnfitriones = new FileInputStream("./src/main/resources/data/copiasegAnfitriones.dat");
+            ObjectInputStream oisAnfitriones = new ObjectInputStream(istreamAnfitriones);
+            anfitriones = (ArrayList<Anfitrion>) oisAnfitriones.readObject();
+            istreamAnfitriones.close();
+
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            //datos de los particulares
+            FileInputStream istreamParticulares = new FileInputStream("./src/main/resources/data/copiasegParticulares.dat");
+            ObjectInputStream oisParticulares = new ObjectInputStream(istreamParticulares);
+            particulares = (ArrayList<Particular>) oisParticulares.readObject();
+            istreamParticulares.close();
+
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            //datos de todos los inmuebles         
+            FileInputStream istreamInmuebles = new FileInputStream("./src/main/resources/data/copiasegInmuebles.dat");
+            ObjectInputStream oisInmuebles = new ObjectInputStream(istreamInmuebles);
+            inmueblesDisponibles = (ArrayList<Inmueble>) oisInmuebles.readObject();
+            istreamInmuebles.close();
         } catch (IOException ioe) {
             System.out.println("Error de IO: " + ioe.getMessage());
         } catch (ClassNotFoundException cnfe) {
@@ -252,11 +281,10 @@ public class JavaBNB implements Serializable {
         try {
             //Si hay datos los guardamos...
             if (!clientes.isEmpty()) {
-
                 /**
                  * **** Serialización de todos los clientes *****
                  */
-                FileOutputStream ostreamClientes = new FileOutputStream("copiasegClientes.dat");
+                FileOutputStream ostreamClientes = new FileOutputStream("./src/main/resources/data/copiasegClientes.dat");
                 ObjectOutputStream oosClientes = new ObjectOutputStream(ostreamClientes);
                 //guardamos el array de personas
                 oosClientes.writeObject(clientes);
@@ -269,15 +297,12 @@ public class JavaBNB implements Serializable {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-
         try {
-
             if (!anfitriones.isEmpty()) {
                 /**
                  * **** Serialización de los anfitriones *****
                  */
-
-                FileOutputStream ostreamAnfitriones = new FileOutputStream("copiasegAnfitrion.dat");
+                FileOutputStream ostreamAnfitriones = new FileOutputStream("./src/main/resources/data/copiasegAnfitriones.dat");
                 ObjectOutputStream oosAnfitriones = new ObjectOutputStream(ostreamAnfitriones);
                 //guardamos el array de anfitriones
                 oosAnfitriones.writeObject(anfitriones);
@@ -292,13 +317,11 @@ public class JavaBNB implements Serializable {
         }
 
         try {
-
             if (!particulares.isEmpty()) {
                 /**
                  * **** Serialización de los particulares *****
                  */
-
-                FileOutputStream ostreamParticulares = new FileOutputStream("copiasegParticulares.dat");
+                FileOutputStream ostreamParticulares = new FileOutputStream("./src/main/resources/data/copiasegParticulares.dat");
                 ObjectOutputStream oosParticulares = new ObjectOutputStream(ostreamParticulares);
                 //guardamos el array de particulares
                 oosParticulares.writeObject(particulares);
@@ -312,26 +335,21 @@ public class JavaBNB implements Serializable {
             System.out.println("Error: " + e.getMessage());
         }
         try {
-
             if (!inmueblesDisponibles.isEmpty()) {
                 /**
                  * **** Serialización de los inmuebles *****
                  */
-
-                FileOutputStream ostreamInmuebles = new FileOutputStream("copiasegInmuebles.dat");
+                FileOutputStream ostreamInmuebles = new FileOutputStream("./src/main/resources/data/copiasegInmuebles.dat");
                 ObjectOutputStream oosInmuebles = new ObjectOutputStream(ostreamInmuebles);
                 //guardamos el array de inmuebles
                 oosInmuebles.writeObject(inmueblesDisponibles);
                 ostreamInmuebles.close();
-            } else {
-                System.out.println("Error: No hay datos de inmuebles...");
             }
         } catch (IOException ioe) {
             System.out.println("Error de IO: " + ioe.getMessage());
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-
     }//fin guardarDatos
 
     /**
@@ -357,7 +375,6 @@ public class JavaBNB implements Serializable {
             }
         }
         return false;
-
     }
 
     //Aquí preguntaríamos al usuario si quiere registrarse como anfitrión o particular.
@@ -365,7 +382,7 @@ public class JavaBNB implements Serializable {
         if (comprobarExistenciaCliente(correo, dni, telefono)) {
             return;
         }
-        Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre.toLowerCase(), correo, clave, telefono);
+        Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
         clientes.add(nuevoAnfitrion);
         anfitriones.add(nuevoAnfitrion);
 
@@ -375,13 +392,12 @@ public class JavaBNB implements Serializable {
     }
 
     public static void registrarParticular(Tarjeta tarjetaCredito, boolean vip, String dni, String nombre, String correo, String clave, String telefono) {
-        for (Cliente cliente : clientes) {  //este for sobra
-            if (comprobarExistenciaCliente(correo, dni, telefono)) {
-                return;
-            }
-            Particular nuevoParticular = new Particular(tarjetaCredito, vip, dni, nombre.toLowerCase(), correo, clave, telefono);
-            clientes.add(nuevoParticular);
-            particulares.add(nuevoParticular);
+        if (comprobarExistenciaCliente(correo, dni, telefono)) {
+            return;
         }
+        Particular nuevoParticular = new Particular(tarjetaCredito, vip, dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
+        clientes.add(nuevoParticular);
+        particulares.add(nuevoParticular);
     }
+
 }
