@@ -669,8 +669,6 @@ public class Register extends javax.swing.JPanel {
         String mes = monthTextField.getText();
         String año = yearTextField.getText();
         String cvv = cvvTextField.getText();
-        
-
 
         boolean valido = true;
 
@@ -678,51 +676,69 @@ public class Register extends javax.swing.JPanel {
         if (!Validacion.validarNombre(nombre)) {
             errorLabel4.setVisible(true);
             valido = false;
+            userTextField.setText("");
+        } else {
+            errorLabel4.setVisible(false);
         }
+
         if (!Validacion.validarDNI(dni)) {
             errorLabel2.setVisible(true);
             valido = false;
-
+            DNITextField.setText("");
+        } else {
+            errorLabel2.setVisible(false);
         }
+
         if (!Validacion.validarEmail(correo)) {
             errorLabel6.setVisible(true);
             valido = false;
-
+            emailTextField.setText("");
+        } else {
+            errorLabel6.setVisible(false);
         }
+
         if (!Validacion.validarTelefono(telefono)) {
             errorLabel5.setVisible(true);
             valido = false;
-
+            tlfTextField.setText("");
+        } else {
+            errorLabel5.setVisible(false);
         }
+
         if (!Validacion.validarContraseña(clave)) {
             errorLabel3.setVisible(true);
             requirementsLabel.setVisible(true);
+            passwordTextField.setText("");
+
             valido = false;
 
+        } else {
+            errorLabel3.setVisible(false);
         }
 
         /**
         if (!Validacion.validarTarjeta(tarjeta, dia, mes, año)) {
             errorLabel1.setVisible(true);
             valido = false;
-
+            CCTextField.setText("");
+            dayTextField.setText("");
+            monthTextField.setText("");
+            yearTextField.setText("");
+            cvvTextField.setText("");
+        } else {
+            errorLabel1.setVisible(false);
         }
         */
         
         String selectedOption = (String) selectComboBox.getSelectedItem();
         if (selectedOption.equals("Anfitrion") && valido) {
-            
+
             InicioSesion.registrarAnfitrion(dni, nombre, correo, clave, telefono);
             //System.out.println("Registro hecho correctamente");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
-        
+        } else {
+            noselectLabel.setVisible(true);
         }
-        
-
-       
-       
-   
-    
 
 
     }//GEN-LAST:event_registerButtonActionPerformed
