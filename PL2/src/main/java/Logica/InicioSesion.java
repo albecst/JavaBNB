@@ -47,24 +47,26 @@ public class InicioSesion implements Serializable {
         return anfitrionExiste || particularExiste;
     }
 
-    public void iniciarSesion(String correo, String clave) {
+    public static int iniciarSesion(String correo, String clave) {
+        int tipo = 0;
         if (correo.equals("admin@javabnb.com") && clave.equals("admin")) {    //a administrador se deberia poder acceder sin instanciar
             System.out.println("Sesión iniciada como administrador");
+            tipo = 1;
         } else {
             for (Particular particular : particulares) {
                 if (particular.getCorreo().equals(correo) && particular.getClave().equals(clave)) {
                     System.out.println("Sesión iniciada como cliente");
+                    tipo = 2;
                 }
-                for (Anfitrion anfitrion : anfitriones) {
-                    if (anfitrion.getCorreo().equals(correo) && anfitrion.getClave().equals(clave)) {
-                        System.out.println("Sesión iniciada como anfitrion");
-                    }
-
-                }
-
             }
-
+            for (Anfitrion anfitrion : anfitriones) {
+                if (anfitrion.getCorreo().equals(correo) && anfitrion.getClave().equals(clave)) {
+                    System.out.println("Sesión iniciada como anfitrion");
+                    tipo = 3;
+                }
+            }
         }
+        return tipo;
     }
 
     /**

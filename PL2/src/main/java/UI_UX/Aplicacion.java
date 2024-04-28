@@ -15,7 +15,7 @@ class WindowEventHandler extends WindowAdapter {
   @Override
   public void windowClosing(WindowEvent evt) {
     JavaBNB.guardarDatos();
-  }
+    }
 }
 
 public class Aplicacion {

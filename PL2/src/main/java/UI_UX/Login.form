@@ -229,7 +229,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="errorLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Usuario o contrase&#xf1;a incorrectos"/>
+            <Property name="text" type="java.lang.String" value="Usuario o contrase&#xf1;a incorrectos."/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>

@@ -3,28 +3,23 @@ package UI_UX;
 import Logica.*;
 import UI_UX.Aplicacion;
 
-
-
-
 /**
  *
  * @author alber
  */
 public class Login extends javax.swing.JPanel {
+
     public Login() {
         initComponents();
         errorLabel.setVisible(false);
     }
-    
+
     //TODO: Si le damos a iniciar sesion y nos equivocamos, que ejecute esto.
-    private void resetText(){ 
+    private void resetText() {
         emailTextField.setText("");
         passwordTextField.setText("");
         errorLabel.setVisible(true);
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -203,7 +198,7 @@ public class Login extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 19, 0);
         jPanel1.add(registerLabel, gridBagConstraints);
 
-        errorLabel.setText("Usuario o contraseña incorrectos");
+        errorLabel.setText("Usuario o contraseña incorrectos.");
         errorLabel.setEnabled(false);
         errorLabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -259,18 +254,29 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_passwordTextFieldMousePressed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
-        
+        errorLabel.setVisible(false);
         //Inicializamos atributos
         String correo = emailTextField.getText();
-        String clave = passwordTextField.getText();     
-        
-        
+        String clave = passwordTextField.getText();
+        int tipo = JavaBNB.iniciarSesion(correo, clave);
+        if (tipo == 0) {
+            errorLabel.setVisible(true);
+        } else if (tipo == 1) {
+            System.out.println("admin");
+            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
+        }else if (tipo == 2) {
+            System.out.println("particular");
+            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
+        }else if (tipo == 3) {
+            System.out.println("anfitrion");
+            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
+        }
+
 
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void emailTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailTextFieldMousePressed
-       emailTextField.setText("");
+        emailTextField.setText("");
     }//GEN-LAST:event_emailTextFieldMousePressed
 
     private void errorLabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabelPropertyChange

@@ -399,10 +399,7 @@ public class JavaBNB implements Serializable {
         clientes.add(nuevoParticular);
         particulares.add(nuevoParticular);
     }
-    
-    
-    
-    
+
     //inicio sesion
     public static boolean comprobarUsuario(String dni) {
         boolean particularExiste = false;
@@ -419,26 +416,33 @@ public class JavaBNB implements Serializable {
         }
         return (anfitrionExiste || particularExiste);
     }
-    
 
-    public static void iniciarSesion(String correo, String clave) {
+    
+    
+    //iniciar sesion. si tipo es 0, el cliente aun no esta registrado. si es 1 es admin y si es 2/3 es cliente
+    public static int iniciarSesion(String correo, String clave) {
+        int tipo = 0;
         if (correo.equals("admin@javabnb.com") && clave.equals("admin")) {    //a administrador se deberia poder acceder sin instanciar
             System.out.println("Sesión iniciada como administrador");
+            tipo = 1;
         } else {
             for (Particular particular : particulares) {
                 if (particular.getCorreo().equals(correo) && particular.getClave().equals(clave)) {
                     System.out.println("Sesión iniciada como cliente");
+                    tipo = 2;
                 }
-                for (Anfitrion anfitrion : anfitriones) {
-                    if (anfitrion.getCorreo().equals(correo) && anfitrion.getClave().equals(clave)) {
-                        System.out.println("Sesión iniciada como anfitrion");
-                    }
-
-                }
-
             }
-
+            for (Anfitrion anfitrion : anfitriones) {
+                if (anfitrion.getCorreo().equals(correo) && anfitrion.getClave().equals(clave)) {
+                    System.out.println("Sesión iniciada como anfitrion");
+                    tipo = 3;
+                }
+            }
         }
+        for (Anfitrion anfitrion : anfitriones) {
+            System.out.println(anfitrion.toString());
+        }
+        System.out.println("el tipo es:"+tipo);
+        return tipo;
     }
-
 }
