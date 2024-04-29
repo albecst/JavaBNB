@@ -15,10 +15,14 @@ public class Sesion {
         this.esAnfitrion = user instanceof Anfitrion;
     }
 
-    public Sesion() {
+    /**
+     * Genera una nueva sesión
+     * @param cliente
+     * @return una nueva sesión inicializada con "cliente" como "user".
+     */
+    public static Sesion nuevaSesion(Cliente cliente){
+        return new Sesion(cliente);
     }
-    
-
    
     //actualiza el nombre que se le introduzca en los arraylist de javabnb
     public static void updatenombre(String data) {

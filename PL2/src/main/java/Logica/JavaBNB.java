@@ -1,5 +1,6 @@
 package Logica;
 
+import UI_UX.Aplicacion;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -316,7 +317,7 @@ public class JavaBNB implements Serializable {
         //instanciamos obj de tipo anfitrion, añadimos a lista de clientes y iniciamos sesion
         Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
         clientes.add(nuevoAnfitrion);
-        new Sesion(nuevoAnfitrion);
+        Aplicacion.sesion.nuevaSesion(nuevoAnfitrion);
 
         for (Cliente cliente : clientes) {
             System.out.println(cliente.toString());
@@ -329,7 +330,7 @@ public class JavaBNB implements Serializable {
         }
         Particular nuevoParticular = new Particular(tarjetaCredito, vip, dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
         clientes.add(nuevoParticular);
-        new Sesion(nuevoParticular);
+        Aplicacion.sesion.nuevaSesion(nuevoParticular);
 
     }
 
@@ -364,16 +365,20 @@ public class JavaBNB implements Serializable {
                 isHost = (cliente instanceof Anfitrion);
                 System.out.println("Cliente no registrado");
 
-                if (isHost = false && cliente.getCorreo().equals(correo) && cliente.getClave().equals(clave)) {
+                if (isHost = false && cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
                     System.out.println("Sesión iniciada como particular");
-                    //new Sesion(cliente);
-                    System.out.println("is host? " + Sesion.esAnfitrion); //false
+                    Aplicacion.sesion.nuevaSesion(cliente);
+                    System.out.println(Aplicacion.sesion.user);
+                    //System.out.println("is host? " + Sesion.esAnfitrion); //false
                     tipo = 2;
-                } else if (isHost = true && cliente.getCorreo().equals(correo) && cliente.getClave().equals(clave)) {
+                    
+                } else if (isHost = true && cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
                     System.out.println("Sesión iniciada como anfitrion");
-                    //new Sesion(cliente);
-                    System.out.println("is host? " + Sesion.esAnfitrion);//true. es host
+                    Aplicacion.sesion.nuevaSesion(cliente);
+                    System.out.println(Aplicacion.sesion.user);
+                    //System.out.println("is host? " + Sesion.esAnfitrion);//true. es host
                     tipo = 3;
+                    
                 } else {
                     System.out.println("Cliente no registrado");
                     tipo = 0;
@@ -383,7 +388,8 @@ public class JavaBNB implements Serializable {
         for (Cliente cliente : clientes) {
             System.out.println(cliente.toString());
         }
-        System.out.println("el tipo es:" + tipo);
+        
+        //System.out.println("el tipo es:" + tipo);
         return tipo;
     }
 }

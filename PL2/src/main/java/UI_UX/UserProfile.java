@@ -6,11 +6,8 @@ package UI_UX;
 
 import Logica.Sesion;
 
-/**
- *
- * @author cristina
- */
-public class UserProfile extends javax.swing.JPanel {
+
+public class UserProfile extends javax.swing.JPanel{
 
     /**
      * Creates new form UserProfile
@@ -18,7 +15,11 @@ public class UserProfile extends javax.swing.JPanel {
     public UserProfile() {
         initComponents();
         hostlabel.setVisible(false);
-        if (Sesion.user != null) {
+        
+    }
+    
+    public void actualizar(){
+    if (Sesion.user != null) {
             labeldni.setText(Sesion.user.getDni());
             username.setText(Sesion.user.getNombre());
             labelcorreo.setText(Sesion.user.getCorreo());
@@ -30,14 +31,10 @@ public class UserProfile extends javax.swing.JPanel {
             } else {
                 hostlabel.setVisible(false);
             }
-        } else {
-            labeldni.setText("");
-            username.setText("");
-            labelcorreo.setText("");
-            clave.setText("");
-            labeltlf.setText("");
-        }
+        } 
+    
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

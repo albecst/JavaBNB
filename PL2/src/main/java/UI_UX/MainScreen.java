@@ -477,7 +477,8 @@ public class MainScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla userprofile");
+        
+        Aplicacion.loadUserProfile();
     }//GEN-LAST:event_userActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
