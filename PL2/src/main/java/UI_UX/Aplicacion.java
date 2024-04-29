@@ -33,13 +33,16 @@ public class Aplicacion {
     static MainScreen mainscreen = new MainScreen();
     static UserProfile userprofile = new UserProfile();
     static AdminScreen adminscreen = new AdminScreen();
+    
+    
+    public static Sesion sesion = null;
 
     /**
      * Método principal que inicia la aplicación.
      * @param args Argumentos de la línea de comandos (no se utilizan en este caso).
      */
     public static void main(String[] args) {
-        new InicioSesion();
+        
         new JavaBNB();
         JavaBNB.cargarDatos();
 
@@ -55,7 +58,7 @@ public class Aplicacion {
         cards.add(register, "Pantalla register");
         cards.add(privacypolicy, "Pantalla privacypolicy");
         cards.add(mainscreen, "Pantalla mainscreen");
-        cards.add(userprofile, "Pantalla userproile");
+        cards.add(userprofile, "Pantalla userprofile");
         cards.add(adminscreen, "Pantalla adminscreen");
 
         // Establecer el contenido del JFrame como el JScrollPane.

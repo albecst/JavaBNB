@@ -1,6 +1,5 @@
 package Logica;
 
-import Logica.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,8 +16,6 @@ public class JavaBNB implements Serializable {
     //Atributos
     public static ArrayList<Inmueble> inmueblesDisponibles;
     public static ArrayList<Cliente> clientes;
-    public static ArrayList<Anfitrion> anfitriones;
-    public static ArrayList<Particular> particulares;
 
     /**
      * Constructor de la clase JavaBNB.
@@ -26,8 +23,6 @@ public class JavaBNB implements Serializable {
     public JavaBNB() {
         inmueblesDisponibles = new ArrayList<>();
         clientes = new ArrayList<>();
-        anfitriones = new ArrayList<>();
-        particulares = new ArrayList<>();   //hay que poner this.particulares ????????????????????????????????????????????????? 
     }
 
     /**
@@ -214,13 +209,13 @@ public class JavaBNB implements Serializable {
      * Carga los datos de personas del fichero
      */
     public static void cargarDatos() {
+
         try {
             //datos de todos los clientes
             FileInputStream istreamClientes = new FileInputStream("./src/main/resources/data/copiasegClientes.dat");
             ObjectInputStream oisClientes = new ObjectInputStream(istreamClientes);
             clientes = (ArrayList<Cliente>) oisClientes.readObject();
             istreamClientes.close();
-
         } catch (IOException ioe) {
             System.out.println("Error de IO: " + ioe.getMessage());
         } catch (ClassNotFoundException cnfe) {
@@ -230,36 +225,7 @@ public class JavaBNB implements Serializable {
         }
 
         try {
-            //datos de los anfitriones
-            FileInputStream istreamAnfitriones = new FileInputStream("./src/main/resources/data/copiasegAnfitriones.dat");
-            ObjectInputStream oisAnfitriones = new ObjectInputStream(istreamAnfitriones);
-            anfitriones = (ArrayList<Anfitrion>) oisAnfitriones.readObject();
-            istreamAnfitriones.close();
 
-        } catch (IOException ioe) {
-            System.out.println("Error de IO: " + ioe.getMessage());
-        } catch (ClassNotFoundException cnfe) {
-            System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-
-        try {
-            //datos de los particulares
-            FileInputStream istreamParticulares = new FileInputStream("./src/main/resources/data/copiasegParticulares.dat");
-            ObjectInputStream oisParticulares = new ObjectInputStream(istreamParticulares);
-            particulares = (ArrayList<Particular>) oisParticulares.readObject();
-            istreamParticulares.close();
-
-        } catch (IOException ioe) {
-            System.out.println("Error de IO: " + ioe.getMessage());
-        } catch (ClassNotFoundException cnfe) {
-            System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-
-        try {
             //datos de todos los inmuebles         
             FileInputStream istreamInmuebles = new FileInputStream("./src/main/resources/data/copiasegInmuebles.dat");
             ObjectInputStream oisInmuebles = new ObjectInputStream(istreamInmuebles);
@@ -278,6 +244,7 @@ public class JavaBNB implements Serializable {
      * **** Serialización de los objetos *****
      */
     public static void guardarDatos() {
+
         try {
             //Si hay datos los guardamos...
             if (!clientes.isEmpty()) {
@@ -297,43 +264,7 @@ public class JavaBNB implements Serializable {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-        try {
-            if (!anfitriones.isEmpty()) {
-                /**
-                 * **** Serialización de los anfitriones *****
-                 */
-                FileOutputStream ostreamAnfitriones = new FileOutputStream("./src/main/resources/data/copiasegAnfitriones.dat");
-                ObjectOutputStream oosAnfitriones = new ObjectOutputStream(ostreamAnfitriones);
-                //guardamos el array de anfitriones
-                oosAnfitriones.writeObject(anfitriones);
-                ostreamAnfitriones.close();
-            } else {
-                System.out.println("Error: No hay datos de anfitriones...");
-            }
-        } catch (IOException ioe) {
-            System.out.println("Error de IO: " + ioe.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
 
-        try {
-            if (!particulares.isEmpty()) {
-                /**
-                 * **** Serialización de los particulares *****
-                 */
-                FileOutputStream ostreamParticulares = new FileOutputStream("./src/main/resources/data/copiasegParticulares.dat");
-                ObjectOutputStream oosParticulares = new ObjectOutputStream(ostreamParticulares);
-                //guardamos el array de particulares
-                oosParticulares.writeObject(particulares);
-                ostreamParticulares.close();
-            } else {
-                System.out.println("Error: No hay datos de particulares...");
-            }
-        } catch (IOException ioe) {
-            System.out.println("Error de IO: " + ioe.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
         try {
             if (!inmueblesDisponibles.isEmpty()) {
                 /**
@@ -355,7 +286,7 @@ public class JavaBNB implements Serializable {
     /**
      * Realizar un registro
      */
-    public static boolean comprobarExistenciaCliente(String correo, String dni, String telefono) {
+    public static boolean comprobarExistenciaCliente(String correo, String dni, String telefono) {  //dejar solo comprobarUsuario?
         if (!clientes.isEmpty()) {
             for (Cliente cliente : clientes) {
                 if (cliente.getCorreo().equals(correo)) {
@@ -382,12 +313,13 @@ public class JavaBNB implements Serializable {
         if (comprobarExistenciaCliente(correo, dni, telefono)) {
             return;
         }
+        //instanciamos obj de tipo anfitrion, añadimos a lista de clientes y iniciamos sesion
         Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
         clientes.add(nuevoAnfitrion);
-        anfitriones.add(nuevoAnfitrion);
+        new Sesion(nuevoAnfitrion);
 
-        for (Anfitrion anfitrion : anfitriones) {
-            System.out.println(anfitrion.toString());
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.toString());
         }
     }
 
@@ -397,27 +329,30 @@ public class JavaBNB implements Serializable {
         }
         Particular nuevoParticular = new Particular(tarjetaCredito, vip, dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
         clientes.add(nuevoParticular);
-        particulares.add(nuevoParticular);
+        new Sesion(nuevoParticular);
+
     }
 
     //inicio sesion
     public static boolean comprobarUsuario(String dni) {
-        boolean particularExiste = false;
-        boolean anfitrionExiste = false;
-        for (Particular particular : particulares) {
-            if (particular.getDni().equals(dni)) {
-                particularExiste = true;
+        if (!clientes.isEmpty()) {
+            for (Cliente cliente : clientes) {
+                if (cliente.getDni().equals(dni)) {
+                    System.out.println("Este DNI ya existe");
+                    return true;
+                }
             }
         }
-        for (Anfitrion anfitrion : anfitriones) {
-            if (anfitrion.getDni().equals(dni)) {
-                anfitrionExiste = true;
-            }
-        }
-        return (anfitrionExiste || particularExiste);
+        return false;
     }
-
     //iniciar sesion. si tipo es 0, el cliente aun no esta registrado. si es 1 es admin y si es 2/3 es cliente
+
+    /**
+     *
+     * @param correo
+     * @param clave
+     * @return
+     */
     public static int iniciarSesion(String correo, String clave) {
         int tipo = 0;
         boolean isHost = false;
@@ -427,16 +362,17 @@ public class JavaBNB implements Serializable {
         } else {
             for (Cliente cliente : clientes) {
                 isHost = (cliente instanceof Anfitrion);
+                System.out.println("Cliente no registrado");
 
                 if (isHost = false && cliente.getCorreo().equals(correo) && cliente.getClave().equals(clave)) {
-                    System.out.println("Sesión iniciada como cliente");
-                    new Sesion(cliente);
-                    System.out.println(Sesion.isEsAnfitrion()); //false
+                    System.out.println("Sesión iniciada como particular");
+                    //new Sesion(cliente);
+                    System.out.println("is host? " + Sesion.esAnfitrion); //false
                     tipo = 2;
                 } else if (isHost = true && cliente.getCorreo().equals(correo) && cliente.getClave().equals(clave)) {
-                    System.out.println("Sesión iniciada como anfitrion"); 
-                    new Sesion(cliente); 
-                    System.out.println(Sesion.isEsAnfitrion());//true
+                    System.out.println("Sesión iniciada como anfitrion");
+                    //new Sesion(cliente);
+                    System.out.println("is host? " + Sesion.esAnfitrion);//true. es host
                     tipo = 3;
                 } else {
                     System.out.println("Cliente no registrado");
@@ -444,8 +380,8 @@ public class JavaBNB implements Serializable {
                 }
             }
         }
-        for (Anfitrion anfitrion : anfitriones) {
-            System.out.println(anfitrion.toString());
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.toString());
         }
         System.out.println("el tipo es:" + tipo);
         return tipo;

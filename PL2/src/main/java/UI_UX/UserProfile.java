@@ -4,6 +4,8 @@
  */
 package UI_UX;
 
+import Logica.Sesion;
+
 /**
  *
  * @author cristina
@@ -15,6 +17,26 @@ public class UserProfile extends javax.swing.JPanel {
      */
     public UserProfile() {
         initComponents();
+        hostlabel.setVisible(false);
+        if (Sesion.user != null) {
+            labeldni.setText(Sesion.user.getDni());
+            username.setText(Sesion.user.getNombre());
+            labelcorreo.setText(Sesion.user.getCorreo());
+            clave.setText(Sesion.user.getClave());
+            labeltlf.setText(Sesion.user.getTelefono());
+
+            if (Sesion.esAnfitrion) {
+                hostlabel.setVisible(true);
+            } else {
+                hostlabel.setVisible(false);
+            }
+        } else {
+            labeldni.setText("");
+            username.setText("");
+            labelcorreo.setText("");
+            clave.setText("");
+            labeltlf.setText("");
+        }
     }
 
     /**
@@ -35,15 +57,16 @@ public class UserProfile extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         data = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        labelcorreo = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        labeldni = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        labeltlf = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        clave = new javax.swing.JPasswordField();
         userpfp = new javax.swing.JButton();
         username = new javax.swing.JLabel();
+        hostlabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 250, 248));
 
@@ -111,25 +134,25 @@ public class UserProfile extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Correo electrónico:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("peperico@gmail.com");
+        labelcorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelcorreo.setText("peperico@gmail.com");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("DNI:");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("09109125E");
+        labeldni.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labeldni.setText("09109125E");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Teléfono:");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setText("635526438");
+        labeltlf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labeltlf.setText("635526438");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Contraseña:");
 
-        jPasswordField1.setText("contraseña1");
+        clave.setText("contraseña1");
 
         javax.swing.GroupLayout dataLayout = new javax.swing.GroupLayout(data);
         data.setLayout(dataLayout);
@@ -141,19 +164,19 @@ public class UserProfile extends javax.swing.JPanel {
                     .addGroup(dataLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clave, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(dataLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8))
+                        .addComponent(labeltlf))
                     .addGroup(dataLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6))
+                        .addComponent(labeldni))
                     .addGroup(dataLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)))
+                        .addComponent(labelcorreo)))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
         dataLayout.setVerticalGroup(
@@ -162,29 +185,29 @@ public class UserProfile extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel4))
+                    .addComponent(labelcorreo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
+                    .addComponent(labeldni)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
+                    .addComponent(labeltlf)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(clave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 113;
         gridBagConstraints.ipady = 120;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(42, 70, 0, 59);
+        gridBagConstraints.insets = new java.awt.Insets(42, 70, 0, 119);
         jPanel1.add(data, gridBagConstraints);
 
         userpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user (2).jpg"))); // NOI18N
@@ -196,11 +219,11 @@ public class UserProfile extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = -22;
         gridBagConstraints.ipady = -45;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(42, 59, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(42, 118, 0, 0);
         jPanel1.add(userpfp, gridBagConstraints);
 
         username.setFont(new java.awt.Font("Serif", 0, 30)); // NOI18N
@@ -208,19 +231,29 @@ public class UserProfile extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 130, 74, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 189, 0, 0);
         jPanel1.add(username, gridBagConstraints);
+
+        hostlabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        hostlabel.setForeground(new java.awt.Color(102, 102, 102));
+        hostlabel.setText("Host");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 237, 36, 0);
+        jPanel1.add(hostlabel, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(uppermenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(uppermenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,23 +280,24 @@ public class UserProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_userpfpActionPerformed
 
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
-       Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
     }//GEN-LAST:event_mainscrActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel appname;
+    private javax.swing.JPasswordField clave;
     private javax.swing.JPanel data;
+    private javax.swing.JLabel hostlabel;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JLabel labelcorreo;
+    private javax.swing.JLabel labeldni;
+    private javax.swing.JLabel labeltlf;
     private javax.swing.JButton logo;
     private javax.swing.JButton mainscr;
     private javax.swing.JPanel uppermenu;
