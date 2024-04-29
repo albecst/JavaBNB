@@ -15,10 +15,10 @@ import java.time.temporal.ChronoUnit;
 public class JavaBNB implements Serializable {
 
     //Atributos
-    private static ArrayList<Inmueble> inmueblesDisponibles;
-    private static ArrayList<Cliente> clientes;
-    private static ArrayList<Anfitrion> anfitriones;
-    private static ArrayList<Particular> particulares;
+    public static ArrayList<Inmueble> inmueblesDisponibles;
+    public static ArrayList<Cliente> clientes;
+    public static ArrayList<Anfitrion> anfitriones;
+    public static ArrayList<Particular> particulares;
 
     /**
      * Constructor de la clase JavaBNB.
@@ -417,32 +417,37 @@ public class JavaBNB implements Serializable {
         return (anfitrionExiste || particularExiste);
     }
 
-    
-    
     //iniciar sesion. si tipo es 0, el cliente aun no esta registrado. si es 1 es admin y si es 2/3 es cliente
     public static int iniciarSesion(String correo, String clave) {
         int tipo = 0;
+        boolean isHost = false;
         if (correo.equals("admin@javabnb.com") && clave.equals("admin")) {    //a administrador se deberia poder acceder sin instanciar
             System.out.println("Sesión iniciada como administrador");
             tipo = 1;
         } else {
-            for (Particular particular : particulares) {
-                if (particular.getCorreo().equals(correo) && particular.getClave().equals(clave)) {
+            for (Cliente cliente : clientes) {
+                isHost = (cliente instanceof Anfitrion);
+
+                if (isHost = false && cliente.getCorreo().equals(correo) && cliente.getClave().equals(clave)) {
                     System.out.println("Sesión iniciada como cliente");
+                    new Sesion(cliente);
+                    System.out.println(Sesion.isEsAnfitrion()); //false
                     tipo = 2;
-                }
-            }
-            for (Anfitrion anfitrion : anfitriones) {
-                if (anfitrion.getCorreo().equals(correo) && anfitrion.getClave().equals(clave)) {
-                    System.out.println("Sesión iniciada como anfitrion");
+                } else if (isHost = true && cliente.getCorreo().equals(correo) && cliente.getClave().equals(clave)) {
+                    System.out.println("Sesión iniciada como anfitrion"); 
+                    new Sesion(cliente); 
+                    System.out.println(Sesion.isEsAnfitrion());//true
                     tipo = 3;
+                } else {
+                    System.out.println("Cliente no registrado");
+                    tipo = 0;
                 }
             }
         }
         for (Anfitrion anfitrion : anfitriones) {
             System.out.println(anfitrion.toString());
         }
-        System.out.println("el tipo es:"+tipo);
+        System.out.println("el tipo es:" + tipo);
         return tipo;
     }
 }

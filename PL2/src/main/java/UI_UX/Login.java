@@ -263,7 +263,7 @@ public class Login extends javax.swing.JPanel {
             errorLabel.setVisible(true);
         } else if (tipo == 1) {
             System.out.println("admin");
-            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
+            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
         }else if (tipo == 2) {
             System.out.println("particular");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");

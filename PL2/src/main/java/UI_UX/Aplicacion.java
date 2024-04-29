@@ -32,6 +32,7 @@ public class Aplicacion {
     static PrivacyPolicy privacypolicy = new PrivacyPolicy();
     static MainScreen mainscreen = new MainScreen();
     static UserProfile userprofile = new UserProfile();
+    static AdminScreen adminscreen = new AdminScreen();
 
     /**
      * Método principal que inicia la aplicación.
@@ -55,6 +56,7 @@ public class Aplicacion {
         cards.add(privacypolicy, "Pantalla privacypolicy");
         cards.add(mainscreen, "Pantalla mainscreen");
         cards.add(userprofile, "Pantalla userproile");
+        cards.add(adminscreen, "Pantalla adminscreen");
 
         // Establecer el contenido del JFrame como el JScrollPane.
         frame.setContentPane(scrollPane); 
