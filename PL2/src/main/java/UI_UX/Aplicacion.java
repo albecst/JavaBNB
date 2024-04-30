@@ -31,7 +31,8 @@ public class Aplicacion {
     static Login login = new Login();
     static Register register = new Register();
     static PrivacyPolicy privacypolicy = new PrivacyPolicy();
-    static MainScreen mainscreen = new MainScreen();
+    static MainScreenClient mainscreenclient = new MainScreenClient();
+    static MainScreenHost mainscreenhost = new MainScreenHost();
     static UserProfile userprofile = new UserProfile();
     static AdminScreen adminscreen = new AdminScreen();
 
@@ -59,7 +60,8 @@ public class Aplicacion {
         cards.add(login, "Pantalla login");
         cards.add(register, "Pantalla register");
         cards.add(privacypolicy, "Pantalla privacypolicy");
-        cards.add(mainscreen, "Pantalla mainscreen");
+        cards.add(mainscreenclient, "Pantalla mainscreenclient");
+        cards.add(mainscreenhost, "Pantalla mainscreenhost");
         cards.add(adminscreen, "Pantalla adminscreen");
         loadUserProfile();
 
