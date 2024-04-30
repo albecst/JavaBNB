@@ -17,6 +17,7 @@ public class JavaBNB implements Serializable {
     //Atributos
     public static ArrayList<Inmueble> inmueblesDisponibles;
     public static ArrayList<Cliente> clientes;
+    
 
     /**
      * Constructor de la clase JavaBNB.
@@ -318,7 +319,8 @@ public class JavaBNB implements Serializable {
         Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
         clientes.add(nuevoAnfitrion);
         Aplicacion.sesion.nuevaSesion(nuevoAnfitrion);
-
+        System.out.println(nuevoAnfitrion.toString());
+        
         for (Cliente cliente : clientes) {
             System.out.println(cliente.toString());
         }
@@ -331,10 +333,16 @@ public class JavaBNB implements Serializable {
         Particular nuevoParticular = new Particular(tarjetaCredito, vip, dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
         clientes.add(nuevoParticular);
         Aplicacion.sesion.nuevaSesion(nuevoParticular);
+        System.out.println(nuevoParticular.toString());
 
+
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.toString());
+
+        }
     }
-
-    //inicio sesion
+    
+    //TODO: Deberíamos poner que también se asocie al correo, porque si no pueden existir 2 personas con el mismo correo (me ha pasado)
     public static boolean comprobarUsuario(String dni) {
         if (!clientes.isEmpty()) {
             for (Cliente cliente : clientes) {
@@ -371,14 +379,14 @@ public class JavaBNB implements Serializable {
                     System.out.println(Aplicacion.sesion.user);
                     //System.out.println("is host? " + Sesion.esAnfitrion); //false
                     tipo = 2;
-                    
+
                 } else if (isHost = true && cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
                     System.out.println("Sesión iniciada como anfitrion");
                     Aplicacion.sesion.nuevaSesion(cliente);
                     System.out.println(Aplicacion.sesion.user);
                     //System.out.println("is host? " + Sesion.esAnfitrion);//true. es host
                     tipo = 3;
-                    
+
                 } else {
                     System.out.println("Cliente no registrado");
                     tipo = 0;
@@ -388,8 +396,9 @@ public class JavaBNB implements Serializable {
         for (Cliente cliente : clientes) {
             System.out.println(cliente.toString());
         }
-        
+
         //System.out.println("el tipo es:" + tipo);
         return tipo;
+
     }
 }
