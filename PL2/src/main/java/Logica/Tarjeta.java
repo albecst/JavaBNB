@@ -17,11 +17,12 @@ public class Tarjeta implements Serializable {
     private double saldo;
 
     //Constructor
-    public Tarjeta(String titular, String numeroTarjeta, int dia, int mes, int anio, LocalDate fechaCaducidad, double Saldo) {
+    public Tarjeta(String titular, String numeroTarjeta, int dia, int mes, int anio, LocalDate fechaCaducidad, String cvv, double Saldo) {
         this.titular = titular;
         this.numeroTarjeta = numeroTarjeta;
-        this.fechaCaducidad = LocalDate.of(anio, mes, dia);
+        this.fechaCaducidad = fechaCaducidad;
         this.saldo = saldo;
+        this.cvv = cvv;
     }
 
     //Getters & Setters
@@ -91,4 +92,10 @@ public class Tarjeta implements Serializable {
         this.titular = titular;
     }
 
+    @Override
+    public String toString() {
+        return "Tarjeta{" + "titular=" + titular + ", numeroTarjeta=" + numeroTarjeta + ", fechaCaducidad=" + fechaCaducidad + ", cvv=" + cvv + ", saldo=" + saldo + '}';
+    }
+
+    
 }
