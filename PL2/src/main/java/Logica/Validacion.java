@@ -1,5 +1,7 @@
 package Logica;
 
+import java.time.LocalDate;
+
 public class Validacion {
 
     public static boolean validarNombre(String nombre) {
@@ -75,39 +77,49 @@ public class Validacion {
         return password.length() >= 8 && hasLower && hasUpper && hasDigit;
     }
 
-    public static boolean validarTarjeta(String tarjeta, String dia, String mes, String año) {
+    public static boolean validarTarjeta(String tarjeta, int dia, int mes, int año, String cvv) {
 
         boolean valido = false;
-
-        int diaa = Integer.parseInt(dia);
-        int mess = Integer.parseInt(mes);
-        int añoo = Integer.parseInt(año);
 
         if (0 > tarjeta.length() || tarjeta.length() > 16) {
             valido = false;
             System.out.println("Tarjeta no es válida");
-        }
+        } else if (año < LocalDate.now().getYear()) {
+            valido = false;
+            System.out.println("Año no válido");
+        } else if (año >= LocalDate.now().getYear()) {
+            valido = true;
 
-        else if (mess <= 12) {
-            if (mess == 1 || mess == 3 || mess == 5 || mess == 7 || mess == 8 || mess == 10 || mess == 12) {
-                
-                valido = diaa >= 1 && diaa <= 31;
-            }
-            else if (mess == 4 || mess == 6 || mess == 9 || mess == 11) {
-                
-                valido = diaa >= 1 && diaa <= 30;
+        } else if (cvv.length() != 3) {
+            valido = false;
+            System.out.println("CVV no válido");
+        } else if (mes <= 12) {
+            if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
 
-                
-            }
-            else if (mess == 2) {
-                if (añoo % 4 == 0 && (añoo % 100 != 0 || añoo % 400 == 0)) {
-                    valido = diaa >= 1 && diaa <= 29;
+                valido = dia >= 1 && dia <= 31;
+            } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+
+                valido = dia >= 1 && dia <= 30;
+
+            } else if (mes == 2) {
+                if (año % 4 == 0 && (año % 100 != 0 || año % 400 == 0)) {
+                    valido = dia >= 1 && dia <= 29;
                 } else {
-                    valido = diaa >= 1 && diaa <= 28;
+                    valido = dia >= 1 && dia <= 28;
                 }
             }
         }
-       
+
         return valido;
+    }
+
+    public static boolean validarPromocode(String promocode) {
+        boolean vip = false;
+        if (promocode.equals("JAVABNB2024")) {
+            vip = true;
+        } else if (promocode.isEmpty()) { //Si no introduce nada, no hay vip
+            vip = false;
+        }
+        return vip;
     }
 }
