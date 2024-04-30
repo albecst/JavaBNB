@@ -1,12 +1,13 @@
 package Logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author alber
  */
-public class Particular extends Cliente {
+public class Particular extends Cliente implements Serializable {
 
     //Atributos
     private Tarjeta tarjetaCredito;
@@ -122,4 +123,10 @@ public class Particular extends Cliente {
         this.tarjetaCredito = tarjetaCredito;
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+", particular{" + "tarjetaCredito=" + tarjetaCredito.toString() + ", vip=" + vip + ", reservas=" + reservas + '}';
+    }
+
+    
 }
