@@ -28,7 +28,6 @@ public class Register extends javax.swing.JPanel {
         errorLabel8.setVisible(false);
         errorLabel5.setVisible(false);
         errorLabel4.setVisible(false);
-        errorLabel9.setVisible(false);
         noselectLabel.setVisible(false);
         requirementsLabel.setVisible(false);
         monthTextField.setVisible(false);
@@ -103,7 +102,6 @@ public class Register extends javax.swing.JPanel {
         userLabel1 = new javax.swing.JLabel();
         userTextField1 = new javax.swing.JTextField();
         errorLabel4 = new javax.swing.JLabel();
-        errorLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 250, 248));
         setLayout(new java.awt.BorderLayout());
@@ -134,7 +132,7 @@ public class Register extends javax.swing.JPanel {
         jPanel1.add(subtitleLabel, gridBagConstraints);
 
         photoLabel.setBackground(new java.awt.Color(255, 90, 95));
-        photoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/airbnb logo - 200x200.png"))); // NOI18N
+        photoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
         photoLabel.setBorderPainted(false);
         photoLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         photoLabel.setDefaultCapable(false);
@@ -702,20 +700,6 @@ public class Register extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel4, gridBagConstraints);
 
-        errorLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        errorLabel9.setText("¡Recuerde introducirlo en MAYÚSCULAS!");
-        errorLabel9.setEnabled(false);
-        errorLabel9.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                errorLabel9PropertyChange(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 41;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        jPanel1.add(errorLabel9, gridBagConstraints);
-
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -862,14 +846,12 @@ public class Register extends javax.swing.JPanel {
 
             if (!Validacion.validarPromocode(promocode)) {
                 errorLabel8.setVisible(true);
-                errorLabel9.setVisible(true);
                 promocodeTextField.setText("");
 
                 valido = false;
             } else {
                 errorLabel8.setVisible(false);
-                errorLabel9.setVisible(false);
-            }
+                            }
             if (valido) {
                 noselectLabel.setVisible(false);
                 boolean vip = Validacion.validarPromocode(promocode);
@@ -983,7 +965,7 @@ public class Register extends javax.swing.JPanel {
             errorLabel5.setVisible(false);
             statementLabel.setVisible(false);
             errorLabel4.setVisible(false);
-            errorLabel9.setVisible(false);
+            
 
         }
 
@@ -1045,10 +1027,6 @@ public class Register extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_errorLabel4PropertyChange
 
-    private void errorLabel9PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabel9PropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_errorLabel9PropertyChange
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CCLabel;
@@ -1070,7 +1048,6 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JLabel errorLabel5;
     private javax.swing.JLabel errorLabel6;
     private javax.swing.JLabel errorLabel8;
-    private javax.swing.JLabel errorLabel9;
     private javax.swing.JLabel existaccLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -35,6 +35,7 @@ public class Aplicacion {
     static MainScreenHost mainscreenhost = new MainScreenHost();
     static UserProfile userprofile = new UserProfile();
     static AdminScreen adminscreen = new AdminScreen();
+    static AdminConsultarUsuarios adminconsultarusuarios = new AdminConsultarUsuarios();
 
     public static Sesion sesion = null;  //iniciamos sesion como null
 
@@ -63,6 +64,7 @@ public class Aplicacion {
         cards.add(mainscreenclient, "Pantalla mainscreenclient");
         cards.add(mainscreenhost, "Pantalla mainscreenhost");
         cards.add(adminscreen, "Pantalla adminscreen");
+        cards.add(adminconsultarusuarios, "Pantalla adminconsultarusuarios");
         loadUserProfile();
 
         // Establecer el contenido del JFrame como el JScrollPane.

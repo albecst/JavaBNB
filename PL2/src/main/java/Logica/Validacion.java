@@ -115,7 +115,7 @@ public class Validacion {
 
     public static boolean validarPromocode(String promocode) {
         boolean vip = false;
-        if (promocode.equals("JAVABNB2024")) {
+        if ((promocode.toUpperCase()).equals("JAVABNB2024")) {
             vip = true;
         } else if (promocode.isEmpty()) { //Si no introduce nada, no hay vip
             vip = false;
