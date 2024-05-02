@@ -65,6 +65,7 @@ public class Aplicacion {
         cards.add(mainscreenhost, "Pantalla mainscreenhost");
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(adminconsultarusuarios, "Pantalla adminconsultarusuarios");
+        adminconsultarusuarios.actualizar();
         loadUserProfile();
 
         // Establecer el contenido del JFrame como el JScrollPane.

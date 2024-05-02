@@ -1,5 +1,7 @@
 package Logica;
 
+import java.util.ArrayList;
+
 
 
 public class Administrador {   //antes:   public record Administrador(String correo, String clave) {
@@ -8,25 +10,11 @@ public class Administrador {   //antes:   public record Administrador(String cor
      * Métodos para consultar los usuarios.
      */
     public static void imprimirParticulares() {
-        for (Cliente cliente : JavaBNB.clientes) {
-            boolean isHost = (cliente instanceof Anfitrion);
-
-            if (!isHost) {
-                System.out.println(cliente.toString());
-
-            }
-        }
+        
     }
 
     public static void imprimirHosts() {
-        for (Cliente cliente : JavaBNB.clientes) {
-            boolean isHost = (cliente instanceof Anfitrion);
-
-            if (isHost) {
-                System.out.println(cliente.toString());
-
-            }
-        }
+        
     }
 
     /**

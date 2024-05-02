@@ -17,7 +17,7 @@ public class Tarjeta implements Serializable {
     private double saldo;
 
     //Constructor
-    public Tarjeta(String titular, String numeroTarjeta, int dia, int mes, int anio, LocalDate fechaCaducidad, String cvv, double Saldo) {
+    public Tarjeta(String titular, String numeroTarjeta, int dia, int mes, int anio, LocalDate fechaCaducidad, String cvv, double saldo) {
         this.titular = titular;
         this.numeroTarjeta = numeroTarjeta;
         this.fechaCaducidad = fechaCaducidad;
@@ -94,7 +94,7 @@ public class Tarjeta implements Serializable {
 
     @Override
     public String toString() {
-        return "Tarjeta{" + "titular=" + titular + ", numeroTarjeta=" + numeroTarjeta + ", fechaCaducidad=" + fechaCaducidad + ", cvv=" + cvv + ", saldo=" + saldo + '}';
+        return "Tarjeta{" + ", número de la tarjeta:" + numeroTarjeta + ", fecha de caducidad:" + fechaCaducidad + ", cvv:" + cvv + ", saldo:" + saldo + '}';
     }
 
     
