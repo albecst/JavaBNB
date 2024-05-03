@@ -87,7 +87,7 @@ public class Anfitrion extends Cliente {
 
     @Override
     public String toString() {
-        return super.toString() + ", Anfitrion{" + "fechaRegistro=" + fechaRegistro + ", superAnfitrion=" + superAnfitrion + '}';
+        return super.toString() + ", fecha de registro:" + fechaRegistro + ", Super anfitrión:" + superAnfitrion;
     }
 
     

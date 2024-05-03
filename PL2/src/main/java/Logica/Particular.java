@@ -125,7 +125,7 @@ public class Particular extends Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return super.toString()+", particular{" + "tarjetaCredito=" + tarjetaCredito.toString() + ", vip=" + vip + ", reservas=" + reservas + '}';
+        return super.toString()+ tarjetaCredito.toString() + ", vip:" + vip + ", reservas:" + reservas;
     }
 
     
