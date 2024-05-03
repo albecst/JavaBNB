@@ -262,14 +262,14 @@ public class Login extends javax.swing.JPanel {
         if (tipo == 0) {
             errorLabel.setVisible(true);
         } else if (tipo == 1) {
-            System.out.println("admin");
+            System.out.println("Admin");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
         }else if (tipo == 2) {
-            System.out.println("particular");
-            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
-        }else if (tipo == 3) {
-            System.out.println("anfitrion");
+            System.out.println("Anfitrión");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+        }else if (tipo == 3) {
+            System.out.println("Client");
+            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
         }
 
 

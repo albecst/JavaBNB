@@ -33,7 +33,10 @@ public class Aplicacion {
     static PrivacyPolicy privacypolicy = new PrivacyPolicy();
     static MainScreenClient mainscreenclient = new MainScreenClient();
     static MainScreenHost mainscreenhost = new MainScreenHost();
-    static UserProfile userprofile = new UserProfile();
+    
+    static HostProfile hostprofile = new HostProfile();
+    static ClientProfile clientprofile = new ClientProfile();
+
     static AdminScreen adminscreen = new AdminScreen();
     static AdminConsultarUsuarios adminconsultarusuarios = new AdminConsultarUsuarios();
 
@@ -65,8 +68,8 @@ public class Aplicacion {
         cards.add(mainscreenhost, "Pantalla mainscreenhost");
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(adminconsultarusuarios, "Pantalla adminconsultarusuarios");
-        adminconsultarusuarios.actualizar();
-        loadUserProfile();
+        loadHostProfile();
+        loadClientProfile();
 
         // Establecer el contenido del JFrame como el JScrollPane.
         frame.setContentPane(scrollPane);
@@ -80,10 +83,17 @@ public class Aplicacion {
         cardLayout.show(cards, "Pantalla login");
     }
 
-    public static void loadUserProfile() {
-        cards.add(userprofile, "Pantalla userprofile");
-        userprofile.actualizar();
-        cardLayout.show(cards,"Pantalla userprofile");
+    public static void loadHostProfile() {
+        cards.add(hostprofile, "Pantalla hostprofile");
+        hostprofile.actualizar();
+        cardLayout.show(cards,"Pantalla hostprofile");
+        
+    }
+    
+    public static void loadClientProfile() {
+        cards.add(clientprofile, "Pantalla clientprofile");
+        clientprofile.actualizar();
+        cardLayout.show(cards,"Pantalla clientprofile");
         
     }
 }

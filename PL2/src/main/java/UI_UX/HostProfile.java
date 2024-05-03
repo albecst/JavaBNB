@@ -5,36 +5,37 @@
 package UI_UX;
 
 import Logica.Sesion;
+import Logica.Validacion;
 
-
-public class UserProfile extends javax.swing.JPanel{
+public class HostProfile extends javax.swing.JPanel {
 
     /**
      * Creates new form UserProfile
      */
-    public UserProfile() {
+    public HostProfile() {
         initComponents();
+        errorLabel1.setVisible(false);
+        requirementsLabel.setVisible(true);
         hostlabel.setVisible(false);
-        
+
     }
-    
-    public void actualizar(){
-    if (Sesion.user != null) {
-            labeldni.setText(Sesion.user.getDni());
+
+    public void actualizar() {
+        if (Sesion.user != null) {
+            dniTextField.setText(Sesion.user.getDni());
             username.setText(Sesion.user.getNombre());
-            labelcorreo.setText(Sesion.user.getCorreo());
+            emailTextField.setText(Sesion.user.getCorreo());
             clave.setText(Sesion.user.getClave());
-            labeltlf.setText(Sesion.user.getTelefono());
+            tlfTextField.setText(Sesion.user.getTelefono());
 
             if (Sesion.esAnfitrion) {
                 hostlabel.setVisible(true);
             } else {
                 hostlabel.setVisible(false);
             }
-        } 
-    
+        }
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,13 +55,16 @@ public class UserProfile extends javax.swing.JPanel{
         jPanel1 = new javax.swing.JPanel();
         data = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        labelcorreo = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        labeldni = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        labeltlf = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         clave = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
+        emailTextField = new javax.swing.JTextField();
+        dniTextField = new javax.swing.JTextField();
+        tlfTextField = new javax.swing.JTextField();
+        errorLabel1 = new javax.swing.JLabel();
+        requirementsLabel = new javax.swing.JLabel();
         userpfp = new javax.swing.JButton();
         username = new javax.swing.JLabel();
         hostlabel = new javax.swing.JLabel();
@@ -103,7 +107,7 @@ public class UserProfile extends javax.swing.JPanel{
         gridBagConstraints.insets = new java.awt.Insets(17, 119, 21, 0);
         uppermenu.add(logo, gridBagConstraints);
 
-        mainscr.setBackground(new java.awt.Color(255, 153, 153));
+        mainscr.setBackground(new java.awt.Color(255, 90, 95));
         mainscr.setText("Buscar");
         mainscr.setBorderPainted(false);
         mainscr.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -127,54 +131,85 @@ public class UserProfile extends javax.swing.JPanel{
 
         data.setBackground(new java.awt.Color(255, 250, 248));
         data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        data.setMaximumSize(new java.awt.Dimension(306, 307));
+        data.setPreferredSize(new java.awt.Dimension(306, 150));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Correo electrónico:");
 
-        labelcorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelcorreo.setText("peperico@gmail.com");
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("DNI:");
 
-        labeldni.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labeldni.setText("09109125E");
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Teléfono:");
-
-        labeltlf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labeltlf.setText("635526438");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Contraseña:");
 
         clave.setText("contraseña1");
 
+        jButton1.setBackground(new java.awt.Color(255, 90, 95));
+        jButton1.setText("Editar datos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        emailTextField.setEditable(false);
+
+        dniTextField.setEditable(false);
+
+        tlfTextField.setEditable(false);
+
+        errorLabel1.setBackground(new java.awt.Color(255, 90, 95));
+        errorLabel1.setForeground(new java.awt.Color(255, 90, 95));
+        errorLabel1.setText("Alguno de los datos no cumple el formato requerido");
+        errorLabel1.setEnabled(false);
+        errorLabel1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                errorLabel1PropertyChange(evt);
+            }
+        });
+
+        requirementsLabel.setFont(new java.awt.Font("Segoe UI", 2, 8)); // NOI18N
+        requirementsLabel.setForeground(new java.awt.Color(102, 102, 102));
+        requirementsLabel.setText("Al menos una letra mayúscula, minúscula, dígitos y 8 caracteres de longitud");
+
         javax.swing.GroupLayout dataLayout = new javax.swing.GroupLayout(data);
         data.setLayout(dataLayout);
         dataLayout.setHorizontalGroup(
             dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dataLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dataLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(clave, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dataLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(tlfTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dataLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dataLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(dniTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dataLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(clave, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(dataLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labeltlf))
+                        .addGap(139, 139, 139)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(dataLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labeldni))
-                    .addGroup(dataLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelcorreo)))
-                .addContainerGap(119, Short.MAX_VALUE))
+                        .addGap(62, 62, 62)
+                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(requirementsLabel)
+                            .addComponent(errorLabel1))))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         dataLayout.setVerticalGroup(
             dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,20 +217,26 @@ public class UserProfile extends javax.swing.JPanel{
                 .addGap(16, 16, 16)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(labelcorreo))
+                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labeldni)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labeltlf)
-                    .addComponent(jLabel7))
+                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(dniTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(tlfTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(clave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(requirementsLabel)
+                .addGap(28, 28, 28)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -204,7 +245,7 @@ public class UserProfile extends javax.swing.JPanel{
         gridBagConstraints.ipadx = 113;
         gridBagConstraints.ipady = 120;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(42, 70, 0, 119);
+        gridBagConstraints.insets = new java.awt.Insets(0, 70, 0, 119);
         jPanel1.add(data, gridBagConstraints);
 
         userpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
@@ -220,27 +261,28 @@ public class UserProfile extends javax.swing.JPanel{
         gridBagConstraints.ipadx = -22;
         gridBagConstraints.ipady = -45;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(42, 118, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 118, 7, 0);
         jPanel1.add(userpfp, gridBagConstraints);
 
         username.setFont(new java.awt.Font("Serif", 0, 30)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 90, 95));
         username.setText("PEPE RICO");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 189, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(286, 189, 4, 0);
         jPanel1.add(username, gridBagConstraints);
 
-        hostlabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        hostlabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         hostlabel.setForeground(new java.awt.Color(102, 102, 102));
-        hostlabel.setText("Host");
+        hostlabel.setText("Anfitrión");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 237, 36, 0);
+        gridBagConstraints.insets = new java.awt.Insets(339, 217, 0, 4);
         jPanel1.add(hostlabel, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -257,7 +299,7 @@ public class UserProfile extends javax.swing.JPanel{
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(uppermenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -277,26 +319,100 @@ public class UserProfile extends javax.swing.JPanel{
     }//GEN-LAST:event_userpfpActionPerformed
 
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreen");
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
     }//GEN-LAST:event_mainscrActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+// Verificar el texto actual del botón
+        if (jButton1.getText().equals("Editar datos")) {
+            // Si el botón está en modo "Editar datos"
+            // Establecer los campos de texto como editables
+            emailTextField.setEditable(true);
+            clave.setEditable(true);
+            tlfTextField.setEditable(true);
+
+            // Cambiar el texto del botón a "Aceptar"
+            jButton1.setText("Aceptar");
+        } else {
+            // Si el botón está en modo "Aceptar"
+            // Establecer los campos de texto como no editables
+            emailTextField.setEditable(false);
+            clave.setEditable(false);
+            tlfTextField.setEditable(false);
+
+            // Cambiar el texto del botón a "Editar datos"
+            jButton1.setText("Editar datos");
+
+            // Verificar la validez de los datos ingresados
+            String email = emailTextField.getText();
+            String password = clave.getText();
+            String telefono = tlfTextField.getText();
+
+            boolean datosValidos = true;
+
+            // Verificar el correo electrónico
+            if (!Validacion.validarEmail(email)) {
+                errorLabel1.setVisible(true);
+                emailTextField.setText("");
+                datosValidos = false;
+            }
+            // Verificar la contraseña
+            else if (!Validacion.validarContraseña(password)) {
+                errorLabel1.setVisible(true);
+                clave.setText("");
+                datosValidos = false;
+            }
+
+            // Verificar el teléfono
+            else if (!Validacion.validarTelefono(telefono)) {
+                errorLabel1.setVisible(true);
+                tlfTextField.setText("");
+                datosValidos = false;
+
+            }
+            else{
+                errorLabel1.setVisible(false);
+            }
+
+            // Si todos los datos son válidos, guardar los cambios
+            if (datosValidos) {
+                errorLabel1.setVisible(false);
+                Sesion.user.setCorreo(email);
+                Sesion.user.setTelefono(telefono);
+                Sesion.user.setClave(password);
+                System.out.println(Sesion.user);
+            }
+            else{
+                errorLabel1.setVisible(true);
+            }
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void errorLabel1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabel1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_errorLabel1PropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel appname;
     private javax.swing.JPasswordField clave;
     private javax.swing.JPanel data;
+    private javax.swing.JTextField dniTextField;
+    private javax.swing.JTextField emailTextField;
+    private javax.swing.JLabel errorLabel1;
     private javax.swing.JLabel hostlabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel labelcorreo;
-    private javax.swing.JLabel labeldni;
-    private javax.swing.JLabel labeltlf;
     private javax.swing.JButton logo;
     private javax.swing.JButton mainscr;
+    private javax.swing.JLabel requirementsLabel;
+    private javax.swing.JTextField tlfTextField;
     private javax.swing.JPanel uppermenu;
     private javax.swing.JLabel username;
     private javax.swing.JButton userpfp;

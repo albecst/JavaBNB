@@ -113,7 +113,7 @@ public class Validacion {
         return valido;
     }
 
-    public static boolean validarPromocode(String promocode) {
+    public static boolean validarVipPromocode(String promocode) {
         boolean vip = false;
         if ((promocode.toUpperCase()).equals("JAVABNB2024")) {
             vip = true;
@@ -121,5 +121,13 @@ public class Validacion {
             vip = false;
         }
         return vip;
+    }
+    
+    public static boolean validarPromocode(String promocode){
+        boolean valido = false;
+        if (promocode.toUpperCase().equals("JAVABNB2024") || promocode.isEmpty()){
+            valido = true;
+        }
+        return valido;
     }
 }
