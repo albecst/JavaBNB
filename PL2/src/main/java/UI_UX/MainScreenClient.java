@@ -494,7 +494,7 @@ public class MainScreenClient extends javax.swing.JPanel {
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
         
-        Aplicacion.loadUserProfile();
+        Aplicacion.loadClientProfile();
     }//GEN-LAST:event_userActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
