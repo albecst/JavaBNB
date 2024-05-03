@@ -135,7 +135,7 @@ public class Tarjeta implements Serializable {
 
     @Override
     public String toString() {
-        return "Tarjeta{" + ", número de la tarjeta:" + numeroTarjeta + ", fecha de caducidad:" + fechaCaducidad + ", cvv:" + cvv + ", saldo:" + saldo + '}';
+        return ", Tarjeta{" + "número de la tarjeta:" + numeroTarjeta + ", fecha de caducidad:" + fechaCaducidad + ", cvv:" + cvv + ", saldo:" + saldo + '}';
     }
 
     
