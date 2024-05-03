@@ -112,7 +112,6 @@ public class ClientProfile extends javax.swing.JPanel {
         uppermenu.add(appname, gridBagConstraints);
 
         logo.setBackground(new java.awt.Color(255, 153, 153));
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/airbnb logo - 100x100.png"))); // NOI18N
         logo.setBorderPainted(false);
         logo.setContentAreaFilled(false);
         logo.setDefaultCapable(false);
@@ -384,7 +383,7 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 70, 0, 119);
         jPanel1.add(data, gridBagConstraints);
 
-        userpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user (2).jpg"))); // NOI18N
+        userpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
         userpfp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userpfpActionPerformed(evt);

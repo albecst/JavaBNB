@@ -4,6 +4,12 @@
  */
 package UI_UX;
 
+import Logica.Administrador;
+import Logica.Anfitrion;
+import Logica.Cliente;
+import Logica.JavaBNB;
+import java.util.ArrayList;
+
 /**
  *
  * @author cristina
@@ -17,7 +23,19 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
         initComponents();
     }
 
-    
+    public void actualizar() {
+        for (Cliente cliente : JavaBNB.clientes) {
+            boolean isHost = (cliente instanceof Anfitrion);
+            if (!isHost) {
+                textAreaPar.append(cliente.toString() + "\n"+ "\n");
+                //textAreaPar.setFont(f);
+               
+            } else {
+                textAreaAnf.append(cliente.toString() + "\n"+ "\n");
+            }
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,11 +55,11 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        textAreaPar = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        textAreaAnf = new javax.swing.JTextArea();
 
         jPanel3.setBackground(new java.awt.Color(255, 250, 248));
 
@@ -124,9 +142,10 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(1, 113, 0, 0);
         jPanel4.add(jLabel2, gridBagConstraints);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        textAreaPar.setColumns(20);
+        textAreaPar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textAreaPar.setRows(5);
+        jScrollPane3.setViewportView(textAreaPar);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -166,9 +185,10 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(1, 110, 0, 5);
         jPanel2.add(jLabel1, gridBagConstraints);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        textAreaAnf.setColumns(20);
+        textAreaAnf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textAreaAnf.setRows(5);
+        jScrollPane2.setViewportView(textAreaAnf);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -239,9 +259,9 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JButton logo;
+    private javax.swing.JTextArea textAreaAnf;
+    private javax.swing.JTextArea textAreaPar;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

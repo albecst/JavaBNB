@@ -33,10 +33,8 @@ public class Aplicacion {
     static PrivacyPolicy privacypolicy = new PrivacyPolicy();
     static MainScreenClient mainscreenclient = new MainScreenClient();
     static MainScreenHost mainscreenhost = new MainScreenHost();
-    
     static HostProfile hostprofile = new HostProfile();
     static ClientProfile clientprofile = new ClientProfile();
-
     static AdminScreen adminscreen = new AdminScreen();
     static AdminConsultarUsuarios adminconsultarusuarios = new AdminConsultarUsuarios();
 
@@ -68,6 +66,7 @@ public class Aplicacion {
         cards.add(mainscreenhost, "Pantalla mainscreenhost");
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(adminconsultarusuarios, "Pantalla adminconsultarusuarios");
+        adminconsultarusuarios.actualizar();
         loadHostProfile();
         loadClientProfile();
 
