@@ -82,6 +82,8 @@ public class Anfitrion extends Cliente {
     public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
+    
+    
 
     @Override
     public String toString() {

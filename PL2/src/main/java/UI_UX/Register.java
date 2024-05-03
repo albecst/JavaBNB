@@ -753,15 +753,12 @@ public class Register extends javax.swing.JPanel {
             año = 1;
         }
 
-
-
         String cvv = cvvTextField.getText();
 
         String promocode = promocodeTextField.getText();
 
         LocalDate fechaCaducidad = LocalDate.of(año, mes, dia);
         double saldo = 1000; //Vamos a hacer que el saldo de todas las tarjetas sea de 1000 euros.
-
 
         boolean valido = true;
 
@@ -847,22 +844,22 @@ public class Register extends javax.swing.JPanel {
             if (!Validacion.validarPromocode(promocode)) {
                 errorLabel8.setVisible(true);
                 promocodeTextField.setText("");
-
-                valido = false;
+                valido = false; // Marca como no válido si el promocode es inválido
             } else {
                 errorLabel8.setVisible(false);
-                            }
+            }
+
             if (valido) {
                 noselectLabel.setVisible(false);
-                boolean vip = Validacion.validarPromocode(promocode);
+                boolean vip = Validacion.validarVipPromocode(promocode);
                 Tarjeta tarjeta = new Tarjeta(nombre, numtarjeta, dia, mes, año, fechaCaducidad, cvv, saldo);
                 JavaBNB.registrarParticular(tarjeta, vip, dni, nombre, correo, clave, telefono);
                 Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
-            } else if (selectedOption.equals("Particular") && !valido) {
+            } else {
                 noselectLabel.setVisible(true);
-
             }
         }
+
 
     }//GEN-LAST:event_registerButtonActionPerformed
 
@@ -965,7 +962,6 @@ public class Register extends javax.swing.JPanel {
             errorLabel5.setVisible(false);
             statementLabel.setVisible(false);
             errorLabel4.setVisible(false);
-            
 
         }
 
