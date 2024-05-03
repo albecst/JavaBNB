@@ -14,14 +14,20 @@ public class Tarjeta implements Serializable {
     private String numeroTarjeta;
     private LocalDate fechaCaducidad;
     private String cvv;
+    private int dia;
+    private int mes;
+    private int anio;
     private double saldo;
 
     //Constructor
-    public Tarjeta(String titular, String numeroTarjeta, int dia, int mes, int anio, LocalDate fechaCaducidad, String cvv, double Saldo) {
+    public Tarjeta(String titular, String numeroTarjeta, int dia, int mes, int anio, LocalDate fechaCaducidad, String cvv, double saldo) {
         this.titular = titular;
         this.numeroTarjeta = numeroTarjeta;
         this.fechaCaducidad = fechaCaducidad;
         this.saldo = saldo;
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
         this.cvv = cvv;
     }
 
@@ -91,6 +97,41 @@ public class Tarjeta implements Serializable {
     public void setTitular(String titular) {
         this.titular = titular;
     }
+
+    public String getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+    
+    
+    
 
     @Override
     public String toString() {
