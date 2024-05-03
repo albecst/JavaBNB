@@ -455,7 +455,7 @@ public class ClientProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_userpfpActionPerformed
 
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
     }//GEN-LAST:event_mainscrActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
