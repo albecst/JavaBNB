@@ -90,7 +90,7 @@ public class MainScreenClient extends javax.swing.JPanel {
         barraarriba.add(titleLabel, gridBagConstraints);
 
         logo.setBackground(new java.awt.Color(255, 153, 153));
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/airbnb logo - 100x100.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
         logo.setBorderPainted(false);
         logo.setContentAreaFilled(false);
         logo.setDefaultCapable(false);
@@ -115,7 +115,7 @@ public class MainScreenClient extends javax.swing.JPanel {
         barraarriba.add(logo, gridBagConstraints);
 
         user.setBackground(new java.awt.Color(153, 153, 153));
-        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user (1).jpg"))); // NOI18N
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (1).jpg"))); // NOI18N
         user.setBorderPainted(false);
         user.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         user.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +147,7 @@ public class MainScreenClient extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(29, 466, 0, 0);
         barraarriba.add(jButton3, gridBagConstraints);
 
-        fotocasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/casa1.jpg"))); // NOI18N
+        fotocasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/casa1.jpg"))); // NOI18N
         fotocasa.setBorderPainted(false);
         fotocasa.setDefaultCapable(false);
         fotocasa.setFocusPainted(false);

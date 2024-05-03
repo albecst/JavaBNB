@@ -47,6 +47,7 @@ public class Register extends javax.swing.JPanel {
         noselectLabel.setVisible(false);
         userExiste.setVisible(false);
         statementLabel.setVisible(false);
+
     }
 
     /**
@@ -171,7 +172,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 39;
+        gridBagConstraints.gridy = 41;
         gridBagConstraints.ipadx = 354;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
@@ -183,7 +184,7 @@ public class Register extends javax.swing.JPanel {
         promocodeLabel.setText("Código promocional *");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 38;
+        gridBagConstraints.gridy = 40;
         gridBagConstraints.ipady = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
@@ -226,7 +227,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 47;
+        gridBagConstraints.gridy = 48;
         gridBagConstraints.ipadx = 35;
         gridBagConstraints.ipady = 21;
         gridBagConstraints.insets = new java.awt.Insets(16, 0, 0, 0);
@@ -257,7 +258,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 48;
+        gridBagConstraints.gridy = 49;
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 19, 0);
         jPanel1.add(existaccLabel, gridBagConstraints);
 
@@ -266,7 +267,7 @@ public class Register extends javax.swing.JPanel {
         noselectLabel.setText("Alguno de los datos no es válido. Rellene todos los campos correctamente");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 44;
+        gridBagConstraints.gridy = 45;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         jPanel1.add(noselectLabel, gridBagConstraints);
 
@@ -398,7 +399,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 36;
+        gridBagConstraints.gridy = 37;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel1, gridBagConstraints);
 
@@ -424,7 +425,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 40;
+        gridBagConstraints.gridy = 42;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel8, gridBagConstraints);
 
@@ -611,7 +612,7 @@ public class Register extends javax.swing.JPanel {
         statementLabel2.setText("Nota: se deben rellenar todos los campos obligatorios (marcados con *)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 43;
+        gridBagConstraints.gridy = 44;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         jPanel1.add(statementLabel2, gridBagConstraints);
 
@@ -642,7 +643,7 @@ public class Register extends javax.swing.JPanel {
         statementLabel.setText("Introduzca la fecha de caducidad y el CVV");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 35;
+        gridBagConstraints.gridy = 36;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         jPanel1.add(statementLabel, gridBagConstraints);
 
@@ -651,7 +652,7 @@ public class Register extends javax.swing.JPanel {
         userExiste.setText("Ya existe una cuenta asociada a este DNI. Por favor, inicie sesión.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 46;
+        gridBagConstraints.gridy = 47;
         jPanel1.add(userExiste, gridBagConstraints);
 
         userLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -753,16 +754,13 @@ public class Register extends javax.swing.JPanel {
             año = 1;
         }
 
-
-
         String cvv = cvvTextField.getText();
 
         String promocode = promocodeTextField.getText();
 
         LocalDate fechaCaducidad = LocalDate.of(año, mes, dia);
-        double saldo = 1000; //Vamos a hacer que el saldo de todas las tarjetas sea de 1000 euros.
-
-
+        double saldo = 1000.0; //saldo de todas las tarjetas de 1000 euros.
+        
         boolean valido = true;
 
         userExiste.setVisible(false);
@@ -844,14 +842,14 @@ public class Register extends javax.swing.JPanel {
                 errorLabel1.setVisible(false);
             }
 
-            if (!Validacion.validarPromocode(promocode)) {
+            if (!Validacion.validarPromocode(promocode) && !promocode.equals("")) {
                 errorLabel8.setVisible(true);
                 promocodeTextField.setText("");
-
                 valido = false;
             } else {
                 errorLabel8.setVisible(false);
-                            }
+                valido = true;
+            }
             if (valido) {
                 noselectLabel.setVisible(false);
                 boolean vip = Validacion.validarPromocode(promocode);
@@ -938,6 +936,7 @@ public class Register extends javax.swing.JPanel {
             statementLabel.setVisible(true);
             promocodeLabel.setVisible(true);
             noselectLabel.setVisible(false);
+            
 
         } else {
             monthTextField.setVisible(false);
@@ -965,7 +964,7 @@ public class Register extends javax.swing.JPanel {
             errorLabel5.setVisible(false);
             statementLabel.setVisible(false);
             errorLabel4.setVisible(false);
-            
+
 
         }
 
