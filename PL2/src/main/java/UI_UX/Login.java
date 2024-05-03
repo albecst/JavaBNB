@@ -265,11 +265,11 @@ public class Login extends javax.swing.JPanel {
             System.out.println("Admin");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
         }else if (tipo == 2) {
-            System.out.println("Anfitrión");
-            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
-        }else if (tipo == 3) {
             System.out.println("Client");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
+        }else if (tipo == 3) {
+            System.out.println("Anfitrión");
+            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
         }
 
 

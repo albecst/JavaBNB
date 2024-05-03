@@ -17,7 +17,6 @@ public class JavaBNB implements Serializable {
     //Atributos
     public static ArrayList<Inmueble> inmueblesDisponibles;
     public static ArrayList<Cliente> clientes;
-    
 
     /**
      * Constructor de la clase JavaBNB.
@@ -320,7 +319,7 @@ public class JavaBNB implements Serializable {
         clientes.add(nuevoAnfitrion);
         Aplicacion.sesion.nuevaSesion(nuevoAnfitrion);
         System.out.println(nuevoAnfitrion.toString());
-        
+
         for (Cliente cliente : clientes) {
             System.out.println(cliente.toString());
         }
@@ -335,13 +334,12 @@ public class JavaBNB implements Serializable {
         Aplicacion.sesion.nuevaSesion(nuevoParticular);
         System.out.println(nuevoParticular.toString());
 
-
         for (Cliente cliente : clientes) {
             System.out.println(cliente.toString());
 
         }
     }
-    
+
     //TODO: Deberíamos poner que también se asocie al correo, porque si no pueden existir 2 personas con el mismo correo (me ha pasado)
     public static boolean comprobarUsuario(String dni) {
         if (!clientes.isEmpty()) {
@@ -373,32 +371,30 @@ public class JavaBNB implements Serializable {
                 isHost = (cliente instanceof Anfitrion);
                 System.out.println("Cliente no registrado");
 
-                if (isHost = false && cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
+                if (isHost == false && cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
                     System.out.println("Sesión iniciada como particular");
                     Aplicacion.sesion.nuevaSesion(cliente);
                     System.out.println(Aplicacion.sesion.user);
-                    //System.out.println("is host? " + Sesion.esAnfitrion); //false
                     tipo = 2;
-
-                } else if (isHost = true && cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
-                    System.out.println("Sesión iniciada como anfitrion");
+                    break;
+                } else if (isHost == true && cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
+                    System.out.println("Sesión iniciada como anfitrión");
                     Aplicacion.sesion.nuevaSesion(cliente);
                     System.out.println(Aplicacion.sesion.user);
-                    //System.out.println("is host? " + Sesion.esAnfitrion);//true. es host
                     tipo = 3;
-
+                    break;
                 } else {
                     System.out.println("Cliente no registrado");
                     tipo = 0;
                 }
             }
-        }
-        for (Cliente cliente : clientes) {
-            System.out.println(cliente.toString());
-        }
 
-        //System.out.println("el tipo es:" + tipo);
-        return tipo;
-
+            for (Cliente cliente : clientes) {
+                System.out.println(cliente.toString());
+            }
+        }
+            //System.out.println("el tipo es:" + tipo);
+            return tipo;
     }
-}
+}   
+    
