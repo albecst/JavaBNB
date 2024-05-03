@@ -7,13 +7,14 @@ import java.io.Serializable;
  * @author alber
  */
 public class Cliente implements Serializable {
-    
+
     //Atributos
     private String dni;
     private String nombre;
     private String correo;
     private String clave;
     private String telefono;
+    private Tarjeta tarjeta;
 
     //Constructor
     public Cliente(String dni, String nombre, String correo, String clave, String telefono) {
@@ -23,7 +24,7 @@ public class Cliente implements Serializable {
         this.clave = clave;
         this.telefono = telefono;
     }
-    
+
     //G&S
     /**
      * Get the value of telefono
@@ -43,7 +44,6 @@ public class Cliente implements Serializable {
         this.telefono = telefono;
     }
 
-    
     /**
      * Get the value of clave
      *
@@ -61,7 +61,6 @@ public class Cliente implements Serializable {
     public void setClave(String clave) {
         this.clave = clave;
     }
-
 
     /**
      * Get the value of correo
@@ -81,7 +80,6 @@ public class Cliente implements Serializable {
         this.correo = correo;
     }
 
-
     /**
      * Get the value of nombre
      *
@@ -99,7 +97,6 @@ public class Cliente implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 
     /**
      * Get the value of dni
@@ -119,12 +116,19 @@ public class Cliente implements Serializable {
         this.dni = dni;
     }
 
+    
+    /**
+     * Get the value of tarjeta
+     * 
+     * @return the value of tarjeta
+     */
+    public Tarjeta getTarjeta() {
+        return tarjeta;
+    }
+
     @Override
     public String toString() {
         return "Cliente{" + "dni=" + dni + ", nombre=" + nombre + ", correo=" + correo + ", clave=" + clave + ", telefono=" + telefono + '}';
     }
 
-    
-    
-    
 }
