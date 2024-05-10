@@ -117,7 +117,7 @@ public class Validacion {
         boolean vip = false;
         if ((promocode.toUpperCase()).equals("JAVABNB2024")) {
             vip = true;
-        } else if (promocode.isEmpty()) { //Si no introduce nada, no hay vip
+        } else if (promocode.isEmpty()) { 
             vip = false;
         }
         return vip;
@@ -129,5 +129,48 @@ public class Validacion {
             valido = true;
         }
         return valido;
+    }
+    
+    
+    
+    
+    
+    
+     //TODO: Deberíamos poner que también se asocie al correo, porque si no pueden existir 2 personas con el mismo correo (me ha pasado)
+    public static boolean comprobarUsuario(String dni) {
+        if (!JavaBNB.clientes.isEmpty()) {
+            for (Cliente cliente : JavaBNB.clientes) {
+                if (cliente.getDni().equals(dni)) {
+                    System.out.println("Este DNI ya existe");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    
+    
+    
+        public static boolean comprobarExistenciaCliente(String correo, String dni, String telefono) {  
+        if (!JavaBNB.clientes.isEmpty()) {
+            for (Cliente cliente : JavaBNB.clientes) {
+                if (cliente.getCorreo().equals(correo)) {
+                    System.out.println("Este correo ya existe");
+                    return true;
+
+                } else if (cliente.getDni().equals(dni)) {
+                    System.out.println("Este DNI ya existe");
+                    return true;
+
+                } else if (cliente.getTelefono().equals(telefono)) {
+                    System.out.println("Este teléfono ya existe");
+                    return true;
+
+                }
+
+            }
+        }
+        return false;
     }
 }

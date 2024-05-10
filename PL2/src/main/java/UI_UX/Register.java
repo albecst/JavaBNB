@@ -4,7 +4,9 @@
  */
 package UI_UX;
 
+import Logica.Anfitrion;
 import Logica.JavaBNB;
+import Logica.Particular;
 import Logica.Tarjeta;
 import Logica.Validacion;
 import java.time.LocalDate;
@@ -721,26 +723,23 @@ public class Register extends javax.swing.JPanel {
         String correo = emailTextField.getText();
         String clave = passwordTextField.getText();
         String telefono = tlfTextField.getText();
-
         String numtarjeta = CCTextField.getText();
-
         int dia = 1;
         int mes = 1;
         int año = 1;
 
+        //TODO: error labels
         try {
             if (!monthTextField.getText().isEmpty()) {
                 mes = Integer.parseInt(monthTextField.getText());
             } else {
                 System.err.println("El campo de día está vacío.");
             }
-
             if (!dayTextField.getText().isEmpty()) {
                 dia = Integer.parseInt(dayTextField.getText());
             } else {
                 System.err.println("El campo de mes está vacío.");
             }
-
             if (!yearTextField.getText().isEmpty()) {
                 año = Integer.parseInt(yearTextField.getText());
             } else {
@@ -754,17 +753,12 @@ public class Register extends javax.swing.JPanel {
         }
 
         String cvv = cvvTextField.getText();
-
         String promocode = promocodeTextField.getText();
-
         LocalDate fechaCaducidad = LocalDate.of(año, mes, dia);
-        double saldo = 1000; //Vamos a hacer que el saldo de todas las tarjetas sea de 1000 euros.
-
+        double saldo = 1000; //el saldo inicial de todos los clientes será de 1000
         boolean valido = true;
-
         userExiste.setVisible(false);
 
-        //Vemos si son validos los datos
         if (!Validacion.validarNombre(nombre)) {
             errorLabel4.setVisible(true);
             valido = false;
@@ -772,7 +766,7 @@ public class Register extends javax.swing.JPanel {
         } else {
             errorLabel4.setVisible(false);
         }
-
+        
         if (!Validacion.validarDNI(dni)) {
             errorLabel2.setVisible(true);
             valido = false;
@@ -801,16 +795,13 @@ public class Register extends javax.swing.JPanel {
             errorLabel3.setVisible(true);
             requirementsLabel.setVisible(true);
             passwordTextField.setText("");
-
             valido = false;
-
         } else {
             errorLabel3.setVisible(false);
         }
 
-        //Qué ocurre si le damos al botón dependiendo de qué hayamos elegido y de los datos introducidos
         String selectedOption = (String) selectComboBox.getSelectedItem();
-        boolean usuarioExiste = JavaBNB.comprobarUsuario(dni);
+        boolean usuarioExiste = Validacion.comprobarUsuario(dni);
 
         if (selectedOption.equals("Seleccione entre:")) {
             noselectLabel.setVisible(true);
@@ -822,14 +813,13 @@ public class Register extends javax.swing.JPanel {
 
         } else if (selectedOption.equals("Anfitrion") && valido) {
             noselectLabel.setVisible(false);
-            JavaBNB.registrarAnfitrion(dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
-            //System.out.println("Registro hecho correctamente");
+            Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
+            JavaBNB.registrarCliente(nuevoAnfitrion);
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
         } else if (selectedOption.equals("Anfitrion") && !valido) {
             noselectLabel.setVisible(true);
 
         } else if (selectedOption.equals("Particular")) {
-
             if (!Validacion.validarTarjeta(numtarjeta, dia, mes, año, cvv)) {
                 errorLabel1.setVisible(true);
                 valido = false;
@@ -844,7 +834,7 @@ public class Register extends javax.swing.JPanel {
             if (!Validacion.validarPromocode(promocode)) {
                 errorLabel8.setVisible(true);
                 promocodeTextField.setText("");
-                valido = false; // Marca como no válido si el promocode es inválido
+                valido = false;
             } else {
                 errorLabel8.setVisible(false);
             }
@@ -853,11 +843,13 @@ public class Register extends javax.swing.JPanel {
                 noselectLabel.setVisible(false);
                 boolean vip = Validacion.validarVipPromocode(promocode);
                 Tarjeta tarjeta = new Tarjeta(nombre, numtarjeta, dia, mes, año, fechaCaducidad, cvv, saldo);
-                JavaBNB.registrarParticular(tarjeta, vip, dni, nombre, correo, clave, telefono);
+                Particular nuevoParticular = new Particular(tarjeta, vip, dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
+                JavaBNB.registrarCliente(nuevoParticular);
                 Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
-            } else {
-                noselectLabel.setVisible(true);
+                return;
             }
+            noselectLabel.setVisible(true);
+
         }
 
 

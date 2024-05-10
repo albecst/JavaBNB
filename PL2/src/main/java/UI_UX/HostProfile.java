@@ -4,6 +4,7 @@
  */
 package UI_UX;
 
+import Logica.Anfitrion;
 import Logica.Sesion;
 import Logica.Validacion;
 
@@ -15,9 +16,8 @@ public class HostProfile extends javax.swing.JPanel {
     public HostProfile() {
         initComponents();
         errorLabel1.setVisible(false);
-        requirementsLabel.setVisible(true);
-        hostlabel.setVisible(false);
-
+        requirementsLabel.setVisible(false);
+        
     }
 
     public void actualizar() {
@@ -28,10 +28,10 @@ public class HostProfile extends javax.swing.JPanel {
             clave.setText(Sesion.user.getClave());
             tlfTextField.setText(Sesion.user.getTelefono());
 
-            if (Sesion.esAnfitrion) {
-                hostlabel.setVisible(true);
+            if (((Anfitrion)Sesion.user).isSuperAnfitrion()) {
+                hostlabel.setText("Super anfitrión");
             } else {
-                hostlabel.setVisible(false);
+                hostlabel.setText("Anfitrión");
             }
         }
 

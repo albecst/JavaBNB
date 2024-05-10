@@ -14,7 +14,6 @@ public class Cliente implements Serializable {
     private String correo;
     private String clave;
     private String telefono;
-    private Tarjeta tarjeta;
 
     //Constructor
     public Cliente(String dni, String nombre, String correo, String clave, String telefono) {
@@ -114,16 +113,6 @@ public class Cliente implements Serializable {
      */
     public void setDni(String dni) {
         this.dni = dni;
-    }
-
-    
-    /**
-     * Get the value of tarjeta
-     * 
-     * @return the value of tarjeta
-     */
-    public Tarjeta getTarjeta() {
-        return tarjeta;
     }
 
     @Override

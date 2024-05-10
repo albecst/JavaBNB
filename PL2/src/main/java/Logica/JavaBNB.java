@@ -210,9 +210,7 @@ public class JavaBNB implements Serializable {
      * Carga los datos de personas del fichero
      */
     public static void cargarDatos() {
-
         try {
-            //datos de todos los clientes
             FileInputStream istreamClientes = new FileInputStream("./src/main/resources/data/copiasegClientes.dat");
             ObjectInputStream oisClientes = new ObjectInputStream(istreamClientes);
             clientes = (ArrayList<Cliente>) oisClientes.readObject();
@@ -226,8 +224,6 @@ public class JavaBNB implements Serializable {
         }
 
         try {
-
-            //datos de todos los inmuebles         
             FileInputStream istreamInmuebles = new FileInputStream("./src/main/resources/data/copiasegInmuebles.dat");
             ObjectInputStream oisInmuebles = new ObjectInputStream(istreamInmuebles);
             inmueblesDisponibles = (ArrayList<Inmueble>) oisInmuebles.readObject();
@@ -239,7 +235,7 @@ public class JavaBNB implements Serializable {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-    }//fin cargarDatos
+    }
 
     /**
      * **** Serialización de los objetos *****
@@ -247,7 +243,6 @@ public class JavaBNB implements Serializable {
     public static void guardarDatos() {
 
         try {
-            //Si hay datos los guardamos...
             if (!clientes.isEmpty()) {
                 /**
                  * **** Serialización de todos los clientes *****
@@ -282,119 +277,18 @@ public class JavaBNB implements Serializable {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-    }//fin guardarDatos
-
-    /**
-     * Realizar un registro
-     */
-    public static boolean comprobarExistenciaCliente(String correo, String dni, String telefono) {  //dejar solo comprobarUsuario?
-        if (!clientes.isEmpty()) {
-            for (Cliente cliente : clientes) {
-                if (cliente.getCorreo().equals(correo)) {
-                    System.out.println("Este correo ya existe");
-                    return true;
-
-                } else if (cliente.getDni().equals(dni)) {
-                    System.out.println("Este DNI ya existe");
-                    return true;
-
-                } else if (cliente.getTelefono().equals(telefono)) {
-                    System.out.println("Este teléfono ya existe");
-                    return true;
-
-                }
-
-            }
-        }
-        return false;
     }
 
-    //Aquí preguntaríamos al usuario si quiere registrarse como anfitrión o particular.
-    public static void registrarAnfitrion(String dni, String nombre, String correo, String clave, String telefono) {
-        if (comprobarExistenciaCliente(correo, dni, telefono)) {
+
+ 
+
+    public static void registrarCliente(Cliente cliente) {
+        if (Validacion.comprobarExistenciaCliente(cliente.getCorreo(), cliente.getDni(), cliente.getTelefono())) {
             return;
         }
-        //instanciamos obj de tipo anfitrion, añadimos a lista de clientes y iniciamos sesion
-        Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
-        clientes.add(nuevoAnfitrion);
-        Aplicacion.sesion.nuevaSesion(nuevoAnfitrion);
-        System.out.println(nuevoAnfitrion.toString());
-
-        for (Cliente cliente : clientes) {
-            System.out.println(cliente.toString());
-        }
+        clientes.add(cliente);
+        Aplicacion.sesion.nuevaSesion(cliente);
+        System.out.println(cliente.toString());
     }
 
-    public static void registrarParticular(Tarjeta tarjetaCredito, boolean vip, String dni, String nombre, String correo, String clave, String telefono) {
-        if (comprobarExistenciaCliente(correo, dni, telefono)) {
-            return;
-        }
-        Particular nuevoParticular = new Particular(tarjetaCredito, vip, dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
-        clientes.add(nuevoParticular);
-        Aplicacion.sesion.nuevaSesion(nuevoParticular);
-        System.out.println(nuevoParticular.toString());
-
-        for (Cliente cliente : clientes) {
-            System.out.println(cliente.toString());
-
-        }
-    }
-
-    //TODO: Deberíamos poner que también se asocie al correo, porque si no pueden existir 2 personas con el mismo correo (me ha pasado)
-    public static boolean comprobarUsuario(String dni) {
-        if (!clientes.isEmpty()) {
-            for (Cliente cliente : clientes) {
-                if (cliente.getDni().equals(dni)) {
-                    System.out.println("Este DNI ya existe");
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    //iniciar sesion. si tipo es 0, el cliente aun no esta registrado. si es 1 es admin y si es 2/3 es cliente
-
-    /**
-     *
-     * @param correo
-     * @param clave
-     * @return
-     */
-    public static int iniciarSesion(String correo, String clave) {
-        int tipo = 0;
-        boolean isHost = false;
-        if (correo.equals("admin@javabnb.com") && clave.equals("admin")) {    //a administrador se deberia poder acceder sin instanciar
-            System.out.println("Sesión iniciada como administrador");
-            tipo = 1;
-        } else {
-            for (Cliente cliente : clientes) {
-                isHost = (cliente instanceof Anfitrion);
-                System.out.println("Cliente no registrado");
-
-                if (isHost == false && cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
-                    System.out.println("Sesión iniciada como particular");
-                    Aplicacion.sesion.nuevaSesion(cliente);
-                    System.out.println(Aplicacion.sesion.user);
-                    tipo = 2;
-                    break;
-                } else if (isHost == true && cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
-                    System.out.println("Sesión iniciada como anfitrión");
-                    Aplicacion.sesion.nuevaSesion(cliente);
-                    System.out.println(Aplicacion.sesion.user);
-                    tipo = 3;
-                    break;
-                } else {
-                    System.out.println("Cliente no registrado");
-                    tipo = 0;
-                }
-            }
-
-            for (Cliente cliente : clientes) {
-                System.out.println(cliente.toString());
-            }
-        }
-            //System.out.println("el tipo es:" + tipo);
-            return tipo;
-    }
-}   
-    
+}

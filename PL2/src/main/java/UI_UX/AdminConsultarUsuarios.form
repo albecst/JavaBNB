@@ -200,7 +200,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea3">
+                    <Component class="javax.swing.JTextArea" name="jTextAreaPar">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -254,7 +254,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea2">
+                    <Component class="javax.swing.JTextArea" name="jTextAreaAnf">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>

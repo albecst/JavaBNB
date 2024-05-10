@@ -42,7 +42,7 @@ public class AdminScreen extends javax.swing.JPanel {
 
         jButton1.setBackground(new java.awt.Color(255, 153, 153));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Consultar inmuebles");
+        jButton1.setText("consultar users");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -179,7 +179,7 @@ public class AdminScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        Aplicacion.loadAdminConsultarUser();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

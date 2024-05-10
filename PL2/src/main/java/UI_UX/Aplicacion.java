@@ -37,6 +37,7 @@ public class Aplicacion {
     static ClientProfile clientprofile = new ClientProfile();
     static AdminScreen adminscreen = new AdminScreen();
     static AdminConsultarUsuarios adminconsultarusuarios = new AdminConsultarUsuarios();
+    static AdminConsultarUser adminconsultaruser = new AdminConsultarUser();
 
     public static Sesion sesion = null;  //iniciamos sesion como null
 
@@ -93,6 +94,12 @@ public class Aplicacion {
         cards.add(clientprofile, "Pantalla clientprofile");
         clientprofile.actualizar();
         cardLayout.show(cards,"Pantalla clientprofile");
+        
+    }
+    public static void loadAdminConsultarUser() {
+        cards.add(adminconsultaruser, "Pantalla adminconsultaruser");
+        adminconsultaruser.actualizar();
+        cardLayout.show(cards,"Pantalla adminconsultaruser");
         
     }
 }

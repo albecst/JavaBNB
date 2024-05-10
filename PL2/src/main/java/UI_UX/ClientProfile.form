@@ -529,7 +529,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="hostlabel">
+            <Component class="javax.swing.JLabel" name="ParLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="24" style="0"/>

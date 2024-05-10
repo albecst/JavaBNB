@@ -4,7 +4,9 @@
  */
 package UI_UX;
 
+import Logica.Particular;
 import Logica.Sesion;
+import Logica.Tarjeta;
 import Logica.Validacion;
 import java.time.LocalDate;
 
@@ -17,7 +19,6 @@ public class ClientProfile extends javax.swing.JPanel {
         initComponents();
         errorLabel1.setVisible(false);
         requirementsLabel.setVisible(false);
-        hostlabel.setVisible(true);
 
     }
 
@@ -30,23 +31,19 @@ public class ClientProfile extends javax.swing.JPanel {
             clave.setText(Sesion.user.getClave());
             tlfTextField.setText(Sesion.user.getTelefono());
 
-            // Mostrar o ocultar el mensaje de ser anfitrión dependiendo del estado de la sesión
-            hostlabel.setVisible(Sesion.esAnfitrion);
-
-    /**
-            if (Sesion.user.getTarjeta() != null) {
-                CCTextField.setText(Sesion.user.getTarjeta().getNumeroTarjeta());
-                LocalDate fechaCaducidad = Sesion.user.getTarjeta().getFechaCaducidad();
+            Tarjeta tarjeta = ((Particular) Sesion.user).getTarjetaCredito();
+            if (tarjeta != null) {
+                CCTextField.setText(tarjeta.getNumeroTarjeta());
+                LocalDate fechaCaducidad = tarjeta.getFechaCaducidad();
                 dayTextField.setText(String.valueOf(fechaCaducidad.getDayOfMonth()));
                 monthTextField.setText(String.valueOf(fechaCaducidad.getMonthValue()));
                 yearTextField.setText(String.valueOf(fechaCaducidad.getYear()));
-                cvvTextField.setText(Sesion.user.getTarjeta().getCvv());
+                cvvTextField.setText(tarjeta.getCvv());
             }
-            * */
+
         }
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,7 +88,7 @@ public class ClientProfile extends javax.swing.JPanel {
         moneyTextField = new javax.swing.JTextField();
         userpfp = new javax.swing.JButton();
         username = new javax.swing.JLabel();
-        hostlabel = new javax.swing.JLabel();
+        ParLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 250, 248));
 
@@ -410,15 +407,15 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(286, 197, 4, 4);
         jPanel1.add(username, gridBagConstraints);
 
-        hostlabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        hostlabel.setForeground(new java.awt.Color(102, 102, 102));
-        hostlabel.setText("Cliente");
+        ParLabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        ParLabel.setForeground(new java.awt.Color(102, 102, 102));
+        ParLabel.setText("Cliente");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(339, 220, 0, 0);
-        jPanel1.add(hostlabel, gridBagConstraints);
+        jPanel1.add(ParLabel, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -488,10 +485,8 @@ public class ClientProfile extends javax.swing.JPanel {
             yearTextField.setEditable(false);
             moneyTextField.setEditable(false);
 
-            // Cambiar el texto del botón a "Editar datos"
             jButton1.setText("Editar datos");
 
-            // Validar y guardar los datos
             String email = emailTextField.getText();
             String password = clave.getText();
             String telefono = tlfTextField.getText();
@@ -504,8 +499,8 @@ public class ClientProfile extends javax.swing.JPanel {
             String money = moneyTextField.getText();
 
             boolean valido = true;
+            Tarjeta tarjeta = ((Particular) Sesion.user).getTarjetaCredito();
 
-            // Validar datos
             if (!Validacion.validarNombre(email)) {
                 errorLabel1.setVisible(true);
                 valido = false;
@@ -513,8 +508,6 @@ public class ClientProfile extends javax.swing.JPanel {
                 errorLabel1.setVisible(false);
             }
 
-            // Validar otros campos...
-            // Validar tarjeta de crédito
             if (!Validacion.validarTarjeta(cc, Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year), cvv)) {
                 errorLabel1.setVisible(true);
                 valido = false;
@@ -522,7 +515,6 @@ public class ClientProfile extends javax.swing.JPanel {
                 errorLabel1.setVisible(false);
             }
 
-            // Validar promocode
             if (!Validacion.validarVipPromocode(promocode)) {
                 errorLabel1.setVisible(true);
                 valido = false;
@@ -535,9 +527,9 @@ public class ClientProfile extends javax.swing.JPanel {
                 Sesion.user.setCorreo(email);
                 Sesion.user.setTelefono(telefono);
                 Sesion.user.setClave(password);
-                Sesion.user.getTarjeta().setNumeroTarjeta(cc);
-                Sesion.user.getTarjeta().setFechaCaducidad(LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day)));
-                Sesion.user.getTarjeta().setCvv(cvv);
+                tarjeta.setNumeroTarjeta(cc);
+                tarjeta.setFechaCaducidad(LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day)));
+                tarjeta.setCvv(cvv);
 
                 System.out.println(Sesion.user);
             }
@@ -574,6 +566,7 @@ public class ClientProfile extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CCLabel;
     private javax.swing.JTextField CCTextField;
+    private javax.swing.JLabel ParLabel;
     private javax.swing.JLabel appname;
     private javax.swing.JPasswordField clave;
     private javax.swing.JLabel cvvLabel;
@@ -586,7 +579,6 @@ public class ClientProfile extends javax.swing.JPanel {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel errorLabel1;
-    private javax.swing.JLabel hostlabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

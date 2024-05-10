@@ -258,16 +258,16 @@ public class Login extends javax.swing.JPanel {
         //Inicializamos atributos
         String correo = emailTextField.getText();
         String clave = passwordTextField.getText();
-        int tipo = JavaBNB.iniciarSesion(correo, clave);
+        int tipo = Sesion.iniciarSesion(correo, clave);
         if (tipo == 0) {
             errorLabel.setVisible(true);
         } else if (tipo == 1) {
             System.out.println("Admin");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
-        }else if (tipo == 2) {
+        } else if (tipo == 2) {
             System.out.println("Client");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
-        }else if (tipo == 3) {
+        } else if (tipo == 3) {
             System.out.println("Anfitrión");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
         }
