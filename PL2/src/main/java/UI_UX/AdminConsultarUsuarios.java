@@ -4,16 +4,10 @@
  */
 package UI_UX;
 
-import Logica.Administrador;
 import Logica.Anfitrion;
 import Logica.Cliente;
 import Logica.JavaBNB;
-import java.util.ArrayList;
 
-/**
- *
- * @author cristina
- */
 public class AdminConsultarUsuarios extends javax.swing.JPanel {
 
     /**
@@ -24,7 +18,7 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
     }
 
     public void actualizar() {
-        for (Cliente cliente : JavaBNB.clientes) {
+        for (Cliente cliente : JavaBNB.getClientes()) {
             if (cliente instanceof Anfitrion) {
                 jTextAreaAnf.append(cliente.toString() + "\n\n");
             } else {

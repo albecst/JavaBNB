@@ -173,7 +173,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 39;
+        gridBagConstraints.gridy = 41;
         gridBagConstraints.ipadx = 354;
         gridBagConstraints.ipady = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
@@ -185,7 +185,7 @@ public class Register extends javax.swing.JPanel {
         promocodeLabel.setText("Código promocional *");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 38;
+        gridBagConstraints.gridy = 40;
         gridBagConstraints.ipady = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
@@ -228,7 +228,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 47;
+        gridBagConstraints.gridy = 48;
         gridBagConstraints.ipadx = 35;
         gridBagConstraints.ipady = 21;
         gridBagConstraints.insets = new java.awt.Insets(16, 0, 0, 0);
@@ -259,7 +259,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 48;
+        gridBagConstraints.gridy = 49;
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 19, 0);
         jPanel1.add(existaccLabel, gridBagConstraints);
 
@@ -268,7 +268,7 @@ public class Register extends javax.swing.JPanel {
         noselectLabel.setText("Alguno de los datos no es válido. Rellene todos los campos correctamente");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 44;
+        gridBagConstraints.gridy = 45;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         jPanel1.add(noselectLabel, gridBagConstraints);
 
@@ -400,7 +400,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 36;
+        gridBagConstraints.gridy = 37;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel1, gridBagConstraints);
 
@@ -426,7 +426,7 @@ public class Register extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 40;
+        gridBagConstraints.gridy = 42;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel1.add(errorLabel8, gridBagConstraints);
 
@@ -613,7 +613,7 @@ public class Register extends javax.swing.JPanel {
         statementLabel2.setText("Nota: se deben rellenar todos los campos obligatorios (marcados con *)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 43;
+        gridBagConstraints.gridy = 44;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         jPanel1.add(statementLabel2, gridBagConstraints);
 
@@ -644,16 +644,16 @@ public class Register extends javax.swing.JPanel {
         statementLabel.setText("Introduzca la fecha de caducidad y el CVV");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 35;
+        gridBagConstraints.gridy = 36;
         gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
         jPanel1.add(statementLabel, gridBagConstraints);
 
         userExiste.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         userExiste.setForeground(new java.awt.Color(0, 153, 51));
-        userExiste.setText("Ya existe una cuenta asociada a este DNI. Por favor, inicie sesión.");
+        userExiste.setText("Ya existe una cuenta asociada a este DNI o correo. Por favor, inicie sesión.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 46;
+        gridBagConstraints.gridy = 47;
         jPanel1.add(userExiste, gridBagConstraints);
 
         userLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -801,19 +801,19 @@ public class Register extends javax.swing.JPanel {
         }
 
         String selectedOption = (String) selectComboBox.getSelectedItem();
-        boolean usuarioExiste = Validacion.comprobarUsuario(dni);
+        boolean usuarioExiste = Validacion.comprobarExistenciaCliente(correo.toLowerCase(), dni, telefono);
 
         if (selectedOption.equals("Seleccione entre:")) {
             noselectLabel.setVisible(true);
             userExiste.setVisible(false);
-
+            
         } else if (usuarioExiste) {
             userExiste.setVisible(true);
             noselectLabel.setVisible(false);
 
         } else if (selectedOption.equals("Anfitrion") && valido) {
             noselectLabel.setVisible(false);
-            Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
+            Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre, correo.toLowerCase(), clave, telefono);
             Sesion.registrarCliente(nuevoAnfitrion);
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
         } else if (selectedOption.equals("Anfitrion") && !valido) {
@@ -843,7 +843,7 @@ public class Register extends javax.swing.JPanel {
                 noselectLabel.setVisible(false);
                 boolean vip = Validacion.validarVipPromocode(promocode);
                 Tarjeta tarjeta = new Tarjeta(nombre, numtarjeta, dia, mes, año, fechaCaducidad, cvv, saldo);
-                Particular nuevoParticular = new Particular(tarjeta, vip, dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
+                Particular nuevoParticular = new Particular(tarjeta, vip, dni, nombre, correo.toLowerCase(), clave, telefono);
                 Sesion.registrarCliente(nuevoParticular);
                 Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
                 return;

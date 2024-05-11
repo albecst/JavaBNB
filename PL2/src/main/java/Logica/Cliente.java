@@ -2,20 +2,15 @@ package Logica;
 
 import java.io.Serializable;
 
-/**
- *
- * @author alber
- */
+
 public class Cliente implements Serializable {
 
-    //Atributos
     private String dni;
     private String nombre;
     private String correo;
     private String clave;
     private String telefono;
 
-    //Constructor
     public Cliente(String dni, String nombre, String correo, String clave, String telefono) {
         this.dni = dni;
         this.nombre = nombre;

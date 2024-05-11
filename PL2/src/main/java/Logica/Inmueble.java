@@ -4,13 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-/**
- *
- * @author alber
- */
 public class Inmueble implements Serializable {
     
-    //Atributos
     private String titulo;
     private Direccion direccion;
     private DatosInmueble datosInmueble;

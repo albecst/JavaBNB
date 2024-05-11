@@ -17,11 +17,10 @@ public class Sesion {
         if (!Validacion.validarNombre(data)) {
             return;
         }
-        for (Cliente cliente : JavaBNB.clientes) {
+        for (Cliente cliente : JavaBNB.getClientes()) {
             if (cliente.getDni().equals(user.getDni())) {
                 cliente.setNombre(data);
                 return;
-
             }
         }
     }
@@ -38,7 +37,7 @@ public class Sesion {
             System.out.println("Sesión iniciada como administrador");
             return 1;
         }
-        for (Cliente cliente : JavaBNB.clientes) {
+        for (Cliente cliente : JavaBNB.getClientes()) {
             System.out.println(cliente.toString());
             isHost = (cliente instanceof Anfitrion);
             if (cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
@@ -55,7 +54,7 @@ public class Sesion {
         if (Validacion.comprobarExistenciaCliente(cliente.getCorreo(), cliente.getDni(), cliente.getTelefono())) {
             return;
         }
-        JavaBNB.clientes.add(cliente);
+        JavaBNB.getClientes().add(cliente);
         Aplicacion.sesion.nuevaSesion(cliente);
         System.out.println(cliente.toString());
     }

@@ -95,12 +95,9 @@ public class Validacion {
             System.out.println("CVV no válido");
         } else if (mes <= 12) {
             if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
-
                 valido = dia >= 1 && dia <= 31;
             } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
-
                 valido = dia >= 1 && dia <= 30;
-
             } else if (mes == 2) {
                 if (año % 4 == 0 && (año % 100 != 0 || año % 400 == 0)) {
                     valido = dia >= 1 && dia <= 29;
@@ -136,25 +133,15 @@ public class Validacion {
     
     
     
-     //TODO: Deberíamos poner que también se asocie al correo, porque si no pueden existir 2 personas con el mismo correo (me ha pasado)
-    public static boolean comprobarUsuario(String dni) {
-        if (!JavaBNB.clientes.isEmpty()) {
-            for (Cliente cliente : JavaBNB.clientes) {
-                if (cliente.getDni().equals(dni)) {
-                    System.out.println("Este DNI ya existe");
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+   
+   
     
     
     
     
         public static boolean comprobarExistenciaCliente(String correo, String dni, String telefono) {  
-        if (!JavaBNB.clientes.isEmpty()) {
-            for (Cliente cliente : JavaBNB.clientes) {
+        if (!JavaBNB.getClientes().isEmpty()) {
+            for (Cliente cliente : JavaBNB.getClientes()) {
                 if (cliente.getCorreo().equals(correo)) {
                     System.out.println("Este correo ya existe");
                     return true;

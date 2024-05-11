@@ -173,7 +173,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="siguiente"/>
+            <Property name="text" type="java.lang.String" value="Siguiente"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSigActionPerformed"/>
@@ -184,7 +184,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="anterior"/>
+            <Property name="text" type="java.lang.String" value="Anterior"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAntActionPerformed"/>
@@ -205,44 +205,44 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="87" max="32767" attributes="0"/>
-                      <Component id="jLabelVar1" min="-2" pref="152" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabelNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelDni" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelClave" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabelTlf" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextFieldName" pref="208" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldDni" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldCorreo" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldClave" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldTlf" max="32767" attributes="0"/>
+                                  <Component id="jLabelNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelDni" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelClave" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabelTlf" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jTextFieldName" pref="208" max="32767" attributes="0"/>
+                          <Component id="jTextFieldDni" max="32767" attributes="0"/>
+                          <Component id="jTextFieldCorreo" max="32767" attributes="0"/>
+                          <Component id="jTextFieldClave" max="32767" attributes="0"/>
+                          <Component id="jTextFieldTlf" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="87" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabelVar1" min="-2" pref="152" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jButtonBaja" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -277,7 +277,7 @@
                           <Component id="jTextFieldTlf" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonBaja" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="7" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -327,12 +327,15 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldTlf">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="jButtonBaja">
               <Properties>
-                <Property name="label" type="java.lang.String" value="Borrar"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Eliminar Usuario"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBajaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

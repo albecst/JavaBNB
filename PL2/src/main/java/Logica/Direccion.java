@@ -2,13 +2,8 @@ package Logica;
 
 import java.io.Serializable;
 
-/**
- *
- * @author alber
- */
 public class Direccion implements Serializable {
    
-    //Atributos
     private String calle; 
     private int numero;
     private String cp;

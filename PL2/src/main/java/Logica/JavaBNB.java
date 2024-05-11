@@ -1,6 +1,5 @@
 package Logica;
 
-import UI_UX.Aplicacion;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,15 +13,28 @@ import java.time.temporal.ChronoUnit;
 
 public class JavaBNB implements Serializable {
 
-    public static ArrayList<Inmueble> inmueblesDisponibles;
-    public static ArrayList<Cliente> clientes;
+    private static ArrayList<Inmueble> inmueblesDisponibles;
+    private static ArrayList<Cliente> clientes;
 
-    /**
-     * Constructor de la clase JavaBNB.
-     */
-    public JavaBNB() {
+    public static void inicializadorJavaBNB() {
         inmueblesDisponibles = new ArrayList<>();
         clientes = new ArrayList<>();
+    }
+
+    public static ArrayList<Inmueble> getInmueblesDisponibles() {
+        return inmueblesDisponibles;
+    }
+
+    public static void setInmueblesDisponibles(ArrayList<Inmueble> inmueblesDisponibles) {
+        JavaBNB.inmueblesDisponibles = inmueblesDisponibles;
+    }
+
+    public static ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public static void setClientes(ArrayList<Cliente> clientes) {
+        JavaBNB.clientes = clientes;
     }
 
     /**
@@ -277,6 +289,5 @@ public class JavaBNB implements Serializable {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
 
 }

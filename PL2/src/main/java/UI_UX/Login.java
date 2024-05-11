@@ -1,12 +1,7 @@
 package UI_UX;
 
 import Logica.*;
-import UI_UX.Aplicacion;
 
-/**
- *
- * @author alber
- */
 public class Login extends javax.swing.JPanel {
 
     public Login() {
@@ -259,18 +254,25 @@ public class Login extends javax.swing.JPanel {
         String correo = emailTextField.getText();
         String clave = passwordTextField.getText();
         int tipo = Sesion.iniciarSesion(correo, clave);
-        if (tipo == 0) {
-            errorLabel.setVisible(true);
-            resetText();
-        } else if (tipo == 1) {
-            System.out.println("Admin");
-            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
-        } else if (tipo == 2) {
-            System.out.println("Client");
-            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
-        } else if (tipo == 3) {
-            System.out.println("Anfitrión");
-            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+        switch (tipo) {
+            case 0:
+                errorLabel.setVisible(true);
+                resetText();
+                break;
+            case 1:
+                System.out.println("Admin");
+                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
+                break;
+            case 2:
+                System.out.println("Client");
+                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
+                break;
+            case 3:
+                System.out.println("Anfitrión");
+                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+                break;
+            default:
+                break;
         }
 
 

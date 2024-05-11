@@ -11,7 +11,7 @@ import Logica.Particular;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-//TODO: boton de eliminar personas y modificar datos
+//TODO: boton de modificar datos
 public class AdminConsultarUser extends javax.swing.JPanel {
 
     /**
@@ -32,39 +32,34 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         try {
             errorNoSig.setVisible(false);
             errorNoAnt.setVisible(false);
-            //referenciamos al ArrayList de UtilCenso
-            clientesaux = JavaBNB.clientes;
-            //creamos el iterador sobre el ArrayList
+
+            clientesaux = JavaBNB.getClientes();
+
             li = clientesaux.listIterator();
-            //si no hay personas...
             if (clientesaux.size() < 1) {
                 jButtonSig.setEnabled(false);
                 jButtonAnt.setEnabled(false);
-                //jButtonBaja.setEnabled(false);
+                jButtonBaja.setEnabled(false);
                 //jButtonModificar.setEnabled(false);
                 return;
             } else {
                 jButtonSig.setEnabled(true);
                 jButtonAnt.setEnabled(true);
-                //jButtonBaja.setEnabled(true);
+                jButtonBaja.setEnabled(true);
                 // jButtonModificar.setEnabled(true);
             }
-            //presentamos la primera persona
-            //TODO: cambiar el li que es una lista de anfitriones+partic por una solo de anfitr con un stream
+
             if (li.hasNext()) {
                 objcli = li.next();
             } else {
-                //JOptionPane.showMessageDialog(this, "No hay personas.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                 errorNoSig.setVisible(true);
             }
             if (objcli != null) {
                 presenta(objcli);
             } else {
-                //JOptionPane.showMessageDialog(this, "No hay personas.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                 errorNoSig.setVisible(true);
             }
         } catch (Exception e) {
-            //JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
             System.out.println("Error: " + e.toString());
         }
     }
@@ -77,11 +72,9 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         jTextFieldClave.setText(objcli.getClave());
         jTextFieldTlf.setText(objcli.getTelefono());
         if (tipo.equals("Anfitrion")) {
-            Anfitrion anfi = (Anfitrion) per;
             jLabelVar1.setText(tipo);
 
         } else {
-            Particular parti = (Particular) per;
             jLabelVar1.setText(tipo);
 
         }
@@ -121,7 +114,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         jTextFieldClave = new javax.swing.JTextField();
         jLabelTlf = new javax.swing.JLabel();
         jTextFieldTlf = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonBaja = new javax.swing.JButton();
         errorNoSig = new javax.swing.JLabel();
         errorNoAnt = new javax.swing.JLabel();
 
@@ -186,7 +179,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         );
 
         jButtonSig.setBackground(new java.awt.Color(255, 153, 153));
-        jButtonSig.setText("siguiente");
+        jButtonSig.setText("Siguiente");
         jButtonSig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSigActionPerformed(evt);
@@ -194,7 +187,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         });
 
         jButtonAnt.setBackground(new java.awt.Color(255, 153, 153));
-        jButtonAnt.setText("anterior");
+        jButtonAnt.setText("Anterior");
         jButtonAnt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAntActionPerformed(evt);
@@ -217,10 +210,11 @@ public class AdminConsultarUser extends javax.swing.JPanel {
 
         jLabelTlf.setText("Telefono:");
 
-        jButton1.setLabel("Borrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBaja.setBackground(new java.awt.Color(255, 153, 153));
+        jButtonBaja.setText("Eliminar Usuario");
+        jButtonBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonBajaActionPerformed(evt);
             }
         });
 
@@ -228,35 +222,35 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
-                .addComponent(jLabelVar1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelNombre)
-                                    .addComponent(jLabelDni)
-                                    .addComponent(jLabelCorreo)
-                                    .addComponent(jLabelClave)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelTlf)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                            .addComponent(jTextFieldDni)
-                            .addComponent(jTextFieldCorreo)
-                            .addComponent(jTextFieldClave)
-                            .addComponent(jTextFieldTlf)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jButton1)))
+                            .addComponent(jLabelNombre)
+                            .addComponent(jLabelDni)
+                            .addComponent(jLabelCorreo)
+                            .addComponent(jLabelClave)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelTlf)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(jTextFieldDni)
+                    .addComponent(jTextFieldCorreo)
+                    .addComponent(jTextFieldClave)
+                    .addComponent(jTextFieldTlf))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(87, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabelVar1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButtonBaja)
+                        .addGap(97, 97, 97))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +278,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
                     .addComponent(jLabelTlf)
                     .addComponent(jTextFieldTlf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(jButtonBaja)
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
@@ -353,12 +347,10 @@ public class AdminConsultarUser extends javax.swing.JPanel {
             objcli = li.next();
             errorNoSig.setVisible(false);
             errorNoAnt.setVisible(false);
-            if (objcli != null) {
-                presenta(objcli);
-            }
+            presenta(objcli);
+
         } else {
             errorNoSig.setVisible(true);
-            //JOptionPane.showMessageDialog(this, "No hay personas.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButtonSigActionPerformed
 
@@ -367,12 +359,10 @@ public class AdminConsultarUser extends javax.swing.JPanel {
             objcli = li.previous();
             errorNoSig.setVisible(false);
             errorNoAnt.setVisible(false);
-            if (objcli != null) {
-                presenta(objcli);
-            }
+            presenta(objcli);
+
         } else {
             errorNoAnt.setVisible(true);
-            //JOptionPane.showMessageDialog(this, "No hay personas.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAntActionPerformed
 
@@ -380,37 +370,32 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_logo1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaActionPerformed
         if (objcli != null) {
-        li.remove();
-        //JOptionPane.showMessageDialog(this, "Persona dada de baja: " + objper.toString(), "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-    } 
-    //mostramos el elemento siguiente o anterior
-    if (li.hasNext()) {
-        objcli = li.next();
-        if (objcli != null) {
-            presenta(objcli);
-        } else {
-            //JOptionPane.showMessageDialog(this, "No hay personas.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            li.remove();
         }
-    } else if (li.hasPrevious()) {
-        objcli = li.previous();
-        if (objcli != null) {
-            presenta(objcli);
-        } else {
-            //JOptionPane.showMessageDialog(this, "No hay personas.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+
+        if (li.hasNext()) {
+            objcli = li.next();
+            if (objcli != null) {
+                presenta(objcli);
+            }
+        } else if (li.hasPrevious()) {
+            objcli = li.previous();
+            if (objcli != null) {
+                presenta(objcli);
+            }
         }
-    }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonBajaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraarriba1;
     private javax.swing.JLabel errorNoAnt;
     private javax.swing.JLabel errorNoSig;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAnt;
+    private javax.swing.JButton jButtonBaja;
     private javax.swing.JButton jButtonSig;
     private javax.swing.JLabel jLabelClave;
     private javax.swing.JLabel jLabelCorreo;

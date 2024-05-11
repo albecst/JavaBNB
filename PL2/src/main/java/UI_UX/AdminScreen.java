@@ -4,10 +4,6 @@
  */
 package UI_UX;
 
-/**
- *
- * @author cristina
- */
 public class AdminScreen extends javax.swing.JPanel {
 
     /**

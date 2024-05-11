@@ -48,8 +48,7 @@ public class Aplicacion {
      * caso).
      */
     public static void main(String[] args) {
-
-        new JavaBNB();
+        JavaBNB.inicializadorJavaBNB();
         JavaBNB.cargarDatos();
 
         // Establecer el tamaño mínimo de la ventana.

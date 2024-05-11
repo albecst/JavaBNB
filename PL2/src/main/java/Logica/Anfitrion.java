@@ -3,24 +3,19 @@ package Logica;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-/**
- *
- * @author alber
- */
 public class Anfitrion extends Cliente {
    
-    //Atributos
     private LocalDate fechaRegistro;
     private boolean superAnfitrion;
     private static ArrayList<Inmueble> inmuebles = new ArrayList<>();
 
-    //Constructor
+    
     public Anfitrion(String dni, String nombre, String correo, String clave, String telefono) {
         super(dni, nombre, correo, clave, telefono);
         this.fechaRegistro = LocalDate.now();
     }
     
-    //Métodos
+    
 
     /**
      * Getters & Setters

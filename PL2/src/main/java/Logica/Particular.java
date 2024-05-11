@@ -3,13 +3,8 @@ package Logica;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- *
- * @author alber
- */
 public class Particular extends Cliente implements Serializable {
 
-    //Atributos
     private Tarjeta tarjetaCredito;
     private boolean vip;
     private ArrayList <Reserva> reservas = new ArrayList<>();

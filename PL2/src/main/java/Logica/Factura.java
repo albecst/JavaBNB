@@ -2,13 +2,8 @@ package Logica;
 
 import java.io.Serializable;
 
-/**
- *
- * @author alber
- */
 public class Factura implements Serializable {
 
-    //Atributos
     private int idFactura;
     private double importe;
     private String concepto;
