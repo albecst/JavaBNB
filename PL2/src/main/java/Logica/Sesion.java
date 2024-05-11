@@ -51,6 +51,13 @@ public class Sesion {
         return 0;
     }
     
-    
+        public static void registrarCliente(Cliente cliente) {
+        if (Validacion.comprobarExistenciaCliente(cliente.getCorreo(), cliente.getDni(), cliente.getTelefono())) {
+            return;
+        }
+        JavaBNB.clientes.add(cliente);
+        Aplicacion.sesion.nuevaSesion(cliente);
+        System.out.println(cliente.toString());
+    }
     
 }

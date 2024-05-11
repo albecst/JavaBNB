@@ -14,7 +14,6 @@ import java.time.temporal.ChronoUnit;
 
 public class JavaBNB implements Serializable {
 
-    //Atributos
     public static ArrayList<Inmueble> inmueblesDisponibles;
     public static ArrayList<Cliente> clientes;
 
@@ -279,16 +278,5 @@ public class JavaBNB implements Serializable {
         }
     }
 
-
- 
-
-    public static void registrarCliente(Cliente cliente) {
-        if (Validacion.comprobarExistenciaCliente(cliente.getCorreo(), cliente.getDni(), cliente.getTelefono())) {
-            return;
-        }
-        clientes.add(cliente);
-        Aplicacion.sesion.nuevaSesion(cliente);
-        System.out.println(cliente.toString());
-    }
 
 }

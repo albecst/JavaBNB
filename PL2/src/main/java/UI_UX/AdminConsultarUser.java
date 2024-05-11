@@ -121,6 +121,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         jTextFieldClave = new javax.swing.JTextField();
         jLabelTlf = new javax.swing.JLabel();
         jTextFieldTlf = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         errorNoSig = new javax.swing.JLabel();
         errorNoAnt = new javax.swing.JLabel();
 
@@ -216,6 +217,13 @@ public class AdminConsultarUser extends javax.swing.JPanel {
 
         jLabelTlf.setText("Telefono:");
 
+        jButton1.setLabel("Borrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -227,22 +235,27 @@ public class AdminConsultarUser extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelNombre)
-                            .addComponent(jLabelDni)
-                            .addComponent(jLabelCorreo)
-                            .addComponent(jLabelClave)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTlf)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(jTextFieldDni)
-                    .addComponent(jTextFieldCorreo)
-                    .addComponent(jTextFieldClave)
-                    .addComponent(jTextFieldTlf))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelNombre)
+                                    .addComponent(jLabelDni)
+                                    .addComponent(jLabelCorreo)
+                                    .addComponent(jLabelClave)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelTlf)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(jTextFieldDni)
+                            .addComponent(jTextFieldCorreo)
+                            .addComponent(jTextFieldClave)
+                            .addComponent(jTextFieldTlf)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -270,7 +283,9 @@ public class AdminConsultarUser extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTlf)
                     .addComponent(jTextFieldTlf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         errorNoSig.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -365,11 +380,35 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_logo1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (objcli != null) {
+        li.remove();
+        //JOptionPane.showMessageDialog(this, "Persona dada de baja: " + objper.toString(), "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+    } 
+    //mostramos el elemento siguiente o anterior
+    if (li.hasNext()) {
+        objcli = li.next();
+        if (objcli != null) {
+            presenta(objcli);
+        } else {
+            //JOptionPane.showMessageDialog(this, "No hay personas.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
+    } else if (li.hasPrevious()) {
+        objcli = li.previous();
+        if (objcli != null) {
+            presenta(objcli);
+        } else {
+            //JOptionPane.showMessageDialog(this, "No hay personas.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraarriba1;
     private javax.swing.JLabel errorNoAnt;
     private javax.swing.JLabel errorNoSig;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAnt;
     private javax.swing.JButton jButtonSig;

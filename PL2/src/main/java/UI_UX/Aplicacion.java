@@ -86,8 +86,7 @@ public class Aplicacion {
     public static void loadHostProfile() {
         cards.add(hostprofile, "Pantalla hostprofile");
         hostprofile.actualizar();
-        cardLayout.show(cards,"Pantalla hostprofile");
-        
+        cardLayout.show(cards,"Pantalla hostprofile");   
     }
     
     public static void loadClientProfile() {

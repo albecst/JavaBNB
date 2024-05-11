@@ -23,7 +23,7 @@ public class HostProfile extends javax.swing.JPanel {
     public void actualizar() {
         if (Sesion.user != null) {
             dniTextField.setText(Sesion.user.getDni());
-            username.setText(Sesion.user.getNombre());
+            username.setText(Sesion.user.getNombre().toUpperCase());
             emailTextField.setText(Sesion.user.getCorreo());
             clave.setText(Sesion.user.getClave());
             tlfTextField.setText(Sesion.user.getTelefono());

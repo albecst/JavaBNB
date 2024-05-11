@@ -5,8 +5,8 @@
 package UI_UX;
 
 import Logica.Anfitrion;
-import Logica.JavaBNB;
 import Logica.Particular;
+import Logica.Sesion;
 import Logica.Tarjeta;
 import Logica.Validacion;
 import java.time.LocalDate;
@@ -814,7 +814,7 @@ public class Register extends javax.swing.JPanel {
         } else if (selectedOption.equals("Anfitrion") && valido) {
             noselectLabel.setVisible(false);
             Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
-            JavaBNB.registrarCliente(nuevoAnfitrion);
+            Sesion.registrarCliente(nuevoAnfitrion);
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
         } else if (selectedOption.equals("Anfitrion") && !valido) {
             noselectLabel.setVisible(true);
@@ -844,7 +844,7 @@ public class Register extends javax.swing.JPanel {
                 boolean vip = Validacion.validarVipPromocode(promocode);
                 Tarjeta tarjeta = new Tarjeta(nombre, numtarjeta, dia, mes, año, fechaCaducidad, cvv, saldo);
                 Particular nuevoParticular = new Particular(tarjeta, vip, dni, nombre.toLowerCase(), correo.toLowerCase(), clave, telefono);
-                JavaBNB.registrarCliente(nuevoParticular);
+                Sesion.registrarCliente(nuevoParticular);
                 Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
                 return;
             }

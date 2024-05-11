@@ -14,7 +14,7 @@ public class Login extends javax.swing.JPanel {
         errorLabel.setVisible(false);
     }
 
-    //TODO: Si le damos a iniciar sesion y nos equivocamos, que ejecute esto.
+    //TODO: Si vamos a otra pestaña y volvemos deberia ejecutar esto. es como los otros metodos "actualizar"
     private void resetText() {
         emailTextField.setText("");
         passwordTextField.setText("");
@@ -261,6 +261,7 @@ public class Login extends javax.swing.JPanel {
         int tipo = Sesion.iniciarSesion(correo, clave);
         if (tipo == 0) {
             errorLabel.setVisible(true);
+            resetText();
         } else if (tipo == 1) {
             System.out.println("Admin");
             Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
