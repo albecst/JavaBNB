@@ -37,7 +37,8 @@ public class MainScreenHost extends javax.swing.JPanel {
         titleLabel = new javax.swing.JLabel();
         logo = new javax.swing.JButton();
         user = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        addBuildingsButton = new javax.swing.JButton();
+        myBuildingsButton = new javax.swing.JButton();
         fotocasa = new javax.swing.JButton();
         buscaalojamiento = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -114,12 +115,28 @@ public class MainScreenHost extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(24, 993, 0, 107);
         barraarriba.add(user, gridBagConstraints);
 
-        jButton3.setBackground(new java.awt.Color(255, 90, 95));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jButton3.setText("Mis inmuebles");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        addBuildingsButton.setBackground(new java.awt.Color(255, 90, 95));
+        addBuildingsButton.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        addBuildingsButton.setText("Añadir inmueble");
+        addBuildingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                addBuildingsButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 32;
+        gridBagConstraints.ipady = 26;
+        gridBagConstraints.insets = new java.awt.Insets(29, 104, 0, 0);
+        barraarriba.add(addBuildingsButton, gridBagConstraints);
+
+        myBuildingsButton.setBackground(new java.awt.Color(255, 90, 95));
+        myBuildingsButton.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        myBuildingsButton.setText("Mis inmuebles");
+        myBuildingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myBuildingsButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -128,7 +145,7 @@ public class MainScreenHost extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 32;
         gridBagConstraints.ipady = 26;
         gridBagConstraints.insets = new java.awt.Insets(29, 466, 0, 0);
-        barraarriba.add(jButton3, gridBagConstraints);
+        barraarriba.add(myBuildingsButton, gridBagConstraints);
 
         fotocasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/casa1.jpg"))); // NOI18N
         fotocasa.setBorderPainted(false);
@@ -214,11 +231,11 @@ public class MainScreenHost extends javax.swing.JPanel {
             buscaalojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buscaalojamientoLayout.createSequentialGroup()
                 .addGroup(buscaalojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(buscaalojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(buscaalojamientoLayout.createSequentialGroup()
-                            .addGap(40, 40, 40)
+                    .addGroup(buscaalojamientoLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(buscaalojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(destinopanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(buscaalojamientoLayout.createSequentialGroup()
                         .addGap(108, 108, 108)
@@ -280,7 +297,7 @@ public class MainScreenHost extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -341,12 +358,18 @@ public class MainScreenHost extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_logoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void addBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBuildingsButtonActionPerformed
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla addbuildings");
+
+    }//GEN-LAST:event_addBuildingsButtonActionPerformed
+
+    private void myBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myBuildingsButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_myBuildingsButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBuildingsButton;
     private javax.swing.JPanel barraabajo;
     private javax.swing.JPanel barraarriba;
     private javax.swing.JPanel buscaalojamiento;
@@ -354,7 +377,6 @@ public class MainScreenHost extends javax.swing.JPanel {
     private javax.swing.JButton fotocasa;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -363,6 +385,7 @@ public class MainScreenHost extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton logo;
+    private javax.swing.JButton myBuildingsButton;
     private javax.swing.JTextArea textbuscaaloj;
     private javax.swing.JTextArea textteesperan;
     private javax.swing.JLabel titleLabel;
