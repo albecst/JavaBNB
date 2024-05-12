@@ -99,4 +99,11 @@ public class DatosInmueble implements Serializable {
         this.maxHuespedes = maxHuespedes;
     }
 
+    @Override
+    public String toString() {
+        return "DatosInmueble{" + "maxHuespedes=" + maxHuespedes + ", habitaciones=" + habitaciones + ", camas=" + camas + ", ba\u00f1os=" + baños + '}';
+    }
+
+    
+    
 }
