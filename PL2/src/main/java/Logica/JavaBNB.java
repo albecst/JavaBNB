@@ -43,7 +43,7 @@ public class JavaBNB implements Serializable {
      *
      * @param inmueble Inmueble a añadir.
      */
-    public static void añadirInmueble(Inmueble inmueble) {
+    public static boolean añadirInmueble(Inmueble inmueble) {
         boolean existeInmuebleConMismaDireccion = inmueblesDisponibles.stream()
                 .anyMatch(inmuebleExistente -> inmuebleExistente.getDireccion().equals(inmueble.getDireccion()));
 
@@ -52,6 +52,12 @@ public class JavaBNB implements Serializable {
         } else {
             System.out.println("El inmueble ya está añadido");
         }
+        
+        for (Inmueble inmueblee : inmueblesDisponibles){
+            System.out.println(inmueblee.toString());
+        }
+        
+        return !existeInmuebleConMismaDireccion;
     }
 
     /**
