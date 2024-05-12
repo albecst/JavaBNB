@@ -38,6 +38,7 @@ public class Aplicacion {
     static AdminScreen adminscreen = new AdminScreen();
     static AdminConsultarUsuarios adminconsultarusuarios = new AdminConsultarUsuarios();
     static AdminConsultarUser adminconsultaruser = new AdminConsultarUser();
+    static AddBuildings addbuildings = new AddBuildings();
 
     public static Sesion sesion = null;  //iniciamos sesion como null
 
@@ -66,6 +67,8 @@ public class Aplicacion {
         cards.add(mainscreenhost, "Pantalla mainscreenhost");
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(adminconsultarusuarios, "Pantalla adminconsultarusuarios");
+        cards.add(addbuildings, "Pantalla addbuildings");
+
         adminconsultarusuarios.actualizar();
         loadHostProfile();
         loadClientProfile();
