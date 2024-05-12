@@ -130,15 +130,6 @@ public class Validacion {
     
     
     
-    
-    
-    
-   
-   
-    
-    
-    
-    
         public static boolean comprobarExistenciaCliente(String correo, String dni, String telefono) {  
         if (!JavaBNB.getClientes().isEmpty()) {
             for (Cliente cliente : JavaBNB.getClientes()) {

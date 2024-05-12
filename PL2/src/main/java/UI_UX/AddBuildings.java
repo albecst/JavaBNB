@@ -8,21 +8,17 @@ import Logica.DatosInmueble;
 import Logica.Direccion;
 import Logica.Inmueble;
 import Logica.JavaBNB;
-import java.awt.*;
-import java.io.*;
+import javax.swing.*;
+import Logica.Validacion;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import javax.imageio.stream.FileImageOutputStream;
-import javax.imageio.stream.ImageOutputStream;
-import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import Logica.Validacion;
+import java.nio.file.StandardCopyOption;
 
 public class AddBuildings extends javax.swing.JPanel {
-
+String fotografia="";
     /**
      * Creates new form AdminConsultarUsuarios
      */
@@ -36,6 +32,41 @@ public class AddBuildings extends javax.swing.JPanel {
         bedError.setVisible(false);
         bathError.setVisible(false);
         serviceError.setVisible(false);
+        bathError1.setVisible(false);
+    }
+
+
+    public File openImage() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Selecciona una imagen");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif", "bmp"));
+
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            return fileChooser.getSelectedFile();
+        }
+        return null; // No file was selected or the user cancelled.
+    }
+
+    public String saveImage(File sourceFile) {
+        String destinationDirectory = "./src/main/resources/fotosinmuebles"; // Directorio de destino fijo
+        Path destinationPath = Paths.get(destinationDirectory, sourceFile.getName());
+
+        try {
+            // Asegúrate de que el directorio exista
+            if (!Files.exists(Paths.get(destinationDirectory))) {
+                Files.createDirectories(Paths.get(destinationDirectory));
+            }
+
+            // Copia el archivo al directorio especificado
+            Files.copy(sourceFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Imagen guardada en: " + destinationPath);
+            return destinationPath.toString(); // Devuelve la ruta de la imagen como String
+        } catch (IOException ex) {
+            System.out.println("Error al guardar la imagen: " + ex.getMessage());
+            return null; // Devuelve null si hay un error
+        }
     }
 
     /**
@@ -46,7 +77,6 @@ public class AddBuildings extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel3 = new javax.swing.JPanel();
         barraarriba = new javax.swing.JPanel();
@@ -92,11 +122,12 @@ public class AddBuildings extends javax.swing.JPanel {
         bathError = new javax.swing.JLabel();
         bedError = new javax.swing.JLabel();
         serviceError = new javax.swing.JLabel();
-        priceSpinner = new javax.swing.JSpinner();
         guestSpinner = new javax.swing.JSpinner();
         bedroomSpinner = new javax.swing.JSpinner();
         bedSpinner = new javax.swing.JSpinner();
         bathSpinner = new javax.swing.JSpinner();
+        bathError1 = new javax.swing.JLabel();
+        priceSpinner = new javax.swing.JSpinner();
 
         jPanel3.setBackground(new java.awt.Color(255, 250, 248));
 
@@ -162,26 +193,14 @@ public class AddBuildings extends javax.swing.JPanel {
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel3.setFont(new java.awt.Font("Serif", 0, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 90, 95));
         jLabel3.setText("¡Añade algún inmueble!");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 4, 0);
-        jPanel1.add(jLabel3, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Serif", 2, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 90, 95));
         jLabel1.setText("Recuerda introducir todos los datos y no dejar nada vacío");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 15, 0);
-        jPanel1.add(jLabel1, gridBagConstraints);
 
         data.setBackground(new java.awt.Color(255, 250, 248));
         data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -322,9 +341,6 @@ public class AddBuildings extends javax.swing.JPanel {
         serviceError.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         serviceError.setText("No es válido o está vacío");
 
-        priceSpinner.setMinimumSize(new java.awt.Dimension(113, 27));
-        priceSpinner.setPreferredSize(new java.awt.Dimension(113, 27));
-
         guestSpinner.setMinimumSize(new java.awt.Dimension(113, 27));
         guestSpinner.setPreferredSize(new java.awt.Dimension(113, 27));
 
@@ -337,82 +353,96 @@ public class AddBuildings extends javax.swing.JPanel {
         bathSpinner.setMinimumSize(new java.awt.Dimension(113, 27));
         bathSpinner.setPreferredSize(new java.awt.Dimension(113, 27));
 
+        bathError1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        bathError1.setText("Por favor, añada una fotografía");
+
+        priceSpinner.setMinimumSize(new java.awt.Dimension(113, 27));
+        priceSpinner.setPreferredSize(new java.awt.Dimension(113, 27));
+
         javax.swing.GroupLayout dataLayout = new javax.swing.GroupLayout(data);
         data.setLayout(dataLayout);
         dataLayout.setHorizontalGroup(
             dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dataLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bathLabel)
                     .addGroup(dataLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bedLabel)
-                            .addComponent(bedroomLabel)
-                            .addComponent(guestLabel)
-                            .addComponent(priceLabel)
-                            .addComponent(photoLabel)
-                            .addComponent(servicesLabel)
-                            .addComponent(numberLabel))
-                        .addGap(26, 26, 26)
-                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(dataLayout.createSequentialGroup()
-                                .addComponent(priceSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
-                                .addComponent(priceError))
-                            .addGroup(dataLayout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(descriptionError))
-                            .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(photoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bathLabel)
                             .addGroup(dataLayout.createSequentialGroup()
                                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bedLabel)
+                                    .addComponent(bedroomLabel)
+                                    .addComponent(guestLabel)
+                                    .addComponent(priceLabel)
+                                    .addComponent(photoLabel)
+                                    .addComponent(servicesLabel)
+                                    .addComponent(numberLabel))
+                                .addGap(26, 26, 26)
+                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(dataLayout.createSequentialGroup()
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(descriptionError))
+                                    .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(dataLayout.createSequentialGroup()
+                                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(dataLayout.createSequentialGroup()
+                                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(streetTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                                                    .addComponent(numberTextField))
+                                                .addGap(85, 85, 85)
+                                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(cpLabel)
+                                                    .addComponent(cityLabel)))
+                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(dataLayout.createSequentialGroup()
+                                                .addGap(41, 41, 41)
+                                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(cpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(cityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(dataLayout.createSequentialGroup()
+                                                .addGap(22, 22, 22)
+                                                .addComponent(titleError, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(dataLayout.createSequentialGroup()
+                                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(dataLayout.createSequentialGroup()
+                                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(guestSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(bedroomSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(bedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(bathSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(57, 57, 57)
+                                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(bedroomError, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(bathError, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(bedError, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(guestError, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                        .addGap(73, 73, 73)
+                                        .addComponent(serviceError))
+                                    .addGroup(dataLayout.createSequentialGroup()
+                                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(photoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(priceSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(streetTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                                            .addComponent(numberTextField))
-                                        .addGap(85, 85, 85)
-                                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cpLabel)
-                                            .addComponent(cityLabel)))
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(dataLayout.createSequentialGroup()
-                                        .addGap(41, 41, 41)
-                                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(dataLayout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(titleError, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(dataLayout.createSequentialGroup()
-                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(dataLayout.createSequentialGroup()
-                                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(guestSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(bedroomSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(bedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(bathSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(bedroomError, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(bathError, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(bedError, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(guestError, javax.swing.GroupLayout.Alignment.TRAILING)))
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(serviceError)
-                                .addGap(20, 20, 20))))
-                    .addComponent(titleLabel)
-                    .addComponent(typeLabel)
-                    .addComponent(descriptionLabel)
-                    .addComponent(streetLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(createBuildingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                                            .addGroup(dataLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(bathError1))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(priceError)
+                                                .addGap(94, 94, 94))))))
+                            .addComponent(titleLabel)
+                            .addComponent(typeLabel)
+                            .addComponent(descriptionLabel)
+                            .addComponent(streetLabel))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createBuildingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(37, 37, 37))
         );
         dataLayout.setVerticalGroup(
             dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -472,7 +502,7 @@ public class AddBuildings extends javax.swing.JPanel {
                     .addComponent(bedroomLabel)
                     .addComponent(bedroomError)
                     .addComponent(bedroomSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGap(19, 19, 19)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bedLabel)
                     .addComponent(bedError)
@@ -485,14 +515,15 @@ public class AddBuildings extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(photoLabel)
-                    .addComponent(photoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(photoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bathError1))
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dataLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(servicesLabel)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addComponent(createBuildingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataLayout.createSequentialGroup()
@@ -501,28 +532,43 @@ public class AddBuildings extends javax.swing.JPanel {
                         .addGap(74, 74, 74))))
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 113;
-        gridBagConstraints.ipady = 120;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 115, 31, 119);
-        jPanel1.add(data, gridBagConstraints);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(403, 403, 403)
+                .addComponent(jLabel3))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(416, 416, 416)
+                .addComponent(jLabel1))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(278, 278, 278)
+                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addGap(15, 15, 15)
+                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(barraarriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(barraarriba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
 
@@ -546,26 +592,6 @@ public class AddBuildings extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_logoActionPerformed
 
-    private void photoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoButtonActionPerformed
-
-    }//GEN-LAST:event_photoButtonActionPerformed
-
-    private void streetTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_streetTextFieldActionPerformed
-
-    private void numberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numberTextFieldActionPerformed
-
-    private void cityTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cityTextFieldActionPerformed
-
-    private void cpTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cpTextFieldActionPerformed
-
     private void createBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBuildingButtonActionPerformed
 
         String titulo = titleTextField.getText();
@@ -576,15 +602,13 @@ public class AddBuildings extends javax.swing.JPanel {
         String cp = cpTextField.getText();
         String tipo = (String) typeComboBox.getSelectedItem();
 
+        //TODO: hacer formatted field en vez de priceSpinner. mejorar las validaciones (por ej puedes poner una letra como numero)
         double precio = ((Integer) priceSpinner.getValue()).doubleValue();
         int huespedes = (int) guestSpinner.getValue();
         int habitaciones = (int) bedroomSpinner.getValue();
         int camas = (int) bedSpinner.getValue();
         int baños = (int) bathSpinner.getValue();
         String servicios = servicesTextPane.getText();
-
-        // TODO: Añadir las fotografías
-        String fotografia = "x";
 
         boolean valido = true;
 
@@ -594,6 +618,14 @@ public class AddBuildings extends javax.swing.JPanel {
 
         } else {
             titleError.setVisible(false);
+        }
+
+        if (fotografia.equals("")){
+            bathError1.setVisible(true);
+            valido=false;
+        }else {
+            System.out.println(fotografia);
+            bathError1.setVisible(false);
         }
 
         if (descripcion.isEmpty()) {
@@ -610,7 +642,7 @@ public class AddBuildings extends javax.swing.JPanel {
             valido = false;
 
         }
-        if (calle.isEmpty()) {
+        if (!Validacion.validarNombre(calle)) {
             JOptionPane.showMessageDialog(this, "La casilla de la calle del inmueble es necesaria", "Falta la calle", JOptionPane.WARNING_MESSAGE);
             valido = false;
         }
@@ -639,6 +671,7 @@ public class AddBuildings extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "El código postal tiene que ser un número entero.", "Error del código postal", JOptionPane.WARNING_MESSAGE);
             }
         } else {
+            valido=false;
             JOptionPane.showMessageDialog(this, "El código postal debe tener 5 carácteres exactamente", "Error del código postal", JOptionPane.WARNING_MESSAGE);
         }
 
@@ -704,13 +737,39 @@ public class AddBuildings extends javax.swing.JPanel {
             }
             return;
         }
-
     }//GEN-LAST:event_createBuildingButtonActionPerformed
+
+    private void cpTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpTextFieldActionPerformed
+
+    private void cityTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityTextFieldActionPerformed
+
+    private void numberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numberTextFieldActionPerformed
+
+    private void streetTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_streetTextFieldActionPerformed
+
+    private void photoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoButtonActionPerformed
+        File f = openImage();
+        if (f != null) {
+            fotografia=saveImage(f);
+        } else {
+            System.out.println("no existe la ruta");
+        }
+
+    }//GEN-LAST:event_photoButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraarriba;
     private javax.swing.JLabel bathError;
+    private javax.swing.JLabel bathError1;
     private javax.swing.JLabel bathLabel;
     private javax.swing.JSpinner bathSpinner;
     private javax.swing.JLabel bedError;

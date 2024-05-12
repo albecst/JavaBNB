@@ -254,11 +254,31 @@ public class JavaBNB implements Serializable {
         }
     }
 
+    
+    
+    
+    public static void guardarfoto(String foto){
+    try {
+            if (!foto.equals("")) {
+                               FileOutputStream ostreamClientes = new FileOutputStream("./src/main/resources/data/copiasegClientes.dat");
+                ObjectOutputStream oosClientes = new ObjectOutputStream(ostreamClientes);
+                //guardamos el array de personas
+                oosClientes.writeObject(clientes);
+                ostreamClientes.close();
+            } else {
+                System.out.println("Error: No hay datos de clientes...");
+            }
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    
+    }
     /**
      * **** Serialización de los objetos *****
      */
     public static void guardarDatos() {
-
         try {
             if (!clientes.isEmpty()) {
                 /**
