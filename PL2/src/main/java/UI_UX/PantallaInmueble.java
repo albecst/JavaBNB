@@ -33,6 +33,8 @@ public class PantallaInmueble extends javax.swing.JPanel {
         tipolabel.setText(i.getTipo());
         descripcionarea.setText(i.getDescripcion());
         datosinmueblearea.setText(i.getDatosInmueble().toString());
+        direccionarea.setText(i.getDireccion().toString());
+        serviciosarea.setText("los servicios de este inmueble son "+i.getServicios());
 
         fotoboton.setIcon(resizeIMG(i.getFotografia()));
         estrella1.setIcon(i.getCalificacion() >= 1 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
@@ -96,6 +98,10 @@ public class PantallaInmueble extends javax.swing.JPanel {
         logo = new javax.swing.JButton();
         titleLabel = new javax.swing.JLabel();
         tipolabel = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        serviciosarea = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        direccionarea = new javax.swing.JTextArea();
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
 
@@ -166,12 +172,14 @@ public class PantallaInmueble extends javax.swing.JPanel {
         preciolabel.setText("precio $/noche");
 
         descripcionarea.setEditable(false);
+        descripcionarea.setBackground(new java.awt.Color(255, 250, 248));
         descripcionarea.setColumns(20);
         descripcionarea.setRows(5);
         descripcionarea.setText("Descripcionnn");
         jScrollPane1.setViewportView(descripcionarea);
 
         datosinmueblearea.setEditable(false);
+        datosinmueblearea.setBackground(new java.awt.Color(255, 250, 248));
         datosinmueblearea.setColumns(20);
         datosinmueblearea.setRows(5);
         datosinmueblearea.setText("Datos inmueble toString()");
@@ -242,6 +250,20 @@ public class PantallaInmueble extends javax.swing.JPanel {
         tipolabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tipolabel.setText("tipo");
 
+        serviciosarea.setEditable(false);
+        serviciosarea.setBackground(new java.awt.Color(255, 250, 248));
+        serviciosarea.setColumns(20);
+        serviciosarea.setRows(5);
+        serviciosarea.setText("Los servicios de este inmueble son blablabla");
+        jScrollPane3.setViewportView(serviciosarea);
+
+        direccionarea.setEditable(false);
+        direccionarea.setBackground(new java.awt.Color(255, 250, 248));
+        direccionarea.setColumns(20);
+        direccionarea.setRows(5);
+        direccionarea.setText("Direccion toString()");
+        jScrollPane4.setViewportView(direccionarea);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -249,24 +271,27 @@ public class PantallaInmueble extends javax.swing.JPanel {
             .addComponent(barraarriba, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
+                    .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(titulolabel))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(preciolabel)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
-                                .addComponent(tipolabel)))))
+                                .addComponent(tipolabel))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(titulolabel)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -290,7 +315,11 @@ public class PantallaInmueble extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -327,10 +356,9 @@ public class PantallaInmueble extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraarriba;
-    private javax.swing.JPanel barraarriba1;
-    private javax.swing.JPanel barraarriba2;
     private javax.swing.JTextArea datosinmueblearea;
     private javax.swing.JTextArea descripcionarea;
+    private javax.swing.JTextArea direccionarea;
     private javax.swing.JButton estrella1;
     private javax.swing.JButton estrella2;
     private javax.swing.JButton estrella3;
@@ -338,20 +366,17 @@ public class PantallaInmueble extends javax.swing.JPanel {
     private javax.swing.JButton estrella5;
     private javax.swing.JButton fotoboton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton logo;
-    private javax.swing.JButton logo1;
-    private javax.swing.JButton logo2;
     private javax.swing.JLabel preciolabel;
+    private javax.swing.JTextArea serviciosarea;
     private javax.swing.JLabel tipolabel;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JLabel titleLabel1;
-    private javax.swing.JLabel titleLabel2;
     private javax.swing.JLabel titulolabel;
     // End of variables declaration//GEN-END:variables
 }
