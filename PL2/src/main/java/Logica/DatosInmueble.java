@@ -101,7 +101,7 @@ public class DatosInmueble implements Serializable {
 
     @Override
     public String toString() {
-        return "DatosInmueble{" + "maxHuespedes=" + maxHuespedes + ", habitaciones=" + habitaciones + ", camas=" + camas + ", ba\u00f1os=" + baños + '}';
+        return "Como máximo " + maxHuespedes + " huéspedes se pueden alojar en este inmueble. El inmueble tiene " + habitaciones + " habitaciones, " + camas + " camas, y" + baños + "baños.";
     }
 
     
