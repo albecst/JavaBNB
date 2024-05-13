@@ -631,17 +631,15 @@ String fotografia="";
         if (descripcion.isEmpty()) {
             descriptionError.setVisible(true);
             valido = false;
-
         } else {
             descriptionError.setVisible(false);
-
         }
 
         if (!Validacion.validarNombre(ciudad)) {
             JOptionPane.showMessageDialog(this, "Existe algún error con la ciudad, puede que esté vacía o que el formato no sea válido", "Error con la ciudad", JOptionPane.WARNING_MESSAGE);
             valido = false;
-
         }
+        
         if (!Validacion.validarNombre(calle)) {
             JOptionPane.showMessageDialog(this, "La casilla de la calle del inmueble es necesaria", "Falta la calle", JOptionPane.WARNING_MESSAGE);
             valido = false;
@@ -654,6 +652,7 @@ String fotografia="";
                 numeroInt = Integer.parseInt(numero);
                 numeroo = true;
             } catch (NumberFormatException e) {
+                valido = false;
                 JOptionPane.showMessageDialog(this, "El número del inmueble debe ser un número entero.", "Error de número", JOptionPane.WARNING_MESSAGE);
             }
         } else {
@@ -668,10 +667,12 @@ String fotografia="";
                 cpInt = Integer.parseInt(cpTextField.getText());
                 cpp = true;
             } catch (NumberFormatException e) {
+                valido = false;
                 JOptionPane.showMessageDialog(this, "El código postal tiene que ser un número entero.", "Error del código postal", JOptionPane.WARNING_MESSAGE);
             }
         } else {
             valido=false;
+            valido = false;
             JOptionPane.showMessageDialog(this, "El código postal debe tener 5 carácteres exactamente", "Error del código postal", JOptionPane.WARNING_MESSAGE);
         }
 
