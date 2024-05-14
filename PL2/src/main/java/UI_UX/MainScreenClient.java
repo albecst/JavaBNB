@@ -6,19 +6,15 @@ package UI_UX;
 
 import Logica.Inmueble;
 import Logica.JavaBNB;
-import UI_UX.BuildingView;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-/**
- *
- * @author alber
- */
+
 public class MainScreenClient extends javax.swing.JPanel {
 
-    public ArrayList<BuildingView> buildingsW;
+    public ArrayList<IconoInmueble> buildingsicon;
     private ArrayList<Inmueble> buildings;
 
     /**
@@ -26,13 +22,14 @@ public class MainScreenClient extends javax.swing.JPanel {
      */
     public MainScreenClient() {
         initComponents();
-        JavaBNB.inicializadorJavaBNB();
+    }
 
+    public void actualizar() {
         buildings = new ArrayList<>();
         buildings = JavaBNB.getInmueblesDisponibles();
         System.out.println(buildings);
 
-        buildingsW = new ArrayList<>();
+        buildingsicon = new ArrayList<>();
     }
 
     public void insertBuildings() {
@@ -44,10 +41,11 @@ public class MainScreenClient extends javax.swing.JPanel {
         deleteBuildings(); // Borra cualquier widget de edificio existente antes de insertar nuevos
 
         for (Inmueble inmueble : buildings) {
-            BuildingView buildingView = new BuildingView();
-            buildingView.setInmueble(inmueble); // Establece el inmueble en la vista del edificio
-            buildingsW.add(buildingView);
-            buildingsContainer.add(buildingView); // Agrega BuildingView al contenedor
+            IconoInmueble iconoinm = new IconoInmueble();
+            iconoinm.init(inmueble);
+            buildingsicon.add(iconoinm);
+            buildingsContainer.add(iconoinm);
+
             System.out.println(inmueble.toString());
         }
 
@@ -56,14 +54,14 @@ public class MainScreenClient extends javax.swing.JPanel {
     }
 
     public void deleteBuildings() {
-        for (BuildingView bv : buildingsW) {
-            this.buildingsContainer.remove(bv);
+        for (IconoInmueble ii : buildingsicon) {
+            this.buildingsContainer.remove(ii);
         }
-        buildingsW.clear(); // Limpia la lista de widgets de edificios después de eliminarlos
+        buildingsicon.clear(); // Limpia la lista de widgets de edificios después de eliminarlos
         buildingsContainer.revalidate(); // Actualiza el contenedor para mostrar los cambios
         buildingsContainer.repaint();   // Repinta el contenedor para asegurar que los cambios sean visibles
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,8 +127,9 @@ public class MainScreenClient extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(39, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(46, 18, 0, 0);
         barraarriba.add(titleLabel, gridBagConstraints);
 
         logo.setBackground(new java.awt.Color(255, 153, 153));
@@ -152,10 +151,8 @@ public class MainScreenClient extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = -22;
-        gridBagConstraints.ipady = -32;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 172, 20, 0);
+        gridBagConstraints.insets = new java.awt.Insets(9, 66, 9, 0);
         barraarriba.add(logo, gridBagConstraints);
 
         user.setBackground(new java.awt.Color(153, 153, 153));
@@ -168,12 +165,12 @@ public class MainScreenClient extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 993, 0, 107);
+        gridBagConstraints.insets = new java.awt.Insets(29, 54, 0, 109);
         barraarriba.add(user, gridBagConstraints);
 
         jButton3.setBackground(new java.awt.Color(255, 90, 95));
@@ -188,7 +185,8 @@ public class MainScreenClient extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 32;
         gridBagConstraints.ipady = 26;
-        gridBagConstraints.insets = new java.awt.Insets(29, 466, 0, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(29, 781, 0, 0);
         barraarriba.add(jButton3, gridBagConstraints);
 
         fotocasa.setBackground(new java.awt.Color(255, 250, 248));
@@ -509,7 +507,7 @@ public class MainScreenClient extends javax.swing.JPanel {
         buildingsContainer.setLayout(buildingsContainerLayout);
         buildingsContainerLayout.setHorizontalGroup(
             buildingsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2031, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         buildingsContainerLayout.setVerticalGroup(
             buildingsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -523,7 +521,7 @@ public class MainScreenClient extends javax.swing.JPanel {
             .addComponent(barraarriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(barraabajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                .addGap(147, 147, 147)
+                .addGap(103, 103, 103)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(filtratubusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -544,21 +542,21 @@ public class MainScreenClient extends javax.swing.JPanel {
                             .addComponent(masespacio, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(maspormenos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(fotocasa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 812, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 682, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(buildingsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 2031, Short.MAX_VALUE))
+                .addComponent(buildingsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 1431, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(barraarriba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buscaalojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fotocasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32)
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buscaalojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fotocasa, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(filtrospara)
                     .addComponent(sientetecomoencasa)
@@ -580,7 +578,6 @@ public class MainScreenClient extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
-
         Aplicacion.loadClientProfile();
     }//GEN-LAST:event_userActionPerformed
 

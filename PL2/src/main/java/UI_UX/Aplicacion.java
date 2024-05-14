@@ -36,8 +36,7 @@ public class Aplicacion {
     static HostProfile hostprofile = new HostProfile();
     static ClientProfile clientprofile = new ClientProfile();
     static AdminScreen adminscreen = new AdminScreen();
-    static AdminConsultarUsuarios adminconsultarusuarios = new AdminConsultarUsuarios();
-    static AdminConsultarUser adminconsultaruser = new AdminConsultarUser();
+        static AdminConsultarUser adminconsultaruser = new AdminConsultarUser();
     static AddBuildings addbuildings = new AddBuildings();
 
     public static Sesion sesion = null;  //iniciamos sesion como null
@@ -63,13 +62,12 @@ public class Aplicacion {
         cards.add(login, "Pantalla login");
         cards.add(register, "Pantalla register");
         cards.add(privacypolicy, "Pantalla privacypolicy");
-        cards.add(mainscreenclient, "Pantalla mainscreenclient");
+        //cards.add(mainscreenclient, "Pantalla mainscreenclient");
+        loadMainScreenClient();
         cards.add(mainscreenhost, "Pantalla mainscreenhost");
         cards.add(adminscreen, "Pantalla adminscreen");
-        cards.add(adminconsultarusuarios, "Pantalla adminconsultarusuarios");
         cards.add(addbuildings, "Pantalla addbuildings");
-
-        adminconsultarusuarios.actualizar();
+        
         loadHostProfile();
         loadClientProfile();
 
@@ -104,5 +102,13 @@ public class Aplicacion {
         adminconsultaruser.actualizar();
         cardLayout.show(cards,"Pantalla adminconsultaruser");
         
+    }
+    
+    public static void loadMainScreenClient(){
+    cards.add(mainscreenclient, "Pantalla mainscreenclient");
+    mainscreenclient.actualizar();
+    cardLayout.show(cards,"Pantalla mainscreenclient");
+    
+    
     }
 }
