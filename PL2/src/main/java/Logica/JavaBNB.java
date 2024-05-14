@@ -22,9 +22,12 @@ public class JavaBNB implements Serializable {
     }
 
     public static ArrayList<Inmueble> getInmueblesDisponibles() {
+        for (Inmueble inmueblee : inmueblesDisponibles){
+            System.out.println(inmueblee.toString());
+        }
         return inmueblesDisponibles;
     }
-
+    
     public static void setInmueblesDisponibles(ArrayList<Inmueble> inmueblesDisponibles) {
         JavaBNB.inmueblesDisponibles = inmueblesDisponibles;
     }
