@@ -99,7 +99,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         barraarriba1 = new javax.swing.JPanel();
         logo1 = new javax.swing.JButton();
         titleLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        mainscr = new javax.swing.JButton();
         jButtonSig = new javax.swing.JButton();
         jButtonAnt = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -143,11 +143,15 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         titleLabel1.setForeground(new java.awt.Color(255, 90, 95));
         titleLabel1.setText("JavaBNB");
 
-        jButton3.setBackground(new java.awt.Color(255, 153, 153));
-        jButton3.setText("Volver");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        mainscr.setBackground(new java.awt.Color(255, 90, 95));
+        mainscr.setForeground(new java.awt.Color(255, 255, 255));
+        mainscr.setText("Volver");
+        mainscr.setBorderPainted(false);
+        mainscr.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        mainscr.setPreferredSize(new java.awt.Dimension(80, 30));
+        mainscr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                mainscrActionPerformed(evt);
             }
         });
 
@@ -160,9 +164,9 @@ public class AdminConsultarUser extends javax.swing.JPanel {
                 .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(titleLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(77, 77, 77))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
+                .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
         barraarriba1Layout.setVerticalGroup(
             barraarriba1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,8 +177,8 @@ public class AdminConsultarUser extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraarriba1Layout.createSequentialGroup()
                         .addGroup(barraarriba1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(titleLabel1)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)))
+                            .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -338,10 +342,6 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButtonSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSigActionPerformed
         if (li.hasNext()) {
             objcli = li.next();
@@ -388,12 +388,15 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButtonBajaActionPerformed
 
+    private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
+    }//GEN-LAST:event_mainscrActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraarriba1;
     private javax.swing.JLabel errorNoAnt;
     private javax.swing.JLabel errorNoSig;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAnt;
     private javax.swing.JButton jButtonBaja;
     private javax.swing.JButton jButtonSig;
@@ -411,6 +414,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldTlf;
     private javax.swing.JButton logo1;
+    private javax.swing.JButton mainscr;
     private javax.swing.JLabel titleLabel1;
     // End of variables declaration//GEN-END:variables
 }
