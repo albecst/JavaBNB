@@ -13,18 +13,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author cristina
- */
-public class PantallaInmueble extends javax.swing.JPanel {
+public class BuildingView extends javax.swing.JPanel {
 
     Inmueble i;
 
     /**
      * Creates new form PantallaInmueble
      */
-    public PantallaInmueble() {
+    public BuildingView() {
         initComponents();
     }
 
@@ -44,6 +40,12 @@ public class PantallaInmueble extends javax.swing.JPanel {
         estrella5.setIcon(i.getCalificacion() >= 5 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
     }
 
+    public void setInmueble(Inmueble inmueble) {
+        this.i = inmueble;
+        actualizar(); // Llamar al método actualizar() para actualizar la vista con el nuevo inmueble
+    }
+
+    
     public ImageIcon imagenIcon(String img) {
         try {
             Image image = ImageIO.read(new File(img));

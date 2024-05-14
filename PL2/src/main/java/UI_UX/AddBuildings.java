@@ -18,7 +18,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class AddBuildings extends javax.swing.JPanel {
-String fotografia="";
+
+    String fotografia = "";
+
     /**
      * Creates new form AdminConsultarUsuarios
      */
@@ -34,7 +36,6 @@ String fotografia="";
         serviceError.setVisible(false);
         bathError1.setVisible(false);
     }
-
 
     public File openImage() {
         JFileChooser fileChooser = new JFileChooser();
@@ -69,6 +70,13 @@ String fotografia="";
         }
     }
 
+    public void loadImage() {
+        File selectedFile = openImage();
+        if (selectedFile != null) {
+            fotografia = saveImage(selectedFile);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,9 +88,9 @@ String fotografia="";
 
         jPanel3 = new javax.swing.JPanel();
         barraarriba = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         logo = new javax.swing.JButton();
         logoLabel = new javax.swing.JLabel();
+        mainscr = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -134,14 +142,6 @@ String fotografia="";
         barraarriba.setBackground(new java.awt.Color(255, 250, 248));
         barraarriba.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 153));
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         logo.setBackground(new java.awt.Color(255, 153, 153));
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
         logo.setBorderPainted(false);
@@ -162,6 +162,18 @@ String fotografia="";
         logoLabel.setForeground(new java.awt.Color(255, 90, 95));
         logoLabel.setText("JavaBNB");
 
+        mainscr.setBackground(new java.awt.Color(255, 90, 95));
+        mainscr.setForeground(new java.awt.Color(255, 255, 255));
+        mainscr.setText("Volver");
+        mainscr.setBorderPainted(false);
+        mainscr.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        mainscr.setPreferredSize(new java.awt.Dimension(80, 30));
+        mainscr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainscrActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout barraarribaLayout = new javax.swing.GroupLayout(barraarriba);
         barraarriba.setLayout(barraarribaLayout);
         barraarribaLayout.setHorizontalGroup(
@@ -172,23 +184,20 @@ String fotografia="";
                 .addGap(18, 18, 18)
                 .addComponent(logoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(64, 64, 64))
+                .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
         );
         barraarribaLayout.setVerticalGroup(
             barraarribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(barraarribaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(barraarribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(barraarribaLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(barraarribaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(barraarribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraarribaLayout.createSequentialGroup()
-                                .addComponent(logoLabel)
-                                .addGap(21, 21, 21)))))
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraarribaLayout.createSequentialGroup()
+                        .addGroup(barraarribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(logoLabel)
+                            .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -537,22 +546,24 @@ String fotografia="";
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(403, 403, 403)
-                .addComponent(jLabel3))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(416, 416, 416)
-                .addComponent(jLabel1))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(278, 278, 278)
-                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(287, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(jLabel1))
+                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(287, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -567,9 +578,9 @@ String fotografia="";
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(barraarriba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -583,10 +594,6 @@ String fotografia="";
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
         // TODO add your handling code here:
@@ -620,12 +627,15 @@ String fotografia="";
             titleError.setVisible(false);
         }
 
-        if (fotografia.equals("")){
-            bathError1.setVisible(true);
-            valido=false;
-        }else {
-            System.out.println(fotografia);
-            bathError1.setVisible(false);
+        if (fotografia == null || fotografia.isEmpty()) {
+            loadImage(); // Llama al método loadImage() para cargar la imagen
+            if (fotografia == null || fotografia.isEmpty()) { // Verifica si la carga de la imagen fue exitosa
+                bathError1.setVisible(true);
+                valido = false;
+            } else {
+                System.out.println(fotografia);
+                bathError1.setVisible(false);
+            }
         }
 
         if (descripcion.isEmpty()) {
@@ -639,7 +649,7 @@ String fotografia="";
             JOptionPane.showMessageDialog(this, "Existe algún error con la ciudad, puede que esté vacía o que el formato no sea válido", "Error con la ciudad", JOptionPane.WARNING_MESSAGE);
             valido = false;
         }
-        
+
         if (!Validacion.validarNombre(calle)) {
             JOptionPane.showMessageDialog(this, "La casilla de la calle del inmueble es necesaria", "Falta la calle", JOptionPane.WARNING_MESSAGE);
             valido = false;
@@ -671,7 +681,7 @@ String fotografia="";
                 JOptionPane.showMessageDialog(this, "El código postal tiene que ser un número entero.", "Error del código postal", JOptionPane.WARNING_MESSAGE);
             }
         } else {
-            valido=false;
+            valido = false;
             valido = false;
             JOptionPane.showMessageDialog(this, "El código postal debe tener 5 carácteres exactamente", "Error del código postal", JOptionPane.WARNING_MESSAGE);
         }
@@ -759,12 +769,16 @@ String fotografia="";
     private void photoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoButtonActionPerformed
         File f = openImage();
         if (f != null) {
-            fotografia=saveImage(f);
+            fotografia = saveImage(f);
         } else {
             System.out.println("no existe la ruta");
         }
 
     }//GEN-LAST:event_photoButtonActionPerformed
+
+    private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+    }//GEN-LAST:event_mainscrActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -791,7 +805,6 @@ String fotografia="";
     private javax.swing.JLabel guestError;
     private javax.swing.JLabel guestLabel;
     private javax.swing.JSpinner guestSpinner;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -801,6 +814,7 @@ String fotografia="";
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton logo;
     private javax.swing.JLabel logoLabel;
+    private javax.swing.JButton mainscr;
     private javax.swing.JLabel numberLabel;
     private javax.swing.JTextField numberTextField;
     private javax.swing.JButton photoButton;
