@@ -40,9 +40,9 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
 
         jPanel3 = new javax.swing.JPanel();
         barraarriba = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         logo = new javax.swing.JButton();
         titleLabel = new javax.swing.JLabel();
+        mainscr = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -57,14 +57,6 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
 
         barraarriba.setBackground(new java.awt.Color(255, 250, 248));
         barraarriba.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jButton1.setBackground(new java.awt.Color(255, 153, 153));
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         logo.setBackground(new java.awt.Color(255, 153, 153));
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
@@ -86,6 +78,18 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
         titleLabel.setForeground(new java.awt.Color(255, 90, 95));
         titleLabel.setText("JavaBNB");
 
+        mainscr.setBackground(new java.awt.Color(255, 90, 95));
+        mainscr.setForeground(new java.awt.Color(255, 255, 255));
+        mainscr.setText("Volver");
+        mainscr.setBorderPainted(false);
+        mainscr.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        mainscr.setPreferredSize(new java.awt.Dimension(80, 30));
+        mainscr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainscrActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout barraarribaLayout = new javax.swing.GroupLayout(barraarriba);
         barraarriba.setLayout(barraarribaLayout);
         barraarribaLayout.setHorizontalGroup(
@@ -96,23 +100,20 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(64, 64, 64))
+                .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67))
         );
         barraarribaLayout.setVerticalGroup(
             barraarribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(barraarribaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(barraarribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(barraarribaLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(barraarribaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(barraarribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraarribaLayout.createSequentialGroup()
-                                .addComponent(titleLabel)
-                                .addGap(21, 21, 21)))))
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraarribaLayout.createSequentialGroup()
+                        .addGroup(barraarribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(titleLabel)
+                            .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -229,18 +230,17 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_logoActionPerformed
 
+    private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
+    }//GEN-LAST:event_mainscrActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraarriba;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -252,6 +252,7 @@ public class AdminConsultarUsuarios extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextAreaAnf;
     private javax.swing.JTextArea jTextAreaPar;
     private javax.swing.JButton logo;
+    private javax.swing.JButton mainscr;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
