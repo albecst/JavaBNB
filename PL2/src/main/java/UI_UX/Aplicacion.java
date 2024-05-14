@@ -36,7 +36,7 @@ public class Aplicacion {
     static HostProfile hostprofile = new HostProfile();
     static ClientProfile clientprofile = new ClientProfile();
     static AdminScreen adminscreen = new AdminScreen();
-        static AdminConsultarUser adminconsultaruser = new AdminConsultarUser();
+    static AdminConsultarUser adminconsultaruser = new AdminConsultarUser();
     static AddBuildings addbuildings = new AddBuildings();
 
     public static Sesion sesion = null;  //iniciamos sesion como null
@@ -62,17 +62,14 @@ public class Aplicacion {
         cards.add(login, "Pantalla login");
         cards.add(register, "Pantalla register");
         cards.add(privacypolicy, "Pantalla privacypolicy");
-        //cards.add(mainscreenclient, "Pantalla mainscreenclient");
         loadMainScreenClient();
         cards.add(mainscreenhost, "Pantalla mainscreenhost");
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(addbuildings, "Pantalla addbuildings");
-        
+
         loadHostProfile();
         loadClientProfile();
 
-        
-        
         // Establecer el contenido del JFrame como el JScrollPane.
         frame.setContentPane(scrollPane);
         // Configurar el comportamiento de cierre del JFrame.
@@ -88,27 +85,24 @@ public class Aplicacion {
     public static void loadHostProfile() {
         cards.add(hostprofile, "Pantalla hostprofile");
         hostprofile.actualizar();
-        cardLayout.show(cards,"Pantalla hostprofile");   
+        cardLayout.show(cards, "Pantalla hostprofile");
     }
-    
+
     public static void loadClientProfile() {
         cards.add(clientprofile, "Pantalla clientprofile");
         clientprofile.actualizar();
-        cardLayout.show(cards,"Pantalla clientprofile");
-        
+        cardLayout.show(cards, "Pantalla clientprofile");
     }
+
     public static void loadAdminConsultarUser() {
         cards.add(adminconsultaruser, "Pantalla adminconsultaruser");
         adminconsultaruser.actualizar();
-        cardLayout.show(cards,"Pantalla adminconsultaruser");
-        
+        cardLayout.show(cards, "Pantalla adminconsultaruser");
     }
-    
-    public static void loadMainScreenClient(){
-    cards.add(mainscreenclient, "Pantalla mainscreenclient");
-    mainscreenclient.actualizar();
-    cardLayout.show(cards,"Pantalla mainscreenclient");
-    
-    
+
+    public static void loadMainScreenClient() {
+        cards.add(mainscreenclient, "Pantalla mainscreenclient");
+        mainscreenclient.actualizar();
+        cardLayout.show(cards, "Pantalla mainscreenclient");
     }
 }

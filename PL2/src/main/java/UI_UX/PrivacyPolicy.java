@@ -1,11 +1,9 @@
 package UI_UX;
 
+import Logica.Sesion;
 import UI_UX.Aplicacion;
 
-/**
- *
- * @author alber
- */
+
 public class PrivacyPolicy extends javax.swing.JPanel {
 
     /**
@@ -77,7 +75,15 @@ public class PrivacyPolicy extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
+                
+        if (Sesion.user != null) {
+            if (Sesion.esAnfitrion == true) {
+                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+            } else {
+                Aplicacion.loadMainScreenClient();
+            }
+        }
+        else{Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");}
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void jTextArea2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea2MouseClicked
