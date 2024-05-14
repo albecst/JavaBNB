@@ -4,24 +4,66 @@
  */
 package UI_UX;
 
+import Logica.Inmueble;
+import Logica.JavaBNB;
+import UI_UX.BuildingView;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.util.ArrayList;
 /**
  *
  * @author alber
  */
 public class MainScreenClient extends javax.swing.JPanel {
 
+    public ArrayList<BuildingView> buildingsW;
+    private ArrayList<Inmueble> buildings;
+
     /**
      * Creates new form MainScreen
      */
     public MainScreenClient() {
         initComponents();
+        JavaBNB.inicializadorJavaBNB();
+
+        buildings = new ArrayList<>();
+        buildings = JavaBNB.getInmueblesDisponibles();
+        System.out.println(buildings);
+
+        buildingsW = new ArrayList<>();
     }
 
+    public void insertBuildings() {
+        if (buildings == null | buildings.isEmpty()) {
+            System.err.println("La lista de edificios está vacía. No se pueden insertar inmuebles.");
+            return;
+        }
+        System.out.println("La lista de edificios no está vacía:");
+        deleteBuildings(); // Borra cualquier widget de edificio existente antes de insertar nuevos
+
+        for (Inmueble inmueble : buildings) {
+            BuildingView buildingView = new BuildingView();
+            buildingView.setInmueble(inmueble); // Establece el inmueble en la vista del edificio
+            buildingsW.add(buildingView);
+            buildingsContainer.add(buildingView); // Agrega BuildingView al contenedor
+            System.out.println(inmueble.toString());
+        }
+
+        buildingsContainer.revalidate(); // Actualiza el contenedor para mostrar los cambios
+        buildingsContainer.repaint();   // Repinta el contenedor para asegurar que los cambios sean visibles
+    }
+
+    public void deleteBuildings() {
+        for (BuildingView bv : buildingsW) {
+            this.buildingsContainer.remove(bv);
+        }
+        buildingsW.clear(); // Limpia la lista de widgets de edificios después de eliminarlos
+        buildingsContainer.revalidate(); // Actualiza el contenedor para mostrar los cambios
+        buildingsContainer.repaint();   // Repinta el contenedor para asegurar que los cambios sean visibles
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,7 +95,8 @@ public class MainScreenClient extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        showAllBuildingsButton = new javax.swing.JButton();
         filtrospara = new javax.swing.JLabel();
         filtratubusqueda = new javax.swing.JScrollPane();
         textteesperan1 = new javax.swing.JTextArea();
@@ -70,6 +113,7 @@ public class MainScreenClient extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        buildingsContainer = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -147,6 +191,7 @@ public class MainScreenClient extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(29, 466, 0, 0);
         barraarriba.add(jButton3, gridBagConstraints);
 
+        fotocasa.setBackground(new java.awt.Color(255, 250, 248));
         fotocasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/casa1.jpg"))); // NOI18N
         fotocasa.setBorderPainted(false);
         fotocasa.setDefaultCapable(false);
@@ -285,11 +330,26 @@ public class MainScreenClient extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 153));
-        jButton2.setText("Buscar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setBackground(new java.awt.Color(255, 153, 153));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Buscar");
+        jButton4.setPreferredSize(new java.awt.Dimension(129, 36));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        showAllBuildingsButton.setBackground(new java.awt.Color(255, 153, 153));
+        showAllBuildingsButton.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        showAllBuildingsButton.setForeground(new java.awt.Color(255, 255, 255));
+        showAllBuildingsButton.setText("Mostrar todos los inmuebles");
+        showAllBuildingsButton.setMaximumSize(new java.awt.Dimension(143, 58));
+        showAllBuildingsButton.setMinimumSize(new java.awt.Dimension(143, 58));
+        showAllBuildingsButton.setPreferredSize(new java.awt.Dimension(143, 58));
+        showAllBuildingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAllBuildingsButtonActionPerformed(evt);
             }
         });
 
@@ -297,7 +357,7 @@ public class MainScreenClient extends javax.swing.JPanel {
         buscaalojamiento.setLayout(buscaalojamientoLayout);
         buscaalojamientoLayout.setHorizontalGroup(
             buscaalojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buscaalojamientoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buscaalojamientoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(buscaalojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(destinopanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -306,8 +366,13 @@ public class MainScreenClient extends javax.swing.JPanel {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(1215, 1215, 1215))
             .addGroup(buscaalojamientoLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(buscaalojamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(buscaalojamientoLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(buscaalojamientoLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(showAllBuildingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         buscaalojamientoLayout.setVerticalGroup(
@@ -321,9 +386,11 @@ public class MainScreenClient extends javax.swing.JPanel {
                 .addComponent(destinopanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(showAllBuildingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         filtrospara.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
@@ -434,13 +501,29 @@ public class MainScreenClient extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        buildingsContainer.setBackground(new java.awt.Color(255, 250, 248));
+        buildingsContainer.setMinimumSize(new java.awt.Dimension(1242, 416));
+        buildingsContainer.setPreferredSize(new java.awt.Dimension(1242, 426));
+
+        javax.swing.GroupLayout buildingsContainerLayout = new javax.swing.GroupLayout(buildingsContainer);
+        buildingsContainer.setLayout(buildingsContainerLayout);
+        buildingsContainerLayout.setHorizontalGroup(
+            buildingsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2031, Short.MAX_VALUE)
+        );
+        buildingsContainerLayout.setVerticalGroup(
+            buildingsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 835, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(barraarriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(barraabajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                .addGap(153, 153, 153)
+                .addGap(147, 147, 147)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(filtratubusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -460,20 +543,22 @@ public class MainScreenClient extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(masespacio, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(maspormenos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(fotocasa, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(barraabajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fotocasa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 812, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 682, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(buildingsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 2031, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(barraarriba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buscaalojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fotocasa, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(82, 82, 82)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buscaalojamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fotocasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(filtrospara)
                     .addComponent(sientetecomoencasa)
@@ -485,7 +570,9 @@ public class MainScreenClient extends javax.swing.JPanel {
                     .addComponent(disfrutade, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(regalateun, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(masespacio, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addGap(10, 10, 10)
+                .addComponent(buildingsContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(barraabajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -493,13 +580,9 @@ public class MainScreenClient extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
-        
+
         Aplicacion.loadClientProfile();
     }//GEN-LAST:event_userActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
         // TODO add your handling code here:
@@ -533,10 +616,21 @@ public class MainScreenClient extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void showAllBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllBuildingsButtonActionPerformed
+        deleteBuildings();
+        insertBuildings();
+
+    }//GEN-LAST:event_showAllBuildingsButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraabajo;
     private javax.swing.JPanel barraarriba;
+    private javax.swing.JPanel buildingsContainer;
     private javax.swing.JPanel buscaalojamiento;
     private javax.swing.JPanel destinopanel;
     private javax.swing.JScrollPane disfrutade;
@@ -544,8 +638,8 @@ public class MainScreenClient extends javax.swing.JPanel {
     private javax.swing.JLabel filtrospara;
     private javax.swing.JButton fotocasa;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
@@ -564,6 +658,7 @@ public class MainScreenClient extends javax.swing.JPanel {
     private javax.swing.JLabel maspormenos;
     private javax.swing.JLabel mastiempopara;
     private javax.swing.JScrollPane regalateun;
+    private javax.swing.JButton showAllBuildingsButton;
     private javax.swing.JLabel sientetecomoencasa;
     private javax.swing.JTextArea textbuscaaloj;
     private javax.swing.JTextArea textteesperan;
