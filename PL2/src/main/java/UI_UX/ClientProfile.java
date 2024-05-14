@@ -58,6 +58,7 @@ public class ClientProfile extends javax.swing.JPanel {
         uppermenu = new javax.swing.JPanel();
         appname = new javax.swing.JLabel();
         logo = new javax.swing.JButton();
+        logo1 = new javax.swing.JButton();
         mainscr = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         data = new javax.swing.JPanel();
@@ -127,10 +128,32 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(17, 119, 21, 0);
         uppermenu.add(logo, gridBagConstraints);
 
+        logo1.setBackground(new java.awt.Color(255, 153, 153));
+        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
+        logo1.setBorderPainted(false);
+        logo1.setContentAreaFilled(false);
+        logo1.setDefaultCapable(false);
+        logo1.setFocusPainted(false);
+        logo1.setFocusable(false);
+        logo1.setRequestFocusEnabled(false);
+        logo1.setRolloverEnabled(false);
+        logo1.setVerifyInputWhenFocusTarget(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = -31;
+        gridBagConstraints.ipady = -24;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 119, 21, 0);
+        uppermenu.add(logo1, gridBagConstraints);
+
         mainscr.setBackground(new java.awt.Color(255, 90, 95));
-        mainscr.setText("Buscar");
+        mainscr.setForeground(new java.awt.Color(255, 255, 255));
+        mainscr.setText("Volver");
         mainscr.setBorderPainted(false);
         mainscr.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        mainscr.setPreferredSize(new java.awt.Dimension(80, 30));
         mainscr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mainscrActionPerformed(evt);
@@ -313,7 +336,7 @@ public class ClientProfile extends javax.swing.JPanel {
                     .addGroup(dataLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(errorLabel1)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         dataLayout.setVerticalGroup(
             dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,7 +381,7 @@ public class ClientProfile extends javax.swing.JPanel {
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(moneyLabel)
                     .addComponent(moneyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passLabel)
                     .addComponent(clave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -377,7 +400,7 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 113;
         gridBagConstraints.ipady = 120;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 70, 0, 119);
+        gridBagConstraints.insets = new java.awt.Insets(0, 70, 52, 119);
         jPanel1.add(data, gridBagConstraints);
 
         userpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
@@ -393,7 +416,7 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.ipadx = -22;
         gridBagConstraints.ipady = -45;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 118, 7, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 118, 40, 0);
         jPanel1.add(userpfp, gridBagConstraints);
 
         username.setFont(new java.awt.Font("Serif", 0, 30)); // NOI18N
@@ -421,17 +444,19 @@ public class ClientProfile extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(uppermenu, javax.swing.GroupLayout.DEFAULT_SIZE, 1371, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(297, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1002, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(uppermenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(uppermenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -449,10 +474,6 @@ public class ClientProfile extends javax.swing.JPanel {
     private void userpfpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userpfpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userpfpActionPerformed
-
-    private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
-    }//GEN-LAST:event_mainscrActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 // ActionListener para el botón
@@ -562,6 +583,10 @@ public class ClientProfile extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_moneyTextFieldActionPerformed
 
+    private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
+    }//GEN-LAST:event_mainscrActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CCLabel;
@@ -583,6 +608,7 @@ public class ClientProfile extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logo;
+    private javax.swing.JButton logo1;
     private javax.swing.JButton mainscr;
     private javax.swing.JLabel moneyLabel;
     private javax.swing.JTextField moneyTextField;
