@@ -97,17 +97,10 @@ public class ClientProfile extends javax.swing.JPanel {
 
         uppermenu.setBackground(new java.awt.Color(255, 250, 248));
         uppermenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        uppermenu.setLayout(new java.awt.GridBagLayout());
 
         appname.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         appname.setForeground(new java.awt.Color(255, 90, 95));
         appname.setText("JavaBNB");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(39, 29, 0, 0);
-        uppermenu.add(appname, gridBagConstraints);
 
         logo.setBackground(new java.awt.Color(255, 153, 153));
         logo.setBorderPainted(false);
@@ -118,15 +111,6 @@ public class ClientProfile extends javax.swing.JPanel {
         logo.setRequestFocusEnabled(false);
         logo.setRolloverEnabled(false);
         logo.setVerifyInputWhenFocusTarget(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = -31;
-        gridBagConstraints.ipady = -24;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(17, 119, 21, 0);
-        uppermenu.add(logo, gridBagConstraints);
 
         logo1.setBackground(new java.awt.Color(255, 153, 153));
         logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
@@ -138,15 +122,6 @@ public class ClientProfile extends javax.swing.JPanel {
         logo1.setRequestFocusEnabled(false);
         logo1.setRolloverEnabled(false);
         logo1.setVerifyInputWhenFocusTarget(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = -31;
-        gridBagConstraints.ipady = -24;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(17, 119, 21, 0);
-        uppermenu.add(logo1, gridBagConstraints);
 
         mainscr.setBackground(new java.awt.Color(255, 90, 95));
         mainscr.setForeground(new java.awt.Color(255, 255, 255));
@@ -159,38 +134,97 @@ public class ClientProfile extends javax.swing.JPanel {
                 mainscrActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 8;
-        gridBagConstraints.ipady = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(44, 424, 0, 180);
-        uppermenu.add(mainscr, gridBagConstraints);
+
+        javax.swing.GroupLayout uppermenuLayout = new javax.swing.GroupLayout(uppermenu);
+        uppermenu.setLayout(uppermenuLayout);
+        uppermenuLayout.setHorizontalGroup(
+            uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(uppermenuLayout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addComponent(logo))
+            .addGroup(uppermenuLayout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(appname)
+                .addGap(793, 793, 793)
+                .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        uppermenuLayout.setVerticalGroup(
+            uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(uppermenuLayout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addComponent(logo)
+                .addGap(7, 7, 7)
+                .addGroup(uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(uppermenuLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(appname))
+                    .addGroup(uppermenuLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         data.setBackground(new java.awt.Color(255, 250, 248));
         data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         data.setMaximumSize(new java.awt.Dimension(306, 307));
         data.setPreferredSize(new java.awt.Dimension(306, 400));
         data.setRequestFocusEnabled(false);
+        data.setLayout(new java.awt.GridBagLayout());
 
         emailLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         emailLabel.setText("Correo electrónico:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 36;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 21, 0, 0);
+        data.add(emailLabel, gridBagConstraints);
 
         dniLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         dniLabel.setText("DNI:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 21, 0, 0);
+        data.add(dniLabel, gridBagConstraints);
 
         tlfLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tlfLabel.setText("Teléfono:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 21, 0, 0);
+        data.add(tlfLabel, gridBagConstraints);
 
         passLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         passLabel.setText("Contraseña:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridwidth = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 21, 0, 0);
+        data.add(passLabel, gridBagConstraints);
 
         clave.setText("contraseña1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridwidth = 191;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 79;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
+        data.add(clave, gridBagConstraints);
 
         jButton1.setBackground(new java.awt.Color(255, 90, 95));
         jButton1.setText("Editar datos");
@@ -199,12 +233,47 @@ public class ClientProfile extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 202;
+        gridBagConstraints.gridy = 23;
+        gridBagConstraints.gridwidth = 286;
+        gridBagConstraints.ipadx = 18;
+        gridBagConstraints.ipady = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(40, 67, 0, 0);
+        data.add(jButton1, gridBagConstraints);
 
         emailTextField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 108;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 285;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 75;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 2, 0, 0);
+        data.add(emailTextField, gridBagConstraints);
 
         dniTextField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 44;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 19;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 7, 0, 0);
+        data.add(dniTextField, gridBagConstraints);
 
         tlfTextField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 96;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 2, 0, 0);
+        data.add(tlfTextField, gridBagConstraints);
 
         errorLabel1.setBackground(new java.awt.Color(255, 90, 95));
         errorLabel1.setForeground(new java.awt.Color(255, 90, 95));
@@ -215,193 +284,183 @@ public class ClientProfile extends javax.swing.JPanel {
                 errorLabel1PropertyChange(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridwidth = 478;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 18, 62, 53);
+        data.add(errorLabel1, gridBagConstraints);
 
         requirementsLabel.setFont(new java.awt.Font("Segoe UI", 2, 8)); // NOI18N
         requirementsLabel.setForeground(new java.awt.Color(102, 102, 102));
         requirementsLabel.setText("Al menos una letra mayúscula, minúscula, dígitos y 8 caracteres de longitud");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 22;
+        gridBagConstraints.gridwidth = 477;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 0);
+        data.add(requirementsLabel, gridBagConstraints);
 
         promocodeLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         promocodeLabel.setText("Código promocional:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 57;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 21, 0, 0);
+        data.add(promocodeLabel, gridBagConstraints);
 
         promocodeTextField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 202;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 13, 0, 0);
+        data.add(promocodeTextField, gridBagConstraints);
 
         CCLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CCLabel.setText("Tarjeta de crédito:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 19;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 21, 0, 0);
+        data.add(CCLabel, gridBagConstraints);
 
         CCTextField.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 56;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 433;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 152;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 2, 0, 0);
+        data.add(CCTextField, gridBagConstraints);
 
         dayLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         dayLabel.setText("Día:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 21, 0, 0);
+        data.add(dayLabel, gridBagConstraints);
 
         monthLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         monthLabel.setText("Mes:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 21, 0, 0);
+        data.add(monthLabel, gridBagConstraints);
 
         yearLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         yearLabel.setText("Año:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 21, 0, 0);
+        data.add(yearLabel, gridBagConstraints);
 
         dayTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dayTextFieldActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 9, 0, 0);
+        data.add(dayTextField, gridBagConstraints);
 
         monthTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 monthTextFieldActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 9, 0, 0);
+        data.add(monthTextField, gridBagConstraints);
 
         cvvTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cvvTextFieldActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridwidth = 25;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
+        data.add(cvvTextField, gridBagConstraints);
 
         cvvLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cvvLabel.setText("CVV:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 21, 0, 0);
+        data.add(cvvLabel, gridBagConstraints);
 
         yearTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 yearTextFieldActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridwidth = 25;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
+        data.add(yearTextField, gridBagConstraints);
 
         moneyLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         moneyLabel.setText("Saldo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 21, 0, 0);
+        data.add(moneyLabel, gridBagConstraints);
 
         moneyTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 moneyTextFieldActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout dataLayout = new javax.swing.GroupLayout(data);
-        data.setLayout(dataLayout);
-        dataLayout.setHorizontalGroup(
-            dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dataLayout.createSequentialGroup()
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dataLayout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dataLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(dataLayout.createSequentialGroup()
-                                .addComponent(emailLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dataLayout.createSequentialGroup()
-                                .addComponent(dniLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(dniTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dataLayout.createSequentialGroup()
-                                .addComponent(passLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(clave, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dataLayout.createSequentialGroup()
-                                .addComponent(promocodeLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(promocodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dataLayout.createSequentialGroup()
-                                .addComponent(tlfLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(tlfTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dataLayout.createSequentialGroup()
-                                .addComponent(CCLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(CCTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dataLayout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(requirementsLabel))
-                            .addGroup(dataLayout.createSequentialGroup()
-                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(yearLabel)
-                                    .addComponent(cvvLabel)
-                                    .addComponent(moneyLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cvvTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(yearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(moneyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dataLayout.createSequentialGroup()
-                                    .addComponent(dayLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dataLayout.createSequentialGroup()
-                                    .addComponent(monthLabel)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(monthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(dataLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(errorLabel1)))
-                .addContainerGap(119, Short.MAX_VALUE))
-        );
-        dataLayout.setVerticalGroup(
-            dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dataLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailLabel)
-                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dniLabel)
-                    .addComponent(dniTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tlfLabel)
-                    .addComponent(tlfTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(promocodeLabel)
-                    .addComponent(promocodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CCLabel)
-                    .addComponent(CCTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dayLabel)
-                    .addComponent(dayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(monthLabel)
-                    .addComponent(monthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(yearLabel)
-                    .addComponent(yearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cvvLabel)
-                    .addComponent(cvvTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(moneyLabel)
-                    .addComponent(moneyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
-                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passLabel)
-                    .addComponent(clave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(requirementsLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13))
-        );
-
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 113;
-        gridBagConstraints.ipady = 120;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridwidth = 25;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 70, 52, 119);
-        jPanel1.add(data, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
+        data.add(moneyTextField, gridBagConstraints);
 
         userpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
         userpfp.addActionListener(new java.awt.event.ActionListener() {
@@ -409,53 +468,62 @@ public class ClientProfile extends javax.swing.JPanel {
                 userpfpActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = -22;
-        gridBagConstraints.ipady = -45;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 118, 40, 0);
-        jPanel1.add(userpfp, gridBagConstraints);
 
         username.setFont(new java.awt.Font("Serif", 0, 30)); // NOI18N
         username.setForeground(new java.awt.Color(255, 90, 95));
         username.setText("XXXXXX");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(286, 197, 4, 4);
-        jPanel1.add(username, gridBagConstraints);
 
         ParLabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         ParLabel.setForeground(new java.awt.Color(102, 102, 102));
         ParLabel.setText("Cliente");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(339, 220, 0, 0);
-        jPanel1.add(ParLabel, gridBagConstraints);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(userpfp, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(username))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(ParLabel)))
+                .addGap(70, 70, 70)
+                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(userpfp, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(username)
+                        .addGap(14, 14, 14)
+                        .addComponent(ParLabel))
+                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(uppermenu, javax.swing.GroupLayout.DEFAULT_SIZE, 1371, Short.MAX_VALUE)
+            .addComponent(uppermenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(297, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1002, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(uppermenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 

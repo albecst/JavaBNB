@@ -265,7 +265,8 @@ public class Login extends javax.swing.JPanel {
                 break;
             case 2:
                 System.out.println("Client");
-                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
+                //Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
+                Aplicacion.loadMainScreenClient();
                 break;
             case 3:
                 System.out.println("Anfitrión");

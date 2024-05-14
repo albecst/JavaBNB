@@ -11,10 +11,6 @@ import Logica.Tarjeta;
 import Logica.Validacion;
 import java.time.LocalDate;
 
-/**
- *
- * @author alber
- */
 public class Register extends javax.swing.JPanel {
 
     /**
@@ -845,7 +841,8 @@ public class Register extends javax.swing.JPanel {
                 Tarjeta tarjeta = new Tarjeta(nombre, numtarjeta, dia, mes, año, fechaCaducidad, cvv, saldo);
                 Particular nuevoParticular = new Particular(tarjeta, vip, dni, nombre, correo.toLowerCase(), clave, telefono);
                 Sesion.registrarCliente(nuevoParticular);
-                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
+                //Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
+                Aplicacion.loadMainScreenClient();
                 return;
             }
             noselectLabel.setVisible(true);

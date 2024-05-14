@@ -9,10 +9,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-/**
- *
- * @author alber
- */
+
 public class MainScreenHost extends javax.swing.JPanel {
 
     /**
@@ -69,7 +66,7 @@ public class MainScreenHost extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(39, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(36, 18, 0, 0);
         barraarriba.add(titleLabel, gridBagConstraints);
 
         logo.setBackground(new java.awt.Color(255, 153, 153));
@@ -94,7 +91,7 @@ public class MainScreenHost extends javax.swing.JPanel {
         gridBagConstraints.ipadx = -22;
         gridBagConstraints.ipady = -32;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 172, 20, 0);
+        gridBagConstraints.insets = new java.awt.Insets(11, 72, 9, 0);
         barraarriba.add(logo, gridBagConstraints);
 
         user.setBackground(new java.awt.Color(153, 153, 153));
@@ -107,12 +104,12 @@ public class MainScreenHost extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 993, 0, 107);
+        gridBagConstraints.insets = new java.awt.Insets(24, 71, 0, 153);
         barraarriba.add(user, gridBagConstraints);
 
         addBuildingsButton.setBackground(new java.awt.Color(255, 90, 95));
@@ -126,9 +123,11 @@ public class MainScreenHost extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 32;
         gridBagConstraints.ipady = 26;
-        gridBagConstraints.insets = new java.awt.Insets(29, 104, 0, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(32, 600, 0, 0);
         barraarriba.add(addBuildingsButton, gridBagConstraints);
 
         myBuildingsButton.setBackground(new java.awt.Color(255, 90, 95));
@@ -140,11 +139,13 @@ public class MainScreenHost extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 32;
         gridBagConstraints.ipady = 26;
-        gridBagConstraints.insets = new java.awt.Insets(29, 466, 0, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(32, 26, 0, 0);
         barraarriba.add(myBuildingsButton, gridBagConstraints);
 
         fotocasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/casa1.jpg"))); // NOI18N
@@ -304,9 +305,9 @@ public class MainScreenHost extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(barraarriba, javax.swing.GroupLayout.DEFAULT_SIZE, 1611, Short.MAX_VALUE)
+            .addComponent(barraarriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                .addGap(153, 153, 153)
+                .addGap(95, 95, 95)
                 .addComponent(buscaalojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(fotocasa, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE)

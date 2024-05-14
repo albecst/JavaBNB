@@ -55,8 +55,8 @@ public class probaricono extends javax.swing.JFrame {
             // Carga la imagen original
             BufferedImage originalImage = ImageIO.read(imagePath);
             // Dimensiones deseadas para el icono
-            int width = 100;
-            int height = 100;
+            int width = boton.getWidth();
+            int height = boton.getHeight();
             // Redimensiona la imagen
             Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
             // Convierte la imagen redimensionada a ImageIcon para usarla en un JButton
