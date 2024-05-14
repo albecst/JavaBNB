@@ -53,7 +53,7 @@ public class Aplicacion {
         JavaBNB.cargarDatos();
 
         // Establecer el tamaño mínimo de la ventana.
-        frame.setMinimumSize(new Dimension(900, 777));
+        frame.setMinimumSize(new Dimension(1920, 1080));
 
         // Crear un JScrollPane y agregar el panel cards para permitir el desplazamiento.
         JScrollPane scrollPane = new JScrollPane(cards);
@@ -73,6 +73,8 @@ public class Aplicacion {
         loadHostProfile();
         loadClientProfile();
 
+        
+        
         // Establecer el contenido del JFrame como el JScrollPane.
         frame.setContentPane(scrollPane);
         // Configurar el comportamiento de cierre del JFrame.
