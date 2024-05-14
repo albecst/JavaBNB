@@ -46,7 +46,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="5f" green="5a" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cree su cuenta"/>
+            <Property name="text" type="java.lang.String" value="Cree su cuenta en JavaBNB"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

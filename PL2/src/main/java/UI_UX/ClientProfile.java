@@ -60,6 +60,7 @@ public class ClientProfile extends javax.swing.JPanel {
         logo = new javax.swing.JButton();
         logo1 = new javax.swing.JButton();
         mainscr = new javax.swing.JButton();
+        cerrarsesion = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         data = new javax.swing.JPanel();
         emailLabel = new javax.swing.JLabel();
@@ -97,10 +98,17 @@ public class ClientProfile extends javax.swing.JPanel {
 
         uppermenu.setBackground(new java.awt.Color(255, 250, 248));
         uppermenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        uppermenu.setLayout(new java.awt.GridBagLayout());
 
         appname.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         appname.setForeground(new java.awt.Color(255, 90, 95));
         appname.setText("JavaBNB");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 18, 0, 0);
+        uppermenu.add(appname, gridBagConstraints);
 
         logo.setBackground(new java.awt.Color(255, 153, 153));
         logo.setBorderPainted(false);
@@ -111,6 +119,12 @@ public class ClientProfile extends javax.swing.JPanel {
         logo.setRequestFocusEnabled(false);
         logo.setRolloverEnabled(false);
         logo.setVerifyInputWhenFocusTarget(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
+        uppermenu.add(logo, gridBagConstraints);
 
         logo1.setBackground(new java.awt.Color(255, 153, 153));
         logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
@@ -122,8 +136,18 @@ public class ClientProfile extends javax.swing.JPanel {
         logo1.setRequestFocusEnabled(false);
         logo1.setRolloverEnabled(false);
         logo1.setVerifyInputWhenFocusTarget(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = -31;
+        gridBagConstraints.ipady = -24;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 101, 3, 0);
+        uppermenu.add(logo1, gridBagConstraints);
 
         mainscr.setBackground(new java.awt.Color(255, 90, 95));
+        mainscr.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         mainscr.setForeground(new java.awt.Color(255, 255, 255));
         mainscr.setText("Volver");
         mainscr.setBorderPainted(false);
@@ -134,37 +158,32 @@ public class ClientProfile extends javax.swing.JPanel {
                 mainscrActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 16;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(23, 68, 0, 50);
+        uppermenu.add(mainscr, gridBagConstraints);
 
-        javax.swing.GroupLayout uppermenuLayout = new javax.swing.GroupLayout(uppermenu);
-        uppermenu.setLayout(uppermenuLayout);
-        uppermenuLayout.setHorizontalGroup(
-            uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(uppermenuLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(logo))
-            .addGroup(uppermenuLayout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(appname)
-                .addGap(793, 793, 793)
-                .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        uppermenuLayout.setVerticalGroup(
-            uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(uppermenuLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(logo)
-                .addGap(7, 7, 7)
-                .addGroup(uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(uppermenuLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(appname))
-                    .addGroup(uppermenuLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
+        cerrarsesion.setBackground(new java.awt.Color(255, 90, 95));
+        cerrarsesion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cerrarsesion.setForeground(new java.awt.Color(255, 255, 255));
+        cerrarsesion.setText("Cerrar sesión");
+        cerrarsesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarsesionActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 4;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(23, 611, 0, 0);
+        uppermenu.add(cerrarsesion, gridBagConstraints);
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
 
@@ -227,6 +246,8 @@ public class ClientProfile extends javax.swing.JPanel {
         data.add(clave, gridBagConstraints);
 
         jButton1.setBackground(new java.awt.Color(255, 90, 95));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Editar datos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -514,9 +535,9 @@ public class ClientProfile extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(uppermenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(193, Short.MAX_VALUE)
+                .addContainerGap(196, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -655,12 +676,18 @@ public class ClientProfile extends javax.swing.JPanel {
         Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
     }//GEN-LAST:event_mainscrActionPerformed
 
+    private void cerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarsesionActionPerformed
+        Sesion.cerrarSesion();
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
+    }//GEN-LAST:event_cerrarsesionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CCLabel;
     private javax.swing.JTextField CCTextField;
     private javax.swing.JLabel ParLabel;
     private javax.swing.JLabel appname;
+    private javax.swing.JButton cerrarsesion;
     private javax.swing.JPasswordField clave;
     private javax.swing.JLabel cvvLabel;
     private javax.swing.JTextField cvvTextField;

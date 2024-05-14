@@ -110,7 +110,7 @@ public class Register extends javax.swing.JPanel {
         createaccLabel.setBackground(new java.awt.Color(255, 90, 95));
         createaccLabel.setFont(new java.awt.Font("Serif", 0, 48)); // NOI18N
         createaccLabel.setForeground(new java.awt.Color(255, 90, 95));
-        createaccLabel.setText("Cree su cuenta");
+        createaccLabel.setText("Cree su cuenta en JavaBNB");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

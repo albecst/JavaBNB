@@ -50,6 +50,7 @@ public class HostProfile extends javax.swing.JPanel {
         uppermenu = new javax.swing.JPanel();
         appname = new javax.swing.JLabel();
         logo = new javax.swing.JButton();
+        cerrarsesion = new javax.swing.JButton();
         mainscr = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         data = new javax.swing.JPanel();
@@ -67,6 +68,8 @@ public class HostProfile extends javax.swing.JPanel {
         userpfp = new javax.swing.JButton();
         username = new javax.swing.JLabel();
         hostlabel = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 250, 248));
 
@@ -90,7 +93,21 @@ public class HostProfile extends javax.swing.JPanel {
         logo.setRolloverEnabled(false);
         logo.setVerifyInputWhenFocusTarget(false);
 
+        cerrarsesion.setBackground(new java.awt.Color(255, 90, 95));
+        cerrarsesion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cerrarsesion.setForeground(new java.awt.Color(255, 255, 255));
+        cerrarsesion.setText("Cerrar sesion");
+        cerrarsesion.setBorderPainted(false);
+        cerrarsesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cerrarsesion.setPreferredSize(new java.awt.Dimension(80, 30));
+        cerrarsesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarsesionActionPerformed(evt);
+            }
+        });
+
         mainscr.setBackground(new java.awt.Color(255, 90, 95));
+        mainscr.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         mainscr.setForeground(new java.awt.Color(255, 255, 255));
         mainscr.setText("Volver");
         mainscr.setBorderPainted(false);
@@ -107,13 +124,15 @@ public class HostProfile extends javax.swing.JPanel {
         uppermenuLayout.setHorizontalGroup(
             uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(uppermenuLayout.createSequentialGroup()
-                .addGap(133, 133, 133)
+                .addGap(192, 192, 192)
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(appname)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cerrarsesion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
                 .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115))
+                .addGap(103, 103, 103))
         );
         uppermenuLayout.setVerticalGroup(
             uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,6 +145,7 @@ public class HostProfile extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, uppermenuLayout.createSequentialGroup()
                         .addGroup(uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(appname)
+                            .addComponent(cerrarsesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(mainscr, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25))))
         );
@@ -152,6 +172,8 @@ public class HostProfile extends javax.swing.JPanel {
         clave.setText("contraseña1");
 
         jButton1.setBackground(new java.awt.Color(255, 90, 95));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Editar datos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,8 +312,17 @@ public class HostProfile extends javax.swing.JPanel {
                         .addComponent(username)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hostlabel)
-                .addContainerGap())
+                .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        jButton3.setBackground(new java.awt.Color(255, 250, 248));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo5.png"))); // NOI18N
+        jButton3.setBorderPainted(false);
+
+        jButton2.setBackground(new java.awt.Color(255, 250, 248));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondo6.png"))); // NOI18N
+        jButton2.setToolTipText("");
+        jButton2.setBorderPainted(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -299,16 +330,26 @@ public class HostProfile extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(uppermenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(103, Short.MAX_VALUE)
+                .addContainerGap(74, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(uppermenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(329, 329, 329))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -320,7 +361,7 @@ public class HostProfile extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 916, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -328,10 +369,6 @@ public class HostProfile extends javax.swing.JPanel {
     private void userpfpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userpfpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userpfpActionPerformed
-
-    private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
-    }//GEN-LAST:event_mainscrActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 // Verificar el texto actual del botón
@@ -404,9 +441,19 @@ public class HostProfile extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_errorLabel1PropertyChange
 
+    private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
+       Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+    }//GEN-LAST:event_mainscrActionPerformed
+
+    private void cerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarsesionActionPerformed
+        Sesion.cerrarSesion();
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
+    }//GEN-LAST:event_cerrarsesionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel appname;
+    private javax.swing.JButton cerrarsesion;
     private javax.swing.JPasswordField clave;
     private javax.swing.JPanel data;
     private javax.swing.JTextField dniTextField;
@@ -414,6 +461,8 @@ public class HostProfile extends javax.swing.JPanel {
     private javax.swing.JLabel errorLabel1;
     private javax.swing.JLabel hostlabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
