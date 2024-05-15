@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.ListIterator;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 public class MainScreenClient extends javax.swing.JPanel {
 
@@ -40,13 +42,20 @@ public class MainScreenClient extends javax.swing.JPanel {
         System.out.println("La lista de edificios no está vacía:");
         deleteBuildings(); // Borra cualquier widget de edificio existente antes de insertar nuevos
 
+        int fila = 0;
+        //tamaño ventana widget= [295, 400]  295 ancho,400alto
+        int x = 0;
         for (Inmueble inmueble : buildings) {
+            if (x >= 1920) {
+                fila+=400;
+            }
             IconoInmueble iconoinm = new IconoInmueble();
             iconoinm.init(inmueble);
+            //AbsoluteConstraints constr = new org.netbeans.lib.awtextra.AbsoluteConstraints(295*x, fila, -1, -1);  //-1 en altura y anchura para que nos de la predeterminada del widget añadido
             buildingsicon.add(iconoinm);
-            buildingsContainer.add(iconoinm);
-
-            System.out.println(inmueble.toString());
+            buildingsContainer.add(iconoinm, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, fila, 295, 400));  //método addLayoutComponent(java.awt.Component comp, java.lang.Object constr);  Adds the specified component to the layout, using the specified constraint object.
+            System.out.println(inmueble);
+            x += 350;
         }
 
         buildingsContainer.revalidate(); // Actualiza el contenedor para mostrar los cambios
@@ -499,20 +508,10 @@ public class MainScreenClient extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        buildingsContainer.setBackground(new java.awt.Color(255, 250, 248));
+        buildingsContainer.setBackground(new java.awt.Color(255, 204, 204));
         buildingsContainer.setMinimumSize(new java.awt.Dimension(1242, 416));
         buildingsContainer.setPreferredSize(new java.awt.Dimension(1242, 426));
-
-        javax.swing.GroupLayout buildingsContainerLayout = new javax.swing.GroupLayout(buildingsContainer);
-        buildingsContainer.setLayout(buildingsContainerLayout);
-        buildingsContainerLayout.setHorizontalGroup(
-            buildingsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        buildingsContainerLayout.setVerticalGroup(
-            buildingsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 835, Short.MAX_VALUE)
-        );
+        buildingsContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -545,7 +544,7 @@ public class MainScreenClient extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(buildingsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 1431, Short.MAX_VALUE))
+                .addComponent(buildingsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 2031, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
