@@ -592,10 +592,6 @@ public class AddBuildings extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_logoActionPerformed
-
     private void createBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBuildingButtonActionPerformed
 
         String titulo = titleTextField.getText();
@@ -776,6 +772,10 @@ public class AddBuildings extends javax.swing.JPanel {
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
         Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
     }//GEN-LAST:event_mainscrActionPerformed
+
+    private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

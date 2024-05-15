@@ -11,7 +11,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,6,-28,0,0,7,-11"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,7,68,0,0,7,-11"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -31,42 +31,51 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="1" attributes="0">
-              <Component id="barraarriba" max="32767" attributes="0"/>
+              <Component id="barraarriba" pref="2037" max="32767" attributes="0"/>
               <Component id="barraabajo" alignment="1" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="filtratubusqueda" min="-2" pref="271" max="-2" attributes="0"/>
-                          <Component id="filtrospara" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="buscaalojamiento" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
+              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buildingsContainer" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="disfrutade" min="-2" pref="185" max="-2" attributes="0"/>
-                              <Component id="sientetecomoencasa" min="-2" pref="177" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="filtratubusqueda" min="-2" pref="271" max="-2" attributes="0"/>
+                              <Component id="filtrospara" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="regalateun" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
-                              <Component id="mastiempopara" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                          <Component id="buscaalojamiento" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="fotocasa" min="-2" pref="812" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="masespacio" min="-2" pref="176" max="-2" attributes="0"/>
-                              <Component id="maspormenos" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="buildingsLabel" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="disfrutade" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="sientetecomoencasa" min="-2" pref="177" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="regalateun" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                                          <Component id="mastiempopara" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="masespacio" min="-2" pref="176" max="-2" attributes="0"/>
+                                  <Component id="maspormenos" min="-2" pref="125" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <Component id="fotocasa" alignment="1" min="-2" pref="812" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="buildingsContainer" pref="2031" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -80,7 +89,7 @@
                       <Component id="buscaalojamiento" min="-2" max="-2" attributes="0"/>
                       <Component id="fotocasa" min="-2" pref="497" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="filtrospara" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="sientetecomoencasa" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -94,7 +103,9 @@
                       <Component id="regalateun" pref="0" max="32767" attributes="0"/>
                       <Component id="masespacio" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="buildingsLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
                   <Component id="buildingsContainer" min="-2" pref="835" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="barraabajo" max="32767" attributes="0"/>
@@ -770,7 +781,7 @@
         <Container class="javax.swing.JPanel" name="buildingsContainer">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="ff" type="rgb"/>
+              <Color blue="f8" green="fa" red="ff" type="rgb"/>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[1242, 416]"/>
@@ -784,6 +795,22 @@
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
         </Container>
+        <Component class="javax.swing.JLabel" name="buildingsLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Serif" size="48" style="3"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="5f" green="5a" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Lista de inmuebles"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                <EmptyBorder/>
+              </Border>
+            </Property>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
