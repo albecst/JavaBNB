@@ -28,6 +28,7 @@ public class BuildingView extends javax.swing.JPanel {
         titulolabel.setText(i.getTitulo());
         tipolabel.setText(i.getTipo());
         descripcionarea.setText(i.getDescripcion());
+        preciolabel.setText(Double.toString(i.getPrecioNoche())+ "€ por noche");
         //datosinmueblearea.setText(i.getDatosInmueble().toString());
         nhuespedes.setText(Integer.toString(i.getDatosInmueble().getMaxHuespedes()));
         nhabitaciones.setText(Integer.toString(i.getDatosInmueble().getHabitaciones()));
@@ -43,11 +44,13 @@ public class BuildingView extends javax.swing.JPanel {
         estrella3.setIcon(i.getCalificacion() >= 3 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
         estrella4.setIcon(i.getCalificacion() >= 4 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
         estrella5.setIcon(i.getCalificacion() >= 5 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
+      System.out.println("actualizao");
     }
 
     public void setInmueble(Inmueble inmueble) {
         this.i = inmueble;
-        actualizar(); // Llamar al método actualizar() para actualizar la vista con el nuevo inmueble
+        this.actualizar(); // Llamar al método actualizar() para actualizar la vista con el nuevo inmueble
+        System.out.println("seteao");
     }
 
     

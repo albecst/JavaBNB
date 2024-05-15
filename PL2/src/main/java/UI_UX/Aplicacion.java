@@ -38,6 +38,7 @@ public class Aplicacion {
     static AdminScreen adminscreen = new AdminScreen();
     static AdminConsultarUser adminconsultaruser = new AdminConsultarUser();
     static AddBuildings addbuildings = new AddBuildings();
+    static BuildingView buildingview = new BuildingView();
 
     public static Sesion sesion = null;  //iniciamos sesion como null
 
@@ -66,7 +67,7 @@ public class Aplicacion {
         cards.add(mainscreenhost, "Pantalla mainscreenhost");
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(addbuildings, "Pantalla addbuildings");
-
+        loadBuildingView();
         loadHostProfile();
         loadClientProfile();
 
@@ -104,5 +105,18 @@ public class Aplicacion {
         cards.add(mainscreenclient, "Pantalla mainscreenclient");
         mainscreenclient.actualizar();
         cardLayout.show(cards, "Pantalla mainscreenclient");
+    }
+
+    public static void loadBuildingView(Inmueble inmueble) {
+        cards.add(buildingview, "Pantalla buildingview");
+        buildingview.setInmueble(inmueble);
+
+        System.out.println("nos movemosssss");
+        cardLayout.show(cards, "Pantalla buildingview");
+    }
+
+    public static void loadBuildingView() {
+        cards.add(buildingview, "Pantalla buildingview");
+        cardLayout.show(cards, "Pantalla buildingview");
     }
 }
