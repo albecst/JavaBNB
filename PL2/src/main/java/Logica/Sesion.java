@@ -33,7 +33,7 @@ public class Sesion {
      */
     public static int iniciarSesion(String correo, String clave) {
         boolean isHost = false;
-        if (correo.equals("admin@javabnb.com") && clave.equals("admin")) {
+        if (correo.equals("admin@java.bnb") && clave.equals("admin")) {
             System.out.println("Sesión iniciada como administrador");
             return 1;
         }
