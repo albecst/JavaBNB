@@ -25,15 +25,15 @@ public class IconoInmueble extends javax.swing.JPanel {
 
     public void init(Inmueble i) {
         this.i = i;
-        nombre.setText(i.getTitulo());
-        precio.setText(String.valueOf(i.getPrecioNoche()) + "€/noche");
-        fotoboton.setIcon(resizeIMG(i.getFotografia()));
+        nombre.setText(this.i.getTitulo());
+        precio.setText(String.valueOf(this.i.getPrecioNoche()) + "€/noche");
+        fotoboton.setIcon(resizeIMG(this.i.getFotografia()));
 
-        estrella1.setIcon(i.getCalificacion() >= 1 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
-        estrella2.setIcon(i.getCalificacion() >= 2 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
-        estrella3.setIcon(i.getCalificacion() >= 3 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
-        estrella4.setIcon(i.getCalificacion() >= 4 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
-        estrella5.setIcon(i.getCalificacion() >= 5 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
+        estrella1.setIcon(this.i.getCalificacion() >= 1 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
+        estrella2.setIcon(this.i.getCalificacion() >= 2 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
+        estrella3.setIcon(this.i.getCalificacion() >= 3 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
+        estrella4.setIcon(this.i.getCalificacion() >= 4 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
+        estrella5.setIcon(this.i.getCalificacion() >= 5 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
     }
 
     public ImageIcon imagenIcon(String img) {
@@ -70,7 +70,6 @@ public class IconoInmueble extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         fotoboton = new javax.swing.JButton();
@@ -83,9 +82,19 @@ public class IconoInmueble extends javax.swing.JPanel {
         estrella4 = new javax.swing.JButton();
         estrella5 = new javax.swing.JButton();
 
+        setMaximumSize(new java.awt.Dimension(295, 400));
+        setPreferredSize(new java.awt.Dimension(295, 400));
+
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
+        jPanel1.setMaximumSize(new java.awt.Dimension(295, 400));
+        jPanel1.setMinimumSize(new java.awt.Dimension(295, 400));
 
         fotoboton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/casa1.jpg"))); // NOI18N
+        fotoboton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fotobotonMouseClicked(evt);
+            }
+        });
         fotoboton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fotobotonActionPerformed(evt);
@@ -100,82 +109,82 @@ public class IconoInmueble extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        jPanel2.setMaximumSize(new java.awt.Dimension(220, 49));
 
         estrella1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrella50roja.png"))); // NOI18N
         estrella1.setToolTipText("");
         estrella1.setBorderPainted(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 8, 1, 0);
-        jPanel2.add(estrella1, gridBagConstraints);
+        estrella1.setFocusable(false);
 
         estrella2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrella50roja.png"))); // NOI18N
         estrella2.setToolTipText("");
         estrella2.setBorderPainted(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 6, 1, 0);
-        jPanel2.add(estrella2, gridBagConstraints);
+        estrella2.setFocusable(false);
 
         estrella3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrella50.png"))); // NOI18N
         estrella3.setToolTipText("");
         estrella3.setBorderPainted(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 6, 1, 0);
-        jPanel2.add(estrella3, gridBagConstraints);
+        estrella3.setFocusable(false);
 
         estrella4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrella50.png"))); // NOI18N
         estrella4.setToolTipText("");
         estrella4.setBorderPainted(false);
+        estrella4.setFocusable(false);
         estrella4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estrella4ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 6, 1, 0);
-        jPanel2.add(estrella4, gridBagConstraints);
 
         estrella5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrella50.png"))); // NOI18N
         estrella5.setToolTipText("");
         estrella5.setBorderPainted(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 6, 1, 1);
-        jPanel2.add(estrella5, gridBagConstraints);
+        estrella5.setFocusable(false);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(estrella1)
+                .addGap(6, 6, 6)
+                .addComponent(estrella2)
+                .addGap(6, 6, 6)
+                .addComponent(estrella3)
+                .addGap(6, 6, 6)
+                .addComponent(estrella4)
+                .addGap(6, 6, 6)
+                .addComponent(estrella5))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(estrella1)
+                    .addComponent(estrella2)
+                    .addComponent(estrella3)
+                    .addComponent(estrella4)
+                    .addComponent(estrella5)))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(nombre))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(precio))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(nombre))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(precio))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,8 +196,7 @@ public class IconoInmueble extends javax.swing.JPanel {
                 .addGap(6, 6, 6)
                 .addComponent(precio)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -196,26 +204,27 @@ public class IconoInmueble extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void fotobotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotobotonActionPerformed
-        // TODO add your handling code here:
+        Aplicacion.loadBuildingView(this.i);
+        
     }//GEN-LAST:event_fotobotonActionPerformed
 
     private void estrella4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estrella4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_estrella4ActionPerformed
+
+    private void fotobotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotobotonMouseClicked
+
+    }//GEN-LAST:event_fotobotonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

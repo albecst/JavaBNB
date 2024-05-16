@@ -16,6 +16,7 @@ public class Inmueble implements Serializable {
     private LocalDate fechaInicioReserva;
     private LocalDate fechaFinReserva;
     private String descripcion;
+    private int valoraciones;
 
     //Constructor
     public Inmueble(String titulo, String descripcion, Direccion direccion, DatosInmueble datosInmueble, String tipo, double precioNoche, String fotografia, String servicios) {
@@ -73,15 +74,16 @@ public class Inmueble implements Serializable {
     }
 
     /**
-     * Set the value of calificacion
+     * Recalcular el valor de la calificación del inmueble
      *
-     * @param calificacion new value of calificacion
+     * @param nota
      */
-    public void setCalificacion(double calificacion) {
-        if (calificacion < 0 || calificacion > 5) {
+    public void setCalificacion(double nota) {
+        if (nota < 0 || nota > 5) {
             throw new IllegalArgumentException("La calificación debe estar entre 0 y 5.");
         } else {
-            this.calificacion = calificacion;
+            this.calificacion = (this.calificacion * this.valoraciones + nota) / (this.valoraciones + 1);
+            this.valoraciones++;
         }
     }
 
@@ -211,7 +213,5 @@ public class Inmueble implements Serializable {
     public String toString() {
         return "Inmueble{" + "titulo=" + titulo + ", direccion=" + direccion + ", datosInmueble=" + datosInmueble + ", tipo=" + tipo + ", precioNoche=" + precioNoche + ", servicios=" + servicios + ", calificacion=" + calificacion + ", fotografia=" + fotografia + ", fechaFinReserva=" + fechaFinReserva + ", descripcion=" + descripcion + '}';
     }
-    
-
 
 }
