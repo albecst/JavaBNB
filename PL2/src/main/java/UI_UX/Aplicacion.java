@@ -38,6 +38,7 @@ public class Aplicacion {
     static AdminScreen adminscreen = new AdminScreen();
     static AdminConsultarUser adminconsultaruser = new AdminConsultarUser();
     static AddBuildings addbuildings = new AddBuildings();
+    static AdminCheckBuildings admincheckbuildings = new AdminCheckBuildings();
 
     public static Sesion sesion = null;  //iniciamos sesion como null
 
@@ -52,7 +53,9 @@ public class Aplicacion {
         JavaBNB.cargarDatos();
 
         // Establecer el tamaño mínimo de la ventana.
-        frame.setMinimumSize(new Dimension(1920, 1080));
+        frame.setMinimumSize(new Dimension(1000, 1000));
+        frame.setPreferredSize(new Dimension(1000, 1000));
+        frame.setLocationRelativeTo(null);
 
         // Crear un JScrollPane y agregar el panel cards para permitir el desplazamiento.
         JScrollPane scrollPane = new JScrollPane(cards);
@@ -63,6 +66,7 @@ public class Aplicacion {
         cards.add(register, "Pantalla register");
         cards.add(privacypolicy, "Pantalla privacypolicy");
         loadMainScreenClient();
+        loadAdminCheckBuildings();
         cards.add(mainscreenhost, "Pantalla mainscreenhost");
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(addbuildings, "Pantalla addbuildings");
@@ -98,6 +102,12 @@ public class Aplicacion {
         cards.add(adminconsultaruser, "Pantalla adminconsultaruser");
         adminconsultaruser.actualizar();
         cardLayout.show(cards, "Pantalla adminconsultaruser");
+    }
+
+    public static void loadAdminCheckBuildings() {
+        cards.add(admincheckbuildings, "Pantalla admincheckbuildings");
+        admincheckbuildings.actualizar();
+        cardLayout.show(cards, "Pantalla admincheckbuildings");
     }
 
     public static void loadMainScreenClient() {
