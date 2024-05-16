@@ -94,6 +94,19 @@ public class Inmueble implements Serializable {
         return servicios;
     }
 
+    
+    /**
+     * 
+     * @param servicios new value of servicios
+     */
+    public void setServicios(String servicios) {
+        this.servicios = servicios;
+    }
+
+    
+    
+    
+    
     /**
      * Get the value of precioNoche
      *
@@ -191,6 +204,8 @@ public class Inmueble implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    
 
     @Override
     public String toString() {
