@@ -151,15 +151,15 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="423" pref="423" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="289" max="-2" attributes="0"/>
+                      <Component id="checkUsersButton" min="-2" pref="289" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="423" pref="423" max="-2" attributes="0"/>
-                      <Component id="inmueblesboton" min="-2" pref="289" max="-2" attributes="0"/>
+                      <Component id="checkBuildingsButton" min="-2" pref="289" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="423" pref="423" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="289" max="-2" attributes="0"/>
+                      <Component id="checkBookingsButton" min="-2" pref="289" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -169,17 +169,17 @@
                       <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="58" max="-2" attributes="0"/>
+                      <Component id="checkUsersButton" min="-2" pref="58" max="-2" attributes="0"/>
                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                      <Component id="inmueblesboton" min="-2" pref="58" max="-2" attributes="0"/>
+                      <Component id="checkBuildingsButton" min="-2" pref="58" max="-2" attributes="0"/>
                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="58" max="-2" attributes="0"/>
+                      <Component id="checkBookingsButton" min="-2" pref="58" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="inmueblesboton">
+            <Component class="javax.swing.JButton" name="checkBuildingsButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="ff" type="rgb"/>
@@ -190,10 +190,10 @@
                 <Property name="text" type="java.lang.String" value="Consultar inmuebles"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inmueblesbotonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBuildingsButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="checkUsersButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="ff" type="rgb"/>
@@ -204,10 +204,10 @@
                 <Property name="text" type="java.lang.String" value="Consultar usuarios"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkUsersButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="checkBookingsButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="ff" type="rgb"/>
@@ -218,7 +218,7 @@
                 <Property name="text" type="java.lang.String" value="Consultar reservas"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBookingsButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">

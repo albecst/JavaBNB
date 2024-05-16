@@ -28,9 +28,9 @@ public class AdminScreen extends javax.swing.JPanel {
         titleLabel = new javax.swing.JLabel();
         logo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        inmueblesboton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        checkBuildingsButton = new javax.swing.JButton();
+        checkUsersButton = new javax.swing.JButton();
+        checkBookingsButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
@@ -96,30 +96,30 @@ public class AdminScreen extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 250, 248));
 
-        inmueblesboton.setBackground(new java.awt.Color(255, 153, 153));
-        inmueblesboton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        inmueblesboton.setText("Consultar inmuebles");
-        inmueblesboton.addActionListener(new java.awt.event.ActionListener() {
+        checkBuildingsButton.setBackground(new java.awt.Color(255, 153, 153));
+        checkBuildingsButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        checkBuildingsButton.setText("Consultar inmuebles");
+        checkBuildingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inmueblesbotonActionPerformed(evt);
+                checkBuildingsButtonActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 153));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Consultar usuarios");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        checkUsersButton.setBackground(new java.awt.Color(255, 153, 153));
+        checkUsersButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        checkUsersButton.setText("Consultar usuarios");
+        checkUsersButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                checkUsersButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 153));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setText("Consultar reservas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        checkBookingsButton.setBackground(new java.awt.Color(255, 153, 153));
+        checkBookingsButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        checkBookingsButton.setText("Consultar reservas");
+        checkBookingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                checkBookingsButtonActionPerformed(evt);
             }
         });
 
@@ -135,13 +135,13 @@ public class AdminScreen extends javax.swing.JPanel {
                 .addComponent(jLabel1))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(423, 423, 423)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(checkUsersButton, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(423, 423, 423)
-                .addComponent(inmueblesboton, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(checkBuildingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(423, 423, 423)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(checkBookingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,11 +149,11 @@ public class AdminScreen extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addGap(32, 32, 32)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(checkUsersButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(inmueblesboton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(checkBuildingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(checkBookingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -174,17 +174,17 @@ public class AdminScreen extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void checkUsersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkUsersButtonActionPerformed
         Aplicacion.loadAdminConsultarUser();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_checkUsersButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void checkBookingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBookingsButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_checkBookingsButtonActionPerformed
 
-    private void inmueblesbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmueblesbotonActionPerformed
-        
-    }//GEN-LAST:event_inmueblesbotonActionPerformed
+    private void checkBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBuildingsButtonActionPerformed
+        Aplicacion.loadAdminCheckBuildings();
+    }//GEN-LAST:event_checkBuildingsButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
@@ -197,9 +197,9 @@ public class AdminScreen extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraarriba;
-    private javax.swing.JButton inmueblesboton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton checkBookingsButton;
+    private javax.swing.JButton checkBuildingsButton;
+    private javax.swing.JButton checkUsersButton;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
