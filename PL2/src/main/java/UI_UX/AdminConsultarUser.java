@@ -8,8 +8,12 @@ import Logica.Anfitrion;
 import Logica.Cliente;
 import Logica.JavaBNB;
 import Logica.Particular;
+import Logica.Sesion;
+import Logica.Validacion;
+import UI_UX.Aplicacion;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import javax.swing.JOptionPane;
 
 //TODO: boton de modificar datos
 public class AdminConsultarUser extends javax.swing.JPanel {
@@ -23,6 +27,17 @@ public class AdminConsultarUser extends javax.swing.JPanel {
 
     public AdminConsultarUser() {
         initComponents();
+        errorNoSig.setVisible(false);
+        errorNoAnt.setVisible(false);
+        nameTextField.setEditable(false);
+        dniTextField.setEditable(false);
+        emailTextField.setEditable(false);
+        passTextField.setEditable(false);
+        tlfTextField.setEditable(false);
+        consultarTodo();
+    }
+
+    public void actualizar() {
         errorNoSig.setVisible(false);
         errorNoAnt.setVisible(false);
         consultarTodo();
@@ -39,13 +54,13 @@ public class AdminConsultarUser extends javax.swing.JPanel {
             if (clientesaux.size() < 1) {
                 jButtonSig.setEnabled(false);
                 jButtonAnt.setEnabled(false);
-                jButtonBaja.setEnabled(false);
+                deleteUserButton.setEnabled(false);
                 //jButtonModificar.setEnabled(false);
                 return;
             } else {
                 jButtonSig.setEnabled(true);
                 jButtonAnt.setEnabled(true);
-                jButtonBaja.setEnabled(true);
+                deleteUserButton.setEnabled(true);
                 // jButtonModificar.setEnabled(true);
             }
 
@@ -66,24 +81,18 @@ public class AdminConsultarUser extends javax.swing.JPanel {
 
     private void presenta(Cliente per) {
         String tipo = per.getClass().getSimpleName();
-        jTextFieldDni.setText(objcli.getDni());
-        jTextFieldName.setText(objcli.getNombre());
-        jTextFieldCorreo.setText(objcli.getCorreo());
-        jTextFieldClave.setText(objcli.getClave());
-        jTextFieldTlf.setText(objcli.getTelefono());
+        dniTextField.setText(objcli.getDni());
+        nameTextField.setText(objcli.getNombre());
+        emailTextField.setText(objcli.getCorreo());
+        passTextField.setText(objcli.getClave());
+        tlfTextField.setText(objcli.getTelefono());
         if (tipo.equals("Anfitrion")) {
-            jLabelVar1.setText(tipo);
+            typeLabel.setText(tipo);
 
         } else {
-            jLabelVar1.setText(tipo);
+            typeLabel.setText(tipo);
 
         }
-    }
-
-    public void actualizar() {
-        errorNoSig.setVisible(false);
-        errorNoAnt.setVisible(false);
-        consultarTodo();
     }
 
     /**
@@ -103,18 +112,19 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         mainscr = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabelDni = new javax.swing.JLabel();
-        jLabelNombre = new javax.swing.JLabel();
-        jTextFieldDni = new javax.swing.JTextField();
-        jTextFieldName = new javax.swing.JTextField();
-        jLabelVar1 = new javax.swing.JLabel();
-        jLabelCorreo = new javax.swing.JLabel();
-        jTextFieldCorreo = new javax.swing.JTextField();
-        jLabelClave = new javax.swing.JLabel();
-        jTextFieldClave = new javax.swing.JTextField();
-        jLabelTlf = new javax.swing.JLabel();
-        jTextFieldTlf = new javax.swing.JTextField();
-        jButtonBaja = new javax.swing.JButton();
+        dniLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        dniTextField = new javax.swing.JTextField();
+        nameTextField = new javax.swing.JTextField();
+        typeLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        emailTextField = new javax.swing.JTextField();
+        passLabel = new javax.swing.JLabel();
+        passTextField = new javax.swing.JTextField();
+        tlfLabel = new javax.swing.JLabel();
+        tlfTextField = new javax.swing.JTextField();
+        deleteUserButton = new javax.swing.JButton();
+        editUserButton = new javax.swing.JButton();
         jButtonAnt = new javax.swing.JButton();
         jButtonSig = new javax.swing.JButton();
         errorNoSig = new javax.swing.JLabel();
@@ -189,24 +199,26 @@ public class AdminConsultarUser extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 250, 248));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel2.setMinimumSize(new java.awt.Dimension(325, 400));
+        jPanel2.setPreferredSize(new java.awt.Dimension(325, 400));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabelDni.setText("DNI:");
+        dniLabel.setText("DNI:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(21, 16, 0, 0);
-        jPanel2.add(jLabelDni, gridBagConstraints);
+        jPanel2.add(dniLabel, gridBagConstraints);
 
-        jLabelNombre.setText("Nombre:");
+        nameLabel.setText("Nombre:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(28, 16, 0, 0);
-        jPanel2.add(jLabelNombre, gridBagConstraints);
+        jPanel2.add(nameLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -215,7 +227,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 144;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 38);
-        jPanel2.add(jTextFieldDni, gridBagConstraints);
+        jPanel2.add(dniTextField, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -224,27 +236,27 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 144;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(25, 12, 0, 38);
-        jPanel2.add(jTextFieldName, gridBagConstraints);
+        jPanel2.add(nameTextField, gridBagConstraints);
 
-        jLabelVar1.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        jLabelVar1.setText("var1");
+        typeLabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        typeLabel.setText("var1");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 118;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 27, 0, 0);
-        jPanel2.add(jLabelVar1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 27, 0, 0);
+        jPanel2.add(typeLabel, gridBagConstraints);
 
-        jLabelCorreo.setText("Correo");
+        emailLabel.setText("Correo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(21, 16, 0, 0);
-        jPanel2.add(jLabelCorreo, gridBagConstraints);
+        jPanel2.add(emailLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 5;
@@ -253,16 +265,16 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 144;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 38);
-        jPanel2.add(jTextFieldCorreo, gridBagConstraints);
+        jPanel2.add(emailTextField, gridBagConstraints);
 
-        jLabelClave.setText("Clave:");
+        passLabel.setText("Clave:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(21, 16, 0, 0);
-        jPanel2.add(jLabelClave, gridBagConstraints);
+        jPanel2.add(passLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 7;
@@ -271,16 +283,16 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 144;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 38);
-        jPanel2.add(jTextFieldClave, gridBagConstraints);
+        jPanel2.add(passTextField, gridBagConstraints);
 
-        jLabelTlf.setText("Telefono:");
+        tlfLabel.setText("Telefono:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(21, 12, 0, 0);
-        jPanel2.add(jLabelTlf, gridBagConstraints);
+        jPanel2.add(tlfLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 9;
@@ -289,22 +301,37 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 144;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 38);
-        jPanel2.add(jTextFieldTlf, gridBagConstraints);
+        jPanel2.add(tlfTextField, gridBagConstraints);
 
-        jButtonBaja.setBackground(new java.awt.Color(255, 153, 153));
-        jButtonBaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButtonBaja.setText("Eliminar Usuario");
-        jButtonBaja.addActionListener(new java.awt.event.ActionListener() {
+        deleteUserButton.setBackground(new java.awt.Color(255, 153, 153));
+        deleteUserButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        deleteUserButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteUserButton.setText("Eliminar usuario");
+        deleteUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBajaActionPerformed(evt);
+                deleteUserButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 43, 9, 0);
-        jPanel2.add(jButtonBaja, gridBagConstraints);
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.insets = new java.awt.Insets(17, 25, 0, 0);
+        jPanel2.add(deleteUserButton, gridBagConstraints);
+
+        editUserButton.setBackground(new java.awt.Color(255, 90, 95));
+        editUserButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        editUserButton.setForeground(new java.awt.Color(255, 255, 255));
+        editUserButton.setText("Editar usuario");
+        editUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editUserButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.insets = new java.awt.Insets(17, 25, 0, 0);
+        jPanel2.add(editUserButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -317,6 +344,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
 
         jButtonAnt.setBackground(new java.awt.Color(255, 153, 153));
         jButtonAnt.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jButtonAnt.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAnt.setText("Anterior");
         jButtonAnt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,6 +360,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
 
         jButtonSig.setBackground(new java.awt.Color(255, 153, 153));
         jButtonSig.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        jButtonSig.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSig.setText("Siguiente");
         jButtonSig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -363,7 +392,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 116, 116, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 116, 0, 0);
         jPanel3.add(errorNoAnt, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -371,13 +400,13 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(barraarriba1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1237, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(barraarriba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -412,7 +441,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_logo1ActionPerformed
 
-    private void jButtonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaActionPerformed
+    private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
         if (objcli != null) {
             li.remove();
         }
@@ -428,36 +457,99 @@ public class AdminConsultarUser extends javax.swing.JPanel {
                 presenta(objcli);
             }
         }
-    }//GEN-LAST:event_jButtonBajaActionPerformed
+    }//GEN-LAST:event_deleteUserButtonActionPerformed
 
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
         Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
     }//GEN-LAST:event_mainscrActionPerformed
 
+    private void editUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserButtonActionPerformed
+// Verificar el texto actual del botón
+        if (editUserButton.getText().equals("Editar datos")) {
+            // Si el botón está en modo "Editar datos"
+            // Establecer los campos de texto como editables
+            emailTextField.setEditable(true);
+            passTextField.setEditable(true);
+            tlfTextField.setEditable(true);
+
+            // Cambiar el texto del botón a "Aceptar"
+            editUserButton.setText("Aceptar");
+        } else {
+            // Si el botón está en modo "Aceptar"
+            // Establecer los campos de texto como no editables
+            emailTextField.setEditable(false);
+            passTextField.setEditable(false);
+            tlfTextField.setEditable(false);
+
+            // Cambiar el texto del botón a "Editar datos"
+            editUserButton.setText("Editar datos");
+
+            // Verificar la validez de los datos ingresados
+            String email = emailTextField.getText();
+            String password = passTextField.getText();
+            String telefono = tlfTextField.getText();
+
+            boolean datosValidos = true;
+
+            // Verificar el correo electrónico
+            if (!Validacion.validarEmail(email)) {
+                JOptionPane.showMessageDialog(this, "El email introducido no es válido.", "Email inválido", JOptionPane.WARNING_MESSAGE);
+                emailTextField.setText("");
+                datosValidos = false;
+            } // Verificar la contraseña
+            else if (!Validacion.validarContraseña(password)) {
+                JOptionPane.showMessageDialog(this, "La contraseña introducida no es válida. \n Revise los requisitos.", "Contraseña inválida", JOptionPane.WARNING_MESSAGE);
+                passTextField.setText("");
+                datosValidos = false;
+            } // Verificar el teléfono
+            else if (!Validacion.validarTelefono(telefono)) {
+                JOptionPane.showMessageDialog(this, "El teléfono introducido no es válido. \n Debe empezar por 6/7/9 y contener 9 números.", "Teléfono inválido", JOptionPane.WARNING_MESSAGE);
+                tlfTextField.setText("");
+                datosValidos = false;
+
+            } else {
+            }
+
+            // Si todos los datos son válidos, guardar los cambios
+            if (datosValidos) {
+                objcli.setCorreo(email);
+                objcli.setTelefono(telefono);
+                objcli.setClave(password);
+
+                editUserButton.setText("Editar datos");
+
+                System.out.println(objcli);
+            } else {
+            }
+        }
+
+    }//GEN-LAST:event_editUserButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraarriba1;
+    private javax.swing.JButton deleteUserButton;
+    private javax.swing.JLabel dniLabel;
+    private javax.swing.JTextField dniTextField;
+    private javax.swing.JButton editUserButton;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel errorNoAnt;
     private javax.swing.JLabel errorNoSig;
     private javax.swing.JButton jButtonAnt;
-    private javax.swing.JButton jButtonBaja;
     private javax.swing.JButton jButtonSig;
-    private javax.swing.JLabel jLabelClave;
-    private javax.swing.JLabel jLabelCorreo;
-    private javax.swing.JLabel jLabelDni;
-    private javax.swing.JLabel jLabelNombre;
-    private javax.swing.JLabel jLabelTlf;
-    private javax.swing.JLabel jLabelVar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextFieldClave;
-    private javax.swing.JTextField jTextFieldCorreo;
-    private javax.swing.JTextField jTextFieldDni;
-    private javax.swing.JTextField jTextFieldName;
-    private javax.swing.JTextField jTextFieldTlf;
     private javax.swing.JButton logo1;
     private javax.swing.JButton mainscr;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField nameTextField;
+    private javax.swing.JLabel passLabel;
+    private javax.swing.JTextField passTextField;
     private javax.swing.JLabel titleLabel1;
+    private javax.swing.JLabel tlfLabel;
+    private javax.swing.JTextField tlfTextField;
+    private javax.swing.JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
 }
