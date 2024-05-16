@@ -44,13 +44,13 @@ public class BuildingView extends javax.swing.JPanel {
         estrella3.setIcon(i.getCalificacion() >= 3 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
         estrella4.setIcon(i.getCalificacion() >= 4 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
         estrella5.setIcon(i.getCalificacion() >= 5 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
-      System.out.println("actualizao");
+      System.out.println("actualizado");
     }
 
     public void setInmueble(Inmueble inmueble) {
         this.i = inmueble;
         this.actualizar(); // Llamar al método actualizar() para actualizar la vista con el nuevo inmueble
-        System.out.println("seteao");
+        System.out.println("seteado");
     }
 
     
