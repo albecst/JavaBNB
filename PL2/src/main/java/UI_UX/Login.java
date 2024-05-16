@@ -44,6 +44,8 @@ public class Login extends javax.swing.JPanel {
         privacypolicyLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 250, 248));
+        setMinimumSize(new java.awt.Dimension(500, 500));
+        setPreferredSize(new java.awt.Dimension(500, 500));
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
