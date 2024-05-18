@@ -9,27 +9,26 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class JavaBNB implements Serializable {
 
-    private static ArrayList<Inmueble> inmueblesDisponibles;
+    private static ArrayList<Inmueble> inmuebles;
     private static ArrayList<Cliente> clientes;
 
     public static void inicializadorJavaBNB() {
-        inmueblesDisponibles = new ArrayList<>();
+        inmuebles = new ArrayList<>();
         clientes = new ArrayList<>();
     }
 
     public static ArrayList<Inmueble> getInmueblesDisponibles() {
-        for (Inmueble inmueblee : inmueblesDisponibles){
+        for (Inmueble inmueblee : inmuebles) {
             System.out.println(inmueblee.toString());
         }
-        return inmueblesDisponibles;
+        return inmuebles;
     }
-    
-    public static void setInmueblesDisponibles(ArrayList<Inmueble> inmueblesDisponibles) {
-        JavaBNB.inmueblesDisponibles = inmueblesDisponibles;
+
+    public static void setInmueblesDisponibles(ArrayList<Inmueble> inmuebles) {
+        JavaBNB.inmuebles = inmuebles;
     }
 
     public static ArrayList<Cliente> getClientes() {
@@ -47,19 +46,17 @@ public class JavaBNB implements Serializable {
      * @param inmueble Inmueble a añadir.
      */
     public static boolean añadirInmueble(Inmueble inmueble) {
-        boolean existeInmuebleConMismaDireccion = inmueblesDisponibles.stream()
+        boolean existeInmuebleConMismaDireccion = inmuebles.stream()
                 .anyMatch(inmuebleExistente -> inmuebleExistente.getDireccion().equals(inmueble.getDireccion()));
 
         if (!existeInmuebleConMismaDireccion) {
-            inmueblesDisponibles.add(inmueble);
+            inmuebles.add(inmueble);
         } else {
             System.out.println("El inmueble ya está añadido");
         }
-        
-        for (Inmueble inmueblee : inmueblesDisponibles){
-            System.out.println(inmueblee.toString());
-        }
-        
+
+       // for (Inmueble inmueblee : inmuebles) { System.out.println(inmueblee.toString()); }
+
         return !existeInmuebleConMismaDireccion;
     }
 
@@ -75,10 +72,10 @@ public class JavaBNB implements Serializable {
     public static ArrayList<Inmueble> buscarInmuebles(String ciudad, LocalDate fechaEntrada, LocalDate fechaSalida) {
         ArrayList<Inmueble> inmueblesDisponiblesEnCiudad = new ArrayList<>();
 
-        if (inmueblesDisponibles.isEmpty() == true) {
+        if (inmuebles.isEmpty() == true) {
             return inmueblesDisponiblesEnCiudad;
         } else {
-            for (Inmueble inmueble : inmueblesDisponibles) {
+            for (Inmueble inmueble : inmuebles) {
                 if (inmueble.getDireccion().getCiudad().equalsIgnoreCase(ciudad) && inmueble.estaDisponible(fechaEntrada, fechaSalida)) {
                     inmueblesDisponiblesEnCiudad.add(inmueble);
                 }
@@ -99,8 +96,8 @@ public class JavaBNB implements Serializable {
      * Busca inmuebles disponibles ordenados por precio de menor a mayor.
      */
     public static void ordenarPorPrecioAscSF() {
-        if (inmueblesDisponibles != null) {
-            inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
+        if (inmuebles != null) {
+            inmuebles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
         }
     }
 
@@ -108,8 +105,8 @@ public class JavaBNB implements Serializable {
      * Ordena los inmuebles disponibles por precio de mayor a menor.
      */
     public static void ordenarPorPrecioDescSF() {
-        if (inmueblesDisponibles != null) {
-            inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche).reversed());
+        if (inmuebles != null) {
+            inmuebles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche).reversed());
         }
     }
 
@@ -118,8 +115,8 @@ public class JavaBNB implements Serializable {
      * apartamentos.
      */
     public static void ordenarPorTipoSF() {
-        if (inmueblesDisponibles != null) {
-            inmueblesDisponibles.sort(Comparator.comparing(Inmueble::getTipo));
+        if (inmuebles != null) {
+            inmuebles.sort(Comparator.comparing(Inmueble::getTipo));
         }
     }
 
@@ -127,8 +124,8 @@ public class JavaBNB implements Serializable {
      * Ordena los inmuebles disponibles por tipo.
      */
     public static void ordenarPorCalificacionAscSF() {
-        if (inmueblesDisponibles != null) {
-            inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getCalificacion));
+        if (inmuebles != null) {
+            inmuebles.sort(Comparator.comparingDouble(Inmueble::getCalificacion));
         }
     }
 
@@ -136,8 +133,8 @@ public class JavaBNB implements Serializable {
      * Ordena los inmuebles disponibles por calificación de menor a mayor.
      */
     public static void ordenarPorCalificacionDescSF() {
-        if (inmueblesDisponibles != null) {
-            inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getCalificacion).reversed());
+        if (inmuebles != null) {
+            inmuebles.sort(Comparator.comparingDouble(Inmueble::getCalificacion).reversed());
         }
     }
 
@@ -194,40 +191,7 @@ public class JavaBNB implements Serializable {
     }
 
     /**
-     * Calcula el precio total de una reserva.
-     */
-    public static double calcularPrecioTotal(Inmueble inmueble, Particular particular, LocalDate fechaEntrada, LocalDate fechaSalida) {
-        long diasEstancia = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
-        double costoTotal = diasEstancia * inmueble.getPrecioNoche();
-        if (particular.isVip()) {
-            costoTotal *= 0.9;
-        }
-        return costoTotal;
-    }
-
-    /**
-     * Procesa el pago de una reserva y la reserva de un inmueble si todo está
-     * correcto.
-     *
-     * @param inmueble Inmueble a reservar.
-     * @param fechaEntrada Día de comienzo de la reserva.
-     * @param fechaSalida Día de fin de la reserva.
-     */
-    public static void procesarReserva(Inmueble inmueble, Particular particular, LocalDate fechaEntrada, LocalDate fechaSalida) {
-        double saldoRestanteParticular = particular.getSaldo();
-        double costoTotal = calcularPrecioTotal(inmueble, particular, fechaEntrada, fechaSalida);
-        if (saldoRestanteParticular < costoTotal) {
-            System.out.println("No hay dinero suficiente para realizar la reserva");
-        } else {
-            particular.disminuirSaldo(costoTotal);
-            Reserva reserva = new Reserva(particular, inmueble, fechaEntrada, fechaSalida);
-            particular.addReserva(reserva);
-            inmueblesDisponibles.remove(inmueble);
-        }
-    }
-
-    /**
-     * Carga los datos de personas del fichero
+     * Carga los datos de personas e inmuebles del fichero a JavaBNB
      */
     public static void cargarDatos() {
         try {
@@ -246,7 +210,7 @@ public class JavaBNB implements Serializable {
         try {
             FileInputStream istreamInmuebles = new FileInputStream("./src/main/resources/data/copiasegInmuebles.dat");
             ObjectInputStream oisInmuebles = new ObjectInputStream(istreamInmuebles);
-            inmueblesDisponibles = (ArrayList<Inmueble>) oisInmuebles.readObject();
+            inmuebles = (ArrayList<Inmueble>) oisInmuebles.readObject();
             istreamInmuebles.close();
         } catch (IOException ioe) {
             System.out.println("Error de IO: " + ioe.getMessage());
@@ -257,29 +221,11 @@ public class JavaBNB implements Serializable {
         }
     }
 
-    
-    
-    
-    public static void guardarfoto(String foto){
-    try {
-            if (!foto.equals("")) {
-                               FileOutputStream ostreamClientes = new FileOutputStream("./src/main/resources/data/copiasegClientes.dat");
-                ObjectOutputStream oosClientes = new ObjectOutputStream(ostreamClientes);
-                //guardamos el array de personas
-                oosClientes.writeObject(clientes);
-                ostreamClientes.close();
-            } else {
-                System.out.println("Error: No hay datos de clientes...");
-            }
-        } catch (IOException ioe) {
-            System.out.println("Error de IO: " + ioe.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    
-    }
+
+
     /**
      * **** Serialización de los objetos *****
+     * Guarda en la carpeta de "data" en "resources" todos los clientes e inmuebles
      */
     public static void guardarDatos() {
         try {
@@ -302,14 +248,14 @@ public class JavaBNB implements Serializable {
         }
 
         try {
-            if (!inmueblesDisponibles.isEmpty()) {
+            if (!inmuebles.isEmpty()) {
                 /**
                  * **** Serialización de los inmuebles *****
                  */
                 FileOutputStream ostreamInmuebles = new FileOutputStream("./src/main/resources/data/copiasegInmuebles.dat");
                 ObjectOutputStream oosInmuebles = new ObjectOutputStream(ostreamInmuebles);
                 //guardamos el array de inmuebles
-                oosInmuebles.writeObject(inmueblesDisponibles);
+                oosInmuebles.writeObject(inmuebles);
                 ostreamInmuebles.close();
             }
         } catch (IOException ioe) {

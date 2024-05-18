@@ -39,6 +39,7 @@ public class ClientProfile extends javax.swing.JPanel {
                 monthTextField.setText(String.valueOf(fechaCaducidad.getMonthValue()));
                 yearTextField.setText(String.valueOf(fechaCaducidad.getYear()));
                 cvvTextField.setText(tarjeta.getCvv());
+                moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
             }
 
         }

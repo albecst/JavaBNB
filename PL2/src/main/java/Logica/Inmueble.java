@@ -13,8 +13,8 @@ public class Inmueble implements Serializable {
     private String servicios;
     private double calificacion; //Si es menor a 0 o mayor a 5 error
     private String fotografia; //Será un String, porque la fotografía no deja de ser una ruta dentro de nuestro dispositivo.
-    private LocalDate fechaInicioReserva;
-    private LocalDate fechaFinReserva;
+    //  private LocalDate fechaInicioReserva;
+    //  private LocalDate fechaFinReserva;
     private String descripcion;
     private int valoraciones;
 
@@ -39,8 +39,40 @@ public class Inmueble implements Serializable {
      * @param fechaSalida Fecha de salida.
      * @return True si está disponible, false si no lo está.
      */
+    
+    //TODO: hacer esto bonito y que no acepte fechas anteriores a la actual o que la de salida sea anterior a la de entrada
     public boolean estaDisponible(LocalDate fechaEntrada, LocalDate fechaSalida) {
-        return fechaInicioReserva.isAfter(fechaSalida) || fechaFinReserva.isBefore(fechaEntrada);
+        boolean disponible = true;
+        for (Cliente cliente : JavaBNB.getClientes()) {
+            if (cliente instanceof Particular) {
+                for (Reserva reserva : ((Particular) cliente).getReservas()) {
+                    if (this.equals(reserva.getInmueble()) && (!comprobarFechasLibres(reserva,fechaEntrada,fechaSalida))) {
+                        disponible = false;
+                    }
+                }
+            }
+        }
+        return disponible;
+    }
+
+    //TODO: si son iguales no lo pilla. 
+    public boolean comprobarFechasLibres(Reserva reserva, LocalDate fechaEntrada, LocalDate fechaSalida) {
+        boolean fechadisp = true;
+
+        if (reserva.getFechaInicio().isBefore(fechaSalida) && reserva.getFechaFin().isAfter(fechaSalida)) //si quiero reservar para fecha final ya pillada
+        {
+            fechadisp = false;
+        }
+        if (reserva.getFechaInicio().isBefore(fechaEntrada) && reserva.getFechaFin().isAfter(fechaEntrada)) //reservar para fecha inicial ya pillada
+        {
+            fechadisp = false;
+        }
+        if (reserva.getFechaInicio().isAfter(fechaEntrada) && reserva.getFechaFin().isBefore(fechaSalida)) //reservar para periodo de tiempo con reserva en medio
+        {
+            fechadisp = false;
+        }
+
+        return fechadisp;
     }
 
     /**
@@ -96,19 +128,14 @@ public class Inmueble implements Serializable {
         return servicios;
     }
 
-    
     /**
-     * 
+     *
      * @param servicios new value of servicios
      */
     public void setServicios(String servicios) {
         this.servicios = servicios;
     }
 
-    
-    
-    
-    
     /**
      * Get the value of precioNoche
      *
@@ -206,12 +233,10 @@ public class Inmueble implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "Inmueble{" + "titulo=" + titulo + ", direccion=" + direccion + ", datosInmueble=" + datosInmueble + ", tipo=" + tipo + ", precioNoche=" + precioNoche + ", servicios=" + servicios + ", calificacion=" + calificacion + ", fotografia=" + fotografia + ", fechaFinReserva=" + fechaFinReserva + ", descripcion=" + descripcion + '}';
+        return "Inmueble{" + "titulo=" + titulo + ", direccion=" + direccion + ", datosInmueble=" + datosInmueble + ", tipo=" + tipo + ", precioNoche=" + precioNoche + ", servicios=" + servicios + ", calificacion=" + calificacion + ", fotografia=" + fotografia + ", descripcion=" + descripcion + '}';
     }
 
 }

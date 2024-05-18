@@ -33,9 +33,14 @@ public class Particular extends Cliente implements Serializable {
      */
     public String disminuirSaldo(double cantidad) {
         Double saldo = tarjetaCredito.getSaldo();
+        if (vip){
+        saldo -= cantidad*0.9;
+        tarjetaCredito.setSaldo(saldo);  
+        }else{
         saldo -= cantidad;
-        tarjetaCredito.setSaldo(saldo);
-        return "El saldo actual es: "+ saldo + "€";
+        tarjetaCredito.setSaldo(saldo);  
+    }
+         return "El saldo actual es: "+ saldo + "€";
     }
 
     /**
@@ -53,6 +58,7 @@ public class Particular extends Cliente implements Serializable {
     public void addReserva(Reserva reserva) {
         if (!reservas.contains(reserva)){
             reservas.add(reserva);
+            disminuirSaldo(reserva.calcularPrecioTotal());
         }
         else{
             System.out.println("La reserva ya existe");
@@ -62,8 +68,11 @@ public class Particular extends Cliente implements Serializable {
 
     /**
      * Getters & Setters
-     *
-     * Get the value of saldo
+     */
+    
+    
+    //TODO: esto no sobra?
+     /** Get the value of saldo
      *
      * @return the value of saldo
      */
@@ -118,9 +127,18 @@ public class Particular extends Cliente implements Serializable {
         this.tarjetaCredito = tarjetaCredito;
     }
 
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(ArrayList<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+    
+
     @Override
     public String toString() {
-        return super.toString()+ tarjetaCredito.toString() + ", vip:" + vip + ", reservas:" + reservas;
+        return super.toString()+ tarjetaCredito.toString() + ", vip:" + vip ;
     }
 
     

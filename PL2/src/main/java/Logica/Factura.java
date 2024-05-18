@@ -3,7 +3,7 @@ package Logica;
 import java.io.Serializable;
 
 public class Factura implements Serializable {
-
+ //TODO: me sobra muchisimo esta clase
     private int idFactura;
     private double importe;
     private String concepto;

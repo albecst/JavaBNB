@@ -29,7 +29,7 @@ public class Sesion {
      *
      * @param correo
      * @param clave
-     * @return
+     * @return int referente a qué tipo de "persona" es.
      */
     public static int iniciarSesion(String correo, String clave) {
         boolean isHost = false;
@@ -41,9 +41,8 @@ public class Sesion {
             System.out.println(cliente.toString());
             isHost = (cliente instanceof Anfitrion);
             if (cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
-                System.out.println("Sesión iniciada");
                 Aplicacion.sesion.nuevaSesion(cliente);
-                System.out.println(Aplicacion.sesion.user);
+                System.out.println("Sesión iniciada por "+ Aplicacion.sesion.user);
                 return isHost ? 3 : 2;
             }
         }
@@ -65,4 +64,5 @@ public class Sesion {
         System.out.println(cliente.toString());
     }
     
+
 }

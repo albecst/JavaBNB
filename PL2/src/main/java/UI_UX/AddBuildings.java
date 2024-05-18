@@ -4,10 +4,12 @@
  */
 package UI_UX;
 
+import Logica.Anfitrion;
 import Logica.DatosInmueble;
 import Logica.Direccion;
 import Logica.Inmueble;
 import Logica.JavaBNB;
+import Logica.Sesion;
 import javax.swing.*;
 import Logica.Validacion;
 import java.io.File;
@@ -734,6 +736,7 @@ public class AddBuildings extends javax.swing.JPanel {
             Inmueble inmueble = new Inmueble(titulo, descripcion, direccion, datos, tipo, precio, fotografia, servicios);
             boolean inmuebleValido = JavaBNB.añadirInmueble(inmueble);
             if (inmuebleValido) {
+               ((Anfitrion)Sesion.user).addInmuebles(inmueble);
                 JOptionPane.showMessageDialog(this, "El inmueble se ha creado correctamente, se ha añadido a la lista de inmuebles.", "Inmueble creado", JOptionPane.WARNING_MESSAGE);
 
             } else {

@@ -132,6 +132,9 @@ public class Tarjeta implements Serializable {
     
     
     
+    
+    
+    
 
     @Override
     public String toString() {

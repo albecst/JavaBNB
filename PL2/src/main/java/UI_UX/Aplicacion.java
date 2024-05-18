@@ -121,8 +121,6 @@ public class Aplicacion {
     public static void loadBuildingView(Inmueble inmueble) {
         cards.add(buildingview, "Pantalla buildingview");
         buildingview.setInmueble(inmueble);
-
-        System.out.println("nos movemosssss");
         cardLayout.show(cards, "Pantalla buildingview");
     }
 

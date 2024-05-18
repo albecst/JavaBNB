@@ -10,7 +10,7 @@ public class Cliente implements Serializable {
     private String correo;
     private String clave;
     private String telefono;
-
+    
     public Cliente(String dni, String nombre, String correo, String clave, String telefono) {
         this.dni = dni;
         this.nombre = nombre;
@@ -109,6 +109,8 @@ public class Cliente implements Serializable {
     public void setDni(String dni) {
         this.dni = dni;
     }
+    
+    
 
     @Override
     public String toString() {
