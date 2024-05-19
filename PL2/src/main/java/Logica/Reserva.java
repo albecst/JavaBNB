@@ -121,10 +121,11 @@ public class Reserva implements Serializable {
         this.fechaFin = fechaFin;
     }
 
-    public void generaFicha() throws IOException {
+    public void generaFicha(String directorio) throws IOException {
 
-        String nombreFichero = this.particular.getNombre() + this.inmueble.getTitulo();
-        PrintWriter salida = new PrintWriter(new BufferedWriter(new FileWriter(nombreFichero + ".txt")));
+        String nombreFichero = this.particular.getDni() +"_"+ this.inmueble.getTitulo();
+        
+        PrintWriter salida = new PrintWriter(new BufferedWriter(new FileWriter(directorio+"_"+nombreFichero+".txt")));
         DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String fr = fechaReserva.format(formatoCorto);
 
@@ -151,6 +152,12 @@ public class Reserva implements Serializable {
         salida.println("-------------------------------------------------------------------------------");
         salida.close();
     }
+
+    @Override
+    public String toString() {
+        return "Reserva{" + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", fechaReserva=" + fechaReserva + '}';
+    }
+    
 
     
 }
