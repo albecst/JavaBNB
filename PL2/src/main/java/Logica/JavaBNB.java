@@ -20,14 +20,14 @@ public class JavaBNB implements Serializable {
         clientes = new ArrayList<>();
     }
 
-    public static ArrayList<Inmueble> getInmueblesDisponibles() {
+    public static ArrayList<Inmueble> getInmuebles() {
         for (Inmueble inmueblee : inmuebles) {
             System.out.println(inmueblee.toString());
         }
         return inmuebles;
     }
 
-    public static void setInmueblesDisponibles(ArrayList<Inmueble> inmuebles) {
+    public static void setInmuebles(ArrayList<Inmueble> inmuebles) {
         JavaBNB.inmuebles = inmuebles;
     }
 
@@ -55,8 +55,7 @@ public class JavaBNB implements Serializable {
             System.out.println("El inmueble ya está añadido");
         }
 
-       // for (Inmueble inmueblee : inmuebles) { System.out.println(inmueblee.toString()); }
-
+        // for (Inmueble inmueblee : inmuebles) { System.out.println(inmueblee.toString()); }
         return !existeInmuebleConMismaDireccion;
     }
 
@@ -170,6 +169,26 @@ public class JavaBNB implements Serializable {
         }
     }
 
+    public static ArrayList<Inmueble> filtrarCasas(ArrayList<Inmueble> inmueblesDisponibles) {
+        ArrayList<Inmueble> casas = new ArrayList<>();
+        for (Inmueble inmueble : inmueblesDisponibles) {
+            if (inmueble.getTipo().equalsIgnoreCase("Casa")) {
+                casas.add(inmueble);
+            }
+        }
+        return casas;
+    }
+
+    public static ArrayList<Inmueble> filtrarApartamentos(ArrayList<Inmueble> inmueblesDisponibles) {
+        ArrayList<Inmueble> apartamentos = new ArrayList<>();
+        for (Inmueble inmueble : inmueblesDisponibles) {
+            if (inmueble.getTipo().equalsIgnoreCase("Apartamento")) {
+                apartamentos.add(inmueble);
+            }
+        }
+        return apartamentos;
+    }
+
     /**
      * Ordena los inmuebles disponibles tras un filtro de ciudad, fecha de
      * entrada y fecha de salida, por calificación de menor a mayor.
@@ -221,11 +240,9 @@ public class JavaBNB implements Serializable {
         }
     }
 
-
-
     /**
-     * **** Serialización de los objetos *****
-     * Guarda en la carpeta de "data" en "resources" todos los clientes e inmuebles
+     * **** Serialización de los objetos ***** Guarda en la carpeta de "data"
+     * en "resources" todos los clientes e inmuebles
      */
     public static void guardarDatos() {
         try {
