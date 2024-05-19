@@ -42,30 +42,32 @@ public class AddBuildings extends javax.swing.JPanel {
     public File openImage() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Selecciona una imagen");
-        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.setAcceptAllFileFilterUsed(false); // Deshabilitar la opción "Todos los archivos"
         fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif", "bmp"));
 
-        int result = fileChooser.showOpenDialog(null);
+        int result = fileChooser.showOpenDialog(null); // Mostrar el diálogo de seleccion y capturar la respuesta
+
+        // Procesar la respuesta
         if (result == JFileChooser.APPROVE_OPTION) {
             return fileChooser.getSelectedFile();
         }
-        return null; // No file was selected or the user cancelled.
+        return null; // No file was selected or the user cancelled
     }
 
-    public String saveImage(File sourceFile) {
-        String destinationDirectory = "./src/main/resources/fotosinmuebles"; // Directorio de destino fijo
-        Path destinationPath = Paths.get(destinationDirectory, sourceFile.getName());
+    public String saveImage(File archivofoto) {
+        String directoriodestino = "./src/main/resources/fotosinmuebles"; // Directorio de destino fijo
+        Path pathdestino = Paths.get(directoriodestino, archivofoto.getName());
 
         try {
             // Asegúrate de que el directorio exista
-            if (!Files.exists(Paths.get(destinationDirectory))) {
-                Files.createDirectories(Paths.get(destinationDirectory));
+            if (!Files.exists(Paths.get(directoriodestino))) {
+                Files.createDirectories(Paths.get(directoriodestino));
             }
 
             // Copia el archivo al directorio especificado
-            Files.copy(sourceFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Imagen guardada en: " + destinationPath);
-            return destinationPath.toString(); // Devuelve la ruta de la imagen como String
+            Files.copy(archivofoto.toPath(), pathdestino, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Imagen guardada en: " + pathdestino);
+            return pathdestino.toString(); // Devuelve la ruta de la imagen como String
         } catch (IOException ex) {
             System.out.println("Error al guardar la imagen: " + ex.getMessage());
             return null; // Devuelve null si hay un error
@@ -73,9 +75,9 @@ public class AddBuildings extends javax.swing.JPanel {
     }
 
     public void loadImage() {
-        File selectedFile = openImage();
-        if (selectedFile != null) {
-            fotografia = saveImage(selectedFile);
+        File fotoFile = openImage();
+        if (fotoFile != null) {
+            fotografia = saveImage(fotoFile);
         }
     }
 

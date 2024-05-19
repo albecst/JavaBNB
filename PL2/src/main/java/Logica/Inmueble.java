@@ -39,40 +39,42 @@ public class Inmueble implements Serializable {
      * @param fechaSalida Fecha de salida.
      * @return True si está disponible, false si no lo está.
      */
-    
     //TODO: hacer esto bonito y que no acepte fechas anteriores a la actual o que la de salida sea anterior a la de entrada
     public boolean estaDisponible(LocalDate fechaEntrada, LocalDate fechaSalida) {
         boolean disponible = true;
+        if (fechaEntrada.isAfter(fechaSalida) || fechaEntrada.isBefore(LocalDate.now()) || fechaSalida.isBefore(LocalDate.now())) {
+            disponible = false;
+        }
         for (Cliente cliente : JavaBNB.getClientes()) {
             if (cliente instanceof Particular) {
                 for (Reserva reserva : ((Particular) cliente).getReservas()) {
-                    if (this.equals(reserva.getInmueble()) && (!comprobarFechasLibres(reserva,fechaEntrada,fechaSalida))) {
+                    if (this.equals(reserva.getInmueble()) && (comprobarFechasLibres(reserva, fechaEntrada, fechaSalida)) == false) {
                         disponible = false;
                     }
+
                 }
             }
         }
         return disponible;
     }
 
-    //TODO: si son iguales no lo pilla. 
     public boolean comprobarFechasLibres(Reserva reserva, LocalDate fechaEntrada, LocalDate fechaSalida) {
-        boolean fechadisp = true;
+        boolean estalibre = true;
 
-        if (reserva.getFechaInicio().isBefore(fechaSalida) && reserva.getFechaFin().isAfter(fechaSalida)) //si quiero reservar para fecha final ya pillada
-        {
-            fechadisp = false;
+        if (reserva.getFechaInicio().equals(fechaEntrada) || reserva.getFechaInicio().equals(fechaSalida) || reserva.getFechaFin().equals(fechaEntrada) || reserva.getFechaFin().equals(fechaSalida)) {
+            estalibre = false;
         }
-        if (reserva.getFechaInicio().isBefore(fechaEntrada) && reserva.getFechaFin().isAfter(fechaEntrada)) //reservar para fecha inicial ya pillada
-        {
-            fechadisp = false;
+        if (reserva.getFechaInicio().isBefore(fechaSalida) && reserva.getFechaFin().isAfter(fechaSalida)) { //si quiero reservar para fecha final ya pillada
+            estalibre = false;
         }
-        if (reserva.getFechaInicio().isAfter(fechaEntrada) && reserva.getFechaFin().isBefore(fechaSalida)) //reservar para periodo de tiempo con reserva en medio
-        {
-            fechadisp = false;
+        if (reserva.getFechaInicio().isBefore(fechaEntrada) && reserva.getFechaFin().isAfter(fechaEntrada)) { //reservar para fecha inicial ya pillada
+            estalibre = false;
+        }
+        if (reserva.getFechaInicio().isAfter(fechaEntrada) && reserva.getFechaFin().isBefore(fechaSalida)) { //reservar para periodo de tiempo con reserva en medio
+            estalibre = false;
         }
 
-        return fechadisp;
+        return estalibre;
     }
 
     /**

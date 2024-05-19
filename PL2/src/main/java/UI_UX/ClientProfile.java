@@ -5,12 +5,16 @@
 package UI_UX;
 
 import Logica.Particular;
+import Logica.Reserva;
 import Logica.Sesion;
 import Logica.Tarjeta;
 import Logica.Validacion;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ClientProfile extends javax.swing.JPanel {
+
+    public ArrayList<ReservasView> reservasicon;
 
     /**
      * Creates new form UserProfile
@@ -42,7 +46,44 @@ public class ClientProfile extends javax.swing.JPanel {
                 moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
             }
 
+            reservasicon = new ArrayList<>();
+            insertarReservas();
+
         }
+    }
+
+    public void insertarReservas() {
+
+        deleteBuildings(); // Borra cualquier widget de reserva existente antes de insertar nuevos
+
+        int fila = 0;
+        //tamaño ventana widget=[225, 229]
+        int x = 50; //valor de prueba
+        for (Reserva reserva : (((Particular) Sesion.user).getReservas())) {
+            if (x >= 941) { //tamaño del panel de ancho
+                fila += 229;
+                x = 50;
+            }
+            ReservasView iconoreserva = new ReservasView();
+            iconoreserva.init(reserva);
+            
+            reservasicon.add(iconoreserva);
+            reservasContainer.add(iconoreserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, fila, -1, -1));  //méto comp, java.lang.Object constr); do addLayoutComponent(java.awt.Component comp, java.lang.Object constr);  Adds the specified component to the layout, using the specified constraint object.
+
+            x += 400; //valor de prueba
+            System.out.println(reserva.toString());
+        }
+        reservasContainer.revalidate(); // Actualiza el contenedor para mostrar los cambios
+        reservasContainer.repaint();   // Repinta el contenedor para asegurar que los cambios sean visibles
+    }
+
+    public void deleteBuildings() {
+        for (ReservasView rv : reservasicon) {
+            this.reservasicon.remove(rv);
+        }
+        reservasicon.clear(); // Limpia la lista de widgets de edificios después de eliminarlos
+        reservasContainer.revalidate(); // Actualiza el contenedor para mostrar los cambios
+        reservasContainer.repaint();   // Repinta el contenedor para asegurar que los cambios sean visibles
     }
 
     /**
@@ -92,6 +133,8 @@ public class ClientProfile extends javax.swing.JPanel {
         userpfp = new javax.swing.JButton();
         username = new javax.swing.JLabel();
         ParLabel = new javax.swing.JLabel();
+        reservasLabel = new javax.swing.JLabel();
+        reservasContainer = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 250, 248));
 
@@ -499,6 +542,11 @@ public class ClientProfile extends javax.swing.JPanel {
         ParLabel.setForeground(new java.awt.Color(102, 102, 102));
         ParLabel.setText("Cliente");
 
+        reservasLabel.setFont(new java.awt.Font("Serif", 3, 48)); // NOI18N
+        reservasLabel.setForeground(new java.awt.Color(255, 90, 95));
+        reservasLabel.setText("Lista de reservas");
+        reservasLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -515,6 +563,10 @@ public class ClientProfile extends javax.swing.JPanel {
                         .addComponent(ParLabel)))
                 .addGap(70, 70, 70)
                 .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(reservasLabel)
+                .addGap(166, 166, 166))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,26 +579,37 @@ public class ClientProfile extends javax.swing.JPanel {
                         .addGap(14, 14, 14)
                         .addComponent(ParLabel))
                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(reservasLabel)
+                .addContainerGap())
         );
+
+        reservasContainer.setMaximumSize(new java.awt.Dimension(941, 2147483647));
+        reservasContainer.setMinimumSize(new java.awt.Dimension(941, 0));
+        reservasContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(uppermenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(uppermenu, javax.swing.GroupLayout.DEFAULT_SIZE, 1298, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(196, Short.MAX_VALUE)
+                .addGap(62, 62, 62)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(reservasContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(uppermenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(18, 18, 18)
+                .addComponent(reservasContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -714,6 +777,8 @@ public class ClientProfile extends javax.swing.JPanel {
     private javax.swing.JLabel promocodeLabel;
     private javax.swing.JTextField promocodeTextField;
     private javax.swing.JLabel requirementsLabel;
+    private javax.swing.JPanel reservasContainer;
+    private javax.swing.JLabel reservasLabel;
     private javax.swing.JLabel tlfLabel;
     private javax.swing.JTextField tlfTextField;
     private javax.swing.JPanel uppermenu;
