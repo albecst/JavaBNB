@@ -67,8 +67,8 @@ public class Aplicacion {
         cards.add(register, "Pantalla register");
         cards.add(privacypolicy, "Pantalla privacypolicy");
         loadMainScreenClient();
+        loadMainScreenHost();
         loadAdminCheckBuildings();
-        cards.add(mainscreenhost, "Pantalla mainscreenhost");
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(addbuildings, "Pantalla addbuildings");
 
@@ -116,6 +116,12 @@ public class Aplicacion {
         cards.add(mainscreenclient, "Pantalla mainscreenclient");
         mainscreenclient.actualizar();
         cardLayout.show(cards, "Pantalla mainscreenclient");
+    }
+    
+        public static void loadMainScreenHost() {
+        cards.add(mainscreenhost, "Pantalla mainscreenhost");
+        mainscreenhost.actualizar();
+        cardLayout.show(cards, "Pantalla mainscreenhost");
     }
 
     public static void loadBuildingView(Inmueble inmueble) {
