@@ -138,7 +138,7 @@ public class AddBuildings extends javax.swing.JPanel {
         bedSpinner = new javax.swing.JSpinner();
         bathSpinner = new javax.swing.JSpinner();
         bathError1 = new javax.swing.JLabel();
-        priceSpinner = new javax.swing.JSpinner();
+        priceTextField = new javax.swing.JTextField();
 
         jPanel3.setBackground(new java.awt.Color(255, 250, 248));
         jPanel3.setLayout(new java.awt.GridBagLayout());
@@ -374,8 +374,12 @@ public class AddBuildings extends javax.swing.JPanel {
         bathError1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         bathError1.setText("Por favor, añada una fotografía");
 
-        priceSpinner.setMinimumSize(new java.awt.Dimension(113, 27));
-        priceSpinner.setPreferredSize(new java.awt.Dimension(113, 27));
+        priceTextField.setPreferredSize(new java.awt.Dimension(64, 22));
+        priceTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                priceTextFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout dataLayout = new javax.swing.GroupLayout(data);
         data.setLayout(dataLayout);
@@ -424,14 +428,15 @@ public class AddBuildings extends javax.swing.JPanel {
                                                 .addGap(22, 22, 22)
                                                 .addComponent(titleError, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(dataLayout.createSequentialGroup()
-                                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(dataLayout.createSequentialGroup()
-                                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(guestSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(bedroomSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(bedSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(bathSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(guestSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(bedroomSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(bedSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(bathSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(priceTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addGap(57, 57, 57)
                                                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(bedroomError, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -441,9 +446,7 @@ public class AddBuildings extends javax.swing.JPanel {
                                         .addGap(73, 73, 73)
                                         .addComponent(serviceError))
                                     .addGroup(dataLayout.createSequentialGroup()
-                                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(photoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(priceSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(photoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(dataLayout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -505,12 +508,12 @@ public class AddBuildings extends javax.swing.JPanel {
                         .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cpLabel)
                             .addComponent(cpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(29, 29, 29)
+                .addGap(31, 31, 31)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(priceLabel)
                     .addComponent(priceError)
-                    .addComponent(priceSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                    .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guestLabel)
                     .addComponent(guestError)
@@ -606,7 +609,7 @@ public class AddBuildings extends javax.swing.JPanel {
         String tipo = (String) typeComboBox.getSelectedItem();
 
         //TODO: hacer formatted field en vez de priceSpinner. mejorar las validaciones (por ej puedes poner una letra como numero)
-        double precio = ((Integer) priceSpinner.getValue()).doubleValue();
+        double precio = 0;
         int huespedes = (int) guestSpinner.getValue();
         int habitaciones = (int) bedroomSpinner.getValue();
         int camas = (int) bedSpinner.getValue();
@@ -682,12 +685,21 @@ public class AddBuildings extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "El código postal debe tener 5 carácteres exactamente", "Error del código postal", JOptionPane.WARNING_MESSAGE);
         }
 
-        if (precio <= 0) {
+        try {
+            String priceText = priceTextField.getText().trim();
+            if (priceText.isEmpty() || !priceText.matches("\\d+(\\.\\d{1,2})?")) {
+                throw new NumberFormatException("El precio debe ser un número válido con hasta dos decimales.");
+            }
+            precio = Double.parseDouble(priceText);
+            if (precio <= 0) {
+                throw new NumberFormatException("El precio debe ser mayor que 0.");
+            }
+            priceError.setVisible(false);
+        } catch (NumberFormatException e) {
             priceError.setVisible(true);
             valido = false;
-
-        } else {
-            priceError.setVisible(false);
+            JOptionPane.showMessageDialog(this, "Introduce un precio válido mayor que 0. \nRecuerda usar un punto para los decimales (ej. 233.35).", "Error del precio", JOptionPane.WARNING_MESSAGE);
+            return;
         }
 
         if (huespedes <= 0) {
@@ -736,7 +748,7 @@ public class AddBuildings extends javax.swing.JPanel {
             Inmueble inmueble = new Inmueble(titulo, descripcion, direccion, datos, tipo, precio, fotografia, servicios);
             boolean inmuebleValido = JavaBNB.añadirInmueble(inmueble);
             if (inmuebleValido) {
-               ((Anfitrion)Sesion.user).addInmuebles(inmueble);
+                ((Anfitrion) Sesion.user).addInmuebles(inmueble);
                 JOptionPane.showMessageDialog(this, "El inmueble se ha creado correctamente, se ha añadido a la lista de inmuebles.", "Inmueble creado", JOptionPane.WARNING_MESSAGE);
 
             } else {
@@ -745,6 +757,7 @@ public class AddBuildings extends javax.swing.JPanel {
             }
             return;
         }
+
     }//GEN-LAST:event_createBuildingButtonActionPerformed
 
     private void cpTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpTextFieldActionPerformed
@@ -780,6 +793,10 @@ public class AddBuildings extends javax.swing.JPanel {
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_logoActionPerformed
+
+    private void priceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_priceTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -822,7 +839,7 @@ public class AddBuildings extends javax.swing.JPanel {
     private javax.swing.JLabel photoLabel;
     private javax.swing.JLabel priceError;
     private javax.swing.JLabel priceLabel;
-    private javax.swing.JSpinner priceSpinner;
+    private javax.swing.JTextField priceTextField;
     private javax.swing.JLabel serviceError;
     private javax.swing.JLabel servicesLabel;
     private javax.swing.JTextPane servicesTextPane;
