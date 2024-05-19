@@ -55,7 +55,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
             errorNextLabel.setVisible(false);
             errorPreviousLabel.setVisible(false);
 
-            buildings = JavaBNB.getInmueblesDisponibles();
+            buildings = JavaBNB.getInmuebles();
 
             li = buildings.listIterator();
             if (buildings.size() < 1) {
