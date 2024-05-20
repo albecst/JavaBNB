@@ -1,0 +1,31 @@
+-------------------------------- Reserva --------------------------------
+
+
+DNI: 09126517W
+
+
+Nombre: Particular
+
+
+Fecha en que se hizo la reserva: 20/05/2024
+
+
+Dirección del inmueble: Direccion{calle=calleuno, numero=1, cp=28801, ciudad=ciudaduno}
+
+
+Tipo de inmueble: Casa
+
+
+Título del inmueble: casita1
+
+
+Fecha de llegada: 25/11/2024
+
+
+Fecha de salida: 30/11/2024
+
+
+Precio: 55.5
+
+
+-------------------------------------------------------------------------------
