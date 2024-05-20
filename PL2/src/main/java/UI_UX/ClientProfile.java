@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class ClientProfile extends javax.swing.JPanel {
 
     public ArrayList<ReservasView> reservasicon;
+    public Particular particular;
 
     /**
      * Creates new form UserProfile
@@ -23,6 +24,16 @@ public class ClientProfile extends javax.swing.JPanel {
         initComponents();
         errorLabel1.setVisible(false);
         requirementsLabel.setVisible(false);
+        emailTextField.setEditable(false);
+        clave.setEditable(false);
+        tlfTextField.setEditable(false);
+        promocodeTextField.setEditable(false);
+        CCTextField.setEditable(false);
+        dayTextField.setEditable(false);
+        monthTextField.setEditable(false);
+        yearTextField.setEditable(false);
+        moneyTextField.setEditable(false);
+        cvvTextField.setEditable(false);
 
     }
 
@@ -34,6 +45,11 @@ public class ClientProfile extends javax.swing.JPanel {
             emailTextField.setText(Sesion.user.getCorreo());
             clave.setText(Sesion.user.getClave());
             tlfTextField.setText(Sesion.user.getTelefono());
+            if (Sesion.esUsuarioVip()) {
+                promocodeTextField.setText("JAVABNB2024");
+            } else {
+                promocodeTextField.setText("    ");
+            }
 
             Tarjeta tarjeta = ((Particular) Sesion.user).getTarjetaCredito();
             if (tarjeta != null) {
@@ -66,7 +82,7 @@ public class ClientProfile extends javax.swing.JPanel {
             }
             ReservasView iconoreserva = new ReservasView();
             iconoreserva.init(reserva);
-            
+
             reservasicon.add(iconoreserva);
             reservasContainer.add(iconoreserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, fila, -1, -1));  //méto comp, java.lang.Object constr); do addLayoutComponent(java.awt.Component comp, java.lang.Object constr);  Adds the specified component to the layout, using the specified constraint object.
 
@@ -103,6 +119,7 @@ public class ClientProfile extends javax.swing.JPanel {
         logo1 = new javax.swing.JButton();
         mainscr = new javax.swing.JButton();
         cerrarsesion = new javax.swing.JButton();
+        addMoneyButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         data = new javax.swing.JPanel();
         emailLabel = new javax.swing.JLabel();
@@ -130,6 +147,7 @@ public class ClientProfile extends javax.swing.JPanel {
         yearTextField = new javax.swing.JTextField();
         moneyLabel = new javax.swing.JLabel();
         moneyTextField = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         userpfp = new javax.swing.JButton();
         username = new javax.swing.JLabel();
         ParLabel = new javax.swing.JLabel();
@@ -228,6 +246,22 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(23, 611, 0, 0);
         uppermenu.add(cerrarsesion, gridBagConstraints);
+
+        addMoneyButton.setBackground(new java.awt.Color(255, 90, 95));
+        addMoneyButton.setForeground(new java.awt.Color(255, 255, 255));
+        addMoneyButton.setText("Añadir 50 euros");
+        addMoneyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMoneyButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 16;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(23, 268, 0, 0);
+        uppermenu.add(addMoneyButton, gridBagConstraints);
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
 
@@ -527,6 +561,25 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
         data.add(moneyTextField, gridBagConstraints);
 
+        jButton2.setBackground(new java.awt.Color(255, 90, 95));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Editar datos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 202;
+        gridBagConstraints.gridy = 23;
+        gridBagConstraints.gridwidth = 286;
+        gridBagConstraints.ipadx = 18;
+        gridBagConstraints.ipady = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(40, 67, 0, 0);
+        data.add(jButton2, gridBagConstraints);
+
         userpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
         userpfp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -629,7 +682,7 @@ public class ClientProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_userpfpActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-// ActionListener para el botón
+        // ActionListener para el botón
         // Verificar el texto actual del botón
         if (jButton1.getText().equals("Editar datos")) {
             // Si el botón está en modo "Editar datos"
@@ -637,13 +690,12 @@ public class ClientProfile extends javax.swing.JPanel {
             emailTextField.setEditable(true);
             clave.setEditable(true);
             tlfTextField.setEditable(true);
-            promocodeTextField.setEditable(true);
-            CCTextField.setEditable(true);
-            dayTextField.setEditable(true);
-            monthTextField.setEditable(true);
-            yearTextField.setEditable(true);
-            moneyTextField.setEditable(true);
+            if (Sesion.esUsuarioVip()) {
 
+                promocodeTextField.setEditable(false);
+            } else {
+                promocodeTextField.setEditable(true);
+            }
             // Cambiar el texto del botón a "Aceptar"
             jButton1.setText("Aceptar");
         } else {
@@ -653,11 +705,6 @@ public class ClientProfile extends javax.swing.JPanel {
             clave.setEditable(false);
             tlfTextField.setEditable(false);
             promocodeTextField.setEditable(false);
-            CCTextField.setEditable(false);
-            dayTextField.setEditable(false);
-            monthTextField.setEditable(false);
-            yearTextField.setEditable(false);
-            moneyTextField.setEditable(false);
 
             jButton1.setText("Editar datos");
 
@@ -665,47 +712,50 @@ public class ClientProfile extends javax.swing.JPanel {
             String password = clave.getText();
             String telefono = tlfTextField.getText();
             String promocode = promocodeTextField.getText();
-            String cc = CCTextField.getText();
-            String day = dayTextField.getText();
-            String month = monthTextField.getText();
-            String year = yearTextField.getText();
-            String cvv = cvvTextField.getText();
-            String money = moneyTextField.getText();
 
             boolean valido = true;
-            Tarjeta tarjeta = ((Particular) Sesion.user).getTarjetaCredito();
 
-            if (!Validacion.validarNombre(email)) {
+            // Verificar el correo electrónico
+            if (!Validacion.validarEmail(email)) {
                 errorLabel1.setVisible(true);
+                emailTextField.setText("");
                 valido = false;
-            } else {
-                errorLabel1.setVisible(false);
+            } // Verificar la contraseña
+            else if (!Validacion.validarContraseña(password)) {
+                errorLabel1.setVisible(true);
+                clave.setText("");
+                valido = false;
+            } // Verificar el teléfono
+            else if (!Validacion.validarTelefono(telefono)) {
+                errorLabel1.setVisible(true);
+                tlfTextField.setText("");
+                valido = false;
             }
 
-            if (!Validacion.validarTarjeta(cc, Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year), cvv)) {
+            // Verificar el código promocional
+            if (!Validacion.validarPromocode(promocode)) {
                 errorLabel1.setVisible(true);
-                valido = false;
-            } else {
-                errorLabel1.setVisible(false);
-            }
-
-            if (!Validacion.validarVipPromocode(promocode)) {
-                errorLabel1.setVisible(true);
+                promocodeTextField.setText("");
                 valido = false;
             } else {
                 errorLabel1.setVisible(false);
             }
 
             if (valido) {
-                // Guardar los datos
+                errorLabel1.setVisible(false);
+
                 Sesion.user.setCorreo(email);
                 Sesion.user.setTelefono(telefono);
                 Sesion.user.setClave(password);
-                tarjeta.setNumeroTarjeta(cc);
-                tarjeta.setFechaCaducidad(LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day)));
-                tarjeta.setCvv(cvv);
 
-                System.out.println(Sesion.user);
+                // Verificar y actualizar el estado VIP
+                if (Sesion.hacerVipSiPromocodeValido(promocode)) {
+                    System.out.println("El usuario ha sido actualizado a VIP.");
+                }
+
+                System.out.println(Sesion.user.toString());
+            } else {
+                errorLabel1.setVisible(false);
             }
         }
 
@@ -745,11 +795,39 @@ public class ClientProfile extends javax.swing.JPanel {
         Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
     }//GEN-LAST:event_cerrarsesionActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void addMoneyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMoneyButtonActionPerformed
+        // Verifica si el usuario actual es un Particular
+        if (Sesion.user instanceof Particular) {
+            Particular particular = (Particular) Sesion.user;
+            Tarjeta tarjeta = particular.getTarjetaCredito();
+
+            // Verifica si el Particular tiene una tarjeta de crédito asociada
+            if (tarjeta != null) {
+                // Incrementa el saldo de la tarjeta en 50 euros
+                tarjeta.incrementarSaldo(50.0);
+                // Actualiza la interfaz de usuario para mostrar el nuevo saldo (si tienes una etiqueta o campo de texto para el saldo)
+                // saldoLabel.setText("Saldo: " + tarjeta.getSaldo());  // Actualiza el label del saldo si existe
+                System.out.println("Saldo añadido. Nuevo saldo: " + tarjeta.getSaldo());
+            } else {
+                System.out.println("El usuario no tiene una tarjeta de crédito asociada.");
+            }
+        } else {
+            System.out.println("El usuario actual no es un cliente particular.");
+
+        }
+
+    }//GEN-LAST:event_addMoneyButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CCLabel;
     private javax.swing.JTextField CCTextField;
     private javax.swing.JLabel ParLabel;
+    private javax.swing.JButton addMoneyButton;
     private javax.swing.JLabel appname;
     private javax.swing.JButton cerrarsesion;
     private javax.swing.JPasswordField clave;
@@ -764,6 +842,7 @@ public class ClientProfile extends javax.swing.JPanel {
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel errorLabel1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logo;
