@@ -62,6 +62,7 @@ public class MainScreenClient extends javax.swing.JPanel {
     }
 
     public void actualizar() {
+        //////////////////////////////////////////////////////////////////// uno sobra wtf
         buildings = new ArrayList<>();
         buildings = JavaBNB.getInmuebles();
         allBuildings = JavaBNB.getInmuebles();
