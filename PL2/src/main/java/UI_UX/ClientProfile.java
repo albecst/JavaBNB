@@ -809,6 +809,7 @@ public class ClientProfile extends javax.swing.JPanel {
             if (tarjeta != null) {
                 // Incrementa el saldo de la tarjeta en 50 euros
                 tarjeta.incrementarSaldo(50.0);
+                moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
                 // Actualiza la interfaz de usuario para mostrar el nuevo saldo (si tienes una etiqueta o campo de texto para el saldo)
                 // saldoLabel.setText("Saldo: " + tarjeta.getSaldo());  // Actualiza el label del saldo si existe
                 System.out.println("Saldo añadido. Nuevo saldo: " + tarjeta.getSaldo());
