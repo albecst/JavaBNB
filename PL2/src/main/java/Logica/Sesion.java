@@ -39,11 +39,7 @@ public class Sesion {
         for (Cliente cliente : JavaBNB.getClientes()) {
             System.out.println(cliente.toString());
             isHost = (cliente instanceof Anfitrion);
-            if (isHost){
-                for (Inmueble inmueble: ((Anfitrion)cliente).getInmuebles()){
-                    System.out.println(inmueble.toString());
-                }
-            }
+            
             if (cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
                 Aplicacion.sesion.nuevaSesion(cliente);
                 System.out.println("Sesión iniciada por " + Aplicacion.sesion.user);

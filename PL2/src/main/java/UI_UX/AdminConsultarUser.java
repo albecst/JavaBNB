@@ -42,32 +42,34 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         try {
             errorNoSig.setVisible(false);
             errorNoAnt.setVisible(false);
+            
+            if (JavaBNB.getClientes() != null) {
+                clientesaux = JavaBNB.getClientes();
 
-            clientesaux = JavaBNB.getClientes();
+                li = clientesaux.listIterator();
+                if (clientesaux.size() < 1) {
+                    jButtonSig.setEnabled(false);
+                    jButtonAnt.setEnabled(false);
+                    deleteUserButton.setEnabled(false);
+                    editUserButton.setEnabled(false);
+                    return;
+                } else {
+                    jButtonSig.setEnabled(true);
+                    jButtonAnt.setEnabled(true);
+                    deleteUserButton.setEnabled(true);
+                    editUserButton.setEnabled(true);
+                }
 
-            li = clientesaux.listIterator();
-            if (clientesaux.size() < 1) {
-                jButtonSig.setEnabled(false);
-                jButtonAnt.setEnabled(false);
-                deleteUserButton.setEnabled(false);
-                //jButtonModificar.setEnabled(false);
-                return;
-            } else {
-                jButtonSig.setEnabled(true);
-                jButtonAnt.setEnabled(true);
-                deleteUserButton.setEnabled(true);
-                // jButtonModificar.setEnabled(true);
-            }
-
-            if (li.hasNext()) {
-                objcli = li.next();
-            } else {
-                errorNoSig.setVisible(true);
-            }
-            if (objcli != null) {
-                presenta(objcli);
-            } else {
-                errorNoSig.setVisible(true);
+                if (li.hasNext()) {
+                    objcli = li.next();
+                } else {
+                    errorNoSig.setVisible(true);
+                }
+                if (objcli != null) {
+                    presenta(objcli);
+                } else {
+                    errorNoSig.setVisible(true);
+                }
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.toString());

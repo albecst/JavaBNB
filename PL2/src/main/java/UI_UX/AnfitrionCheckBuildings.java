@@ -9,7 +9,7 @@ import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
 public class AnfitrionCheckBuildings extends javax.swing.JPanel {
-    
+
     /**
      * Creates new form AdminCheckBuildings
      */
@@ -48,31 +48,32 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         try {
             errorNextLabel.setVisible(false);
             errorPreviousLabel.setVisible(false);
+            
+            if (Sesion.user != null) {
+                buildings = ((Anfitrion) Sesion.user).getInmuebles();
 
-            buildings = ((Anfitrion)Sesion.user).getInmuebles();
+                li = buildings.listIterator();
+                if (buildings.size() < 1) {
+                    nextButton.setEnabled(false);
+                    previousButton.setEnabled(false);
+                    deleteBuildingButton.setEnabled(false);
+                    return;
+                } else {
+                    nextButton.setEnabled(true);
+                    previousButton.setEnabled(true);
+                    deleteBuildingButton.setEnabled(true);
+                }
 
-            li = buildings.listIterator();
-            if (buildings.size() < 1) {
-                nextButton.setEnabled(false);
-                previousButton.setEnabled(false);
-                deleteBuildingButton.setEnabled(false);
-                return;
-            } else {
-                nextButton.setEnabled(true);
-                previousButton.setEnabled(true);
-                deleteBuildingButton.setEnabled(true);
-            }
-
-            if (li.hasNext()) {
-                objInm = li.next();
-                System.out.println(objInm.toString());
-            } else {
-                errorNextLabel.setVisible(true);
-            }
-            if (objInm != null) {
-                presenta();
-            } else {
-                errorNextLabel.setVisible(true);
+                if (li.hasNext()) {
+                    objInm = li.next();
+                } else {
+                    errorNextLabel.setVisible(true);
+                }
+                if (objInm != null) {
+                    presenta();
+                } else {
+                    errorNextLabel.setVisible(true);
+                }
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.toString());
@@ -610,7 +611,6 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
 
             // Si el botón está en modo "Aceptar"
             // Establecer los campos de texto como no editables
-            
             titleTextPanel.setEditable(false);
             descriptionTextPanel.setEditable(false);
             streetTextField.setEditable(false);
@@ -646,23 +646,17 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Cada inmueble necesita un título", "Sin título", JOptionPane.WARNING_MESSAGE);
                 valido = false;
 
-            }
-           
-            else if (descripcion.isEmpty()) {
+            } else if (descripcion.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Cada inmueble necesita una descripción.", "Sin descripción", JOptionPane.WARNING_MESSAGE);
                 valido = false;
-            }
-
-            else if (!Validacion.validarNombre(ciudad)) {
+            } else if (!Validacion.validarNombre(ciudad)) {
                 JOptionPane.showMessageDialog(this, "Existe algún error con la ciudad, puede que esté vacía o que el formato no sea válido.", "Error con la ciudad", JOptionPane.WARNING_MESSAGE);
                 valido = false;
-            }
-
-            else if (!Validacion.validarNombre(calle)) {
+            } else if (!Validacion.validarNombre(calle)) {
                 JOptionPane.showMessageDialog(this, "La casilla de la calle del inmueble es necesaria.", "Falta la calle", JOptionPane.WARNING_MESSAGE);
                 valido = false;
             }
-            
+
             //TODO: este numeroo tb me sobra######################################################################################
             boolean numeroo = false;
             int numeroInt = 0;

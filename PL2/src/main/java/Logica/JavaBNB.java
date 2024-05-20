@@ -21,9 +21,6 @@ public class JavaBNB implements Serializable {
     }
 
     public static ArrayList<Inmueble> getInmuebles() {
-        for (Inmueble inmueblee : inmuebles) {
-            System.out.println(inmueblee.toString());
-        }
         return inmuebles;
     }
 
@@ -54,8 +51,6 @@ public class JavaBNB implements Serializable {
         } else {
             System.out.println("El inmueble ya está añadido");
         }
-
-        // for (Inmueble inmueblee : inmuebles) { System.out.println(inmueblee.toString()); }
         return !existeInmuebleConMismaDireccion;
     }
 

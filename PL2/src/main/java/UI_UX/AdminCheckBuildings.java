@@ -1,15 +1,11 @@
 package UI_UX;
 
-import Logica.Anfitrion;
-import Logica.Cliente;
 import Logica.Inmueble;
 import Logica.JavaBNB;
-import Logica.Particular;
 import Logica.Validacion;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JOptionPane;
-
 
 public class AdminCheckBuildings extends javax.swing.JPanel {
 
@@ -51,32 +47,34 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         try {
             errorNextLabel.setVisible(false);
             errorPreviousLabel.setVisible(false);
+            
+            if (JavaBNB.getInmuebles() != null) {
+                buildings = JavaBNB.getInmuebles();
 
-            buildings = JavaBNB.getInmuebles();
+                li = buildings.listIterator();
+                if (buildings.size() < 1) {
+                    nextButton.setEnabled(false);
+                    previousButton.setEnabled(false);
+                    deleteBuildingButton.setEnabled(false);
+                    //jButtonModificar.setEnabled(false);
+                    return;
+                } else {
+                    nextButton.setEnabled(true);
+                    previousButton.setEnabled(true);
+                    deleteBuildingButton.setEnabled(true);
+                    // jButtonModificar.setEnabled(true);
+                }
 
-            li = buildings.listIterator();
-            if (buildings.size() < 1) {
-                nextButton.setEnabled(false);
-                previousButton.setEnabled(false);
-                deleteBuildingButton.setEnabled(false);
-                //jButtonModificar.setEnabled(false);
-                return;
-            } else {
-                nextButton.setEnabled(true);
-                previousButton.setEnabled(true);
-                deleteBuildingButton.setEnabled(true);
-                // jButtonModificar.setEnabled(true);
-            }
-
-            if (li.hasNext()) {
-                objInm = li.next();
-            } else {
-                errorNextLabel.setVisible(true);
-            }
-            if (objInm != null) {
-                presenta(objInm);
-            } else {
-                errorNextLabel.setVisible(true);
+                if (li.hasNext()) {
+                    objInm = li.next();
+                } else {
+                    errorNextLabel.setVisible(true);
+                }
+                if (objInm != null) {
+                    presenta(objInm);
+                } else {
+                    errorNextLabel.setVisible(true);
+                }
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.toString());
@@ -651,8 +649,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Cada inmueble necesita un título", "Sin título", JOptionPane.WARNING_MESSAGE);
                 valido = false;
 
-            }
-            /*
+            } /*
             if (fotografia == null || fotografia.isEmpty()) {
                 loadImage(); // Llama al método loadImage() para cargar la imagen
                 if (fotografia == null || fotografia.isEmpty()) { // Verifica si la carga de la imagen fue exitosa
@@ -663,19 +660,13 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
                     bathError1.setVisible(false);
                 }
             }
-             */
-
-            else if (descripcion.isEmpty()) {
+             */ else if (descripcion.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Cada inmueble necesita una descripción.", "Sin descripción", JOptionPane.WARNING_MESSAGE);
                 valido = false;
-            }
-
-            else if (!Validacion.validarNombre(ciudad)) {
+            } else if (!Validacion.validarNombre(ciudad)) {
                 JOptionPane.showMessageDialog(this, "Existe algún error con la ciudad, puede que esté vacía o que el formato no sea válido.", "Error con la ciudad", JOptionPane.WARNING_MESSAGE);
                 valido = false;
-            }
-
-            else if (!Validacion.validarNombre(calle)) {
+            } else if (!Validacion.validarNombre(calle)) {
                 JOptionPane.showMessageDialog(this, "La casilla de la calle del inmueble es necesaria.", "Falta la calle", JOptionPane.WARNING_MESSAGE);
                 valido = false;
             }
