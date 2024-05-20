@@ -68,9 +68,12 @@ public class ReservasView extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(225, 229));
         setMinimumSize(new java.awt.Dimension(225, 229));
 
-        jPanel1.setBackground(new java.awt.Color(255, 250, 248));
+        jPanel1.setBackground(new java.awt.Color(245, 245, 245));
+        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
         precio.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        precio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         precio.setText("Precio");
 
         recibo.setBackground(new java.awt.Color(255, 102, 102));
@@ -84,9 +87,11 @@ public class ReservasView extends javax.swing.JPanel {
         });
 
         titulo.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("Titulo inmueble");
 
         fechas.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        fechas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fechas.setText("Fechasssss");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -94,7 +99,7 @@ public class ReservasView extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(99, Short.MAX_VALUE)
+                .addContainerGap(97, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -122,7 +127,7 @@ public class ReservasView extends javax.swing.JPanel {
                 .addComponent(precio)
                 .addGap(18, 18, 18)
                 .addComponent(recibo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
