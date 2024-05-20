@@ -13,8 +13,6 @@ public class Inmueble implements Serializable {
     private String servicios;
     private double calificacion; //Si es menor a 0 o mayor a 5 error
     private String fotografia; //Será un String, porque la fotografía no deja de ser una ruta dentro de nuestro dispositivo.
-    //  private LocalDate fechaInicioReserva;
-    //  private LocalDate fechaFinReserva;
     private String descripcion;
     private int valoraciones;
 
@@ -39,7 +37,7 @@ public class Inmueble implements Serializable {
      * @param fechaSalida Fecha de salida.
      * @return True si está disponible, false si no lo está.
      */
-    //TODO: hacer esto bonito y que no acepte fechas anteriores a la actual o que la de salida sea anterior a la de entrada
+    //TODO: hacer esto bonito 
     public boolean estaDisponible(LocalDate fechaEntrada, LocalDate fechaSalida) {
         boolean disponible = true;
         if (fechaEntrada.isAfter(fechaSalida) || fechaEntrada.isBefore(LocalDate.now()) || fechaSalida.isBefore(LocalDate.now())) {

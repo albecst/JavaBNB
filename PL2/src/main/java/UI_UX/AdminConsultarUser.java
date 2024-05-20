@@ -4,18 +4,13 @@
  */
 package UI_UX;
 
-import Logica.Anfitrion;
 import Logica.Cliente;
 import Logica.JavaBNB;
-import Logica.Particular;
-import Logica.Sesion;
 import Logica.Validacion;
-import UI_UX.Aplicacion;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
-//TODO: boton de modificar datos
 public class AdminConsultarUser extends javax.swing.JPanel {
 
     /**

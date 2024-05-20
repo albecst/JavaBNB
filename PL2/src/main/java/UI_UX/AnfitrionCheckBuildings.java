@@ -1,26 +1,23 @@
 package UI_UX;
 
 import Logica.Anfitrion;
-import Logica.Cliente;
 import Logica.Inmueble;
-import Logica.JavaBNB;
-import Logica.Particular;
+import Logica.Sesion;
 import Logica.Validacion;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
-
-public class AdminCheckBuildings extends javax.swing.JPanel {
-
+public class AnfitrionCheckBuildings extends javax.swing.JPanel {
+    
     /**
      * Creates new form AdminCheckBuildings
      */
-    private ArrayList<Inmueble> buildings; //Referencia al ArrayList de inmuebles de la clase JavaBNB
+    private ArrayList<Inmueble> buildings; //Referencia al ArrayList de inmuebles del anfitrión de la sesión
     private ListIterator<Inmueble> li; //Iterador para recorrer el ArrayList en ambas direcciones
     private Inmueble objInm; //Referencia a un objeto de tipo inmueble del ArrayList
 
-    public AdminCheckBuildings() {
+    public AnfitrionCheckBuildings() {
         initComponents();
         errorNextLabel.setVisible(false);
         errorPreviousLabel.setVisible(false);
@@ -52,29 +49,28 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
             errorNextLabel.setVisible(false);
             errorPreviousLabel.setVisible(false);
 
-            buildings = JavaBNB.getInmuebles();
+            buildings = ((Anfitrion)Sesion.user).getInmuebles();
 
             li = buildings.listIterator();
             if (buildings.size() < 1) {
                 nextButton.setEnabled(false);
                 previousButton.setEnabled(false);
                 deleteBuildingButton.setEnabled(false);
-                //jButtonModificar.setEnabled(false);
                 return;
             } else {
                 nextButton.setEnabled(true);
                 previousButton.setEnabled(true);
                 deleteBuildingButton.setEnabled(true);
-                // jButtonModificar.setEnabled(true);
             }
 
             if (li.hasNext()) {
                 objInm = li.next();
+                System.out.println(objInm.toString());
             } else {
                 errorNextLabel.setVisible(true);
             }
             if (objInm != null) {
-                presenta(objInm);
+                presenta();
             } else {
                 errorNextLabel.setVisible(true);
             }
@@ -83,7 +79,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         }
     }
 
-    private void presenta(Inmueble inmueble) {
+    private void presenta() {
         typeLabel.setText(objInm.getTipo());
         titleTextPanel.setText(objInm.getTitulo());
         descriptionTextPanel.setText(objInm.getDescripcion());
@@ -544,7 +540,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
             objInm = li.next();
             errorNextLabel.setVisible(false);
             errorPreviousLabel.setVisible(false);
-            presenta(objInm);
+            presenta();
 
         } else {
             errorNextLabel.setVisible(true);
@@ -556,7 +552,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
             objInm = li.previous();
             errorNextLabel.setVisible(false);
             errorPreviousLabel.setVisible(false);
-            presenta(objInm);
+            presenta();
 
         } else {
             errorPreviousLabel.setVisible(true);
@@ -575,18 +571,18 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         if (li.hasNext()) {
             objInm = li.next();
             if (objInm != null) {
-                presenta(objInm);
+                presenta();
             }
         } else if (li.hasPrevious()) {
             objInm = li.previous();
             if (objInm != null) {
-                presenta(objInm);
+                presenta();
             }
         }
     }//GEN-LAST:event_deleteBuildingButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void editBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBuildingButtonActionPerformed
@@ -595,8 +591,6 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         if (editBuildingButton.getText().equals("Editar inmueble")) {
             // Si el botón está en modo "Editar datos"
             // Establecer los campos de texto como editables
-            // Si el botón está en modo "Aceptar"
-            // Establecer los campos de texto como no editables
             titleTextPanel.setEditable(true);
             descriptionTextPanel.setEditable(true);
             streetTextField.setEditable(true);
@@ -616,6 +610,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
 
             // Si el botón está en modo "Aceptar"
             // Establecer los campos de texto como no editables
+            
             titleTextPanel.setEditable(false);
             descriptionTextPanel.setEditable(false);
             streetTextField.setEditable(false);
@@ -652,19 +647,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
                 valido = false;
 
             }
-            /*
-            if (fotografia == null || fotografia.isEmpty()) {
-                loadImage(); // Llama al método loadImage() para cargar la imagen
-                if (fotografia == null || fotografia.isEmpty()) { // Verifica si la carga de la imagen fue exitosa
-                    bathError1.setVisible(true);
-                    valido = false;
-                } else {
-                    System.out.println(fotografia);
-                    bathError1.setVisible(false);
-                }
-            }
-             */
-
+           
             else if (descripcion.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Cada inmueble necesita una descripción.", "Sin descripción", JOptionPane.WARNING_MESSAGE);
                 valido = false;
@@ -679,7 +662,8 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "La casilla de la calle del inmueble es necesaria.", "Falta la calle", JOptionPane.WARNING_MESSAGE);
                 valido = false;
             }
-
+            
+            //TODO: este numeroo tb me sobra######################################################################################
             boolean numeroo = false;
             int numeroInt = 0;
             if (!numero.isEmpty()) {

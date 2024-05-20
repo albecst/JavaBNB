@@ -179,7 +179,7 @@ public class AdminScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_checkUsersButtonActionPerformed
 
     private void checkBookingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBookingsButtonActionPerformed
-        // TODO add your handling code here:
+        Aplicacion.loadAdminConsultarReservas();
     }//GEN-LAST:event_checkBookingsButtonActionPerformed
 
     private void checkBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBuildingsButtonActionPerformed

@@ -8,10 +8,9 @@ public class Sesion {
     public static boolean esAnfitrion;
 
     public static void nuevaSesion(Cliente cliente) {
-       user = cliente;
-       esAnfitrion = user instanceof Anfitrion;
+        user = cliente;
+        esAnfitrion = user instanceof Anfitrion;
     }
-   
 
     public static void updatenombre(String data) {
         if (!Validacion.validarNombre(data)) {
@@ -40,22 +39,27 @@ public class Sesion {
         for (Cliente cliente : JavaBNB.getClientes()) {
             System.out.println(cliente.toString());
             isHost = (cliente instanceof Anfitrion);
+            if (isHost){
+                for (Inmueble inmueble: ((Anfitrion)cliente).getInmuebles()){
+                    System.out.println(inmueble.toString());
+                }
+            }
             if (cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
                 Aplicacion.sesion.nuevaSesion(cliente);
-                System.out.println("Sesión iniciada por "+ Aplicacion.sesion.user);
+                System.out.println("Sesión iniciada por " + Aplicacion.sesion.user);
                 return isHost ? 3 : 2;
             }
         }
         return 0;
     }
-    
-    public static void cerrarSesion(){
-        user=null;
-        esAnfitrion=false;
-    
+
+    public static void cerrarSesion() {
+        user = null;
+        esAnfitrion = false;
+
     }
-    
-        public static void registrarCliente(Cliente cliente) {
+
+    public static void registrarCliente(Cliente cliente) {
         if (Validacion.comprobarExistenciaCliente(cliente.getCorreo(), cliente.getDni(), cliente.getTelefono())) {
             return;
         }
@@ -63,6 +67,5 @@ public class Sesion {
         Aplicacion.sesion.nuevaSesion(cliente);
         System.out.println(cliente.toString());
     }
-    
 
 }

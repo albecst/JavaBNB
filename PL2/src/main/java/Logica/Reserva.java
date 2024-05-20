@@ -121,21 +121,30 @@ public class Reserva implements Serializable {
         this.fechaFin = fechaFin;
     }
 
+    public LocalDate getFechaReserva() {
+        return fechaReserva;
+    }
+
+    public void setFechaReserva(LocalDate fechaReserva) {
+        this.fechaReserva = fechaReserva;
+    }
+    
+    
+
     public void generaFicha(String directorio) throws IOException {
 
         String nombreFichero = this.particular.getDni() +"_"+ this.inmueble.getTitulo();
         
         PrintWriter salida = new PrintWriter(new BufferedWriter(new FileWriter(directorio+"_"+nombreFichero+".txt")));
         DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String fr = fechaReserva.format(formatoCorto);
-
+        
         salida.println("-------------------------------- Reserva --------------------------------");
         salida.println("\n");
         salida.println("DNI: " + this.particular.getDni());
         salida.println("\n");
         salida.println("Nombre: " + this.particular.getNombre());
         salida.println("\n");
-        salida.println("Fecha en que se hizo la reserva: " + fr);
+        salida.println("Fecha en que se hizo la reserva: " + fechaReserva.format(formatoCorto));
         salida.println("\n");
         salida.println("Dirección del inmueble: " + this.inmueble.getDireccion().toString());
         salida.println("\n");
@@ -143,9 +152,9 @@ public class Reserva implements Serializable {
         salida.println("\n");
         salida.println("Título del inmueble: " + this.inmueble.getTitulo());
         salida.println("\n");
-        salida.println("Fecha de llegada: " + fechaInicio);
+        salida.println("Fecha de llegada: " + fechaInicio.format(formatoCorto));
         salida.println("\n");
-        salida.println("Fecha de salida: " + fechaFin);
+        salida.println("Fecha de salida: " + fechaFin.format(formatoCorto));
         salida.println("\n");
         salida.println("Precio: " + calcularPrecioTotal());
         salida.println("\n");

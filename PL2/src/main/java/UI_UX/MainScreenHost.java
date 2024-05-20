@@ -4,8 +4,10 @@
  */
 package UI_UX;
 
+import Logica.Anfitrion;
 import Logica.Inmueble;
 import Logica.JavaBNB;
+import Logica.Sesion;
 import java.awt.Desktop;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -712,7 +714,14 @@ public class MainScreenHost extends javax.swing.JPanel {
     }//GEN-LAST:event_addBuildingsButtonActionPerformed
 
     private void myBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myBuildingsButtonActionPerformed
-        // TODO add your handling code here:
+       Aplicacion.loadAnfitrionCheckBuildings();
+       System.out.println("viendo inmuebles (mainscreenhost)");
+       if (Sesion.user!=null){
+        for (Inmueble inmueble:((Anfitrion)Sesion.user).getInmuebles()){
+            System.out.println(inmueble.toString());
+        }
+        }else{System.out.println("ta vaciooooooo");}
+       System.out.println("miau");
     }//GEN-LAST:event_myBuildingsButtonActionPerformed
 
     private void cityTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextField2ActionPerformed

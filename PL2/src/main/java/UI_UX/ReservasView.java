@@ -5,8 +5,8 @@
 package UI_UX;
 
 import Logica.Reserva;
-import java.io.File;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JFileChooser;
 
 /**
@@ -26,10 +26,10 @@ public class ReservasView extends javax.swing.JPanel {
 
     public void init(Reserva r) {
         this.r = r;
-
+        DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         titulo.setText(this.r.getInmueble().getTitulo());
         precio.setText("Precio total: "+String.valueOf(this.r.calcularPrecioTotal()) + "€");
-        fechas.setText(this.r.getFechaInicio() + "   -   " + this.r.getFechaFin());
+        fechas.setText(this.r.getFechaInicio().format(formatoCorto) + "   -   " + this.r.getFechaFin().format(formatoCorto));
 
     }
 

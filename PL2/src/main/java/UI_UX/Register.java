@@ -646,7 +646,7 @@ public class Register extends javax.swing.JPanel {
 
         userExiste.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         userExiste.setForeground(new java.awt.Color(0, 153, 51));
-        userExiste.setText("Ya existe una cuenta asociada a este DNI o correo. Por favor, inicie sesión.");
+        userExiste.setText("Ya existe una cuenta asociada a este teléfono, DNI o correo. Por favor, inicie sesión.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 47;

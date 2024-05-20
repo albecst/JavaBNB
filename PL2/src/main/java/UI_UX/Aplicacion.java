@@ -39,7 +39,9 @@ public class Aplicacion {
     static AdminConsultarUser adminconsultaruser = new AdminConsultarUser();
     static AddBuildings addbuildings = new AddBuildings();
     static AdminCheckBuildings admincheckbuildings = new AdminCheckBuildings();
+    static AnfitrionCheckBuildings anfitrioncheckbuildings = new AnfitrionCheckBuildings();
     static BuildingView buildingview = new BuildingView();
+    static AdminConsultarReservas adminconsultarreservas = new AdminConsultarReservas();
 
     public static Sesion sesion = null;  //iniciamos sesion como null
 
@@ -69,6 +71,7 @@ public class Aplicacion {
         loadMainScreenClient();
         loadMainScreenHost();
         loadAdminCheckBuildings();
+        loadAnfitrionCheckBuildings();
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(addbuildings, "Pantalla addbuildings");
 
@@ -105,6 +108,11 @@ public class Aplicacion {
         adminconsultaruser.actualizar();
         cardLayout.show(cards, "Pantalla adminconsultaruser");
     }
+    public static void loadAdminConsultarReservas() {
+        cards.add(adminconsultarreservas, "Pantalla adminconsultarreservas");
+        adminconsultarreservas.actualizar();
+        cardLayout.show(cards, "Pantalla adminconsultarreservas");
+    }
 
     public static void loadAdminCheckBuildings() {
         cards.add(admincheckbuildings, "Pantalla admincheckbuildings");
@@ -112,13 +120,19 @@ public class Aplicacion {
         cardLayout.show(cards, "Pantalla admincheckbuildings");
     }
 
+    public static void loadAnfitrionCheckBuildings() {
+        cards.add(anfitrioncheckbuildings, "Pantalla anfitrioncheckbuildings");
+        anfitrioncheckbuildings.actualizar();   
+        cardLayout.show(cards, "Pantalla anfitrioncheckbuildings");
+    }
+
     public static void loadMainScreenClient() {
         cards.add(mainscreenclient, "Pantalla mainscreenclient");
         mainscreenclient.actualizar();
         cardLayout.show(cards, "Pantalla mainscreenclient");
     }
-    
-        public static void loadMainScreenHost() {
+
+    public static void loadMainScreenHost() {
         cards.add(mainscreenhost, "Pantalla mainscreenhost");
         mainscreenhost.actualizar();
         cardLayout.show(cards, "Pantalla mainscreenhost");

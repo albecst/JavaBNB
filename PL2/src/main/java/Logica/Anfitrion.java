@@ -27,7 +27,7 @@ public class Anfitrion extends Cliente {
     }
 
     public void addInmuebles(Inmueble inmueble) {
-        this.inmuebles.add(inmueble);
+        inmuebles.add(inmueble);
         this.setSuperAnfitrion();
     }
      
