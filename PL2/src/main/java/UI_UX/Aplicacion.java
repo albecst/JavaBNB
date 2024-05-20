@@ -42,6 +42,7 @@ public class Aplicacion {
     static AnfitrionCheckBuildings anfitrioncheckbuildings = new AnfitrionCheckBuildings();
     static BuildingView buildingview = new BuildingView();
     static AdminConsultarReservas adminconsultarreservas = new AdminConsultarReservas();
+    static GuestCheckReserves guestcheckreserves = new GuestCheckReserves();
 
     public static Sesion sesion = null;  //iniciamos sesion como null
 
@@ -72,6 +73,7 @@ public class Aplicacion {
         loadMainScreenHost();
         loadAdminCheckBuildings();
         loadAnfitrionCheckBuildings();
+        loadGuestCheckReserves();
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(addbuildings, "Pantalla addbuildings");
 
@@ -108,10 +110,17 @@ public class Aplicacion {
         adminconsultaruser.actualizar();
         cardLayout.show(cards, "Pantalla adminconsultaruser");
     }
+
     public static void loadAdminConsultarReservas() {
         cards.add(adminconsultarreservas, "Pantalla adminconsultarreservas");
         adminconsultarreservas.actualizar();
         cardLayout.show(cards, "Pantalla adminconsultarreservas");
+    }
+
+    public static void loadGuestCheckReserves() {
+        cards.add(guestcheckreserves, "Pantalla guestcheckreserves");
+        guestcheckreserves.actualizar();
+        cardLayout.show(cards, "Pantalla guestcheckreserves");
     }
 
     public static void loadAdminCheckBuildings() {
@@ -122,7 +131,7 @@ public class Aplicacion {
 
     public static void loadAnfitrionCheckBuildings() {
         cards.add(anfitrioncheckbuildings, "Pantalla anfitrioncheckbuildings");
-        anfitrioncheckbuildings.actualizar();   
+        anfitrioncheckbuildings.actualizar();
         cardLayout.show(cards, "Pantalla anfitrioncheckbuildings");
     }
 
