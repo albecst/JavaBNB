@@ -720,8 +720,7 @@ public class MainScreenHost extends javax.swing.JPanel {
         for (Inmueble inmueble:((Anfitrion)Sesion.user).getInmuebles()){
             System.out.println(inmueble.toString());
         }
-        }else{System.out.println("ta vaciooooooo");}
-       System.out.println("miau");
+        }
     }//GEN-LAST:event_myBuildingsButtonActionPerformed
 
     private void cityTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextField2ActionPerformed

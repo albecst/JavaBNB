@@ -36,7 +36,7 @@ public class BuildingView extends javax.swing.JPanel {
         tipolabel.setText(i.getTipo());
         descripcionarea.setText(i.getDescripcion());
         preciolabel.setText(Double.toString(i.getPrecioNoche()) + "€ por noche");
-        
+
         nhuespedes.setText(Integer.toString(i.getDatosInmueble().getMaxHuespedes()));
         nhabitaciones.setText(Integer.toString(i.getDatosInmueble().getHabitaciones()));
         nbanos.setText(Integer.toString(i.getDatosInmueble().getBaños()));
@@ -44,6 +44,7 @@ public class BuildingView extends javax.swing.JPanel {
 
         direccionarea.setText(i.getDireccion().toString());
         serviciosarea.setText("los servicios de este inmueble son " + i.getServicios());
+        calificacionlabel.setText("Calificación: " + Double.toString(i.getCalificacion()));
 
         fotoboton.setIcon(resizeIMG(i.getFotografia()));
         estrella1.setIcon(i.getCalificacion() >= 1 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
@@ -51,13 +52,13 @@ public class BuildingView extends javax.swing.JPanel {
         estrella3.setIcon(i.getCalificacion() >= 3 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
         estrella4.setIcon(i.getCalificacion() >= 4 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
         estrella5.setIcon(i.getCalificacion() >= 5 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
-        
+
     }
 
     public void setInmueble(Inmueble inmueble) {
         this.i = inmueble;
         this.actualizar(); // Llamar al método actualizar() para actualizar la vista con el nuevo inmueble
-        
+
     }
 
     public ImageIcon imagenIcon(String img) {
@@ -65,8 +66,8 @@ public class BuildingView extends javax.swing.JPanel {
             Image image = ImageIO.read(new File(img));
             ImageIcon icon = new ImageIcon(image);
             return icon;
-        } catch (IOException e) {
-            //JOptionPane.showMessageDialog(null, "No se pudo cargar el icono: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
             return null;
         }
     }
@@ -80,8 +81,8 @@ public class BuildingView extends javax.swing.JPanel {
             Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
             ImageIcon imageIcon = new ImageIcon(resizedImage);
             return imageIcon;
-        } catch (IOException e) {
-            //JOptionPane.showMessageDialog(this, "No se pudo cargar la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
             return null;
         }
     }
@@ -142,6 +143,8 @@ public class BuildingView extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         errordisponible = new javax.swing.JLabel();
+        calificacionlabel = new javax.swing.JLabel();
+        calificarboton = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
 
@@ -413,6 +416,19 @@ public class BuildingView extends javax.swing.JPanel {
                 .addGap(27, 27, 27))
         );
 
+        calificacionlabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        calificacionlabel.setText("Calificación: 2.5");
+
+        calificarboton.setBackground(new java.awt.Color(255, 102, 102));
+        calificarboton.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        calificarboton.setForeground(new java.awt.Color(255, 255, 255));
+        calificarboton.setText("Calificar");
+        calificarboton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calificarbotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -468,12 +484,15 @@ public class BuildingView extends javax.swing.JPanel {
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 15, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(calificacionlabel)
+                                    .addComponent(calificarboton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(270, 270, 270)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(335, 335, 335)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,9 +538,14 @@ public class BuildingView extends javax.swing.JPanel {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(calificacionlabel)
+                        .addGap(35, 35, 35)
+                        .addComponent(calificarboton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -559,11 +583,10 @@ public class BuildingView extends javax.swing.JPanel {
         errordisponible.setVisible(false);
         LocalDate llegada = convertToLocalDate(fieldllegada.getValue());
         LocalDate salida = convertToLocalDate(fieldsalida.getValue());
-        
-        
+
         Reserva reserva = new Reserva((Particular) Sesion.user, i, llegada, salida);
-        if ((i.estaDisponible(llegada, salida)) && (((Particular) Sesion.user).getSaldo()>reserva.calcularPrecioTotal()) ) {
-            
+        if ((i.estaDisponible(llegada, salida)) && (((Particular) Sesion.user).getSaldo() > reserva.calcularPrecioTotal())) {
+
             String textoconfirmacion = "¿Quieres confirmar la reserva de este inmueble del " + llegada + " al " + salida + " por un coste total de " + reserva.calcularPrecioTotal() + " euros?";
             int n = JOptionPane.showConfirmDialog(this, textoconfirmacion, "ConfirmDialog", JOptionPane.YES_NO_CANCEL_OPTION);
             if (n == JOptionPane.YES_OPTION) {
@@ -583,9 +606,29 @@ public class BuildingView extends javax.swing.JPanel {
 
     }//GEN-LAST:event_reservarbotonActionPerformed
 
+    private void calificarbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificarbotonActionPerformed
+        double nota = 0;
+        try {
+            do {
+                String notaIntroducida = JOptionPane.showInputDialog(this, "Introduzca la calificación (entre 0 y 5):");
+                nota = Double.parseDouble(notaIntroducida);
+            } while (nota < 0 || nota > 5);
+            i.setCalificacion(nota);
+            actualizar();
+            System.out.println("calificacion=" + nota);
+            System.out.println("nota del inmueble= " + i.getCalificacion());
+        } catch (NumberFormatException nfe) {
+            System.out.println("Error del formato: " + nfe.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_calificarbotonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraarriba;
+    private javax.swing.JLabel calificacionlabel;
+    private javax.swing.JButton calificarboton;
     private javax.swing.JTextArea descripcionarea;
     private javax.swing.JTextArea direccionarea;
     private javax.swing.JLabel errordisponible;

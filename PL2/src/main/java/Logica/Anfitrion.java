@@ -7,7 +7,7 @@ public class Anfitrion extends Cliente {
    
     private LocalDate fechaRegistro;
     private boolean superAnfitrion;
-    private static ArrayList<Inmueble> inmuebles = new ArrayList<>();
+    private ArrayList<Inmueble> inmuebles = new ArrayList<>();
 
     
     public Anfitrion(String dni, String nombre, String correo, String clave, String telefono) {
@@ -23,11 +23,11 @@ public class Anfitrion extends Cliente {
      * Get the value of inmuebles
      */
     public ArrayList<Inmueble> getInmuebles() {
-        return inmuebles;
+        return this.inmuebles;
     }
 
     public void addInmuebles(Inmueble inmueble) {
-        inmuebles.add(inmueble);
+        this.inmuebles.add(inmueble);
         this.setSuperAnfitrion();
     }
      
@@ -48,7 +48,7 @@ public class Anfitrion extends Cliente {
     public void setSuperAnfitrion() {
         int calificacion=0;
         int cantidad=0;
-        for (Inmueble i : inmuebles) {
+        for (Inmueble i : this.inmuebles) {
            calificacion+=i.getCalificacion();
            cantidad++;
         }
