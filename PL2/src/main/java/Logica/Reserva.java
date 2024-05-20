@@ -1,6 +1,7 @@
 package Logica;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,114 +10,75 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * La clase Reserva representa una reserva realizada por un cliente para un inmueble.
+ */
 public class Reserva implements Serializable {
 
-    //Atributos  TODO: fechainicio y fechafin ya están dentro de inmueble
-    private Inmueble inmueble;
-    private Particular particular;
-    private LocalDate fechaInicio;
-    private LocalDate fechaFin;
-    private LocalDate fechaReserva;
+    // Atributos de la clase
+    private Inmueble inmueble; // El inmueble que se reserva
+    private Particular particular; // El cliente que realiza la reserva
+    private LocalDate fechaInicio; // Fecha de inicio de la estancia
+    private LocalDate fechaFin; // Fecha de fin de la estancia
+    private LocalDate fechaReserva; // Fecha en que se hizo la reserva
 
     /**
      * Constructor de la clase Reserva.
-     *
-     * @param particular Particular que realiza la reserva.
-     * @param inmueble Inmueble que se reserva.
-     * @param fechaInicio Fecha de inicio de la reserva.
-     * @param fechaFin Fecha de fin de la reserva. 
-     * fechaReserva será la fecha del instante en el que se realice la reserva
+     * @param particular El cliente que realiza la reserva
+     * @param inmueble El inmueble que se reserva
+     * @param fechaInicio La fecha de inicio de la estancia
+     * @param fechaFin La fecha de fin de la estancia
      */
     public Reserva(Particular particular, Inmueble inmueble, LocalDate fechaInicio, LocalDate fechaFin) {
         this.inmueble = inmueble;
         this.particular = particular;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        this.fechaReserva = LocalDate.now();
-        
+        this.fechaReserva = LocalDate.now(); // La fecha de reserva es la fecha actual
     }
 
     /**
-     * Calcula el precio total de una reserva.
+     * Calcula el precio total de la reserva.
+     * @return El costo total de la estancia
      */
     public double calcularPrecioTotal() {
-        long diasEstancia = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
-        double costoTotal = diasEstancia * inmueble.getPrecioNoche();
-        if (particular.isVip()) {
+        long diasEstancia = ChronoUnit.DAYS.between(fechaInicio, fechaFin); // Calcula el número de días entre la fecha de inicio y la fecha de fin
+        double costoTotal = diasEstancia * inmueble.getPrecioNoche(); // Calcula el costo total de la estancia
+        if (particular.isVip()) { // Aplica un descuento del 10% si el cliente es VIP
             costoTotal *= 0.9;
         }
         return costoTotal;
     }
 
-
-    /**
-     * Getters & Setters
-     *
-     * Get the value of inmueble
-     */
+    // Métodos Getters y Setters
     public Inmueble getInmueble() {
         return inmueble;
     }
 
-    /**
-     * Set the value of inmueble
-     *
-     * @param inmueble new value of inmueble
-     */
     public void setInmueble(Inmueble inmueble) {
         this.inmueble = inmueble;
     }
 
-    /**
-     * Get the value of particular
-     *
-     * @return the value of particular
-     */
     public Particular getParticular() {
         return particular;
     }
 
-    /**
-     * Set the value of particular
-     *
-     * @param particular new value of particular
-     */
     public void setParticular(Particular particular) {
         this.particular = particular;
     }
 
-    /**
-     * Get the value of fechaInicio
-     *
-     * @return the value of fechaInicio
-     */
     public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    /**
-     * Set the value of fechaInicio
-     *
-     * @param fechaInicio new value of fechaInicio
-     */
     public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    /**
-     * Get the value of fechaFin
-     *
-     * @return the value of fechaFin
-     */
     public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    /**
-     * Set the value of fechaFin
-     *
-     * @param fechaFin new value of fechaFin
-     */
     public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
@@ -128,16 +90,32 @@ public class Reserva implements Serializable {
     public void setFechaReserva(LocalDate fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
-    
-    
 
+    /**
+     * Genera un archivo de texto con la información de la reserva.
+     * @param directorio El directorio donde se guardará el archivo
+     * @throws IOException Si ocurre un error al escribir el archivo
+     */
     public void generaFicha(String directorio) throws IOException {
+        // Asegúrate de que el directorio termine con una barra diagonal
+        if (!directorio.endsWith(File.separator)) {
+            directorio += File.separator;
+        }
 
-        String nombreFichero = this.particular.getDni() +"_"+ this.inmueble.getTitulo();
-        
-        PrintWriter salida = new PrintWriter(new BufferedWriter(new FileWriter(directorio+"_"+nombreFichero+".txt")));
+        // Crea el directorio si no existe
+        File dir = new File(directorio);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        // Nombre del archivo basado en el DNI del particular y el título del inmueble
+        String nombreFichero = this.particular.getDni() + "_" + this.inmueble.getTitulo();
+        // Crear el archivo para escribir la información
+        PrintWriter salida = new PrintWriter(new BufferedWriter(new FileWriter(directorio + nombreFichero + ".txt")));
+        // Formateador de fechas
         DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        
+
+        // Escribir la información de la reserva en el archivo
         salida.println("-------------------------------- Reserva --------------------------------");
         salida.println("\n");
         salida.println("DNI: " + this.particular.getDni());
@@ -159,14 +137,11 @@ public class Reserva implements Serializable {
         salida.println("Precio: " + calcularPrecioTotal());
         salida.println("\n");
         salida.println("-------------------------------------------------------------------------------");
-        salida.close();
+        salida.close(); 
     }
 
     @Override
     public String toString() {
         return "Reserva{" + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", fechaReserva=" + fechaReserva + '}';
     }
-    
-
-    
 }
