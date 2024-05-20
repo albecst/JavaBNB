@@ -57,10 +57,14 @@ public class Tarjeta implements Serializable {
     public void setFechaCaducidad(LocalDate fechaCaducidad) {
         this.fechaCaducidad = fechaCaducidad;
     }
+
     public void setFechaCaducidad(int dia, int mes, int anio) {
         this.fechaCaducidad = LocalDate.of(anio, mes, dia);
     }
 
+    public void incrementarSaldo(double cantidad) {
+        this.saldo += cantidad;
+    }
 
     /**
      * Get the value of numeroTarjeta
@@ -129,17 +133,10 @@ public class Tarjeta implements Serializable {
     public void setAnio(int anio) {
         this.anio = anio;
     }
-    
-    
-    
-    
-    
-    
 
     @Override
     public String toString() {
         return ", Tarjeta{" + "número de la tarjeta:" + numeroTarjeta + ", fecha de caducidad:" + fechaCaducidad + ", cvv:" + cvv + ", saldo:" + saldo + '}';
     }
 
-    
 }
