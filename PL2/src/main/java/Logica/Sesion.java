@@ -39,7 +39,7 @@ public class Sesion {
         for (Cliente cliente : JavaBNB.getClientes()) {
             System.out.println(cliente.toString());
             isHost = (cliente instanceof Anfitrion);
-            
+
             if (cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
                 Aplicacion.sesion.nuevaSesion(cliente);
                 System.out.println("Sesión iniciada por " + Aplicacion.sesion.user);
@@ -52,7 +52,6 @@ public class Sesion {
     public static void cerrarSesion() {
         user = null;
         esAnfitrion = false;
-
     }
 
     public static void registrarCliente(Cliente cliente) {
@@ -64,4 +63,19 @@ public class Sesion {
         System.out.println(cliente.toString());
     }
 
+    public static boolean hacerVipSiPromocodeValido(String promocode) {
+        if (user instanceof Particular && "JAVABNB2024".equals(promocode)) {
+            ((Particular) user).setVip(true);
+            return true;
+        }
+        return false;
+    }
+
+    // Nuevo método para verificar si el usuario actual es VIP
+    public static boolean esUsuarioVip() {
+        if (user instanceof Particular) {
+            return ((Particular) user).isVip();
+        }
+        return false;
+    }
 }
