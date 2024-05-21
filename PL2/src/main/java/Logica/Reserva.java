@@ -11,7 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 /**
- * La clase Reserva representa una reserva realizada por un cliente para un inmueble.
+ * La clase Reserva representa una reserva realizada por un cliente para un
+ * inmueble.
  */
 public class Reserva implements Serializable {
 
@@ -24,6 +25,7 @@ public class Reserva implements Serializable {
 
     /**
      * Constructor de la clase Reserva.
+     *
      * @param particular El cliente que realiza la reserva
      * @param inmueble El inmueble que se reserva
      * @param fechaInicio La fecha de inicio de la estancia
@@ -39,6 +41,7 @@ public class Reserva implements Serializable {
 
     /**
      * Calcula el precio total de la reserva.
+     *
      * @return El costo total de la estancia
      */
     public double calcularPrecioTotal() {
@@ -62,6 +65,7 @@ public class Reserva implements Serializable {
     public Particular getParticular() {
         return particular;
     }
+
 
     public void setParticular(Particular particular) {
         this.particular = particular;
@@ -93,6 +97,7 @@ public class Reserva implements Serializable {
 
     /**
      * Genera un archivo de texto con la información de la reserva.
+     *
      * @param directorio El directorio donde se guardará el archivo
      * @throws IOException Si ocurre un error al escribir el archivo
      */
@@ -137,7 +142,7 @@ public class Reserva implements Serializable {
         salida.println("Precio: " + calcularPrecioTotal());
         salida.println("\n");
         salida.println("-------------------------------------------------------------------------------");
-        salida.close(); 
+        salida.close();
     }
 
     @Override
