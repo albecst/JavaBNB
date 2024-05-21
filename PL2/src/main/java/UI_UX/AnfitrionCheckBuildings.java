@@ -2,17 +2,16 @@ package UI_UX;
 
 import Logica.Anfitrion;
 import Logica.Inmueble;
+import Logica.JavaBNB;
 import Logica.Sesion;
 import Logica.Validacion;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
 public class AnfitrionCheckBuildings extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AdminCheckBuildings
-     */
     private ArrayList<Inmueble> buildings; //Referencia al ArrayList de inmuebles del anfitrión de la sesión
     private ListIterator<Inmueble> li; //Iterador para recorrer el ArrayList en ambas direcciones
     private Inmueble objInm; //Referencia a un objeto de tipo inmueble del ArrayList
@@ -21,20 +20,10 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         initComponents();
         errorNextLabel.setVisible(false);
         errorPreviousLabel.setVisible(false);
-        titleTextPanel.setEditable(false);
-        descriptionTextPanel.setEditable(false);
-        serviceTextField.setEditable(false);
-        streetTextField.setEditable(false);
-        cityTextField.setEditable(false);
-        numberTextField.setEditable(false);
-        cpTextField.setEditable(false);
-        priceTextField.setEditable(false);
-        guestTextField.setEditable(false);
-        roomTextField.setEditable(false);
-        bedTextField.setEditable(false);
-        bathTextField.setEditable(false);
-        serviceTextField.setEditable(false);
-        
+        setEditableFields(false);
+
+        buildings = new ArrayList<>();
+        li = buildings.listIterator();
 
         consultarTodo();
     }
@@ -49,36 +38,60 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         try {
             errorNextLabel.setVisible(false);
             errorPreviousLabel.setVisible(false);
-            
-            if (Sesion.user != null) {
-                buildings = ((Anfitrion) Sesion.user).getInmuebles();
 
-                li = buildings.listIterator();
-                if (buildings.size() < 1) {
-                    nextButton.setEnabled(false);
-                    previousButton.setEnabled(false);
-                    deleteBuildingButton.setEnabled(false);
+            // Verificar si el usuario actual es un anfitrión
+            if (Sesion.user instanceof Anfitrion) {
+                Anfitrion anfitrion = (Anfitrion) Sesion.user;
+
+                // Obtener los inmuebles del anfitrión utilizando el método filtrarInmueblesPorAnfitrion
+                buildings = JavaBNB.filtrarInmueblesPorAnfitrion(anfitrion);
+
+                // Verificar si hay inmuebles asociados al anfitrión
+                if (buildings.isEmpty()) {
+                    setButtonsEnabled(false);
                     return;
                 } else {
-                    nextButton.setEnabled(true);
-                    previousButton.setEnabled(true);
-                    deleteBuildingButton.setEnabled(true);
+                    setButtonsEnabled(true);
                 }
 
+                // Configurar un iterador para los inmuebles
+                li = buildings.listIterator();
                 if (li.hasNext()) {
                     objInm = li.next();
-                } else {
-                    errorNextLabel.setVisible(true);
-                }
-                if (objInm != null) {
                     presenta();
                 } else {
                     errorNextLabel.setVisible(true);
                 }
+
+            } else {
+                // Si el usuario no es un anfitrión, mostrar un mensaje de error
+                System.out.println("El usuario actual no es un anfitrión.");
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.toString());
         }
+    }
+
+    private void setEditableFields(boolean editable) {
+        titleTextPanel.setEditable(editable);
+        descriptionTextPanel.setEditable(editable);
+        serviceTextField.setEditable(editable);
+        streetTextField.setEditable(editable);
+        cityTextField.setEditable(editable);
+        numberTextField.setEditable(editable);
+        cpTextField.setEditable(editable);
+        priceTextField.setEditable(editable);
+        guestTextField.setEditable(editable);
+        roomTextField.setEditable(editable);
+        bedTextField.setEditable(editable);
+        bathTextField.setEditable(editable);
+        serviceTextField.setEditable(editable);
+    }
+
+    private void setButtonsEnabled(boolean enabled) {
+        nextButton.setEnabled(enabled);
+        previousButton.setEnabled(enabled);
+        deleteBuildingButton.setEnabled(enabled);
     }
 
     private void presenta() {
@@ -89,18 +102,30 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         cityTextField.setText(objInm.getDireccion().getCiudad());
         numberTextField.setText(objInm.getDireccion().getNumero());
         cpTextField.setText(objInm.getDireccion().getCp());
-        String precio = Double.toString(objInm.getPrecioNoche());
-        priceTextField.setText(precio);
-        String maxHuespedes = Integer.toString(objInm.getDatosInmueble().getMaxHuespedes());
-        guestTextField.setText(maxHuespedes);
-        String habitaciones = Integer.toString(objInm.getDatosInmueble().getHabitaciones());
-        roomTextField.setText(habitaciones);
-        String camas = Integer.toString(objInm.getDatosInmueble().getCamas());
-        bedTextField.setText(camas);
-        String baños = Integer.toString(objInm.getDatosInmueble().getBaños());
-        bathTextField.setText(baños);
+        priceTextField.setText(Double.toString(objInm.getPrecioNoche()));
+        guestTextField.setText(Integer.toString(objInm.getDatosInmueble().getMaxHuespedes()));
+        roomTextField.setText(Integer.toString(objInm.getDatosInmueble().getHabitaciones()));
+        bedTextField.setText(Integer.toString(objInm.getDatosInmueble().getCamas()));
+        bathTextField.setText(Integer.toString(objInm.getDatosInmueble().getBaños()));
         serviceTextField.setText(objInm.getServicios());
         calificacionfield.setText(Double.toString(objInm.getCalificacion()));
+    }
+
+    private void clearFields() {
+        typeLabel.setText("");
+        titleTextPanel.setText("");
+        descriptionTextPanel.setText("");
+        streetTextField.setText("");
+        cityTextField.setText("");
+        numberTextField.setText("");
+        cpTextField.setText("");
+        priceTextField.setText("");
+        guestTextField.setText("");
+        roomTextField.setText("");
+        bedTextField.setText("");
+        bathTextField.setText("");
+        serviceTextField.setText("");
+        calificacionfield.setText("");
     }
 
     /**
@@ -659,17 +684,15 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
     private void deleteBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBuildingButtonActionPerformed
         if (objInm != null) {
             li.remove();
-        }
-
-        if (li.hasNext()) {
-            objInm = li.next();
-            if (objInm != null) {
+            if (li.hasNext()) {
+                objInm = li.next();
                 presenta();
-            }
-        } else if (li.hasPrevious()) {
-            objInm = li.previous();
-            if (objInm != null) {
+            } else if (li.hasPrevious()) {
+                objInm = li.previous();
                 presenta();
+            } else {
+                setButtonsEnabled(false);
+                clearFields();
             }
         }
     }//GEN-LAST:event_deleteBuildingButtonActionPerformed
