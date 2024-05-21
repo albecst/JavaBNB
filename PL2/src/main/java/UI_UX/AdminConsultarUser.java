@@ -9,7 +9,6 @@ import Logica.Cliente;
 import Logica.Inmueble;
 import Logica.JavaBNB;
 import Logica.Particular;
-import Logica.Reserva;
 import Logica.Validacion;
 import java.util.ArrayList;
 import java.util.ListIterator;

@@ -4,7 +4,6 @@
  */
 package UI_UX;
 
-import Logica.Anfitrion;
 import Logica.Cliente;
 import Logica.DatosInmueble;
 import Logica.Direccion;
@@ -633,7 +632,7 @@ public class AddBuildings extends javax.swing.JPanel {
         } else {
             titleError.setVisible(false);
         }
-
+/////////////////////////////////////////////////////////////////// pq es null o empty???????
         if (fotografia == null || fotografia.isEmpty()) {
             loadImage(); // Llama al método loadImage() para cargar la imagen
             if (fotografia == null || fotografia.isEmpty()) { // Verifica si la carga de la imagen fue exitosa
@@ -688,7 +687,6 @@ public class AddBuildings extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "El código postal tiene que ser un número entero.", "Error del código postal", JOptionPane.WARNING_MESSAGE);
             }
         } else {
-            valido = false;
             valido = false;
             JOptionPane.showMessageDialog(this, "El código postal debe tener 5 carácteres exactamente", "Error del código postal", JOptionPane.WARNING_MESSAGE);
         }

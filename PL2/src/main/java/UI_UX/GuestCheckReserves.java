@@ -3,9 +3,6 @@ package UI_UX;
 import Logica.Particular;
 import Logica.Reserva;
 import Logica.Sesion;
-import Logica.Tarjeta;
-import Logica.Validacion;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class GuestCheckReserves extends javax.swing.JPanel {
@@ -28,7 +25,7 @@ public class GuestCheckReserves extends javax.swing.JPanel {
     }
 
     public void insertarReservas() {
-        deleteBuildings(); // Borra cualquier widget de reserva existente antes de insertar nuevos
+        deleteReservas(); // Borra cualquier widget de reserva existente antes de insertar nuevos
 
         int fila = 20; // Ajusta el valor inicial de fila
         int x = 20; // Ajusta el valor inicial de x
@@ -56,7 +53,7 @@ public class GuestCheckReserves extends javax.swing.JPanel {
         reservasContainer.repaint();   // Repinta el contenedor para asegurar que los cambios sean visibles
     }
 
-    public void deleteBuildings() {
+    public void deleteReservas() {
         for (ReservasView rv : reservasicon) {
             this.reservasicon.remove(rv);
         }

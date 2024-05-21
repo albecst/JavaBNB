@@ -1,8 +1,6 @@
 package Logica;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import Logica.JavaBNB;
 
 public class Anfitrion extends Cliente {
 

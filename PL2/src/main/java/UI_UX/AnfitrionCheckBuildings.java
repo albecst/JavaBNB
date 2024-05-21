@@ -5,9 +5,15 @@ import Logica.Inmueble;
 import Logica.JavaBNB;
 import Logica.Sesion;
 import Logica.Validacion;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class AnfitrionCheckBuildings extends javax.swing.JPanel {
@@ -22,15 +28,13 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         errorPreviousLabel.setVisible(false);
         setEditableFields(false);
 
-        buildings = new ArrayList<>();
-        li = buildings.listIterator();
-
         consultarTodo();
     }
 
     public void actualizar() {
         errorNextLabel.setVisible(false);
         errorPreviousLabel.setVisible(false);
+
         consultarTodo();
     }
 
@@ -42,9 +46,8 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
             // Verificar si el usuario actual es un anfitrión
             if (Sesion.user instanceof Anfitrion) {
                 Anfitrion anfitrion = (Anfitrion) Sesion.user;
-
-                // Obtener los inmuebles del anfitrión utilizando el método filtrarInmueblesPorAnfitrion
-                buildings = JavaBNB.filtrarInmueblesPorAnfitrion(anfitrion);
+                // Copia de la lista de inmuebles del anfitrión para evitar problemas de concurrencia
+                buildings = new ArrayList<>(JavaBNB.filtrarInmueblesPorAnfitrion(anfitrion)); // Obtener los inmuebles del anfitrión utilizando el método filtrarInmueblesPorAnfitrion
 
                 // Verificar si hay inmuebles asociados al anfitrión
                 if (buildings.isEmpty()) {
@@ -92,6 +95,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         nextButton.setEnabled(enabled);
         previousButton.setEnabled(enabled);
         deleteBuildingButton.setEnabled(enabled);
+        editfoto.setEnabled(enabled);
     }
 
     private void presenta() {
@@ -126,6 +130,48 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         bathTextField.setText("");
         serviceTextField.setText("");
         calificacionfield.setText("");
+    }
+
+    public File openImage() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Selecciona una imagen");
+        fileChooser.setAcceptAllFileFilterUsed(false); // Deshabilitar la opción "Todos los archivos"
+        fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif", "bmp"));
+
+        int result = fileChooser.showOpenDialog(null); // Mostrar el diálogo de seleccion y capturar la respuesta
+
+        // Procesar la respuesta
+        if (result == JFileChooser.APPROVE_OPTION) {
+            return fileChooser.getSelectedFile();
+        }
+        return null; // No file was selected or the user cancelled
+    }
+
+    public String saveImage(File archivofoto) {
+        String directoriodestino = "./src/main/resources/fotosinmuebles"; // Directorio de destino fijo
+        Path pathdestino = Paths.get(directoriodestino, archivofoto.getName());
+
+        try {
+            // Asegúrate de que el directorio exista
+            if (!Files.exists(Paths.get(directoriodestino))) {
+                Files.createDirectories(Paths.get(directoriodestino));
+            }
+
+            // Copia el archivo al directorio especificado
+            Files.copy(archivofoto.toPath(), pathdestino, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Imagen guardada en: " + pathdestino);
+            return pathdestino.toString(); // Devuelve la ruta de la imagen como String
+        } catch (IOException ex) {
+            System.out.println("Error al guardar la imagen: " + ex.getMessage());
+            return null; // Devuelve null si hay un error
+        }
+    }
+
+    public void changeImage(Inmueble i) {
+        File fotoFile = openImage();
+        if (fotoFile != null) {
+            i.setFotografia(saveImage(fotoFile));
+        }
     }
 
     /**
@@ -178,6 +224,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         titleLabel1 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         calificacionfield = new javax.swing.JTextPane();
+        editfoto = new javax.swing.JButton();
         previousButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
         errorNextLabel = new javax.swing.JLabel();
@@ -248,7 +295,6 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         barraarriba1.add(returnButton, gridBagConstraints);
 
         jPanel3.setBackground(new java.awt.Color(255, 250, 248));
-        jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 250, 248));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -261,9 +307,9 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipady = -1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 35, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(26, 37, 0, 0);
         jPanel2.add(titleLabel, gridBagConstraints);
 
         typeLabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
@@ -274,42 +320,42 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 118;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 49, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 49, 0, 0);
         jPanel2.add(typeLabel, gridBagConstraints);
 
         descriptionLabel.setText("Descripción:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 19, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 21, 0, 0);
         jPanel2.add(descriptionLabel, gridBagConstraints);
 
         streetLabel.setText("Calle:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 37, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(21, 39, 0, 0);
         jPanel2.add(streetLabel, gridBagConstraints);
 
         cityLabel.setText("Ciudad:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 30, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(21, 32, 0, 0);
         jPanel2.add(cityLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 144;
+        gridBagConstraints.ipadx = 140;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(cityTextField, gridBagConstraints);
 
         deleteBuildingButton.setBackground(new java.awt.Color(255, 153, 153));
@@ -325,133 +371,133 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 28;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 30, 19, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 30, 17, 0);
         jPanel2.add(deleteBuildingButton, gridBagConstraints);
 
         cpLabel.setText("C. Postal:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 26, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 28, 0, 0);
         jPanel2.add(cpLabel, gridBagConstraints);
 
         numberLabel.setText("Número:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 27, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 29, 0, 0);
         jPanel2.add(numberLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 144;
+        gridBagConstraints.ipadx = 140;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(numberTextField, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 144;
+        gridBagConstraints.ipadx = 140;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(cpTextField, gridBagConstraints);
 
         priceLabel.setText("P.Noche:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 27, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 29, 0, 0);
         jPanel2.add(priceLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 144;
+        gridBagConstraints.ipadx = 140;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(priceTextField, gridBagConstraints);
 
         guestLabel.setText("Huéspedes:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 17;
+        gridBagConstraints.gridy = 16;
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 19, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 21, 0, 0);
         jPanel2.add(guestLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 17;
+        gridBagConstraints.gridy = 16;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 144;
+        gridBagConstraints.ipadx = 140;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(guestTextField, gridBagConstraints);
 
         roomLabel.setText("Habitaciones:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 19;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.gridwidth = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 14, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 16, 0, 0);
         jPanel2.add(roomLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 19;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 144;
+        gridBagConstraints.ipadx = 140;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(roomTextField, gridBagConstraints);
 
         bedLabel.setText("Camas:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 21;
+        gridBagConstraints.gridy = 20;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 31, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 33, 0, 0);
         jPanel2.add(bedLabel, gridBagConstraints);
 
         bathLabel.setText("Baños:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 23;
+        gridBagConstraints.gridy = 22;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 33, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 35, 0, 0);
         jPanel2.add(bathLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 21;
+        gridBagConstraints.gridy = 20;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 144;
+        gridBagConstraints.ipadx = 140;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(bedTextField, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 23;
+        gridBagConstraints.gridy = 22;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 144;
+        gridBagConstraints.ipadx = 140;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(bathTextField, gridBagConstraints);
 
         jScrollPane3.setMinimumSize(new java.awt.Dimension(300, 50));
@@ -469,16 +515,16 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(jScrollPane3, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 144;
+        gridBagConstraints.ipadx = 140;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(streetTextField, gridBagConstraints);
 
         jScrollPane4.setMinimumSize(new java.awt.Dimension(300, 50));
@@ -490,14 +536,14 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 25;
+        gridBagConstraints.gridy = 24;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(jScrollPane4, gridBagConstraints);
 
         editBuildingButton.setBackground(new java.awt.Color(255, 90, 95));
@@ -520,10 +566,10 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         serviceLabel.setText("Servicios:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 25;
+        gridBagConstraints.gridy = 24;
         gridBagConstraints.gridwidth = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 25, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 27, 0, 0);
         jPanel2.add(serviceLabel, gridBagConstraints);
 
         jScrollPane5.setMinimumSize(new java.awt.Dimension(300, 50));
@@ -535,14 +581,14 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(jScrollPane5, gridBagConstraints);
 
         titleLabel1.setText("Calificación:");
@@ -551,7 +597,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 20, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(11, 22, 0, 0);
         jPanel2.add(titleLabel1, gridBagConstraints);
 
         jScrollPane6.setMinimumSize(new java.awt.Dimension(300, 50));
@@ -570,17 +616,25 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(11, 24, 0, 52);
+        gridBagConstraints.insets = new java.awt.Insets(11, 24, 0, 54);
         jPanel2.add(jScrollPane6, gridBagConstraints);
 
+        editfoto.setBackground(new java.awt.Color(255, 90, 95));
+        editfoto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        editfoto.setForeground(new java.awt.Color(255, 255, 255));
+        editfoto.setText("Cambiar foto");
+        editfoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editfotoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipady = 12;
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 26;
+        gridBagConstraints.ipadx = 28;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 51, 0, 0);
-        jPanel3.add(jPanel2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(17, 30, 0, 0);
+        jPanel2.add(editfoto, gridBagConstraints);
 
         previousButton.setBackground(new java.awt.Color(255, 153, 153));
         previousButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
@@ -591,12 +645,6 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
                 previousButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 193, 0, 0);
-        jPanel3.add(previousButton, gridBagConstraints);
 
         nextButton.setBackground(new java.awt.Color(255, 153, 153));
         nextButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
@@ -607,33 +655,51 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
                 nextButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 42, 0, 255);
-        jPanel3.add(nextButton, gridBagConstraints);
 
         errorNextLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         errorNextLabel.setForeground(new java.awt.Color(255, 102, 102));
         errorNextLabel.setText("No hay un inmueble posterior");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 110, 0, 0);
-        jPanel3.add(errorNextLabel, gridBagConstraints);
 
         errorPreviousLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         errorPreviousLabel.setForeground(new java.awt.Color(255, 102, 102));
         errorPreviousLabel.setText("No hay un inmueble anterior");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 116, 0, 0);
-        jPanel3.add(errorPreviousLabel, gridBagConstraints);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(418, 418, 418)
+                        .addComponent(previousButton)
+                        .addGap(463, 463, 463)
+                        .addComponent(nextButton))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(561, 561, 561)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(620, 620, 620)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(errorPreviousLabel)
+                            .addComponent(errorNextLabel))))
+                .addGap(481, 481, 481))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(previousButton)
+                    .addComponent(nextButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorNextLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(errorPreviousLabel)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -647,7 +713,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(barraarriba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1029, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -886,6 +952,10 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_editBuildingButtonActionPerformed
 
+    private void editfotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editfotoActionPerformed
+        changeImage(objInm);
+    }//GEN-LAST:event_editfotoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barraarriba1;
@@ -902,6 +972,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextPane descriptionTextPanel;
     private javax.swing.JButton editBuildingButton;
+    private javax.swing.JButton editfoto;
     private javax.swing.JLabel errorNextLabel;
     private javax.swing.JLabel errorPreviousLabel;
     private javax.swing.JLabel guestLabel;
