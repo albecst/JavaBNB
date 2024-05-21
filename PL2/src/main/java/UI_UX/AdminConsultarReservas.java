@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package UI_UX;
 
 import Logica.JavaBNB;
@@ -15,9 +11,6 @@ import java.util.stream.Collectors;
 
 public class AdminConsultarReservas extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AdConsultarUsuario
-     */
     private ArrayList<Reserva> reservas = new ArrayList<>(); //Referencia al ArrayList de personas de la clase JavaBNB
     private ListIterator<Reserva> li; //Iterador para recorrer el ArrayList en ambas direcciones
     private Reserva objreserva; //Referencia a un objeto de tipo cliente del ArrayList
@@ -46,19 +39,27 @@ public class AdminConsultarReservas extends javax.swing.JPanel {
             errorNoAnt.setVisible(false);
 
             if (JavaBNB.getClientes() != null) {
-                //flatMap convierte un Stream<Stream<T>> en un Stream<T>, en este caso para conseguir un stream solo de reservas 
-                List<Reserva> nuevasReservas = JavaBNB.getClientes().stream().filter(Particular.class::isInstance).flatMap(cliente -> ((Particular) cliente).getReservas().stream()).collect(Collectors.toList());
+                // Limpiar la lista de reservas antes de añadir las nuevas
+                reservas.clear();
+
+                // flatMap convierte un Stream<Stream<T>> en un Stream<T>, en este caso para conseguir un stream solo de reservas 
+                List<Reserva> nuevasReservas = JavaBNB.getClientes().stream()
+                        .filter(Particular.class::isInstance)
+                        .flatMap(cliente -> ((Particular) cliente).getReservas().stream())
+                        .collect(Collectors.toList());
+
                 reservas.addAll(nuevasReservas);
+                System.out.println(nuevasReservas);
 
                 li = reservas.listIterator();
                 if (reservas.size() < 1) {
                     jButtonSig.setEnabled(false);
                     jButtonAnt.setEnabled(false);
+                    limpiarCampos();
                     return;
                 } else {
                     jButtonSig.setEnabled(true);
                     jButtonAnt.setEnabled(true);
-
                 }
 
                 if (li.hasNext()) {
@@ -69,12 +70,23 @@ public class AdminConsultarReservas extends javax.swing.JPanel {
                 if (objreserva != null) {
                     presenta();
                 } else {
+                    limpiarCampos();
                     errorNoSig.setVisible(true);
                 }
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.toString());
         }
+    }
+
+    private void limpiarCampos() {
+        fechallegada.setText("");
+        fechareserva.setText("");
+        fechasalida.setText("");
+        name.setText("");
+        preciototal.setText("");
+        dnilabel.setText("");
+        inmueblelabel.setText("");
     }
 
     private void presenta() {
