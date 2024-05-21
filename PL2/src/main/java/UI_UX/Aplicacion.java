@@ -44,7 +44,7 @@ public class Aplicacion {
     static AdminConsultarReservas adminconsultarreservas = new AdminConsultarReservas();
     static GuestCheckReserves guestcheckreserves = new GuestCheckReserves();
 
-    public static Sesion sesion = null;  //iniciamos sesion como null
+    public static Sesion sesion = null;  // Iniciamos sesion como null
 
     /**
      * Método principal que inicia la aplicación.
