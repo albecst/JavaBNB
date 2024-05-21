@@ -65,7 +65,7 @@ public class IconoInmueble extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(295, 400));
         setPreferredSize(new java.awt.Dimension(295, 400));
 
-        jPanel1.setBackground(new java.awt.Color(255, 250, 248));
+        jPanel1.setBackground(new java.awt.Color(245, 245, 245));
         jPanel1.setMaximumSize(new java.awt.Dimension(295, 400));
         jPanel1.setMinimumSize(new java.awt.Dimension(295, 400));
 
@@ -97,16 +97,15 @@ public class IconoInmueble extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(nombre))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(92, 92, 92)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(calificacionlabel)
-                            .addComponent(precio))))
+                            .addComponent(precio)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(11, 11, 11))
         );
         jPanel1Layout.setVerticalGroup(
