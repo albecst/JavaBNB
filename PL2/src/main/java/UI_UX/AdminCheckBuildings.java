@@ -9,12 +9,9 @@ import javax.swing.JOptionPane;
 
 public class AdminCheckBuildings extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AdminCheckBuildings
-     */
-    private ArrayList<Inmueble> buildings; //Referencia al ArrayList de inmuebles de la clase JavaBNB
-    private ListIterator<Inmueble> li; //Iterador para recorrer el ArrayList en ambas direcciones
-    private Inmueble objInm; //Referencia a un objeto de tipo inmueble del ArrayList
+    private ArrayList<Inmueble> buildings; // Referencia al ArrayList de inmuebles de la clase JavaBNB
+    private ListIterator<Inmueble> li; // Iterador para recorrer el ArrayList en ambas direcciones
+    private Inmueble objInm; // Referencia a un objeto de tipo inmueble del ArrayList
 
     public AdminCheckBuildings() {
         initComponents();
@@ -47,30 +44,25 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         try {
             errorNextLabel.setVisible(false);
             errorPreviousLabel.setVisible(false);
-            
+
             if (JavaBNB.getInmuebles() != null) {
-                buildings = JavaBNB.getInmuebles();
+                buildings = new ArrayList<>(JavaBNB.getInmuebles()); // Copia de la lista para evitar problemas de concurrencia
 
                 li = buildings.listIterator();
-                if (buildings.size() < 1) {
+                if (buildings.isEmpty()) {
                     nextButton.setEnabled(false);
                     previousButton.setEnabled(false);
                     deleteBuildingButton.setEnabled(false);
-                    //jButtonModificar.setEnabled(false);
+                    limpiarCampos();
                     return;
                 } else {
                     nextButton.setEnabled(true);
                     previousButton.setEnabled(true);
                     deleteBuildingButton.setEnabled(true);
-                    // jButtonModificar.setEnabled(true);
                 }
 
                 if (li.hasNext()) {
                     objInm = li.next();
-                } else {
-                    errorNextLabel.setVisible(true);
-                }
-                if (objInm != null) {
                     presenta(objInm);
                 } else {
                     errorNextLabel.setVisible(true);
@@ -81,25 +73,36 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         }
     }
 
+    private void limpiarCampos() {
+        typeLabel.setText("");
+        titleTextPanel.setText("");
+        descriptionTextPanel.setText("");
+        streetTextField.setText("");
+        cityTextField.setText("");
+        numberTextField.setText("");
+        cpTextField.setText("");
+        priceTextField.setText("");
+        guestTextField.setText("");
+        roomTextField.setText("");
+        bedTextField.setText("");
+        bathTextField.setText("");
+        serviceTextField.setText("");
+    }
+
     private void presenta(Inmueble inmueble) {
-        typeLabel.setText(objInm.getTipo());
-        titleTextPanel.setText(objInm.getTitulo());
-        descriptionTextPanel.setText(objInm.getDescripcion());
-        streetTextField.setText(objInm.getDireccion().getCalle());
-        cityTextField.setText(objInm.getDireccion().getCiudad());
-        numberTextField.setText(objInm.getDireccion().getNumero());
-        cpTextField.setText(objInm.getDireccion().getCp());
-        String precio = Double.toString(objInm.getPrecioNoche());
-        priceTextField.setText(precio);
-        String maxHuespedes = Integer.toString(objInm.getDatosInmueble().getMaxHuespedes());
-        guestTextField.setText(maxHuespedes);
-        String habitaciones = Integer.toString(objInm.getDatosInmueble().getHabitaciones());
-        roomTextField.setText(habitaciones);
-        String camas = Integer.toString(objInm.getDatosInmueble().getCamas());
-        bedTextField.setText(camas);
-        String baños = Integer.toString(objInm.getDatosInmueble().getBaños());
-        bathTextField.setText(baños);
-        serviceTextField.setText(objInm.getServicios());
+        typeLabel.setText(inmueble.getTipo());
+        titleTextPanel.setText(inmueble.getTitulo());
+        descriptionTextPanel.setText(inmueble.getDescripcion());
+        streetTextField.setText(inmueble.getDireccion().getCalle());
+        cityTextField.setText(inmueble.getDireccion().getCiudad());
+        numberTextField.setText(inmueble.getDireccion().getNumero());
+        cpTextField.setText(inmueble.getDireccion().getCp());
+        priceTextField.setText(Double.toString(inmueble.getPrecioNoche()));
+        guestTextField.setText(Integer.toString(inmueble.getDatosInmueble().getMaxHuespedes()));
+        roomTextField.setText(Integer.toString(inmueble.getDatosInmueble().getHabitaciones()));
+        bedTextField.setText(Integer.toString(inmueble.getDatosInmueble().getCamas()));
+        bathTextField.setText(Integer.toString(inmueble.getDatosInmueble().getBaños()));
+        serviceTextField.setText(inmueble.getServicios());
     }
 
     /**
@@ -568,19 +571,22 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
     private void deleteBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBuildingButtonActionPerformed
         if (objInm != null) {
             li.remove();
+
+            if (li.hasNext()) {
+                objInm = li.next();
+                if (objInm != null) {
+                    presenta(objInm);
+                }
+            } else if (li.hasPrevious()) {
+                objInm = li.previous();
+                if (objInm != null) {
+                    presenta(objInm);
+                }
+            } else {
+                limpiarCampos();
+            }
         }
 
-        if (li.hasNext()) {
-            objInm = li.next();
-            if (objInm != null) {
-                presenta(objInm);
-            }
-        } else if (li.hasPrevious()) {
-            objInm = li.previous();
-            if (objInm != null) {
-                presenta(objInm);
-            }
-        }
     }//GEN-LAST:event_deleteBuildingButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
