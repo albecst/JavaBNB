@@ -701,7 +701,7 @@ public class MainScreenHost extends javax.swing.JPanel {
 
     private void hostProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostProfileActionPerformed
 
-    Aplicacion.loadHostProfile();
+        Aplicacion.loadHostProfile();
     }//GEN-LAST:event_hostProfileActionPerformed
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
@@ -714,12 +714,14 @@ public class MainScreenHost extends javax.swing.JPanel {
     }//GEN-LAST:event_addBuildingsButtonActionPerformed
 
     private void myBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myBuildingsButtonActionPerformed
-       Aplicacion.loadAnfitrionCheckBuildings();
-       System.out.println("viendo inmuebles (mainscreenhost)");
-       if (Sesion.user!=null){
-        for (Inmueble inmueble:((Anfitrion)Sesion.user).getInmuebles()){
-            System.out.println(inmueble.toString());
-        }
+        Aplicacion.loadAnfitrionCheckBuildings();
+        System.out.println("Viendo inmuebles: mainscreenhost");
+        if (Sesion.user != null) {
+            ArrayList<Inmueble> inmueblesAnfitrion = JavaBNB.filtrarInmueblesPorAnfitrion((Anfitrion) Sesion.user);
+            for (Inmueble inmueble : inmueblesAnfitrion) {
+                System.out.println(inmueble.toString());
+
+            }
         }
     }//GEN-LAST:event_myBuildingsButtonActionPerformed
 
