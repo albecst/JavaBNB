@@ -8,8 +8,17 @@ public class Sesion {
     public static boolean esAnfitrion;
 
     public static void nuevaSesion(Cliente cliente) {
-        user = cliente;
-        esAnfitrion = user instanceof Anfitrion;
+        if (cliente != null) {
+            user = cliente;
+            esAnfitrion = user instanceof Anfitrion;
+        } else {
+            user = null;
+            esAnfitrion = false;
+        }
+    }
+
+    public static Cliente devolverCliente() {
+        return user;
     }
 
     public static void updatenombre(String data) {
@@ -37,7 +46,7 @@ public class Sesion {
             return 1;
         }
         for (Cliente cliente : JavaBNB.getClientes()) {
-            System.out.println(cliente.toString());
+            System.out.println("Revisando cliente: " + cliente);
             isHost = (cliente instanceof Anfitrion);
 
             if (cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
@@ -78,4 +87,5 @@ public class Sesion {
         }
         return false;
     }
+
 }
