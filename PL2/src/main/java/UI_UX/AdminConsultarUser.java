@@ -4,8 +4,12 @@
  */
 package UI_UX;
 
+import Logica.Anfitrion;
 import Logica.Cliente;
+import Logica.Inmueble;
 import Logica.JavaBNB;
+import Logica.Particular;
+import Logica.Reserva;
 import Logica.Validacion;
 import java.util.ArrayList;
 import java.util.ListIterator;
@@ -42,7 +46,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         try {
             errorNoSig.setVisible(false);
             errorNoAnt.setVisible(false);
-            
+
             if (JavaBNB.getClientes() != null) {
                 clientesaux = JavaBNB.getClientes();
 
@@ -440,20 +444,41 @@ public class AdminConsultarUser extends javax.swing.JPanel {
 
     private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
         if (objcli != null) {
-            li.remove();
+            if (objcli instanceof Particular) {
+                Particular particular = (Particular) objcli;
+
+                // Eliminar todas las reservas del particular
+                particular.getReservas().clear();
+
+            } else if (objcli instanceof Anfitrion) {
+                Anfitrion anfitrion = (Anfitrion) objcli;
+                ArrayList<Inmueble> inmuebles = JavaBNB.getInmuebles();
+
+                // Eliminar todas las reservas de los inmuebles del anfitrión
+                for (Inmueble inmueble : inmuebles) {
+                    inmueble.getReservas().clear();
+                }
+
+                // Eliminar todos los inmuebles de este anfitrión
+                JavaBNB.getInmuebles().removeAll(inmuebles);
+            }
+
+            try {
+                // Eliminar el cliente de la lista
+                li.remove();
+
+                // Guardar los datos actualizados
+                JavaBNB.guardarDatos();
+
+                // Actualizar las vistas
+                Aplicacion.adminconsultarreservas.actualizar();
+                Aplicacion.admincheckbuildings.actualizar();
+            } catch (Exception e) {
+                System.out.println("Está vacío, no se puede eliminar más");
+            }
         }
 
-        if (li.hasNext()) {
-            objcli = li.next();
-            if (objcli != null) {
-                presenta(objcli);
-            }
-        } else if (li.hasPrevious()) {
-            objcli = li.previous();
-            if (objcli != null) {
-                presenta(objcli);
-            }
-        }
+
     }//GEN-LAST:event_deleteUserButtonActionPerformed
 
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
