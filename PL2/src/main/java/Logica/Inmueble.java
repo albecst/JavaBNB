@@ -2,22 +2,25 @@ package Logica;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Inmueble implements Serializable {
 
     private String titulo;
     private Direccion direccion;
     private DatosInmueble datosInmueble;
-    private String tipo; //Casa o apartamento
+    private String tipo; // Casa o apartamento
     private double precioNoche;
     private String servicios;
-    private double calificacion; //Si es menor a 0 o mayor a 5 error
-    private String fotografia; //Será un String, porque la fotografía no deja de ser una ruta dentro de nuestro dispositivo.
+    private double calificacion;
+    private String fotografia;
     private String descripcion;
     private int valoraciones;
+    private ArrayList<Reserva> reservas; // ArrayList para almacenar las reservas asociadas al inmueble
+    private Cliente cliente;
 
-    //Constructor
-    public Inmueble(String titulo, String descripcion, Direccion direccion, DatosInmueble datosInmueble, String tipo, double precioNoche, String fotografia, String servicios) {
+    // Constructor
+    public Inmueble(String titulo, String descripcion, Direccion direccion, DatosInmueble datosInmueble, String tipo, double precioNoche, String fotografia, String servicios, Cliente cliente) {
         this.titulo = titulo;
         this.direccion = direccion;
         this.datosInmueble = datosInmueble;
@@ -27,6 +30,26 @@ public class Inmueble implements Serializable {
         this.fotografia = fotografia;
         this.servicios = servicios;
         this.descripcion = descripcion;
+        this.valoraciones = 0;
+        this.reservas = new ArrayList<>(); // Inicialización del ArrayList de reservas
+        this.cliente = cliente;
+    }
+
+    // Método para agregar una reserva al inmueble
+    public void agregarReserva(Reserva reserva) {
+        reservas.add(reserva);
+        JavaBNB.guardarDatos();
+    }
+
+    // Método para eliminar una reserva del inmueble
+    public void eliminarReserva(Reserva reserva) {
+        reservas.remove(reserva);
+        JavaBNB.guardarDatos();
+    }
+
+    // Método para obtener todas las reservas asociadas al inmueble
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
     }
 
     /**
@@ -37,193 +60,103 @@ public class Inmueble implements Serializable {
      * @param fechaSalida Fecha de salida.
      * @return True si está disponible, false si no lo está.
      */
-    //TODO: hacer esto bonito 
     public boolean estaDisponible(LocalDate fechaEntrada, LocalDate fechaSalida) {
-        boolean disponible = true;
         if (fechaEntrada.isAfter(fechaSalida) || fechaEntrada.isBefore(LocalDate.now()) || fechaSalida.isBefore(LocalDate.now())) {
-            disponible = false;
+            return false;
         }
-        for (Cliente cliente : JavaBNB.getClientes()) {
-            if (cliente instanceof Particular) {
-                for (Reserva reserva : ((Particular) cliente).getReservas()) {
-                    if (this.equals(reserva.getInmueble()) && (comprobarFechasLibres(reserva, fechaEntrada, fechaSalida)) == false) {
-                        disponible = false;
-                    }
 
-                }
+        for (Reserva reserva : reservas) {
+            if (!comprobarFechasLibres(reserva, fechaEntrada, fechaSalida)) {
+                return false;
             }
         }
-        return disponible;
+        return true;
     }
 
-    public boolean comprobarFechasLibres(Reserva reserva, LocalDate fechaEntrada, LocalDate fechaSalida) {
-        boolean estalibre = true;
-
-        if (reserva.getFechaInicio().equals(fechaEntrada) || reserva.getFechaInicio().equals(fechaSalida) || reserva.getFechaFin().equals(fechaEntrada) || reserva.getFechaFin().equals(fechaSalida)) {
-            estalibre = false;
+    private boolean comprobarFechasLibres(Reserva reserva, LocalDate fechaEntrada, LocalDate fechaSalida) {
+        if (reserva.getFechaInicio().isBefore(fechaSalida) && reserva.getFechaFin().isAfter(fechaEntrada)) {
+            return false;
         }
-        if (reserva.getFechaInicio().isBefore(fechaSalida) && reserva.getFechaFin().isAfter(fechaSalida)) { //si quiero reservar para fecha final ya pillada
-            estalibre = false;
-        }
-        if (reserva.getFechaInicio().isBefore(fechaEntrada) && reserva.getFechaFin().isAfter(fechaEntrada)) { //reservar para fecha inicial ya pillada
-            estalibre = false;
-        }
-        if (reserva.getFechaInicio().isAfter(fechaEntrada) && reserva.getFechaFin().isBefore(fechaSalida)) { //reservar para periodo de tiempo con reserva en medio
-            estalibre = false;
-        }
-
-        return estalibre;
+        return true;
     }
 
-    /**
-     * Getters & Setters /
-     *
-     * /**
-     * Get the value of fotografía
-     *
-     * @return the value of fotografía
-     */
+    // Getters & Setters
+
     public String getFotografia() {
         return fotografia;
     }
 
-    /**
-     * Set the value of fotografía
-     *
-     * @param fotografia new value of fotografía
-     */
     public void setFotografia(String fotografia) {
         this.fotografia = fotografia;
+        JavaBNB.guardarDatos();
     }
 
-    /**
-     * Get the value of calificacion
-     *
-     * @return the value of calificacion
-     */
     public double getCalificacion() {
         return calificacion;
     }
 
-    /**
-     * Recalcular el valor de la calificación del inmueble
-     *
-     * @param nota
-     */
     public void setCalificacion(double nota) {
         if (nota < 0 || nota > 5) {
             throw new IllegalArgumentException("La calificación debe estar entre 0 y 5.");
         } else {
             this.calificacion = (this.calificacion * this.valoraciones + nota) / (this.valoraciones + 1);
             this.valoraciones++;
+            JavaBNB.guardarDatos();
         }
     }
 
-    /**
-     * Get the value of servicios
-     *
-     * @return the value of servicios
-     */
     public String getServicios() {
         return servicios;
     }
 
-    /**
-     *
-     * @param servicios new value of servicios
-     */
     public void setServicios(String servicios) {
         this.servicios = servicios;
+        JavaBNB.guardarDatos();
     }
 
-    /**
-     * Get the value of precioNoche
-     *
-     * @return the value of precioNoche
-     */
     public double getPrecioNoche() {
         return precioNoche;
     }
 
-    /**
-     * Set the value of precioNoche
-     *
-     * @param precioNoche new value of precioNoche
-     */
     public void setPrecioNoche(double precioNoche) {
         this.precioNoche = precioNoche;
+        JavaBNB.guardarDatos();
     }
 
-    /**
-     * Get the value of tipo
-     *
-     * @return the value of tipo
-     */
     public String getTipo() {
         return tipo;
     }
 
-    /**
-     * Set the value of tipo
-     *
-     * @param tipo new value of tipo
-     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
+        JavaBNB.guardarDatos();
     }
 
-    /**
-     * Get the value of datosInmueble
-     *
-     * @return the value of datosInmueble
-     */
     public DatosInmueble getDatosInmueble() {
         return datosInmueble;
     }
 
-    /**
-     * Set the value of datosInmueble
-     *
-     * @param datosInmueble new value of datosInmueble
-     */
     public void setDatosInmueble(DatosInmueble datosInmueble) {
         this.datosInmueble = datosInmueble;
+        JavaBNB.guardarDatos();
     }
 
-    /**
-     * Get the value of direccion
-     *
-     * @return the value of direccion
-     */
     public Direccion getDireccion() {
         return direccion;
     }
 
-    /**
-     * Set the value of direccion
-     *
-     * @param direccion new value of direccion
-     */
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
+        JavaBNB.guardarDatos();
     }
 
-    /**
-     * Get the value of titulo
-     *
-     * @return the value of titulo
-     */
     public String getTitulo() {
         return titulo;
     }
 
-    /**
-     * Set the value of titulo
-     *
-     * @param titulo new value of titulo
-     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+        JavaBNB.guardarDatos();
     }
 
     public String getDescripcion() {
@@ -232,11 +165,20 @@ public class Inmueble implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        JavaBNB.guardarDatos();
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+        JavaBNB.guardarDatos();
     }
 
     @Override
     public String toString() {
-        return "Inmueble{" + "titulo=" + titulo + ", direccion=" + direccion + ", datosInmueble=" + datosInmueble + ", tipo=" + tipo + ", precioNoche=" + precioNoche + ", servicios=" + servicios + ", calificacion=" + calificacion + ", fotografia=" + fotografia + ", descripcion=" + descripcion + '}';
+        return "Inmueble{" +"Anfitrion="+cliente+ ", titulo=" + titulo + ", direccion=" + direccion + ", datosInmueble=" + datosInmueble + ", tipo=" + tipo + ", precioNoche=" + precioNoche + ", servicios=" + servicios + ", calificacion=" + calificacion + ", fotografia=" + fotografia + ", descripcion=" + descripcion + '}';
     }
-
 }
