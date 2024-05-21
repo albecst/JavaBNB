@@ -4,6 +4,8 @@
  */
 package UI_UX;
 
+import Logica.Anfitrion;
+import Logica.Cliente;
 import Logica.Inmueble;
 import Logica.Particular;
 import Logica.Reserva;
@@ -592,6 +594,10 @@ public class BuildingView extends javax.swing.JPanel {
             if (n == JOptionPane.YES_OPTION) {
                 System.out.println("SI. Haciendo reserva ");
                 ((Particular) Sesion.user).addReserva(reserva); //añade la reserva a la lista de reservas del cliente y se realiza el "pago"
+
+                // Agregar la reserva al inmueble
+                i.agregarReserva(reserva);
+
             } else if (n == JOptionPane.NO_OPTION) {
                 System.out.println("NO");
             } else if (n == JOptionPane.CANCEL_OPTION) {
@@ -613,15 +619,31 @@ public class BuildingView extends javax.swing.JPanel {
                 String notaIntroducida = JOptionPane.showInputDialog(this, "Introduzca la calificación (entre 0 y 5):");
                 nota = Double.parseDouble(notaIntroducida);
             } while (nota < 0 || nota > 5);
+
+            // Asignar la calificación al inmueble
             i.setCalificacion(nota);
+
+            // Obtener el anfitrión del inmueble
+            Cliente anfitrion = i.getCliente();
+
+            // Actualizar el estado de superAnfitrion del anfitrión si es una instancia de Anfitrion
+            if (anfitrion instanceof Anfitrion) {
+                ((Anfitrion) anfitrion).setSuperAnfitrion();
+                System.out.println(anfitrion);
+            }
+
+            // Actualizar la interfaz de usuario si es necesario
             actualizar();
+
             System.out.println("calificacion=" + nota);
             System.out.println("nota del inmueble= " + i.getCalificacion());
         } catch (NumberFormatException nfe) {
             System.out.println("Error del formato: " + nfe.getMessage());
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+
         }
+
     }//GEN-LAST:event_calificarbotonActionPerformed
 
 
