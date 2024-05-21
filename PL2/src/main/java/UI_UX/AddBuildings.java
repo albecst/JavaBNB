@@ -5,6 +5,7 @@
 package UI_UX;
 
 import Logica.Anfitrion;
+import Logica.Cliente;
 import Logica.DatosInmueble;
 import Logica.Direccion;
 import Logica.Inmueble;
@@ -601,6 +602,11 @@ public class AddBuildings extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBuildingButtonActionPerformed
+        Cliente cliente = Sesion.devolverCliente();
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(this, "Error: el usuario actual no es un anfitrión válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         String titulo = titleTextField.getText();
         String descripcion = descriptionTextPanel.getText();
@@ -747,10 +753,10 @@ public class AddBuildings extends javax.swing.JPanel {
         if (valido) {
             DatosInmueble datos = new DatosInmueble(huespedes, habitaciones, camas, baños);
             Direccion direccion = new Direccion(calle, numero, cp, ciudad);
-            Inmueble inmueble = new Inmueble(titulo, descripcion, direccion, datos, tipo, precio, fotografia, servicios);
+            Inmueble inmueble = new Inmueble(titulo, descripcion, direccion, datos, tipo, precio, fotografia, servicios, cliente);
             boolean inmuebleValido = JavaBNB.añadirInmueble(inmueble);
             if (inmuebleValido) {
-                ((Anfitrion) Sesion.user).addInmuebles(inmueble);
+                JavaBNB.añadirInmueble(inmueble);
                 JOptionPane.showMessageDialog(this, "El inmueble se ha creado correctamente, se ha añadido a la lista de inmuebles.", "Inmueble creado", JOptionPane.WARNING_MESSAGE);
 
             } else {
