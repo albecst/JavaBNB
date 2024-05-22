@@ -5,12 +5,12 @@
 package UI_UX;
 
 import Logica.Particular;
-import Logica.Reserva;
 import Logica.Sesion;
 import Logica.Tarjeta;
 import Logica.Validacion;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class ClientProfile extends javax.swing.JPanel {
 
@@ -210,7 +210,7 @@ public class ClientProfile extends javax.swing.JPanel {
 
         addMoneyButton.setBackground(new java.awt.Color(255, 90, 95));
         addMoneyButton.setForeground(new java.awt.Color(255, 255, 255));
-        addMoneyButton.setText("Añadir 50 euros");
+        addMoneyButton.setText("Añadir dinero");
         addMoneyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addMoneyButtonActionPerformed(evt);
@@ -745,22 +745,36 @@ public class ClientProfile extends javax.swing.JPanel {
         if (Sesion.user instanceof Particular) {
             Particular particular = (Particular) Sesion.user;
             Tarjeta tarjeta = particular.getTarjetaCredito();
+            try {
+                // Verifica si el Particular tiene una tarjeta de crédito asociada
+                if (tarjeta != null) {
+                    double saldoañadido;
+                    String notaIntroducida = JOptionPane.showInputDialog(this, "Introduzca la cantidad de dinero a añadir:");
+                    saldoañadido = Double.parseDouble(notaIntroducida);
 
-            // Verifica si el Particular tiene una tarjeta de crédito asociada
-            if (tarjeta != null) {
-                // Incrementa el saldo de la tarjeta en 50 euros
-                tarjeta.incrementarSaldo(50.0);
-                moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
-                // Actualiza la interfaz de usuario para mostrar el nuevo saldo (si tienes una etiqueta o campo de texto para el saldo)
-                // saldoLabel.setText("Saldo: " + tarjeta.getSaldo());  // Actualiza el label del saldo si existe
-                System.out.println("Saldo añadido. Nuevo saldo: " + tarjeta.getSaldo());
-            } else {
-                System.out.println("El usuario no tiene una tarjeta de crédito asociada.");
+                    // Incrementa el saldo de la tarjeta en 50 euros
+                    //tarjeta.incrementarSaldo(50.0);
+                    //moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
+                    
+                    tarjeta.incrementarSaldo(saldoañadido);
+                    moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
+                    // Actualiza la interfaz de usuario para mostrar el nuevo saldo (si tienes una etiqueta o campo de texto para el saldo)
+                    
+                    System.out.println("Saldo añadido. Nuevo saldo: " + tarjeta.getSaldo());
+                } else {
+                    System.out.println("El usuario no tiene una tarjeta de crédito asociada.");
+                }
+
+            } catch (NumberFormatException nfe) {
+                System.out.println("Error del formato: " + nfe.getMessage());
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+
             }
         } else {
             System.out.println("El usuario actual no es un cliente particular.");
-
         }
+
 
     }//GEN-LAST:event_addMoneyButtonActionPerformed
 
