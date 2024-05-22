@@ -121,7 +121,7 @@ public class Direccion implements Serializable {
 
     @Override
     public String toString() {
-        return "Direccion{" + "calle=" + calle + ", numero=" + numero + ", cp=" + cp + ", ciudad=" + ciudad + '}';
+        return "Calle " + calle + ", nº" + numero + ", " + ciudad+ ". CP:" + cp;
     }
 
 }
