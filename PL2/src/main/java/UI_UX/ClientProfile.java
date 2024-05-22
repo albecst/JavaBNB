@@ -650,7 +650,10 @@ public class ClientProfile extends javax.swing.JPanel {
             jButton1.setText("Editar datos");
 
             String email = emailTextField.getText();
-            String password = clave.getText();
+            
+            //no utilizar getText en la passwordField porque esta "deprecated"
+            char[] passwordCharArray = clave.getPassword();
+            String password = new String(passwordCharArray);
             String telefono = tlfTextField.getText();
             String promocode = promocodeTextField.getText();
 

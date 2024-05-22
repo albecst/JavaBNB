@@ -17,7 +17,7 @@ public class HostProfile extends javax.swing.JPanel {
         initComponents();
         errorLabel1.setVisible(false);
         requirementsLabel.setVisible(false);
-        
+
     }
 
     public void actualizar() {
@@ -28,7 +28,7 @@ public class HostProfile extends javax.swing.JPanel {
             passTextField.setText(Sesion.user.getClave());
             tlfTextField.setText(Sesion.user.getTelefono());
 
-            if (((Anfitrion)Sesion.user).isSuperAnfitrion()) {
+            if (((Anfitrion) Sesion.user).isSuperAnfitrion()) {
                 hostlabel.setText("Super anfitrión");
             } else {
                 hostlabel.setText("Anfitrión");
@@ -393,7 +393,10 @@ public class HostProfile extends javax.swing.JPanel {
 
             // Verificar la validez de los datos ingresados
             String email = emailTextField.getText();
-            String password = passTextField.getText();
+            
+            //no utilizar getText en la passwordField porque esta "deprecated"
+            char[] passwordCharArray = passTextField.getPassword();
+            String password = new String(passwordCharArray);
             String telefono = tlfTextField.getText();
 
             boolean datosValidos = true;
@@ -403,22 +406,18 @@ public class HostProfile extends javax.swing.JPanel {
                 errorLabel1.setVisible(true);
                 emailTextField.setText("");
                 datosValidos = false;
-            }
-            // Verificar la contraseña
+            } // Verificar la contraseña
             else if (!Validacion.validarContraseña(password)) {
                 errorLabel1.setVisible(true);
                 passTextField.setText("");
                 datosValidos = false;
-            }
-
-            // Verificar el teléfono
+            } // Verificar el teléfono
             else if (!Validacion.validarTelefono(telefono)) {
                 errorLabel1.setVisible(true);
                 tlfTextField.setText("");
                 datosValidos = false;
 
-            }
-            else{
+            } else {
                 errorLabel1.setVisible(false);
             }
 
@@ -429,8 +428,7 @@ public class HostProfile extends javax.swing.JPanel {
                 Sesion.user.setTelefono(telefono);
                 Sesion.user.setClave(password);
                 System.out.println(Sesion.user);
-            }
-            else{
+            } else {
                 errorLabel1.setVisible(true);
             }
         }
@@ -442,7 +440,7 @@ public class HostProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_errorLabel1PropertyChange
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-       Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void signOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutButtonActionPerformed

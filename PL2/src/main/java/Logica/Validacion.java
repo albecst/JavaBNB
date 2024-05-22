@@ -6,7 +6,8 @@ public class Validacion {
 
     public static boolean validarNombre(String nombre) {
         for (char car : nombre.toCharArray()) {
-            if (!Character.isLetter(car) && !Character.isSpace(car)) {
+            //utilizar isWhitespace() en vez de isSpacechar() para tener en cuenta también tabulados...
+            if (!Character.isLetter(car) && !Character.isWhitespace(car)) {
                 return false;
             }
         }

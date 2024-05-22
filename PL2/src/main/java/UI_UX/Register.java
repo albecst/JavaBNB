@@ -717,7 +717,10 @@ public class Register extends javax.swing.JPanel {
         String nombre = userTextField1.getText();
         String dni = DNITextField.getText();
         String correo = emailTextField.getText();
-        String clave = passwordTextField.getText();
+        
+        //no utilizar getText en la passwordField porque esta "deprecated"
+        char[] passwordCharArray = passwordTextField.getPassword();
+        String clave = new String(passwordCharArray);
         String telefono = tlfTextField.getText();
         String numtarjeta = CCTextField.getText();
         int dia = 1;
@@ -762,7 +765,7 @@ public class Register extends javax.swing.JPanel {
         } else {
             errorLabel4.setVisible(false);
         }
-        
+
         if (!Validacion.validarDNI(dni)) {
             errorLabel2.setVisible(true);
             valido = false;
@@ -802,7 +805,7 @@ public class Register extends javax.swing.JPanel {
         if (selectedOption.equals("Seleccione entre:")) {
             noselectLabel.setVisible(true);
             userExiste.setVisible(false);
-            
+
         } else if (usuarioExiste) {
             userExiste.setVisible(true);
             noselectLabel.setVisible(false);
