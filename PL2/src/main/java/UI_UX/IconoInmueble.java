@@ -29,6 +29,7 @@ public class IconoInmueble extends javax.swing.JPanel {
         precio.setText(String.valueOf(this.i.getPrecioNoche()) + "€/noche");
         fotoboton.setIcon(resizeIMG(this.i.getFotografia()));
         calificacionlabel.setText("Calificación: " + Double.toString(i.getCalificacion()));
+        ciudadlabel.setText(this.i.getDireccion().getCiudad());
 
     }
 
@@ -61,6 +62,7 @@ public class IconoInmueble extends javax.swing.JPanel {
         nombre = new javax.swing.JLabel();
         precio = new javax.swing.JLabel();
         calificacionlabel = new javax.swing.JLabel();
+        ciudadlabel = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(295, 400));
         setPreferredSize(new java.awt.Dimension(295, 400));
@@ -90,6 +92,9 @@ public class IconoInmueble extends javax.swing.JPanel {
         calificacionlabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         calificacionlabel.setText("Calificación: 4.5");
 
+        ciudadlabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ciudadlabel.setText("Ciudad");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -100,26 +105,33 @@ public class IconoInmueble extends javax.swing.JPanel {
                         .addGap(92, 92, 92)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(calificacionlabel)
-                            .addComponent(precio)))
+                            .addComponent(precio)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(ciudadlabel)
+                                .addGap(40, 40, 40))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(11, 11, 11))
+                        .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(108, 108, 108))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nombre)
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(precio)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(calificacionlabel)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ciudadlabel)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -148,6 +160,7 @@ public class IconoInmueble extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel calificacionlabel;
+    private javax.swing.JLabel ciudadlabel;
     private javax.swing.JButton fotoboton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nombre;

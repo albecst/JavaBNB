@@ -9,17 +9,15 @@ import Logica.Inmueble;
 import Logica.JavaBNB;
 import Logica.Sesion;
 import java.awt.Desktop;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneId;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class MainScreenHost extends javax.swing.JPanel {
 
@@ -36,29 +34,24 @@ public class MainScreenHost extends javax.swing.JPanel {
         initComponents();
         buildingsLabel.setVisible(false);
 
-        // Agrega un FocusListener al campo de texto de la fecha de inicio
-        startDateTextField.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                JTextField textField = (JTextField) e.getSource();
-                String text = textField.getText();
-                if (!text.isEmpty() && text.length() == 6 && !text.contains("/")) {
-                    textField.setText(text.substring(0, 2) + "/" + text.substring(2, 4) + "/" + text.substring(4));
-                }
-            }
-        });
-
-        // Agrega un FocusListener al campo de texto de la fecha de fin
-        endDateTextField.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                JTextField textField = (JTextField) e.getSource();
-                String text = textField.getText();
-                if (!text.isEmpty() && text.length() == 6 && !text.contains("/")) {
-                    textField.setText(text.substring(0, 2) + "/" + text.substring(2, 4) + "/" + text.substring(4));
-                }
-            }
-        });
+        /**
+         * // Agrega un FocusListener al campo de texto de la fecha de inicio
+         * startDateTextField.addFocusListener(new FocusAdapter() {
+         *
+         * @Override public void focusLost(FocusEvent e) { JTextField textField
+         * = (JTextField) e.getSource(); String text = textField.getText(); if
+         * (!text.isEmpty() && text.length() == 6 && !text.contains("/")) {
+         * textField.setText(text.substring(0, 2) + "/" + text.substring(2, 4) +
+         * "/" + text.substring(4)); } } });
+         *
+         * // Agrega un FocusListener al campo de texto de la fecha de fin
+         * endDateTextField.addFocusListener(new FocusAdapter() {
+         * @Override public void focusLost(FocusEvent e) { JTextField textField
+         * = (JTextField) e.getSource(); String text = textField.getText(); if
+         * (!text.isEmpty() && text.length() == 6 && !text.contains("/")) {
+         * textField.setText(text.substring(0, 2) + "/" + text.substring(2, 4) +
+         * "/" + text.substring(4)); } } });
+         */
     }
 
     public void actualizar() {
@@ -136,6 +129,14 @@ public class MainScreenHost extends javax.swing.JPanel {
         buildingsContainer.repaint();   // Repinta el contenedor para asegurar que los cambios sean visibles
     }
 
+    public LocalDate convertToLocalDate(Object dateObject) {
+        if (dateObject instanceof Date) {
+            return ((Date) dateObject).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } else {
+            return null;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -163,13 +164,13 @@ public class MainScreenHost extends javax.swing.JPanel {
         textbuscaaloj2 = new javax.swing.JTextArea();
         destinopanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        cityTextField2 = new javax.swing.JTextField();
+        cityTextField = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        startDateTextField = new javax.swing.JFormattedTextField();
         endDateTextField = new javax.swing.JFormattedTextField();
+        startDateTextField = new javax.swing.JFormattedTextField();
         searchButton = new javax.swing.JButton();
         showAllBuildingsButton = new javax.swing.JButton();
         fotocasa = new javax.swing.JButton();
@@ -338,9 +339,9 @@ public class MainScreenHost extends javax.swing.JPanel {
 
         jLabel7.setText("Destino:");
 
-        cityTextField2.addActionListener(new java.awt.event.ActionListener() {
+        cityTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cityTextField2ActionPerformed(evt);
+                cityTextFieldActionPerformed(evt);
             }
         });
 
@@ -352,7 +353,7 @@ public class MainScreenHost extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addGroup(destinopanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(cityTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         destinopanel2Layout.setVerticalGroup(
@@ -361,7 +362,7 @@ public class MainScreenHost extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cityTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -375,17 +376,22 @@ public class MainScreenHost extends javax.swing.JPanel {
 
         jLabel3.setText("Fecha salida");
 
-        startDateTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        endDateTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        endDateTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endDateTextFieldActionPerformed(evt);
+            }
+        });
+
+        startDateTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         startDateTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startDateTextFieldActionPerformed(evt);
             }
         });
-
-        endDateTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        endDateTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                endDateTextFieldActionPerformed(evt);
+        startDateTextField.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                startDateTextFieldPropertyChange(evt);
             }
         });
 
@@ -398,37 +404,34 @@ public class MainScreenHost extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jLabel2)
-                        .addGap(46, 46, 46))
+                        .addGap(56, 56, 56))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(startDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)))
+                        .addComponent(startDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addGap(47, 47, 47)
                         .addComponent(jLabel3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(endDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addComponent(endDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(startDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(endDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 17, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(endDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addComponent(jSeparator1)
         );
 
         searchButton.setBackground(new java.awt.Color(255, 153, 153));
@@ -463,7 +466,7 @@ public class MainScreenHost extends javax.swing.JPanel {
                 .addGroup(buscaalojamiento2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(destinopanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(1215, 1215, 1215))
             .addGroup(buscaalojamiento2Layout.createSequentialGroup()
@@ -630,7 +633,7 @@ public class MainScreenHost extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(barraarriba, javax.swing.GroupLayout.DEFAULT_SIZE, 1492, Short.MAX_VALUE)
+            .addComponent(barraarriba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -725,13 +728,9 @@ public class MainScreenHost extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_myBuildingsButtonActionPerformed
 
-    private void cityTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextField2ActionPerformed
+    private void cityTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cityTextField2ActionPerformed
-
-    private void startDateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startDateTextFieldActionPerformed
+    }//GEN-LAST:event_cityTextFieldActionPerformed
 
     private void endDateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endDateTextFieldActionPerformed
         // TODO add your handling code here:
@@ -740,26 +739,23 @@ public class MainScreenHost extends javax.swing.JPanel {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         filterComboBox.setSelectedItem("Filtrar por:");
         this.estado = 1;
-        // Obtener los valores de los campos de texto
+        // Obtener los valores de los campos de texto y eliminar espacios en blanco de inicio y final
         String ciudad = cityTextField.getText().trim();
-        String startDateStr = startDateTextField.getText().trim();
-        String endDateStr = endDateTextField.getText().trim();
+        //String startDateStr = startDateTextField.getText().trim();
+        //String endDateStr = endDateTextField.getText().trim();
 
         // Formateador de fechas
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[dd/MM/yyyy]['ddMMyy']");
-
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[dd/MM/yyyy]");
         // Variables para almacenar las fechas convertidas
         LocalDate startDate = null;
         LocalDate endDate = null;
 
         // Intentar convertir las fechas de texto a LocalDate
         try {
-            if (!startDateStr.isEmpty()) {
-                startDate = LocalDate.parse(startDateStr, formatter);
-            }
-            if (!endDateStr.isEmpty()) {
-                endDate = LocalDate.parse(endDateStr, formatter);
-            }
+            startDate = convertToLocalDate(startDateTextField.getValue());
+            endDate = convertToLocalDate(endDateTextField.getValue());
+            //if (!startDateStr.isEmpty()) {startDate = LocalDate.parse(startDateStr, formatter);}
+            // if (!endDateStr.isEmpty()) {//endDate = LocalDate.parse(endDateStr, formatter);}
         } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(this, "Por favor, introduce las fechas en el formato DD/MM/YYYY", "Formato de fecha inválido", JOptionPane.ERROR_MESSAGE);
             return;
@@ -849,6 +845,14 @@ public class MainScreenHost extends javax.swing.JPanel {
 
     }//GEN-LAST:event_applyButtonActionPerformed
 
+    private void startDateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startDateTextFieldActionPerformed
+
+    private void startDateTextFieldPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_startDateTextFieldPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startDateTextFieldPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBuildingsButton;
@@ -857,14 +861,8 @@ public class MainScreenHost extends javax.swing.JPanel {
     private javax.swing.JPanel barraarriba;
     private javax.swing.JPanel buildingsContainer;
     private javax.swing.JLabel buildingsLabel;
-    private javax.swing.JPanel buscaalojamiento;
-    private javax.swing.JPanel buscaalojamiento1;
     private javax.swing.JPanel buscaalojamiento2;
     private javax.swing.JTextField cityTextField;
-    private javax.swing.JTextField cityTextField1;
-    private javax.swing.JTextField cityTextField2;
-    private javax.swing.JPanel destinopanel;
-    private javax.swing.JPanel destinopanel1;
     private javax.swing.JPanel destinopanel2;
     private javax.swing.JScrollPane disfrutade;
     private javax.swing.JFormattedTextField endDateTextField;
@@ -874,19 +872,13 @@ public class MainScreenHost extends javax.swing.JPanel {
     private javax.swing.JButton fotocasa;
     private javax.swing.JButton hostProfile;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
@@ -900,15 +892,11 @@ public class MainScreenHost extends javax.swing.JPanel {
     private javax.swing.JButton showAllBuildingsButton;
     private javax.swing.JLabel sientetecomoencasa;
     private javax.swing.JFormattedTextField startDateTextField;
-    private javax.swing.JTextArea textbuscaaloj;
-    private javax.swing.JTextArea textbuscaaloj1;
     private javax.swing.JTextArea textbuscaaloj2;
-    private javax.swing.JTextArea textteesperan;
     private javax.swing.JTextArea textteesperan1;
     private javax.swing.JTextArea textteesperan2;
     private javax.swing.JTextArea textteesperan3;
     private javax.swing.JTextArea textteesperan4;
-    private javax.swing.JTextArea textteesperan5;
     private javax.swing.JTextArea textteesperan6;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables

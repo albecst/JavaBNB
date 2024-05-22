@@ -60,7 +60,7 @@ public class Inmueble implements Serializable {
      * @param fechaSalida Fecha de salida.
      * @return True si está disponible, false si no lo está.
      */
-    public boolean estaDisponible(LocalDate fechaEntrada, LocalDate fechaSalida) {
+    public boolean estaDisponible2(LocalDate fechaEntrada, LocalDate fechaSalida) {
         if (fechaEntrada.isAfter(fechaSalida) || fechaEntrada.isBefore(LocalDate.now()) || fechaSalida.isBefore(LocalDate.now())) {
             return false;
         }
@@ -73,15 +73,62 @@ public class Inmueble implements Serializable {
         return true;
     }
 
-    private boolean comprobarFechasLibres(Reserva reserva, LocalDate fechaEntrada, LocalDate fechaSalida) {
+    private boolean comprobarFechasLibres2(Reserva reserva, LocalDate fechaEntrada, LocalDate fechaSalida) {
         if (reserva.getFechaInicio().isBefore(fechaSalida) && reserva.getFechaFin().isAfter(fechaEntrada)) {
             return false;
         }
         return true;
     }
 
-    // Getters & Setters
+    public boolean estaDisponible(LocalDate fechaEntrada, LocalDate fechaSalida) {
+        boolean disponible = true;
+        if (fechaEntrada.isAfter(fechaSalida) || fechaEntrada.isBefore(LocalDate.now()) || fechaSalida.isBefore(LocalDate.now())) {
+            disponible = false;
+        }
+        for (Reserva reserva : this.reservas) {
+            if (this.equals(reserva.getInmueble()) && (!comprobarFechasLibres(reserva, fechaEntrada, fechaSalida))) {
+                disponible = false;
+            }
 
+        }
+
+        return disponible;
+    }
+
+    //TODO: si son iguales no lo pilla. 
+    public boolean comprobarFechasLibres(Reserva reserva, LocalDate fechaEntrada, LocalDate fechaSalida) {
+
+        boolean estalibre = true;
+
+        if (reserva.getFechaInicio().isBefore(fechaSalida) && reserva.getFechaFin().isAfter(fechaSalida)) //si quiero reservar para fecha final ya pillada
+        {
+            estalibre = false;
+        }
+        if (reserva.getFechaInicio().equals(fechaEntrada) || reserva.getFechaInicio().equals(fechaSalida) || reserva.getFechaFin().equals(fechaEntrada) || reserva.getFechaFin().equals(fechaSalida)) {
+            estalibre = false;
+        }
+        if (reserva.getFechaInicio().isBefore(fechaEntrada) && reserva.getFechaFin().isAfter(fechaEntrada)) //reservar para fecha inicial ya pillada
+        {
+            estalibre = false;
+        }
+        if (reserva.getFechaInicio().isBefore(fechaSalida) && reserva.getFechaFin().isAfter(fechaSalida)) { //si quiero reservar para fecha final ya pillada
+            estalibre = false;
+        }
+        if (reserva.getFechaInicio().isAfter(fechaEntrada) && reserva.getFechaFin().isBefore(fechaSalida)) //reservar para periodo de tiempo con reserva en medio
+        {
+            estalibre = false;
+        }
+        if (reserva.getFechaInicio().isBefore(fechaEntrada) && reserva.getFechaFin().isAfter(fechaEntrada)) { //reservar para fecha inicial ya pillada
+            estalibre = false;
+        }
+        if (reserva.getFechaInicio().isAfter(fechaEntrada) && reserva.getFechaFin().isBefore(fechaSalida)) { //reservar para periodo de tiempo con reserva en medio
+            estalibre = false;
+        }
+
+        return estalibre;
+    }
+
+    // Getters & Setters
     public String getFotografia() {
         return fotografia;
     }
@@ -177,8 +224,14 @@ public class Inmueble implements Serializable {
         JavaBNB.guardarDatos();
     }
 
+    public int getValoraciones() {
+        return valoraciones;
+    }
+    
+    
+
     @Override
     public String toString() {
-        return "Inmueble{" +"Anfitrion="+cliente+ ", titulo=" + titulo + ", direccion=" + direccion + ", datosInmueble=" + datosInmueble + ", tipo=" + tipo + ", precioNoche=" + precioNoche + ", servicios=" + servicios + ", calificacion=" + calificacion + ", fotografia=" + fotografia + ", descripcion=" + descripcion + '}';
+        return "Inmueble{" + "Anfitrion=" + cliente + ", titulo=" + titulo + ", direccion=" + direccion + ", datosInmueble=" + datosInmueble + ", tipo=" + tipo + ", precioNoche=" + precioNoche + ", servicios=" + servicios + ", calificacion=" + calificacion + ", fotografia=" + fotografia + ", descripcion=" + descripcion + '}';
     }
 }

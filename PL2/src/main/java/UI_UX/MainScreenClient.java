@@ -14,12 +14,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneId;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
-import javax.swing.text.MaskFormatter;
 
 public class MainScreenClient extends javax.swing.JPanel {
 
@@ -35,7 +34,7 @@ public class MainScreenClient extends javax.swing.JPanel {
     public MainScreenClient() {
         initComponents();
         buildingsLabel.setVisible(false);
-
+/**
         // Agrega un FocusListener al campo de texto de la fecha de inicio
         startDateTextField.addFocusListener(new FocusAdapter() {
             @Override
@@ -58,7 +57,7 @@ public class MainScreenClient extends javax.swing.JPanel {
                     textField.setText(text.substring(0, 2) + "/" + text.substring(2, 4) + "/" + text.substring(4));
                 }
             }
-        });
+        });*/
     }
 
     public void actualizar() {
@@ -139,6 +138,13 @@ public class MainScreenClient extends javax.swing.JPanel {
         buildingsContainer.repaint();   // Repinta el contenedor para asegurar que los cambios sean visibles
     }
 
+      public LocalDate convertToLocalDate(Object dateObject) {
+        if (dateObject instanceof Date) {
+            return ((Date) dateObject).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } else {
+            return null;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -350,14 +356,14 @@ public class MainScreenClient extends javax.swing.JPanel {
 
         jLabel3.setText("Fecha salida");
 
-        startDateTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        startDateTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         startDateTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startDateTextFieldActionPerformed(evt);
             }
         });
 
-        endDateTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        endDateTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         endDateTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endDateTextFieldActionPerformed(evt);
@@ -717,28 +723,26 @@ public class MainScreenClient extends javax.swing.JPanel {
         Aplicacion.loadGuestCheckReserves();    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+
         filterComboBox.setSelectedItem("Filtrar por:");
         this.estado = 1;
-        // Obtener los valores de los campos de texto
+        // Obtener los valores de los campos de texto y eliminar espacios en blanco de inicio y final
         String ciudad = cityTextField.getText().trim();
-        String startDateStr = startDateTextField.getText().trim();
-        String endDateStr = endDateTextField.getText().trim();
+        //String startDateStr = startDateTextField.getText().trim();
+        //String endDateStr = endDateTextField.getText().trim();
 
         // Formateador de fechas
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[dd/MM/yyyy]['ddMMyy']");
-
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[dd/MM/yyyy]");
         // Variables para almacenar las fechas convertidas
         LocalDate startDate = null;
         LocalDate endDate = null;
 
         // Intentar convertir las fechas de texto a LocalDate
         try {
-            if (!startDateStr.isEmpty()) {
-                startDate = LocalDate.parse(startDateStr, formatter);
-            }
-            if (!endDateStr.isEmpty()) {
-                endDate = LocalDate.parse(endDateStr, formatter);
-            }
+            startDate = convertToLocalDate(startDateTextField.getValue());
+            endDate = convertToLocalDate(endDateTextField.getValue());
+            //if (!startDateStr.isEmpty()) {startDate = LocalDate.parse(startDateStr, formatter);}
+            // if (!endDateStr.isEmpty()) {//endDate = LocalDate.parse(endDateStr, formatter);}
         } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(this, "Por favor, introduce las fechas en el formato DD/MM/YYYY", "Formato de fecha inválido", JOptionPane.ERROR_MESSAGE);
             return;
@@ -749,7 +753,7 @@ public class MainScreenClient extends javax.swing.JPanel {
 
         // Actualizar la lista de buildings con los inmuebles filtrados
         buildings = inmueblesFiltrados;
-        preBuildings = inmueblesFiltrados;
+        //preBuildings = inmueblesFiltrados;
 
         // Llama al método para insertar los inmuebles en el panel
         insertBuildings();

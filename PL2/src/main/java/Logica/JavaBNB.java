@@ -232,7 +232,8 @@ public class JavaBNB implements Serializable {
                 inmueblesAnfitrion.add(inmueble);
             }
         }
-        System.out.println(inmueblesAnfitrion);
+        //System.out.println(inmueblesAnfitrion);
+
         return inmueblesAnfitrion;
     }
 }
