@@ -20,6 +20,8 @@ public class JavaBNB implements Serializable {
         inmuebles = new ArrayList<>();
         clientes = new ArrayList<>();
         inmueblesAnfitrion = new ArrayList<>();
+        System.out.println(inmuebles);
+        System.out.println(inmueblesAnfitrion);
 
     }
 
@@ -245,6 +247,19 @@ public class JavaBNB implements Serializable {
         }
         inmueble.getReservas().clear();
         System.out.println("Reservas eliminadas correctamente.");
+    }
+
+    public static void eliminarInmueble(Inmueble inmueble) {
+        // Eliminar el inmueble de la lista de inmuebles
+        System.out.println("Se ha eliminado el inmueble: "+ inmueble.toString());
+
+        inmuebles.remove(inmueble);
+
+        // También puedes limpiar las reservas asociadas al inmueble si es necesario
+        eliminarReservasDeInmueble(inmueble);
+
+        // Guardar los cambios en el archivo de datos
+        guardarDatos();
     }
 
 }

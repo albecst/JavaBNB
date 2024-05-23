@@ -570,7 +570,8 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
 
     private void deleteBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBuildingButtonActionPerformed
         if (objInm != null) {
-            JavaBNB.eliminarReservasDeInmueble(objInm); // Llamar al método para eliminar reservas asociadas al inmueble
+            JavaBNB.eliminarInmueble(objInm); // Llamar al método para eliminar el inmueble
+
             li.remove();
 
             if (li.hasNext()) {
@@ -587,7 +588,6 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
                 limpiarCampos();
             }
         }
-
 
     }//GEN-LAST:event_deleteBuildingButtonActionPerformed
 
