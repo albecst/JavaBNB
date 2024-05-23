@@ -236,4 +236,15 @@ public class JavaBNB implements Serializable {
 
         return inmueblesAnfitrion;
     }
+
+    public static void eliminarReservasDeInmueble(Inmueble inmueble) {
+        System.out.println("Eliminando reservas asociadas al inmueble: " + inmueble.getTitulo());
+        for (Reserva reserva : inmueble.getReservas()) {
+            System.out.println("Eliminando reserva: " + reserva);
+            reserva.getParticular().getReservas().remove(reserva);
+        }
+        inmueble.getReservas().clear();
+        System.out.println("Reservas eliminadas correctamente.");
+    }
+
 }
