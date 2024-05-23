@@ -67,7 +67,7 @@ public class IconoInmueble extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(295, 400));
         setPreferredSize(new java.awt.Dimension(295, 400));
 
-        jPanel1.setBackground(new java.awt.Color(245, 245, 245));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(295, 400));
         jPanel1.setMinimumSize(new java.awt.Dimension(295, 400));
 

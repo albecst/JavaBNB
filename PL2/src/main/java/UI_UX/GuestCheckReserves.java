@@ -18,7 +18,7 @@ public class GuestCheckReserves extends javax.swing.JPanel {
     }
 
     public void actualizar() {
-        if (Sesion.user != null) {
+        if (Sesion.user != null && !Sesion.esAnfitrion) {
             reservasicon = new ArrayList<>();
             insertarReservas();
         }

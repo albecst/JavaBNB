@@ -31,8 +31,6 @@ public class Aplicacion {
     static Login login = new Login();
     static Register register = new Register();
     static PrivacyPolicy privacypolicy = new PrivacyPolicy();
-   // static MainScreenClient mainscreenclient = new MainScreenClient();
-   // static MainScreenHost mainscreenhost = new MainScreenHost();
     static HostProfile hostprofile = new HostProfile();
     static ClientProfile clientprofile = new ClientProfile();
     static AdminScreen adminscreen = new AdminScreen();
@@ -75,7 +73,6 @@ public class Aplicacion {
         loadGuestCheckReserves();
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(addbuildings, "Pantalla addbuildings");
-
         loadBuildingView();
         loadHostProfile();
         loadClientProfile();
@@ -135,10 +132,7 @@ public class Aplicacion {
         cardLayout.show(cards, "Pantalla anfitrioncheckbuildings");
     }
 
-   // public static void loadMainScreenClient() {cards.add(mainscreenclient, "Pantalla mainscreenclient"); mainscreenclient.actualizar();cardLayout.show(cards, "Pantalla mainscreenclient"); }
-
-   // public static void loadMainScreenHost() {cards.add(mainscreenhost, "Pantalla mainscreenhost"); mainscreenhost.actualizar();cardLayout.show(cards, "Pantalla mainscreenhost"); }
-
+  
     public static void loadBuildingView(Inmueble inmueble) {
         cards.add(buildingview, "Pantalla buildingview");
         buildingview.setInmueble(inmueble);

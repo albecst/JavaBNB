@@ -68,7 +68,7 @@ public class ReservasView extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(225, 229));
         setMinimumSize(new java.awt.Dimension(225, 229));
 
-        jPanel1.setBackground(new java.awt.Color(255, 250, 248));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
 
         precio.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N

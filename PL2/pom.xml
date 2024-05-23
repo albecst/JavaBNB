@@ -19,4 +19,16 @@
         <exec.mainClass>poo.pl2_castillo_toma_23_24.PL2_Castillo_Toma_23_24</exec.mainClass>
     </properties>
     <name>Java_PL2</name>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
