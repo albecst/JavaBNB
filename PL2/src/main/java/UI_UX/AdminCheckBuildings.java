@@ -104,6 +104,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         bathTextField.setText(Integer.toString(inmueble.getDatosInmueble().getBaños()));
         serviceTextField.setText(inmueble.getServicios());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -569,6 +570,8 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
 
     private void deleteBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBuildingButtonActionPerformed
         if (objInm != null) {
+            JavaBNB.eliminarInmueble(objInm); // Llamar al método para eliminar el inmueble
+
             li.remove();
 
             if (li.hasNext()) {
@@ -654,7 +657,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Cada inmueble necesita un título", "Sin título", JOptionPane.WARNING_MESSAGE);
                 valido = false;
 
-            }  else if (descripcion.isEmpty()) {
+            } else if (descripcion.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Cada inmueble necesita una descripción.", "Sin descripción", JOptionPane.WARNING_MESSAGE);
                 valido = false;
             } else if (!Validacion.validarNombre(ciudad)) {

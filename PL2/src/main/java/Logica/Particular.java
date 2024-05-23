@@ -7,7 +7,7 @@ public class Particular extends Cliente implements Serializable {
 
     private Tarjeta tarjetaCredito;
     private boolean vip;
-    private ArrayList <Reserva> reservas = new ArrayList<>();
+    private ArrayList<Reserva> reservas = new ArrayList<>();
 
     /**
      * Constructor de la clase Particular
@@ -28,23 +28,25 @@ public class Particular extends Cliente implements Serializable {
 
     /**
      * Método para disminuir el saldo de la tarjeta de crédito
+     *
      * @param cantidad
      * @return
      */
     public String disminuirSaldo(double cantidad) {
         Double saldo = tarjetaCredito.getSaldo();
-        if (vip){
-        saldo -= cantidad*0.9;
-        tarjetaCredito.setSaldo(saldo);  
-        }else{
-        saldo -= cantidad;
-        tarjetaCredito.setSaldo(saldo);  
-    }
-         return "El saldo actual es: "+ saldo + "€";
+        if (vip) {
+            saldo -= cantidad * 0.9;
+            tarjetaCredito.setSaldo(saldo);
+        } else {
+            saldo -= cantidad;
+            tarjetaCredito.setSaldo(saldo);
+        }
+        return "El saldo actual es: " + saldo + "€";
     }
 
     /**
      * Método para aumentar el saldo de la tarjeta de crédito
+     *
      * @param cantidad
      * @return
      */
@@ -52,31 +54,31 @@ public class Particular extends Cliente implements Serializable {
         Double saldo = tarjetaCredito.getSaldo();
         saldo += cantidad;
         tarjetaCredito.setSaldo(saldo);
-        return "El saldo actual es: "+ saldo + "€";
+        return "El saldo actual es: " + saldo + "€";
+    }
+
+    public void eliminarReserva(Reserva reserva) {
+        this.reservas.remove(reserva);
     }
 
     public void addReserva(Reserva reserva) {
-        if (!reservas.contains(reserva)){
+        if (!reservas.contains(reserva)) {
             reservas.add(reserva);
             disminuirSaldo(reserva.calcularPrecioTotal());
-        }
-        else{
+        } else {
             System.out.println("La reserva ya existe");
         }
     }
 
-
     /**
      * Getters & Setters
      */
-    
-    
     //TODO: esto no sobra?
-     /** Get the value of saldo
+    /**
+     * Get the value of saldo
      *
      * @return the value of saldo
      */
-
     public double getSaldo() {
         return tarjetaCredito.getSaldo();
     }
@@ -86,7 +88,6 @@ public class Particular extends Cliente implements Serializable {
      *
      * @param saldo new value of saldo
      */
-
     public void setSaldo(double saldo) {
         tarjetaCredito.setSaldo(saldo);
     }
@@ -134,12 +135,10 @@ public class Particular extends Cliente implements Serializable {
     public void setReservas(ArrayList<Reserva> reservas) {
         this.reservas = reservas;
     }
-    
 
     @Override
     public String toString() {
-        return super.toString()+ tarjetaCredito.toString() + ", vip:" + vip ;
+        return super.toString() + tarjetaCredito.toString() + ", vip:" + vip;
     }
 
-    
 }
