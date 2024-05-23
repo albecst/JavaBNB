@@ -259,10 +259,10 @@ public class Login extends javax.swing.JPanel {
         char[] passwordCharArray = passwordTextField.getPassword();
         String clave = new String(passwordCharArray); 
         int tipo = Sesion.iniciarSesion(correo, clave);
+        resetText();
         switch (tipo) {
             case 0:
                 errorLabel.setVisible(true);
-                resetText();
                 break;
             case 1:
                 System.out.println("Admin");
@@ -292,11 +292,12 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_errorLabelPropertyChange
 
     private void registerLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLabelMouseClicked
+         resetText();
         Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla register");
     }//GEN-LAST:event_registerLabelMouseClicked
 
     private void privacypolicyLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_privacypolicyLabelMouseClicked
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla privacypolicy");
+                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla privacypolicy");
     }//GEN-LAST:event_privacypolicyLabelMouseClicked
 
     private void photoLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoLabelActionPerformed

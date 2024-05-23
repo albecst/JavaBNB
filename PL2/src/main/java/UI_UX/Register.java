@@ -46,6 +46,22 @@ public class Register extends javax.swing.JPanel {
         userExiste.setVisible(false);
         statementLabel.setVisible(false);
     }
+    
+    public void resetText(){
+        userTextField1.setText("");
+        DNITextField.setText("");
+        emailTextField.setText("");
+        passwordTextField.setText("");
+        tlfTextField.setText("");
+        CCTextField.setText("");
+        cvvTextField.setText("");
+        promocodeTextField.setText("");
+        monthTextField.setText("");
+        dayTextField.setText("");
+        yearTextField.setText("");
+        selectComboBox.setSelectedItem("Seleccione entre:");
+    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -717,87 +733,55 @@ public class Register extends javax.swing.JPanel {
         String nombre = userTextField1.getText();
         String dni = DNITextField.getText();
         String correo = emailTextField.getText();
-        
-        //no utilizar getText en la passwordField porque esta "deprecated"
+       
         char[] passwordCharArray = passwordTextField.getPassword();
         String clave = new String(passwordCharArray);
         String telefono = tlfTextField.getText();
         String numtarjeta = CCTextField.getText();
-        int dia = 1;
-        int mes = 1;
-        int año = 1;
-
-        //TODO: error labels
-        try {
-            if (!monthTextField.getText().isEmpty()) {
-                mes = Integer.parseInt(monthTextField.getText());
-            } else {
-                System.err.println("El campo de día está vacío.");
-            }
-            if (!dayTextField.getText().isEmpty()) {
-                dia = Integer.parseInt(dayTextField.getText());
-            } else {
-                System.err.println("El campo de mes está vacío.");
-            }
-            if (!yearTextField.getText().isEmpty()) {
-                año = Integer.parseInt(yearTextField.getText());
-            } else {
-                System.err.println("El campo de año está vacío.");
-            }
-        } catch (NumberFormatException e) {
-            System.err.println("Error al convertir el texto a número.");
-            dia = 1;
-            mes = 1;
-            año = 1;
-        }
-
         String cvv = cvvTextField.getText();
         String promocode = promocodeTextField.getText();
-        LocalDate fechaCaducidad = LocalDate.of(año, mes, dia);
         double saldo = 1000; //el saldo inicial de todos los clientes será de 1000
         boolean valido = true;
         userExiste.setVisible(false);
+        int dia = -1;
+        int mes = -1;
+        int año = -1;
+
+                
 
         if (!Validacion.validarNombre(nombre)) {
             errorLabel4.setVisible(true);
             valido = false;
             promocodeTextField.setText("");
-        } else {
-            errorLabel4.setVisible(false);
-        }
+        } else {errorLabel4.setVisible(false);}
 
         if (!Validacion.validarDNI(dni)) {
             errorLabel2.setVisible(true);
             valido = false;
             DNITextField.setText("");
-        } else {
-            errorLabel2.setVisible(false);
-        }
+        } else { errorLabel2.setVisible(false);}
 
         if (!Validacion.validarEmail(correo)) {
             errorLabel6.setVisible(true);
             valido = false;
             emailTextField.setText("");
-        } else {
-            errorLabel6.setVisible(false);
-        }
+        } else {errorLabel6.setVisible(false);}
 
         if (!Validacion.validarTelefono(telefono)) {
             errorLabel5.setVisible(true);
             valido = false;
             tlfTextField.setText("");
-        } else {
-            errorLabel5.setVisible(false);
-        }
+        } else { errorLabel5.setVisible(false);}
 
         if (!Validacion.validarContraseña(clave)) {
             errorLabel3.setVisible(true);
             requirementsLabel.setVisible(true);
             passwordTextField.setText("");
             valido = false;
-        } else {
-            errorLabel3.setVisible(false);
-        }
+        } else {  errorLabel3.setVisible(false); }
+        
+      
+
 
         String selectedOption = (String) selectComboBox.getSelectedItem();
         boolean usuarioExiste = Validacion.comprobarExistenciaCliente(correo.toLowerCase(), dni, telefono);
@@ -814,11 +798,32 @@ public class Register extends javax.swing.JPanel {
             noselectLabel.setVisible(false);
             Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre, correo.toLowerCase(), clave, telefono);
             Sesion.registrarCliente(nuevoAnfitrion);
+            resetText();
             Aplicacion.loadMainScreen();
         } else if (selectedOption.equals("Anfitrion") && !valido) {
             noselectLabel.setVisible(true);
 
         } else if (selectedOption.equals("Particular")) {
+            try {
+            if (!monthTextField.getText().isEmpty()) {
+                mes = Integer.parseInt(monthTextField.getText());
+            } else {System.err.println("El campo de día está vacío."); }
+            
+            if (!dayTextField.getText().isEmpty()) {
+                dia = Integer.parseInt(dayTextField.getText());
+            } else { System.err.println("El campo de mes está vacío.");}
+            
+            if (!yearTextField.getText().isEmpty()) {
+                año = Integer.parseInt(yearTextField.getText());
+            } else {  System.err.println("El campo de año está vacío.");}
+            
+        } catch (NumberFormatException e) {
+            System.err.println("Error al convertir el texto a número.");
+            dia = -1;
+            mes = -1;
+            año = -1;
+        }
+
             if (!Validacion.validarTarjeta(numtarjeta, dia, mes, año, cvv)) {
                 errorLabel1.setVisible(true);
                 valido = false;
@@ -827,6 +832,7 @@ public class Register extends javax.swing.JPanel {
                 yearTextField.setText("");
                 cvvTextField.setText("");
             } else {
+                
                 errorLabel1.setVisible(false);
             }
 
@@ -841,9 +847,11 @@ public class Register extends javax.swing.JPanel {
             if (valido) {
                 noselectLabel.setVisible(false);
                 boolean vip = Validacion.validarVipPromocode(promocode);
+                LocalDate fechaCaducidad = LocalDate.of(año, mes, dia);
                 Tarjeta tarjeta = new Tarjeta(nombre, numtarjeta, dia, mes, año, fechaCaducidad, cvv, saldo);
                 Particular nuevoParticular = new Particular(tarjeta, vip, dni, nombre, correo.toLowerCase(), clave, telefono);
                 Sesion.registrarCliente(nuevoParticular);
+                resetText();
                 Aplicacion.loadMainScreen();
                 return;
             }
@@ -855,6 +863,7 @@ public class Register extends javax.swing.JPanel {
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void existaccLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_existaccLabelMouseClicked
+        resetText();
         Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
     }//GEN-LAST:event_existaccLabelMouseClicked
 

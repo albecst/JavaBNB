@@ -750,7 +750,6 @@ public class MainScreen extends javax.swing.JPanel {
 
     private void myBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myBuildingsButtonActionPerformed
         Aplicacion.loadAnfitrionCheckBuildings();
-        System.out.println("Viendo inmuebles: mainscreenhost");
         if (Sesion.user != null) {
             ArrayList<Inmueble> inmueblesAnfitrion = JavaBNB.filtrarInmueblesPorAnfitrion((Anfitrion) Sesion.user);
             for (Inmueble inmueble : inmueblesAnfitrion) {

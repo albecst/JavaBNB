@@ -70,8 +70,6 @@ public class Aplicacion {
         cards.add(login, "Pantalla login");
         cards.add(register, "Pantalla register");
         cards.add(privacypolicy, "Pantalla privacypolicy");
-       // loadMainScreenClient();
-        //loadMainScreenHost();
         loadAdminCheckBuildings();
         loadAnfitrionCheckBuildings();
         loadGuestCheckReserves();

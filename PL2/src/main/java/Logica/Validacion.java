@@ -79,31 +79,39 @@ public class Validacion {
     }
 
     public static boolean validarTarjeta(String tarjeta, int dia, int mes, int año, String cvv) {
-
         boolean valido = false;
-
+        if (dia==-1){
+                        return false;
+        }
         if (0 > tarjeta.length() || tarjeta.length() > 16) {
-            valido = false;
+            //valido = false;
             System.out.println("Tarjeta no es válida");
+            return false;
         } else if (año < LocalDate.now().getYear()) {
-            valido = false;
+            //valido = false;
             System.out.println("Año no válido");
-        } else if (año >= LocalDate.now().getYear()) {
-            valido = true;
+            return false;
+      //  } else if (año >= LocalDate.now().getYear()) {valido = true;
 
         } else if (cvv.length() != 3) {
-            valido = false;
+            //valido = false;
             System.out.println("CVV no válido");
+            return false;
+            
         } else if (mes <= 12) {
             if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
-                valido = dia >= 1 && dia <= 31;
+                //valido = dia >= 1 && dia <= 31;
+                return  dia >= 1 && dia <= 31;
             } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
-                valido = dia >= 1 && dia <= 30;
+               // valido = dia >= 1 && dia <= 30;
+                return dia >= 1 && dia <= 30;
             } else if (mes == 2) {
                 if (año % 4 == 0 && (año % 100 != 0 || año % 400 == 0)) {
-                    valido = dia >= 1 && dia <= 29;
+                    //valido = dia >= 1 && dia <= 29;
+                    return dia >= 1 && dia <= 29;
                 } else {
-                    valido = dia >= 1 && dia <= 28;
+                    //valido = dia >= 1 && dia <= 28;
+                    return dia >= 1 && dia <= 28;
                 }
             }
         }

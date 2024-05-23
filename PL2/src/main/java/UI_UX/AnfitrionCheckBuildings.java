@@ -39,39 +39,41 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
     }
 
     private void consultarTodo() {
-        try {
-            errorNextLabel.setVisible(false);
-            errorPreviousLabel.setVisible(false);
+        if (Sesion.user != null) {
+            try {
+                errorNextLabel.setVisible(false);
+                errorPreviousLabel.setVisible(false);
 
-            // Verificar si el usuario actual es un anfitrión
-            if (Sesion.user instanceof Anfitrion) {
-                Anfitrion anfitrion = (Anfitrion) Sesion.user;
-                // Copia de la lista de inmuebles del anfitrión para evitar problemas de concurrencia
-                buildings = new ArrayList<>(JavaBNB.filtrarInmueblesPorAnfitrion(anfitrion)); // Obtener los inmuebles del anfitrión utilizando el método filtrarInmueblesPorAnfitrion
+                // Verificar si el usuario actual es un anfitrión
+                if (Sesion.user instanceof Anfitrion) {
+                    Anfitrion anfitrion = (Anfitrion) Sesion.user;
+                    // Copia de la lista de inmuebles del anfitrión para evitar problemas de concurrencia
+                    buildings = new ArrayList<>(JavaBNB.filtrarInmueblesPorAnfitrion(anfitrion)); // Obtener los inmuebles del anfitrión utilizando el método filtrarInmueblesPorAnfitrion
 
-                // Verificar si hay inmuebles asociados al anfitrión
-                if (buildings.isEmpty()) {
-                    setButtonsEnabled(false);
-                    return;
+                    // Verificar si hay inmuebles asociados al anfitrión
+                    if (buildings.isEmpty()) {
+                        setButtonsEnabled(false);
+                        return;
+                    } else {
+                        setButtonsEnabled(true);
+                    }
+
+                    // Configurar un iterador para los inmuebles
+                    li = buildings.listIterator();
+                    if (li.hasNext()) {
+                        objInm = li.next();
+                        presenta();
+                    } else {
+                        errorNextLabel.setVisible(true);
+                    }
+
                 } else {
-                    setButtonsEnabled(true);
+                    // Si el usuario no es un anfitrión, mostrar un mensaje de error
+                    System.out.println("El usuario actual no es un anfitrión.");
                 }
-
-                // Configurar un iterador para los inmuebles
-                li = buildings.listIterator();
-                if (li.hasNext()) {
-                    objInm = li.next();
-                    presenta();
-                } else {
-                    errorNextLabel.setVisible(true);
-                }
-
-            } else {
-                // Si el usuario no es un anfitrión, mostrar un mensaje de error
-                System.out.println("El usuario actual no es un anfitrión.");
+            } catch (Exception e) {
+                System.out.println("Error: " + e.toString());
             }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.toString());
         }
     }
 
