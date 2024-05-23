@@ -764,7 +764,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteBuildingButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+        Aplicacion.loadMainScreen();
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void editBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBuildingButtonActionPerformed

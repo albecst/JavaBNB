@@ -393,7 +393,7 @@ public class HostProfile extends javax.swing.JPanel {
 
             // Verificar la validez de los datos ingresados
             String email = emailTextField.getText();
-            
+
             //no utilizar getText en la passwordField porque esta "deprecated"
             char[] passwordCharArray = passTextField.getPassword();
             String password = new String(passwordCharArray);
@@ -440,7 +440,7 @@ public class HostProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_errorLabel1PropertyChange
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+        Aplicacion.loadMainScreen();
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void signOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutButtonActionPerformed

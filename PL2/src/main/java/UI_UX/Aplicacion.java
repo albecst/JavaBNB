@@ -31,8 +31,8 @@ public class Aplicacion {
     static Login login = new Login();
     static Register register = new Register();
     static PrivacyPolicy privacypolicy = new PrivacyPolicy();
-    static MainScreenClient mainscreenclient = new MainScreenClient();
-    static MainScreenHost mainscreenhost = new MainScreenHost();
+   // static MainScreenClient mainscreenclient = new MainScreenClient();
+   // static MainScreenHost mainscreenhost = new MainScreenHost();
     static HostProfile hostprofile = new HostProfile();
     static ClientProfile clientprofile = new ClientProfile();
     static AdminScreen adminscreen = new AdminScreen();
@@ -43,6 +43,7 @@ public class Aplicacion {
     static BuildingView buildingview = new BuildingView();
     static AdminConsultarReservas adminconsultarreservas = new AdminConsultarReservas();
     static GuestCheckReserves guestcheckreserves = new GuestCheckReserves();
+    static MainScreen mainscreen= new MainScreen();
 
     public static Sesion sesion = null;  // Iniciamos sesion como null
 
@@ -69,8 +70,8 @@ public class Aplicacion {
         cards.add(login, "Pantalla login");
         cards.add(register, "Pantalla register");
         cards.add(privacypolicy, "Pantalla privacypolicy");
-        loadMainScreenClient();
-        loadMainScreenHost();
+       // loadMainScreenClient();
+        //loadMainScreenHost();
         loadAdminCheckBuildings();
         loadAnfitrionCheckBuildings();
         loadGuestCheckReserves();
@@ -80,6 +81,7 @@ public class Aplicacion {
         loadBuildingView();
         loadHostProfile();
         loadClientProfile();
+        loadMainScreen();
 
         // Establecer el contenido del JFrame como el JScrollPane.
         frame.setContentPane(scrollPane);
@@ -135,17 +137,9 @@ public class Aplicacion {
         cardLayout.show(cards, "Pantalla anfitrioncheckbuildings");
     }
 
-    public static void loadMainScreenClient() {
-        cards.add(mainscreenclient, "Pantalla mainscreenclient");
-        mainscreenclient.actualizar();
-        cardLayout.show(cards, "Pantalla mainscreenclient");
-    }
+   // public static void loadMainScreenClient() {cards.add(mainscreenclient, "Pantalla mainscreenclient"); mainscreenclient.actualizar();cardLayout.show(cards, "Pantalla mainscreenclient"); }
 
-    public static void loadMainScreenHost() {
-        cards.add(mainscreenhost, "Pantalla mainscreenhost");
-        mainscreenhost.actualizar();
-        cardLayout.show(cards, "Pantalla mainscreenhost");
-    }
+   // public static void loadMainScreenHost() {cards.add(mainscreenhost, "Pantalla mainscreenhost"); mainscreenhost.actualizar();cardLayout.show(cards, "Pantalla mainscreenhost"); }
 
     public static void loadBuildingView(Inmueble inmueble) {
         cards.add(buildingview, "Pantalla buildingview");
@@ -156,5 +150,13 @@ public class Aplicacion {
     public static void loadBuildingView() {
         cards.add(buildingview, "Pantalla buildingview");
         cardLayout.show(cards, "Pantalla buildingview");
+    }
+    
+    
+    
+    public static void loadMainScreen(){
+     cards.add(mainscreen, "Pantalla mainscreen");
+        mainscreen.actualizar();
+        cardLayout.show(cards, "Pantalla mainscreen");
     }
 }

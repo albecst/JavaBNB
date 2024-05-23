@@ -195,7 +195,7 @@ public class GuestCheckReserves extends javax.swing.JPanel {
     }//GEN-LAST:event_logoButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
+        Aplicacion.loadMainScreen();
     }//GEN-LAST:event_returnButtonActionPerformed
 
 

@@ -45,8 +45,8 @@ public class BuildingView extends javax.swing.JPanel {
         tipolabel.setText(i.getTipo());
         descripcionarea.setText(i.getDescripcion());
         preciolabel.setText(Double.toString(i.getPrecioNoche()) + "€ por noche");
-        
-        anfitrionlabel.setText("Anfitrion: "+i.getCliente().getNombre());
+
+        anfitrionlabel.setText("Anfitrion: " + i.getCliente().getNombre());
         //TODO: añadir si es superanfitrion###############################################
 
         nhuespedes.setText(Integer.toString(i.getDatosInmueble().getMaxHuespedes()));
@@ -598,12 +598,7 @@ public class BuildingView extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (Sesion.user != null) {
-            if (Sesion.esAnfitrion == true) {
-                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
-            } else {
-                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
-            }
-
+            Aplicacion.loadMainScreen();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

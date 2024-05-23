@@ -270,11 +270,11 @@ public class Login extends javax.swing.JPanel {
                 break;
             case 2:
                 System.out.println("Client");
-                Aplicacion.loadMainScreenClient();
+                Aplicacion.loadMainScreen();
                 break;
             case 3:
                 System.out.println("Anfitrión");
-                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+                Aplicacion.loadMainScreen();
                 break;
             default:
                 break;

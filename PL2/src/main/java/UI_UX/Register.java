@@ -814,7 +814,7 @@ public class Register extends javax.swing.JPanel {
             noselectLabel.setVisible(false);
             Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre, correo.toLowerCase(), clave, telefono);
             Sesion.registrarCliente(nuevoAnfitrion);
-            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+            Aplicacion.loadMainScreen();
         } else if (selectedOption.equals("Anfitrion") && !valido) {
             noselectLabel.setVisible(true);
 
@@ -844,8 +844,7 @@ public class Register extends javax.swing.JPanel {
                 Tarjeta tarjeta = new Tarjeta(nombre, numtarjeta, dia, mes, año, fechaCaducidad, cvv, saldo);
                 Particular nuevoParticular = new Particular(tarjeta, vip, dni, nombre, correo.toLowerCase(), clave, telefono);
                 Sesion.registrarCliente(nuevoParticular);
-                //Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
-                Aplicacion.loadMainScreenClient();
+                Aplicacion.loadMainScreen();
                 return;
             }
             noselectLabel.setVisible(true);

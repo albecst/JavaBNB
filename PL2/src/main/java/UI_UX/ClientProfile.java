@@ -48,7 +48,7 @@ public class ClientProfile extends javax.swing.JPanel {
             if (Sesion.esUsuarioVip()) {
                 promocodeTextField.setText("JAVABNB2024");
             } else {
-                promocodeTextField.setText("    ");
+                promocodeTextField.setText("                    ");
             }
 
             Tarjeta tarjeta = ((Particular) Sesion.user).getTarjetaCredito();
@@ -651,7 +651,6 @@ public class ClientProfile extends javax.swing.JPanel {
 
             String email = emailTextField.getText();
             
-            //no utilizar getText en la passwordField porque esta "deprecated"
             char[] passwordCharArray = clave.getPassword();
             String password = new String(passwordCharArray);
             String telefono = tlfTextField.getText();
@@ -731,7 +730,7 @@ public class ClientProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_moneyTextFieldActionPerformed
 
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenclient");
+        Aplicacion.loadMainScreen();
     }//GEN-LAST:event_mainscrActionPerformed
 
     private void cerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarsesionActionPerformed
@@ -749,16 +748,13 @@ public class ClientProfile extends javax.swing.JPanel {
             Particular particular = (Particular) Sesion.user;
             Tarjeta tarjeta = particular.getTarjetaCredito();
             try {
-                // Verifica si el Particular tiene una tarjeta de crédito asociada
+                // Verifica si el Particular tiene una tarjeta de crédito asociada 
                 if (tarjeta != null) {
                     double saldoañadido;
                     String notaIntroducida = JOptionPane.showInputDialog(this, "Introduzca la cantidad de dinero a añadir:");
                     saldoañadido = Double.parseDouble(notaIntroducida);
 
-                    // Incrementa el saldo de la tarjeta en 50 euros
-                    //tarjeta.incrementarSaldo(50.0);
-                    //moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
-                    
+                    // Incrementa el saldo de la tarjeta
                     tarjeta.incrementarSaldo(saldoañadido);
                     moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
                     // Actualiza la interfaz de usuario para mostrar el nuevo saldo (si tienes una etiqueta o campo de texto para el saldo)
