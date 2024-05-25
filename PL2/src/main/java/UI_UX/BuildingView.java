@@ -645,35 +645,56 @@ public class BuildingView extends javax.swing.JPanel {
 
     private void calificarbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificarbotonActionPerformed
         double nota = 0;
-        try {
-            do {
-                String notaIntroducida = JOptionPane.showInputDialog(this, "Introduzca la calificación (entre 0 y 5):");
-                nota = Double.parseDouble(notaIntroducida);
-            } while (nota < 0 || nota > 5);
+        boolean reservaHecha = false;
+        // Obtener todas las reservas asociadas al inmueble
+        ArrayList<Reserva> reservas = i.getReservas();
 
-            // Asignar la calificación al inmueble
-            i.setCalificacion(nota);
-
-            // Obtener el anfitrión del inmueble
-            Cliente anfitrion = i.getCliente();
-
-            // Actualizar el estado de superAnfitrion del anfitrión si es una instancia de Anfitrion
-            if (anfitrion instanceof Anfitrion) {
-                ((Anfitrion) anfitrion).setSuperAnfitrion();
-                System.out.println(anfitrion);
+        // Iterar sobre todas las reservas
+        for (Reserva reserva : reservas) {
+            // Verificar si el cliente de la reserva es el mismo que el usuario actual de la sesión
+            if (reserva.getParticular().equals((Particular) Sesion.user)) {
+                // El usuario ha realizado una reserva en este inmueble
+                reservaHecha = true;
+                break;
             }
-
-            // Actualizar la interfaz de usuario si es necesario
-            actualizar();
-
-            System.out.println("calificacion=" + nota);
-            System.out.println("nota del inmueble= " + i.getCalificacion());
-        } catch (NumberFormatException nfe) {
-            System.out.println("Error del formato: " + nfe.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-
         }
+
+        // Verificar si el usuario ha realizado alguna reserva en este inmueble
+        if (reservaHecha) {
+            try {
+                do {
+                    String notaIntroducida = JOptionPane.showInputDialog(this, "Introduzca la calificación (entre 0 y 5):");
+                    nota = Double.parseDouble(notaIntroducida);
+                } while (nota < 0 || nota > 5);
+
+                // Asignar la calificación al inmueble
+                i.setCalificacion(nota);
+
+                // Obtener el anfitrión del inmueble
+                Cliente anfitrion = i.getCliente();
+
+                // Actualizar el estado de superAnfitrion del anfitrión si es una instancia de Anfitrion
+                if (anfitrion instanceof Anfitrion) {
+                    ((Anfitrion) anfitrion).setSuperAnfitrion();
+                    System.out.println(anfitrion);
+                    System.out.println("El anfitrión es superanfitrión: " + ((Anfitrion) anfitrion).isSuperAnfitrion());
+
+                }
+
+                actualizar();
+
+                System.out.println("calificacion=" + nota);
+                System.out.println("nota del inmueble= " + i.getCalificacion());
+            } catch (NumberFormatException nfe) {
+                System.out.println("Error del formato: " + nfe.getMessage());
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo los usuarios que han realizado al menos una reserva en este inmueble pueden calificarlo.");
+        }
+
 
     }//GEN-LAST:event_calificarbotonActionPerformed
 
