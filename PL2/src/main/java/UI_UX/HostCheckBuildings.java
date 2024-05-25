@@ -1,4 +1,3 @@
-
 package UI_UX;
 
 import Logica.Anfitrion;
@@ -16,15 +15,18 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import UI_UX.Aplicacion;
+import static UI_UX.Aplicacion.cardLayout;
+import static UI_UX.Aplicacion.cards;
 
-
-public class AnfitrionCheckBuildings extends javax.swing.JPanel {
+public class HostCheckBuildings extends javax.swing.JPanel {
 
     private ArrayList<Inmueble> buildings; //Referencia al ArrayList de inmuebles del anfitrión de la sesión
     private ListIterator<Inmueble> li; //Iterador para recorrer el ArrayList en ambas direcciones
     private Inmueble objInm; //Referencia a un objeto de tipo inmueble del ArrayList
+    private Inmueble inmuebleActual;
 
-    public AnfitrionCheckBuildings() {
+    public HostCheckBuildings() {
         initComponents();
         errorNextLabel.setVisible(false);
         errorPreviousLabel.setVisible(false);
@@ -39,8 +41,14 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
 
         consultarTodo();
     }
-  
-            
+
+    public Inmueble getInmuebleActual() {
+        return inmuebleActual;
+    }
+
+    public void setInmuebleActual(Inmueble inmuebleActual) {
+        this.inmuebleActual = inmuebleActual;
+    }
 
     private void consultarTodo() {
         if (Sesion.user != null) {
@@ -102,9 +110,8 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         nextButton.setEnabled(enabled);
         previousButton.setEnabled(enabled);
         deleteBuildingButton.setEnabled(enabled);
-        editfoto.setEnabled(enabled);
+        checkReservesButton.setEnabled(enabled);
     }
-
 
     private void presenta(Inmueble inmueble) {
         typeLabel.setText(inmueble.getTipo());
@@ -247,7 +254,8 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         titleLabel1 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         calificacionfield = new javax.swing.JTextPane();
-        editfoto = new javax.swing.JButton();
+        checkReservesButton = new javax.swing.JButton();
+        editfoto1 = new javax.swing.JButton();
         previousButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
         errorNextLabel = new javax.swing.JLabel();
@@ -392,7 +400,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 28;
+        gridBagConstraints.gridy = 31;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 30, 17, 0);
         jPanel2.add(deleteBuildingButton, gridBagConstraints);
@@ -580,7 +588,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 27;
+        gridBagConstraints.gridy = 30;
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(12, 30, 0, 0);
@@ -642,22 +650,38 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(11, 24, 0, 54);
         jPanel2.add(jScrollPane6, gridBagConstraints);
 
-        editfoto.setBackground(new java.awt.Color(255, 90, 95));
-        editfoto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        editfoto.setForeground(new java.awt.Color(255, 255, 255));
-        editfoto.setText("Cambiar foto");
-        editfoto.addActionListener(new java.awt.event.ActionListener() {
+        checkReservesButton.setBackground(new java.awt.Color(255, 90, 95));
+        checkReservesButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        checkReservesButton.setForeground(new java.awt.Color(255, 255, 255));
+        checkReservesButton.setText("Ver reservas");
+        checkReservesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editfotoActionPerformed(evt);
+                checkReservesButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 26;
+        gridBagConstraints.gridy = 28;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.insets = new java.awt.Insets(17, 30, 0, 0);
+        jPanel2.add(checkReservesButton, gridBagConstraints);
+
+        editfoto1.setBackground(new java.awt.Color(255, 90, 95));
+        editfoto1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        editfoto1.setForeground(new java.awt.Color(255, 255, 255));
+        editfoto1.setText("Cambiar foto");
+        editfoto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editfoto1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 29;
         gridBagConstraints.ipadx = 28;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(17, 30, 0, 0);
-        jPanel2.add(editfoto, gridBagConstraints);
+        jPanel2.add(editfoto1, gridBagConstraints);
 
         previousButton.setBackground(new java.awt.Color(255, 153, 153));
         previousButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
@@ -716,7 +740,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
                     .addComponent(previousButton)
                     .addComponent(nextButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorNextLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -791,8 +815,6 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
                 limpiarCampos();
             }
         }
-
-    
 
 
     }//GEN-LAST:event_deleteBuildingButtonActionPerformed
@@ -986,9 +1008,24 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_editBuildingButtonActionPerformed
 
-    private void editfotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editfotoActionPerformed
-        changeImage(objInm);
-    }//GEN-LAST:event_editfotoActionPerformed
+    private void checkReservesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkReservesButtonActionPerformed
+        if (objInm != null) {
+            // Establecer el inmueble actual antes de cambiar a la pantalla HostCheckReserves
+            setInmuebleActual(objInm);
+            System.out.println("Inmueble actual:" + objInm.toString());
+
+            // Llamar al método actualizar de HostCheckReserves
+            Aplicacion.hostcheckreserves.actualizar();
+
+            // Cambiar la tarjeta a la pantalla HostCheckReserves
+            cardLayout.show(cards, "Pantalla hostcheckreserves");
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay ningún inmueble seleccionado.", "Error", JOptionPane.WARNING_MESSAGE);
+        }     }//GEN-LAST:event_checkReservesButtonActionPerformed
+
+    private void editfoto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editfoto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editfoto1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -998,6 +1035,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
     private javax.swing.JLabel bedLabel;
     private javax.swing.JTextField bedTextField;
     private javax.swing.JTextPane calificacionfield;
+    private javax.swing.JButton checkReservesButton;
     private javax.swing.JLabel cityLabel;
     private javax.swing.JTextField cityTextField;
     private javax.swing.JLabel cpLabel;
@@ -1006,7 +1044,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextPane descriptionTextPanel;
     private javax.swing.JButton editBuildingButton;
-    private javax.swing.JButton editfoto;
+    private javax.swing.JButton editfoto1;
     private javax.swing.JLabel errorNextLabel;
     private javax.swing.JLabel errorPreviousLabel;
     private javax.swing.JLabel guestLabel;
