@@ -23,6 +23,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
     private ListIterator<Inmueble> li; //Iterador para recorrer el ArrayList en ambas direcciones
     private Inmueble objInm; //Referencia a un objeto de tipo inmueble del ArrayList
     private Inmueble inmuebleActual;
+    private String fotografia = "";
 
     public HostCheckBuildings() {
         initComponents();
@@ -1017,8 +1018,14 @@ public class HostCheckBuildings extends javax.swing.JPanel {
      }//GEN-LAST:event_checkReservesButtonActionPerformed
 
     private void editfoto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editfoto1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editfoto1ActionPerformed
+        File f = openImage();
+        if (f != null) {
+            fotografia = saveImage(f);
+            objInm.setFotografia(fotografia);
+
+        } else {
+            System.out.println("no existe la ruta");
+        }    }//GEN-LAST:event_editfoto1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
