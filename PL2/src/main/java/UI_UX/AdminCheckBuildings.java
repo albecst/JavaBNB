@@ -776,7 +776,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
 
                 editBuildingButton.setText("Editar inmueble");
 
-                System.out.println(objInm.toString());
+                //System.out.println(objInm.toString());
             }
         }
     }//GEN-LAST:event_editBuildingButtonActionPerformed

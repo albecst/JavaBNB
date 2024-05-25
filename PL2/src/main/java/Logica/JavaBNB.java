@@ -11,32 +11,32 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class JavaBNB implements Serializable {
-
+    
     private static ArrayList<Inmueble> inmuebles;
     private static ArrayList<Cliente> clientes;
     private static ArrayList<Inmueble> inmueblesAnfitrion;
-
+    
     public static void inicializadorJavaBNB() {
         inmuebles = new ArrayList<>();
         clientes = new ArrayList<>();
         inmueblesAnfitrion = new ArrayList<>();
         System.out.println(inmuebles);
         System.out.println(inmueblesAnfitrion);
-
+        
     }
-
+    
     public static ArrayList<Inmueble> getInmuebles() {
         return inmuebles;
     }
-
+    
     public static ArrayList<Cliente> getClientes() {
         return clientes;
     }
-
+    
     public static boolean añadirInmueble(Inmueble inmueble) {
         boolean existeInmuebleConMismaDireccion = inmuebles.stream()
                 .anyMatch(inmuebleExistente -> inmuebleExistente.getDireccion().equals(inmueble.getDireccion()));
-
+        
         if (!existeInmuebleConMismaDireccion) {
             inmuebles.add(inmueble);
         } else {
@@ -44,11 +44,11 @@ public class JavaBNB implements Serializable {
         }
         return !existeInmuebleConMismaDireccion;
     }
-
+    
     public static boolean añadirCliente(Cliente cliente) {
         boolean existeClienteConMismoDni = clientes.stream()
                 .anyMatch(clienteExistente -> clienteExistente.getDni().equals(cliente.getDni()));
-
+        
         if (!existeClienteConMismoDni) {
             clientes.add(cliente);
         } else {
@@ -56,67 +56,67 @@ public class JavaBNB implements Serializable {
         }
         return !existeClienteConMismoDni;
     }
-
+    
     public static ArrayList<Inmueble> buscarInmuebles(String ciudad, LocalDate fechaEntrada, LocalDate fechaSalida) {
         ArrayList<Inmueble> inmueblesDisponiblesEnCiudad = new ArrayList<>();
-
+        
         for (Inmueble inmueble : inmuebles) {
             if (inmueble.getDireccion().getCiudad().equalsIgnoreCase(ciudad) && inmueble.estaDisponible(fechaEntrada, fechaSalida)) {
                 inmueblesDisponiblesEnCiudad.add(inmueble);
             }
         }
-
+        
         return inmueblesDisponiblesEnCiudad;
     }
-
+    
     public static void ordenarPorPrecioAscSF() {
         if (inmuebles != null) {
             inmuebles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
         }
     }
-
+    
     public static void ordenarPorPrecioDescSF() {
         if (inmuebles != null) {
             inmuebles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche).reversed());
         }
     }
-
+    
     public static void ordenarPorTipoSF() {
         if (inmuebles != null) {
             inmuebles.sort(Comparator.comparing(Inmueble::getTipo));
         }
     }
-
+    
     public static void ordenarPorCalificacionAscSF() {
         if (inmuebles != null) {
             inmuebles.sort(Comparator.comparingDouble(Inmueble::getCalificacion));
         }
     }
-
+    
     public static void ordenarPorCalificacionDescSF() {
         if (inmuebles != null) {
             inmuebles.sort(Comparator.comparingDouble(Inmueble::getCalificacion).reversed());
         }
     }
-
+    
     public static void ordenarPorPrecioAscCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
         if (inmueblesDisponiblesEnCiudad != null) {
             inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
         }
     }
-
+    
     public static void ordenarPorPrecioDescCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
         if (inmueblesDisponiblesEnCiudad != null) {
             inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche).reversed());
         }
     }
-
+    
     public static void ordenarPorTipoCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
         if (inmueblesDisponiblesEnCiudad != null) {
             inmueblesDisponiblesEnCiudad.sort(Comparator.comparing(Inmueble::getTipo));
         }
     }
-
+    
     public static ArrayList<Inmueble> filtrarCasas(ArrayList<Inmueble> inmueblesDisponibles) {
         ArrayList<Inmueble> casas = new ArrayList<>();
         for (Inmueble inmueble : inmueblesDisponibles) {
@@ -126,7 +126,7 @@ public class JavaBNB implements Serializable {
         }
         return casas;
     }
-
+    
     public static ArrayList<Inmueble> filtrarApartamentos(ArrayList<Inmueble> inmueblesDisponibles) {
         ArrayList<Inmueble> apartamentos = new ArrayList<>();
         for (Inmueble inmueble : inmueblesDisponibles) {
@@ -136,19 +136,19 @@ public class JavaBNB implements Serializable {
         }
         return apartamentos;
     }
-
+    
     public static void ordenarPorCalificacionAscCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
         if (inmueblesDisponiblesEnCiudad != null) {
             inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getCalificacion));
         }
     }
-
+    
     public static void ordenarPorCalificacionDescCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
         if (inmueblesDisponiblesEnCiudad != null) {
             inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getCalificacion).reversed());
         }
     }
-
+    
     public static void cargarDatos() {
         try {
             FileInputStream istreamClientes = new FileInputStream("./src/main/resources/data/copiasegClientes.dat");
@@ -162,7 +162,7 @@ public class JavaBNB implements Serializable {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-
+        
         try {
             FileInputStream istreamInmuebles = new FileInputStream("./src/main/resources/data/copiasegInmuebles.dat");
             ObjectInputStream oisInmuebles = new ObjectInputStream(istreamInmuebles);
@@ -176,7 +176,7 @@ public class JavaBNB implements Serializable {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
+    
     public static void guardarDatos() {
         try {
             if (!clientes.isEmpty()) {
@@ -192,7 +192,7 @@ public class JavaBNB implements Serializable {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-
+        
         try {
             if (!inmuebles.isEmpty()) {
                 FileOutputStream ostreamInmuebles = new FileOutputStream("./src/main/resources/data/copiasegInmuebles.dat");
@@ -206,11 +206,13 @@ public class JavaBNB implements Serializable {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
+    
+    
+    /**
     public static void eliminarCliente(Cliente cliente) {
         if (cliente instanceof Particular) {
             Particular particular = (Particular) cliente;
-            particular.getReservas().clear();
+            // particular.getReservas().clear();
         } else if (cliente instanceof Anfitrion) {
             Anfitrion anfitrion = (Anfitrion) cliente;
             ArrayList<Inmueble> inmueblesAnfitrion = new ArrayList<>();
@@ -226,9 +228,37 @@ public class JavaBNB implements Serializable {
         }
         clientes.remove(cliente);
         guardarDatos();
+    }*/
+    
+    public static void eliminarAnfitrion(Cliente cliente) {
+        Anfitrion anfitrion = (Anfitrion) cliente;
+        for (Inmueble inmueble : inmuebles) {
+            if (inmueble.getCliente().equals(anfitrion)) {
+                inmueble.getReservas().clear();
+                inmuebles.remove(inmueble);
+            }
+        }
+        clientes.remove(cliente);
+        guardarDatos();
     }
-
+    
+    public static void eliminarParticular(Cliente cliente) {
+        Particular particular = (Particular) cliente;
+        for (Inmueble inmueble : inmuebles) {
+            for (Reserva reserva : inmueble.getReservas()) {
+                if (reserva.getParticular().equals(particular)) {
+                    inmueble.getReservas().remove(reserva);
+                    inmuebles.remove(inmueble);
+                }
+            }
+        }
+        clientes.remove(cliente);
+        guardarDatos();
+        
+    }
+    
     public static ArrayList<Inmueble> filtrarInmueblesPorAnfitrion(Cliente anfitrion) {
+        inmueblesAnfitrion = new ArrayList<>();
         for (Inmueble inmueble : inmuebles) {
             if (inmueble.getCliente().getDni().equals(anfitrion.getDni())) {
                 inmueblesAnfitrion.add(inmueble);
@@ -238,28 +268,25 @@ public class JavaBNB implements Serializable {
 
         return inmueblesAnfitrion;
     }
-
+    
     public static void eliminarReservasDeInmueble(Inmueble inmueble) {
-        System.out.println("Eliminando reservas asociadas al inmueble: " + inmueble.getTitulo());
-        for (Reserva reserva : inmueble.getReservas()) {
-            System.out.println("Eliminando reserva: " + reserva);
-            reserva.getParticular().getReservas().remove(reserva);
-        }
-        inmueble.getReservas().clear();
+        System.out.println("Eliminando reservas asociadas al inmueble (2): " + inmueble.getTitulo());
+        //for (Reserva reserva : inmueble.getReservas()) {System.out.println("Eliminando reserva: " + reserva);reserva.getParticular().getReservas().remove(reserva);}
+        inmueble.getReservas().clear(); 
         System.out.println("Reservas eliminadas correctamente.");
     }
-
+    
     public static void eliminarInmueble(Inmueble inmueble) {
         // Eliminar el inmueble de la lista de inmuebles
-        System.out.println("Se ha eliminado el inmueble: "+ inmueble.toString());
-
+        System.out.println("Se ha eliminado el inmueble: " + inmueble.toString());
+        
         inmuebles.remove(inmueble);
 
-        // También puedes limpiar las reservas asociadas al inmueble si es necesario
+        // borrar las reservas asociadas al inmueble
         eliminarReservasDeInmueble(inmueble);
 
         // Guardar los cambios en el archivo de datos
         guardarDatos();
     }
-
+    
 }

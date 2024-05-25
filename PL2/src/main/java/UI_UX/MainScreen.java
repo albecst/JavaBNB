@@ -32,25 +32,6 @@ public class MainScreen extends javax.swing.JPanel {
     public MainScreen() {
         initComponents();
         buildingsLabel.setVisible(false);
-
-        /**
-         * // Agrega un FocusListener al campo de texto de la fecha de inicio
-         * startDateTextField.addFocusListener(new FocusAdapter() {
-         *
-         * @Override public void focusLost(FocusEvent e) { JTextField textField
-         * = (JTextField) e.getSource(); String text = textField.getText(); if
-         * (!text.isEmpty() && text.length() == 6 && !text.contains("/")) {
-         * textField.setText(text.substring(0, 2) + "/" + text.substring(2, 4) +
-         * "/" + text.substring(4)); } } });
-         *
-         * // Agrega un FocusListener al campo de texto de la fecha de fin
-         * endDateTextField.addFocusListener(new FocusAdapter() {
-         * @Override public void focusLost(FocusEvent e) { JTextField textField
-         * = (JTextField) e.getSource(); String text = textField.getText(); if
-         * (!text.isEmpty() && text.length() == 6 && !text.contains("/")) {
-         * textField.setText(text.substring(0, 2) + "/" + text.substring(2, 4) +
-         * "/" + text.substring(4)); } } });
-         */
     }
 
     public void actualizar() {
@@ -91,7 +72,7 @@ public class MainScreen extends javax.swing.JPanel {
             //AbsoluteConstraints constr = new org.netbeans.lib.awtextra.AbsoluteConstraints(295*x, fila, -1, -1);  //-1 en altura y anchura para que nos de la predeterminada del widget añadido
             buildingsicon.add(iconoinm);
             buildingsContainer.add(iconoinm, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, fila, -1, -1));  //método addLayoutComponent(java.awt.Component comp, java.lang.Object constr);  Adds the specified component to the layout, using the specified constraint object.
-            System.out.println(inmueble);
+            //System.out.println(inmueble);
             x += 350; //valor de prueba
         }
         buildingsContainer.revalidate(); // Actualiza el contenedor para mostrar los cambios
@@ -121,7 +102,7 @@ public class MainScreen extends javax.swing.JPanel {
             //AbsoluteConstraints constr = new org.netbeans.lib.awtextra.AbsoluteConstraints(295*x, fila, -1, -1);  //-1 en altura y anchura para que nos de la predeterminada del widget añadido
             buildingsicon.add(iconoinm);
             buildingsContainer.add(iconoinm, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, fila, -1, -1));  //método addLayoutComponent(java.awt.Component comp, java.lang.Object constr);  Adds the specified component to the layout, using the specified constraint object.
-            System.out.println(inmueble);
+            //System.out.println(inmueble);
             x += 350; //valor de prueba
         }
         buildingsContainer.revalidate(); // Actualiza el contenedor para mostrar los cambios
@@ -756,7 +737,7 @@ public class MainScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hostProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostProfileActionPerformed
-       deleteBuildings();
+        deleteBuildings();
         if (Sesion.esAnfitrion) {
             Aplicacion.loadHostProfile();
         } else {
@@ -775,11 +756,12 @@ public class MainScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_addBuildingsButtonActionPerformed
 
     private void myBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myBuildingsButtonActionPerformed
+        deleteBuildings();
         Aplicacion.loadAnfitrionCheckBuildings();
         if (Sesion.user != null) {
             ArrayList<Inmueble> inmueblesAnfitrion = JavaBNB.filtrarInmueblesPorAnfitrion((Anfitrion) Sesion.user);
             for (Inmueble inmueble : inmueblesAnfitrion) {
-                System.out.println(inmueble.toString());
+                //System.out.println(inmueble.toString());
 
             }
         }
@@ -798,21 +780,14 @@ public class MainScreen extends javax.swing.JPanel {
         this.estado = 1;
         // Obtener los valores de los campos de texto y eliminar espacios en blanco de inicio y final
         String ciudad = cityTextField.getText().trim();
-        //String startDateStr = startDateTextField.getText().trim();
-        //String endDateStr = endDateTextField.getText().trim();
-
-        // Formateador de fechas
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[dd/MM/yyyy]");
-        // Variables para almacenar las fechas convertidas
+        // Variables para almacenar las fechas convertidas a LocalDate
         LocalDate startDate = null;
         LocalDate endDate = null;
 
-        // Intentar convertir las fechas de texto a LocalDate
+        // Intentar convertir las fechas de texto a LocalDate 
         try {
             startDate = convertToLocalDate(startDateTextField.getValue());
             endDate = convertToLocalDate(endDateTextField.getValue());
-            //if (!startDateStr.isEmpty()) {startDate = LocalDate.parse(startDateStr, formatter);}
-            // if (!endDateStr.isEmpty()) {//endDate = LocalDate.parse(endDateStr, formatter);}
         } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(this, "Por favor, introduce las fechas en el formato DD/MM/YYYY", "Formato de fecha inválido", JOptionPane.ERROR_MESSAGE);
             return;

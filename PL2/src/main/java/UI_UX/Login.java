@@ -13,7 +13,7 @@ public class Login extends javax.swing.JPanel {
     private void resetText() {
         emailTextField.setText("");
         passwordTextField.setText("");
-        errorLabel.setVisible(true);
+        errorLabel.setVisible(false);
     }
 
     /**
@@ -46,7 +46,6 @@ public class Login extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 250, 248));
         setMinimumSize(new java.awt.Dimension(500, 500));
         setPreferredSize(new java.awt.Dimension(500, 500));
-        setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -239,7 +238,16 @@ public class Login extends javax.swing.JPanel {
         gridBagConstraints.gridy = 24;
         jPanel1.add(privacypolicyLabel, gridBagConstraints);
 
-        add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1104, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed

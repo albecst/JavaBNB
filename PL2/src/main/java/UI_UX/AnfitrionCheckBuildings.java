@@ -1,3 +1,4 @@
+
 package UI_UX;
 
 import Logica.Anfitrion;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
 
 public class AnfitrionCheckBuildings extends javax.swing.JPanel {
 
@@ -37,6 +39,8 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
 
         consultarTodo();
     }
+  
+            
 
     private void consultarTodo() {
         if (Sesion.user != null) {
@@ -45,7 +49,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
                 errorPreviousLabel.setVisible(false);
 
                 // Verificar si el usuario actual es un anfitrión
-                if (Sesion.user instanceof Anfitrion) {
+                if (Sesion.esAnfitrion) {
                     Anfitrion anfitrion = (Anfitrion) Sesion.user;
                     // Copia de la lista de inmuebles del anfitrión para evitar problemas de concurrencia
                     buildings = new ArrayList<>(JavaBNB.filtrarInmueblesPorAnfitrion(anfitrion)); // Obtener los inmuebles del anfitrión utilizando el método filtrarInmueblesPorAnfitrion
@@ -53,6 +57,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
                     // Verificar si hay inmuebles asociados al anfitrión
                     if (buildings.isEmpty()) {
                         setButtonsEnabled(false);
+                        limpiarCampos();
                         return;
                     } else {
                         setButtonsEnabled(true);
@@ -62,7 +67,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
                     li = buildings.listIterator();
                     if (li.hasNext()) {
                         objInm = li.next();
-                        presenta();
+                        presenta(objInm);
                     } else {
                         errorNextLabel.setVisible(true);
                     }
@@ -100,21 +105,21 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         editfoto.setEnabled(enabled);
     }
 
-    private void presenta() {
-        typeLabel.setText(objInm.getTipo());
-        titleTextPanel.setText(objInm.getTitulo());
-        descriptionTextPanel.setText(objInm.getDescripcion());
-        streetTextField.setText(objInm.getDireccion().getCalle());
-        cityTextField.setText(objInm.getDireccion().getCiudad());
-        numberTextField.setText(objInm.getDireccion().getNumero());
-        cpTextField.setText(objInm.getDireccion().getCp());
-        priceTextField.setText(Double.toString(objInm.getPrecioNoche()));
-        guestTextField.setText(Integer.toString(objInm.getDatosInmueble().getMaxHuespedes()));
-        roomTextField.setText(Integer.toString(objInm.getDatosInmueble().getHabitaciones()));
-        bedTextField.setText(Integer.toString(objInm.getDatosInmueble().getCamas()));
-        bathTextField.setText(Integer.toString(objInm.getDatosInmueble().getBaños()));
-        serviceTextField.setText(objInm.getServicios());
-        calificacionfield.setText(Double.toString(objInm.getCalificacion()));
+
+    private void presenta(Inmueble inmueble) {
+        typeLabel.setText(inmueble.getTipo());
+        titleTextPanel.setText(inmueble.getTitulo());
+        descriptionTextPanel.setText(inmueble.getDescripcion());
+        streetTextField.setText(inmueble.getDireccion().getCalle());
+        cityTextField.setText(inmueble.getDireccion().getCiudad());
+        numberTextField.setText(inmueble.getDireccion().getNumero());
+        cpTextField.setText(inmueble.getDireccion().getCp());
+        priceTextField.setText(Double.toString(inmueble.getPrecioNoche()));
+        guestTextField.setText(Integer.toString(inmueble.getDatosInmueble().getMaxHuespedes()));
+        roomTextField.setText(Integer.toString(inmueble.getDatosInmueble().getHabitaciones()));
+        bedTextField.setText(Integer.toString(inmueble.getDatosInmueble().getCamas()));
+        bathTextField.setText(Integer.toString(inmueble.getDatosInmueble().getBaños()));
+        serviceTextField.setText(inmueble.getServicios());
     }
 
     private void clearFields() {
@@ -174,6 +179,22 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
         if (fotoFile != null) {
             i.setFotografia(saveImage(fotoFile));
         }
+    }
+
+    private void limpiarCampos() {
+        typeLabel.setText("");
+        titleTextPanel.setText("");
+        descriptionTextPanel.setText("");
+        streetTextField.setText("");
+        cityTextField.setText("");
+        numberTextField.setText("");
+        cpTextField.setText("");
+        priceTextField.setText("");
+        guestTextField.setText("");
+        roomTextField.setText("");
+        bedTextField.setText("");
+        bathTextField.setText("");
+        serviceTextField.setText("");
     }
 
     /**
@@ -726,7 +747,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
             objInm = li.next();
             errorNextLabel.setVisible(false);
             errorPreviousLabel.setVisible(false);
-            presenta();
+            presenta(objInm);
 
         } else {
             errorNextLabel.setVisible(true);
@@ -738,7 +759,7 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
             objInm = li.previous();
             errorNextLabel.setVisible(false);
             errorPreviousLabel.setVisible(false);
-            presenta();
+            presenta(objInm);
 
         } else {
             errorPreviousLabel.setVisible(true);
@@ -750,8 +771,8 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
     }//GEN-LAST:event_logoButtonActionPerformed
 
     private void deleteBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBuildingButtonActionPerformed
+
         if (objInm != null) {
-            JavaBNB.eliminarReservasDeInmueble(objInm); // Llamar al método para eliminar reservas asociadas al inmueble
             JavaBNB.eliminarInmueble(objInm); // Llamar al método para eliminar el inmueble
 
             li.remove();
@@ -759,17 +780,19 @@ public class AnfitrionCheckBuildings extends javax.swing.JPanel {
             if (li.hasNext()) {
                 objInm = li.next();
                 if (objInm != null) {
-                    presenta();
+                    presenta(objInm);
                 }
             } else if (li.hasPrevious()) {
                 objInm = li.previous();
                 if (objInm != null) {
-                    presenta();
+                    presenta(objInm);
                 }
             } else {
-                clearFields();
+                limpiarCampos();
             }
         }
+
+    
 
 
     }//GEN-LAST:event_deleteBuildingButtonActionPerformed

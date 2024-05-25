@@ -2,7 +2,7 @@ package UI_UX;
 
 import Logica.*;
 import java.awt.CardLayout;
-import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
@@ -41,7 +41,7 @@ public class Aplicacion {
     static BuildingView buildingview = new BuildingView();
     static AdminConsultarReservas adminconsultarreservas = new AdminConsultarReservas();
     static GuestCheckReserves guestcheckreserves = new GuestCheckReserves();
-    static MainScreen mainscreen= new MainScreen();
+    static MainScreen mainscreen = new MainScreen();
 
     public static Sesion sesion = null;  // Iniciamos sesion como null
 
@@ -56,8 +56,8 @@ public class Aplicacion {
         JavaBNB.cargarDatos();
 
         // Establecer el tamaño mínimo de la ventana.
-        frame.setMinimumSize(new Dimension(1000, 1000));
-        frame.setPreferredSize(new Dimension(1000, 1000));
+        frame.setMinimumSize(Toolkit.getDefaultToolkit().getScreenSize());
+        frame.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
         frame.setLocationRelativeTo(null);
 
         // Crear un JScrollPane y agregar el panel cards para permitir el desplazamiento.
@@ -132,7 +132,6 @@ public class Aplicacion {
         cardLayout.show(cards, "Pantalla anfitrioncheckbuildings");
     }
 
-  
     public static void loadBuildingView(Inmueble inmueble) {
         cards.add(buildingview, "Pantalla buildingview");
         buildingview.setInmueble(inmueble);
@@ -143,11 +142,9 @@ public class Aplicacion {
         cards.add(buildingview, "Pantalla buildingview");
         cardLayout.show(cards, "Pantalla buildingview");
     }
-    
-    
-    
-    public static void loadMainScreen(){
-     cards.add(mainscreen, "Pantalla mainscreen");
+
+    public static void loadMainScreen() {
+        cards.add(mainscreen, "Pantalla mainscreen");
         mainscreen.actualizar();
         cardLayout.show(cards, "Pantalla mainscreen");
     }

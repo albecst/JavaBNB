@@ -17,10 +17,11 @@ public class Inmueble implements Serializable {
     private String descripcion;
     private int valoraciones;
     private ArrayList<Reserva> reservas; // ArrayList para almacenar las reservas asociadas al inmueble
-    private Cliente cliente;
+    //private Cliente cliente;
+    private Anfitrion anfitrion;
 
     // Constructor
-    public Inmueble(String titulo, String descripcion, Direccion direccion, DatosInmueble datosInmueble, String tipo, double precioNoche, String fotografia, String servicios, Cliente cliente) {
+    public Inmueble(String titulo, String descripcion, Direccion direccion, DatosInmueble datosInmueble, String tipo, double precioNoche, String fotografia, String servicios, Anfitrion anfitrion) {
         this.titulo = titulo;
         this.direccion = direccion;
         this.datosInmueble = datosInmueble;
@@ -32,13 +33,15 @@ public class Inmueble implements Serializable {
         this.descripcion = descripcion;
         this.valoraciones = 0;
         this.reservas = new ArrayList<>(); // Inicialización del ArrayList de reservas
-        this.cliente = cliente;
+        this.anfitrion = anfitrion;
     }
 
     // Método para agregar una reserva al inmueble
     public void agregarReserva(Reserva reserva) {
-        reservas.add(reserva);
-        JavaBNB.guardarDatos();
+        if (!reservas.contains(reserva)) {
+            reservas.add(reserva);
+            JavaBNB.guardarDatos();
+        }
     }
 
     // Método para eliminar una reserva del inmueble
@@ -216,22 +219,20 @@ public class Inmueble implements Serializable {
     }
 
     public Cliente getCliente() {
-        return cliente;
+        return anfitrion;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCliente(Anfitrion anfitrion) {
+        this.anfitrion = anfitrion;
         JavaBNB.guardarDatos();
     }
 
     public int getValoraciones() {
         return valoraciones;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "Inmueble{" + "Anfitrion=" + cliente + ", titulo=" + titulo + ", direccion=" + direccion + ", datosInmueble=" + datosInmueble + ", tipo=" + tipo + ", precioNoche=" + precioNoche + ", servicios=" + servicios + ", calificacion=" + calificacion + ", fotografia=" + fotografia + ", descripcion=" + descripcion + '}';
+        return "Inmueble{" + ", titulo=" + titulo + ", direccion=" + direccion + ", datosInmueble=" + datosInmueble + ", tipo=" + tipo + ", precioNoche=" + precioNoche + ", servicios=" + servicios + ", calificacion=" + calificacion + ", fotografia=" + fotografia + ", descripcion=" + descripcion + '}';
     }
 }

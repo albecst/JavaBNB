@@ -43,13 +43,12 @@ public class AdminConsultarReservas extends javax.swing.JPanel {
                 reservas.clear();
 
                 // flatMap convierte un Stream<Stream<T>> en un Stream<T>, en este caso para conseguir un stream solo de reservas 
-                List<Reserva> nuevasReservas = JavaBNB.getClientes().stream()
-                        .filter(Particular.class::isInstance)
-                        .flatMap(cliente -> ((Particular) cliente).getReservas().stream())
+                List<Reserva> nuevasReservas = JavaBNB.getInmuebles().stream()
+                        .flatMap(inmueble -> inmueble.getReservas().stream())
                         .collect(Collectors.toList());
 
                 reservas.addAll(nuevasReservas);
-                System.out.println(nuevasReservas);
+                //System.out.println(nuevasReservas);
 
                 li = reservas.listIterator();
                 if (reservas.size() < 1) {

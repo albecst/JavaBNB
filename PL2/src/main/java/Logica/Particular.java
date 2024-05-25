@@ -7,7 +7,7 @@ public class Particular extends Cliente implements Serializable {
 
     private Tarjeta tarjetaCredito;
     private boolean vip;
-    private ArrayList<Reserva> reservas = new ArrayList<>();
+    //private ArrayList<Reserva> reservas = new ArrayList<>();
 
     /**
      * Constructor de la clase Particular
@@ -57,6 +57,8 @@ public class Particular extends Cliente implements Serializable {
         return "El saldo actual es: " + saldo + "€";
     }
 
+    /**
+    
     public void eliminarReserva(Reserva reserva) {
         this.reservas.remove(reserva);
     }
@@ -69,7 +71,8 @@ public class Particular extends Cliente implements Serializable {
             System.out.println("La reserva ya existe");
         }
     }
-
+*/
+    
     /**
      * Getters & Setters
      */
@@ -128,13 +131,9 @@ public class Particular extends Cliente implements Serializable {
         this.tarjetaCredito = tarjetaCredito;
     }
 
-    public ArrayList<Reserva> getReservas() {
-        return reservas;
-    }
+    //public ArrayList<Reserva> getReservas() { return reservas;}
 
-    public void setReservas(ArrayList<Reserva> reservas) {
-        this.reservas = reservas;
-    }
+  //  public void setReservas(ArrayList<Reserva> reservas) { this.reservas = reservas;}
 
     @Override
     public String toString() {
