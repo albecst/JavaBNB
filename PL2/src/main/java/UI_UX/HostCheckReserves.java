@@ -42,25 +42,17 @@ public class HostCheckReserves extends javax.swing.JPanel {
             errorNoAnt.setVisible(false);
 
             if (JavaBNB.getClientes() != null) {
-                // Limpiar la lista de reservas antes de añadir las nuevas
-                reservas.clear();
-
                 if (Aplicacion.hostcheckbuildings != null) {
                     // Obtener el inmueble actual desde HostCheckBuildings
                     Inmueble inmuebleActual = Aplicacion.hostcheckbuildings.getInmuebleActual();
-                    System.out.println("Vas a ver las reservas de: " + inmuebleActual.toString());
+                    if (inmuebleActual != null) {
+                        System.out.println("Inmueble actual: " + inmuebleActual.getTitulo());
 
-                    // Filtrar las reservas para obtener solo las asociadas al inmueble actual
-                    ArrayList<Reserva> reservasInmuebleActual = inmuebleActual.getReservas();
-                    reservas = reservasInmuebleActual;
-                    
-                    for (Reserva reservaa : reservas) {
-                        System.out.println(reservaa);
+                        // Filtrar las reservas para obtener solo las asociadas al inmueble actual
+                        ArrayList<Reserva> reservasInmuebleActual = inmuebleActual.getReservas();
+                        li = reservasInmuebleActual.listIterator();
 
-                        // Actualizar el iterador y el objeto de reserva con las reservas del inmueble actual
-                        li = reservas.listIterator();
-
-                        if (reservas.size() < 1) {
+                        if (reservasInmuebleActual.size() < 1) {
                             jButtonSig.setEnabled(false);
                             jButtonAnt.setEnabled(false);
                             limpiarCampos();
@@ -451,7 +443,12 @@ public class HostCheckReserves extends javax.swing.JPanel {
     }//GEN-LAST:event_logo1ActionPerformed
 
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
+        HostCheckBuildings hcb = new HostCheckBuildings();
+        hcb.setInmuebleActual(null);
+        System.out.println("Estas observando el inmueble: " + hcb.getInmuebleActual());
+
         Aplicacion.loadMainScreen();
+
     }//GEN-LAST:event_mainscrActionPerformed
 
     private void reciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reciboActionPerformed

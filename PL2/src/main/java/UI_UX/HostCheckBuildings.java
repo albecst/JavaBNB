@@ -16,8 +16,6 @@ import java.util.ListIterator;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import UI_UX.Aplicacion;
-import static UI_UX.Aplicacion.cardLayout;
-import static UI_UX.Aplicacion.cards;
 
 public class HostCheckBuildings extends javax.swing.JPanel {
 
@@ -1009,19 +1007,14 @@ public class HostCheckBuildings extends javax.swing.JPanel {
     }//GEN-LAST:event_editBuildingButtonActionPerformed
 
     private void checkReservesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkReservesButtonActionPerformed
-        if (objInm != null) {
-            // Establecer el inmueble actual antes de cambiar a la pantalla HostCheckReserves
-            setInmuebleActual(objInm);
-            System.out.println("Inmueble actual:" + objInm.toString());
+        // Establecer el inmueble actual antes de cambiar a la pantalla HostCheckReserves
+        setInmuebleActual(objInm);
 
-            // Llamar al método actualizar de HostCheckReserves
-            Aplicacion.hostcheckreserves.actualizar();
+        System.out.println("Inmueble actual:" + objInm.toString());
 
-            // Cambiar la tarjeta a la pantalla HostCheckReserves
-            cardLayout.show(cards, "Pantalla hostcheckreserves");
-        } else {
-            JOptionPane.showMessageDialog(this, "No hay ningún inmueble seleccionado.", "Error", JOptionPane.WARNING_MESSAGE);
-        }     }//GEN-LAST:event_checkReservesButtonActionPerformed
+        Aplicacion.loadHostCheckReserves();
+
+     }//GEN-LAST:event_checkReservesButtonActionPerformed
 
     private void editfoto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editfoto1ActionPerformed
         // TODO add your handling code here:
