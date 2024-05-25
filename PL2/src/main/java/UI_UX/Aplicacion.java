@@ -37,11 +37,12 @@ public class Aplicacion {
     static AdminConsultarUser adminconsultaruser = new AdminConsultarUser();
     static AddBuildings addbuildings = new AddBuildings();
     static AdminCheckBuildings admincheckbuildings = new AdminCheckBuildings();
-    static AnfitrionCheckBuildings anfitrioncheckbuildings = new AnfitrionCheckBuildings();
+    static HostCheckBuildings hostcheckbuildings = new HostCheckBuildings();
     static BuildingView buildingview = new BuildingView();
     static AdminConsultarReservas adminconsultarreservas = new AdminConsultarReservas();
     static GuestCheckReserves guestcheckreserves = new GuestCheckReserves();
     static MainScreen mainscreen = new MainScreen();
+    static HostCheckReserves hostcheckreserves = new HostCheckReserves();
 
     public static Sesion sesion = null;  // Iniciamos sesion como null
 
@@ -69,10 +70,13 @@ public class Aplicacion {
         cards.add(register, "Pantalla register");
         cards.add(privacypolicy, "Pantalla privacypolicy");
         loadAdminCheckBuildings();
-        loadAnfitrionCheckBuildings();
+        loadHostCheckBuildings();
+        //loadHostCheckReserves();
         loadGuestCheckReserves();
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(addbuildings, "Pantalla addbuildings");
+        cards.add(hostcheckreserves, "Pantalla hostcheckreserves");
+
         loadBuildingView();
         loadHostProfile();
         loadClientProfile();
@@ -126,12 +130,18 @@ public class Aplicacion {
         cardLayout.show(cards, "Pantalla admincheckbuildings");
     }
 
-    public static void loadAnfitrionCheckBuildings() {
-        cards.add(anfitrioncheckbuildings, "Pantalla anfitrioncheckbuildings");
-        anfitrioncheckbuildings.actualizar();
-        cardLayout.show(cards, "Pantalla anfitrioncheckbuildings");
+    public static void loadHostCheckBuildings() {
+        cards.add(hostcheckbuildings, "Pantalla hostcheckbuildings");
+        hostcheckbuildings.actualizar();
+        cardLayout.show(cards, "Pantalla hostcheckbuildings");
     }
 
+    /**
+     * public static void loadHostCheckReserves() { cards.add(hostcheckreserves,
+     * "Pantalla hostcheckreserves"); hostcheckreserves.actualizar();
+     * cardLayout.show(cards, "Pantalla hostcheckreserves"); }
+    *
+     */
     public static void loadBuildingView(Inmueble inmueble) {
         cards.add(buildingview, "Pantalla buildingview");
         buildingview.setInmueble(inmueble);
