@@ -781,20 +781,33 @@ public class MainScreen extends javax.swing.JPanel {
         // Obtener los valores de los campos de texto y eliminar espacios en blanco de inicio y final
         String ciudad = cityTextField.getText().trim();
         // Variables para almacenar las fechas convertidas a LocalDate
-        LocalDate startDate = null;
-        LocalDate endDate = null;
+        LocalDate fechaEntrada = null;
+        LocalDate fechaSalida = null;
 
-        // Intentar convertir las fechas de texto a LocalDate 
-        try {
-            startDate = convertToLocalDate(startDateTextField.getValue());
-            endDate = convertToLocalDate(endDateTextField.getValue());
-        } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(this, "Por favor, introduce las fechas en el formato DD/MM/YYYY", "Formato de fecha inválido", JOptionPane.ERROR_MESSAGE);
-            return;
+        // Verificar si los campos de fecha no están vacíos antes de intentar convertir
+        String fechaEntradaTexto = startDateTextField.getText().trim();
+        String fechaSalidaTexto = endDateTextField.getText().trim();
+
+        if (!fechaEntradaTexto.isEmpty()) {
+            try {
+                fechaEntrada = convertToLocalDate(fechaEntradaTexto);
+            } catch (DateTimeParseException e) {
+                JOptionPane.showMessageDialog(this, "Por favor, introduce la fecha de inicio en el formato DD/MM/YYYY", "Formato de fecha inválido", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        if (!fechaSalidaTexto.isEmpty()) {
+            try {
+                fechaSalida = convertToLocalDate(fechaSalidaTexto);
+            } catch (DateTimeParseException e) {
+                JOptionPane.showMessageDialog(this, "Por favor, introduce la fecha final en el formato DD/MM/YYYY", "Formato de fecha inválido", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         }
 
         // Filtrar los inmuebles en función de los criterios introducidos
-        ArrayList<Inmueble> inmueblesFiltrados = JavaBNB.buscarInmuebles(ciudad, startDate, endDate);
+        ArrayList<Inmueble> inmueblesFiltrados = JavaBNB.buscarInmuebles(ciudad, fechaEntrada, fechaSalida);
 
         // Actualizar la lista de buildings con los inmuebles filtrados
         buildings = inmueblesFiltrados;
@@ -802,6 +815,7 @@ public class MainScreen extends javax.swing.JPanel {
 
         // Llama al método para insertar los inmuebles en el panel
         insertBuildings();
+
 
     }//GEN-LAST:event_searchButtonActionPerformed
 
