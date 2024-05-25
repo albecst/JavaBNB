@@ -614,35 +614,34 @@ public class AddBuildings extends javax.swing.JPanel {
         String ciudad = cityTextField.getText();
         String cp = cpTextField.getText();
         String tipo = (String) typeComboBox.getSelectedItem();
-
         double precio = 0;
         int huespedes = (int) guestSpinner.getValue();
         int habitaciones = (int) bedroomSpinner.getValue();
         int camas = (int) bedSpinner.getValue();
         int baños = (int) bathSpinner.getValue();
         String servicios = servicesTextPane.getText();
-
         boolean valido = true;
 
+        // Validar título
         if (titulo.isEmpty()) {
             titleError.setVisible(true);
             valido = false;
-
         } else {
             titleError.setVisible(false);
         }
 
+        // Validar fotografía
         if (fotografia == null || fotografia.isEmpty()) {
-            loadImage(); // Llama al método loadImage() para cargar la imagen
-            if (fotografia == null || fotografia.isEmpty()) { // Verifica si la carga de la imagen fue exitosa
+            loadImage();
+            if (fotografia == null || fotografia.isEmpty()) {
                 bathError1.setVisible(true);
                 valido = false;
             } else {
-                System.out.println(fotografia);
                 bathError1.setVisible(false);
             }
         }
 
+        // Validar descripción
         if (descripcion.isEmpty()) {
             descriptionError.setVisible(true);
             valido = false;
@@ -650,46 +649,50 @@ public class AddBuildings extends javax.swing.JPanel {
             descriptionError.setVisible(false);
         }
 
-        if (!Validacion.validarNombre(ciudad)) {
-            JOptionPane.showMessageDialog(this, "Existe algún error con la ciudad, puede que esté vacía o que el formato no sea válido", "Error con la ciudad", JOptionPane.WARNING_MESSAGE);
+        // Validar calle
+        if (calle.isEmpty() || calle.matches(".*\\d.*")) {
+            JOptionPane.showMessageDialog(this, "La calle no puede estar vacía ni contener números.", "Error en la calle", JOptionPane.WARNING_MESSAGE);
             valido = false;
         }
 
-        if (!Validacion.validarNombre(calle)) {
-            JOptionPane.showMessageDialog(this, "La casilla de la calle del inmueble es necesaria", "Falta la calle", JOptionPane.WARNING_MESSAGE);
-            valido = false;
-        }
-
-        boolean numeroo = false;
+        // Validar número
         int numeroInt = 0;
-        if (!numero.isEmpty()) {
-            try {
-                numeroInt = Integer.parseInt(numero);
-                numeroo = true;
-            } catch (NumberFormatException e) {
-                valido = false;
-                JOptionPane.showMessageDialog(this, "El número del inmueble debe ser un número entero.", "Error de número", JOptionPane.WARNING_MESSAGE);
-            }
-        } else {
+        if (numero.isEmpty()) {
             JOptionPane.showMessageDialog(this, "La casilla del número del inmueble es necesaria", "Falta el número", JOptionPane.WARNING_MESSAGE);
             valido = false;
-
-        }
-        boolean cpp = false;
-        int cpInt = 0;
-        if (!cp.isEmpty() && cp.length() == 5) {
+        } else {
             try {
-                cpInt = Integer.parseInt(cpTextField.getText());
-                cpp = true;
+                numeroInt = Integer.parseInt(numero);
+                if (numeroInt <= 0) {
+                    throw new NumberFormatException();
+                }
             } catch (NumberFormatException e) {
                 valido = false;
-                JOptionPane.showMessageDialog(this, "El código postal tiene que ser un número entero.", "Error del código postal", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El número del inmueble debe ser un número entero mayor que 0.", "Error de número", JOptionPane.WARNING_MESSAGE);
             }
-        } else {
-            valido = false;
-            JOptionPane.showMessageDialog(this, "El código postal debe tener 5 carácteres exactamente", "Error del código postal", JOptionPane.WARNING_MESSAGE);
         }
 
+        // Validar ciudad
+        if (ciudad.isEmpty() || ciudad.matches(".*\\d.*")) {
+            JOptionPane.showMessageDialog(this, "La ciudad no puede estar vacía ni contener números.", "Error en la ciudad", JOptionPane.WARNING_MESSAGE);
+            valido = false;
+        }
+
+        // Validar código postal
+        int cpInt = 0;
+        if (cp.isEmpty() || cp.length() != 5) {
+            JOptionPane.showMessageDialog(this, "El código postal debe tener 5 caracteres exactamente.", "Error del código postal", JOptionPane.WARNING_MESSAGE);
+            valido = false;
+        } else {
+            try {
+                cpInt = Integer.parseInt(cp);
+            } catch (NumberFormatException e) {
+                valido = false;
+                JOptionPane.showMessageDialog(this, "El código postal debe ser un número entero.", "Error del código postal", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+
+        // Validar precio
         try {
             String priceText = priceTextField.getText().trim();
             if (priceText.isEmpty() || !priceText.matches("\\d+(\\.\\d{1,2})?")) {
@@ -707,44 +710,44 @@ public class AddBuildings extends javax.swing.JPanel {
             return;
         }
 
+        // Validar huéspedes
         if (huespedes <= 0) {
             guestError.setVisible(true);
             valido = false;
-
         } else {
             guestError.setVisible(false);
         }
 
+        // Validar habitaciones
         if (habitaciones <= 0) {
             bedroomError.setVisible(true);
             valido = false;
-
         } else {
             bedroomError.setVisible(false);
         }
 
+        // Validar camas
         if (camas <= 0) {
             bedError.setVisible(true);
             valido = false;
-
         } else {
             bedError.setVisible(false);
         }
 
+        // Validar baños
         if (baños <= 0) {
             bathError.setVisible(true);
             valido = false;
-
         } else {
             bathError.setVisible(false);
         }
 
+        // Validar servicios
         if (servicios.isEmpty()) {
             serviceError.setVisible(true);
             valido = false;
         } else {
             serviceError.setVisible(false);
-
         }
 
         if (valido) {
@@ -753,16 +756,11 @@ public class AddBuildings extends javax.swing.JPanel {
             Inmueble inmueble = new Inmueble(titulo, descripcion, direccion, datos, tipo, precio, fotografia, servicios, anfitrion);
             boolean inmuebleValido = JavaBNB.añadirInmueble(inmueble);
             if (inmuebleValido) {
-                JavaBNB.añadirInmueble(inmueble);
-                JOptionPane.showMessageDialog(this, "El inmueble se ha creado correctamente, se ha añadido a la lista de inmuebles.", "Inmueble creado", JOptionPane.WARNING_MESSAGE);
-
+                JOptionPane.showMessageDialog(this, "El inmueble se ha creado correctamente, se ha añadido a la lista de inmuebles.", "Inmueble creado", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "El inmueble ya existe, no aceptamos inmuebles duplicados.", "Inmueble ya existente", JOptionPane.WARNING_MESSAGE);
-
             }
-            return;
         }
-
     }//GEN-LAST:event_createBuildingButtonActionPerformed
 
     private void cpTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpTextFieldActionPerformed
