@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -618,11 +619,15 @@ public class BuildingView extends javax.swing.JPanel {
             int n = JOptionPane.showConfirmDialog(this, textoconfirmacion, "ConfirmDialog", JOptionPane.YES_NO_CANCEL_OPTION);
             if (n == JOptionPane.YES_OPTION) {
                 System.out.println("SI. Haciendo reserva ");
+                ArrayList<Reserva> reservass = i.getReservas();
                 //((Particular) Sesion.user).addReserva(reserva);
                 //añade la reserva a la lista de reservas y se realiza el "pago"
-                
+
                 i.agregarReserva(reserva);
                 ((Particular) Sesion.user).disminuirSaldo(reserva.calcularPrecioTotal());
+                for (Reserva reservaa : reservass) {
+                    System.out.println("Reserva :" + reservaa.toString());
+                }
 
             } else if (n == JOptionPane.NO_OPTION) {
                 System.out.println("NO");
