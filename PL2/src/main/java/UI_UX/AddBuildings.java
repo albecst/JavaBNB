@@ -601,7 +601,7 @@ public class AddBuildings extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBuildingButtonActionPerformed
-        Anfitrion anfitrion = (Anfitrion)Sesion.devolverCliente();
+        Anfitrion anfitrion = (Anfitrion) Sesion.devolverCliente();
         if (anfitrion == null) {
             JOptionPane.showMessageDialog(this, "Error: el usuario actual no es un anfitrión válido.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -615,7 +615,6 @@ public class AddBuildings extends javax.swing.JPanel {
         String cp = cpTextField.getText();
         String tipo = (String) typeComboBox.getSelectedItem();
 
-        //TODO: hacer formatted field en vez de priceSpinner. mejorar las validaciones (por ej puedes poner una letra como numero)
         double precio = 0;
         int huespedes = (int) guestSpinner.getValue();
         int habitaciones = (int) bedroomSpinner.getValue();
@@ -632,7 +631,7 @@ public class AddBuildings extends javax.swing.JPanel {
         } else {
             titleError.setVisible(false);
         }
-/////////////////////////////////////////////////////////////////// pq es null o empty???????
+
         if (fotografia == null || fotografia.isEmpty()) {
             loadImage(); // Llama al método loadImage() para cargar la imagen
             if (fotografia == null || fotografia.isEmpty()) { // Verifica si la carga de la imagen fue exitosa
@@ -793,8 +792,8 @@ public class AddBuildings extends javax.swing.JPanel {
     }//GEN-LAST:event_photoButtonActionPerformed
 
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
-       // Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
-       Aplicacion.loadMainScreen();
+        // Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
+        Aplicacion.loadMainScreen();
     }//GEN-LAST:event_mainscrActionPerformed
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
