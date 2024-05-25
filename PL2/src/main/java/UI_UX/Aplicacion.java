@@ -71,7 +71,7 @@ public class Aplicacion {
         cards.add(privacypolicy, "Pantalla privacypolicy");
         loadAdminCheckBuildings();
         loadHostCheckBuildings();
-        //loadHostCheckReserves();
+        loadHostCheckReserves();
         loadGuestCheckReserves();
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(addbuildings, "Pantalla addbuildings");
@@ -136,12 +136,12 @@ public class Aplicacion {
         cardLayout.show(cards, "Pantalla hostcheckbuildings");
     }
 
-    /**
-     * public static void loadHostCheckReserves() { cards.add(hostcheckreserves,
-     * "Pantalla hostcheckreserves"); hostcheckreserves.actualizar();
-     * cardLayout.show(cards, "Pantalla hostcheckreserves"); }
-    *
-     */
+    public static void loadHostCheckReserves() {
+        cards.add(hostcheckreserves, "Pantalla hostcheckreserves");
+        hostcheckreserves.actualizar();
+        cardLayout.show(cards, "Pantalla hostcheckreserves");
+    }
+
     public static void loadBuildingView(Inmueble inmueble) {
         cards.add(buildingview, "Pantalla buildingview");
         buildingview.setInmueble(inmueble);
