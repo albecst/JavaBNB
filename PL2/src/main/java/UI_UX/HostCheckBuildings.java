@@ -15,16 +15,23 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import UI_UX.Aplicacion;
+import UI_UX.App;
 
+/**
+ * Panel para que el anfitrión revise sus inmuebles y realice acciones
+ * relacionadas.
+ */
 public class HostCheckBuildings extends javax.swing.JPanel {
 
-    private ArrayList<Inmueble> buildings; //Referencia al ArrayList de inmuebles del anfitrión de la sesión
-    private ListIterator<Inmueble> li; //Iterador para recorrer el ArrayList en ambas direcciones
-    private Inmueble objInm; //Referencia a un objeto de tipo inmueble del ArrayList
+    private ArrayList<Inmueble> buildings; // Referencia al ArrayList de inmuebles del anfitrión de la sesión
+    private ListIterator<Inmueble> li; // Iterador para recorrer el ArrayList en ambas direcciones
+    private Inmueble objInm; // Referencia a un objeto de tipo inmueble del ArrayList
     private Inmueble inmuebleActual;
     private String fotografia = "";
 
+    /**
+     * Crea un nuevo panel para que el anfitrión revise sus inmuebles.
+     */
     public HostCheckBuildings() {
         initComponents();
         errorNextLabel.setVisible(false);
@@ -34,6 +41,9 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         consultarTodo();
     }
 
+    /**
+     * Actualiza la vista de los inmuebles del anfitrión.
+     */
     public void actualizar() {
         errorNextLabel.setVisible(false);
         errorPreviousLabel.setVisible(false);
@@ -41,14 +51,27 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         consultarTodo();
     }
 
+    /**
+     * Obtiene el inmueble actual que se muestra en el panel.
+     *
+     * @return El inmueble actual.
+     */
     public Inmueble getInmuebleActual() {
         return inmuebleActual;
     }
 
+    /**
+     * Establece el inmueble actual que se mostrará en el panel.
+     *
+     * @param inmuebleActual El inmueble actual.
+     */
     public void setInmuebleActual(Inmueble inmuebleActual) {
         this.inmuebleActual = inmuebleActual;
     }
 
+    /**
+     * Consulta todos los inmuebles del anfitrión y los muestra en la vista.
+     */
     private void consultarTodo() {
         if (Sesion.user != null) {
             try {
@@ -89,6 +112,12 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Establece si los campos editables del formulario están habilitados o no.
+     *
+     * @param editable true si los campos deben ser editables, false de lo
+     * contrario.
+     */
     private void setEditableFields(boolean editable) {
         titleTextPanel.setEditable(editable);
         descriptionTextPanel.setEditable(editable);
@@ -105,6 +134,12 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         serviceTextField.setEditable(editable);
     }
 
+    /**
+     * Establece si los botones del formulario están habilitados o no.
+     *
+     * @param enabled true si los botones deben estar habilitados, false de lo
+     * contrario.
+     */
     private void setButtonsEnabled(boolean enabled) {
         nextButton.setEnabled(enabled);
         previousButton.setEnabled(enabled);
@@ -114,6 +149,12 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         editfoto1.setEnabled(enabled);
     }
 
+    /**
+     * Muestra la información de un inmueble en los campos correspondientes del
+     * formulario.
+     *
+     * @param inmueble El inmueble a mostrar.
+     */
     private void presenta(Inmueble inmueble) {
         typeLabel.setText(inmueble.getTipo());
         titleTextPanel.setText(inmueble.getTitulo());
@@ -131,36 +172,25 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         markTextField.setText(String.valueOf(inmueble.getCalificacion()));
     }
 
-    private void clearFields() {
-        typeLabel.setText("");
-        titleTextPanel.setText("");
-        descriptionTextPanel.setText("");
-        streetTextField.setText("");
-        cityTextField.setText("");
-        numberTextField.setText("");
-        cpTextField.setText("");
-        priceTextField.setText("");
-        guestTextField.setText("");
-        roomTextField.setText("");
-        bedTextField.setText("");
-        bathTextField.setText("");
-        serviceTextField.setText("");
-        markTextField.setText("");
-    }
-
+    /**
+     * Abre un cuadro de diálogo para seleccionar una imagen y la devuelve.
+     *
+     * @return El archivo de imagen seleccionado, o null si no se selecciona
+     * ningún archivo.
+     */
     public File openImage() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Selecciona una imagen");
         fileChooser.setAcceptAllFileFilterUsed(false); // Deshabilitar la opción "Todos los archivos"
         fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif", "bmp"));
 
-        int result = fileChooser.showOpenDialog(null); // Mostrar el diálogo de seleccion y capturar la respuesta
+        int result = fileChooser.showOpenDialog(null); // Mostrar el diálogo de selección y capturar la respuesta
 
         // Procesar la respuesta
         if (result == JFileChooser.APPROVE_OPTION) {
             return fileChooser.getSelectedFile();
         }
-        return null; // No file was selected or the user cancelled
+        return null; // No se selecciona ningún archivo
     }
 
     public String saveImage(File archivofoto) {
@@ -183,6 +213,12 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Abre un cuadro de diálogo para seleccionar una imagen y la asigna al
+     * inmueble actual.
+     *
+     * @param i El inmueble al que se le asignará la imagen.
+     */
     public void changeImage(Inmueble i) {
         File fotoFile = openImage();
         if (fotoFile != null) {
@@ -190,6 +226,9 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Limpia todos los campos de texto en el formulario.
+     */
     private void limpiarCampos() {
         typeLabel.setText("");
         titleTextPanel.setText("");
@@ -821,7 +860,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteBuildingButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        Aplicacion.loadMainScreen();
+        App.loadMainScreen();
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void editBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBuildingButtonActionPerformed
@@ -1015,7 +1054,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
 
         System.out.println("Inmueble actual:" + objInm.toString());
 
-        Aplicacion.loadHostCheckReserves();
+        App.loadHostCheckReserves();
 
      }//GEN-LAST:event_checkReservesButtonActionPerformed
 
