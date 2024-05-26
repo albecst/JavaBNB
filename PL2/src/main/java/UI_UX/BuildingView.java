@@ -604,7 +604,7 @@ public class BuildingView extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (Sesion.user != null) {
-            Aplicacion.loadMainScreen();
+            App.loadMainScreen();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -666,7 +666,7 @@ public class BuildingView extends javax.swing.JPanel {
         // Iterar sobre todas las reservas
         for (Reserva reserva : reservas) {
             // Verificar si el cliente de la reserva es el mismo que el usuario actual de la sesión
-            if (reserva.getParticular().equals((Particular) Sesion.user)) {
+            if (reserva.getParticular().getDni().equals((((Particular) Sesion.user).getDni()))) {
                 // El usuario ha realizado una reserva en este inmueble
                 reservaHecha = true;
                 break;
@@ -687,13 +687,6 @@ public class BuildingView extends javax.swing.JPanel {
                 // Obtener el anfitrión del inmueble
                 Anfitrion anfitrion = i.getAnfitrion();
                 anfitrion.setSuperAnfitrion();
-                // Actualizar el estado de superAnfitrion del anfitrión si es una instancia de Anfitrion
-                //if (anfitrion instanceof Anfitrion) {
-                    //((Anfitrion) anfitrion).setSuperAnfitrion();
-                    //System.out.println(anfitrion);
-                    //System.out.println("El anfitrión es superanfitrión: " + ((Anfitrion) anfitrion).isSuperAnfitrion());
-
-                //}
 
                 actualizar();
 
