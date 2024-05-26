@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package UI_UX;
 
 import Logica.Particular;
@@ -11,12 +7,18 @@ import Logica.Validacion;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
+/**
+ * Panel que muestra el perfil del cliente actual.
+ */
 public class ClientProfile extends javax.swing.JPanel {
 
+    /**
+     * El cliente particular actual.
+     */
     public Particular particular;
 
     /**
-     * Creates new form UserProfile
+     * Crea un nuevo panel de perfil de cliente.
      */
     public ClientProfile() {
         initComponents();
@@ -32,9 +34,11 @@ public class ClientProfile extends javax.swing.JPanel {
         yearTextField.setEditable(false);
         moneyTextField.setEditable(false);
         cvvTextField.setEditable(false);
-
     }
 
+    /**
+     * Actualiza la información mostrada en el perfil del cliente.
+     */
     public void actualizar() {
         if (Sesion.user != null) {
             // Establecer los campos de texto con la información del usuario actual
@@ -59,7 +63,6 @@ public class ClientProfile extends javax.swing.JPanel {
                 cvvTextField.setText(tarjeta.getCvv());
                 moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
             }
-
         }
     }
 
@@ -613,11 +616,8 @@ public class ClientProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_userpfpActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // ActionListener para el botón
-        // Verificar el texto actual del botón
         if (jButton1.getText().equals("Editar datos")) {
-            // Si el botón está en modo "Editar datos"
-            // Establecer los campos de texto como editables
+            // Si el botón está en modo "Editar datos", establece los campos de texto como editables
             emailTextField.setEditable(true);
             clave.setEditable(true);
             tlfTextField.setEditable(true);
@@ -630,8 +630,7 @@ public class ClientProfile extends javax.swing.JPanel {
             // Cambiar el texto del botón a "Aceptar"
             jButton1.setText("Aceptar");
         } else {
-            // Si el botón está en modo "Aceptar"
-            // Establecer los campos de texto como no editables
+            // Si el botón está en modo "Aceptar", establece los campos de texto como no editables
             emailTextField.setEditable(false);
             clave.setEditable(false);
             tlfTextField.setEditable(false);
@@ -640,7 +639,6 @@ public class ClientProfile extends javax.swing.JPanel {
             jButton1.setText("Editar datos");
 
             String email = emailTextField.getText();
-            
             char[] passwordCharArray = clave.getPassword();
             String password = new String(passwordCharArray);
             String telefono = tlfTextField.getText();
@@ -653,7 +651,7 @@ public class ClientProfile extends javax.swing.JPanel {
                 errorLabel1.setVisible(true);
                 emailTextField.setText("");
                 valido = false;
-            } // Verificar la contraseña
+            } // Verificar la contraseña            
             else if (!Validacion.validarContraseña(password)) {
                 errorLabel1.setVisible(true);
                 clave.setText("");
@@ -720,12 +718,12 @@ public class ClientProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_moneyTextFieldActionPerformed
 
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
-        Aplicacion.loadMainScreen();
+        App.loadMainScreen();
     }//GEN-LAST:event_mainscrActionPerformed
 
     private void cerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarsesionActionPerformed
         Sesion.cerrarSesion();
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
+        App.cardLayout.show(App.cards, "Pantalla login");
     }//GEN-LAST:event_cerrarsesionActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -748,7 +746,7 @@ public class ClientProfile extends javax.swing.JPanel {
                     tarjeta.incrementarSaldo(saldoañadido);
                     moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
                     // Actualiza la interfaz de usuario para mostrar el nuevo saldo (si tienes una etiqueta o campo de texto para el saldo)
-                    
+
                     System.out.println("Saldo añadido. Nuevo saldo: " + tarjeta.getSaldo());
                 } else {
                     System.out.println("El usuario no tiene una tarjeta de crédito asociada.");
