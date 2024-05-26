@@ -1,25 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package UI_UX;
 
 import Logica.Anfitrion;
 import Logica.Sesion;
 import Logica.Validacion;
 
+/**
+ * Panel que muestra el perfil del anfitrión actual.
+ */
 public class HostProfile extends javax.swing.JPanel {
 
     /**
-     * Creates new form UserProfile
+     * Crea un nuevo panel para mostrar el perfil del anfitrión.
      */
     public HostProfile() {
         initComponents();
         errorLabel1.setVisible(false);
         requirementsLabel.setVisible(false);
-
     }
 
+    /**
+     * Actualiza la información mostrada en el perfil del anfitrión.
+     */
     public void actualizar() {
         if (Sesion.user != null) {
             dniTextField.setText(Sesion.user.getDni());
@@ -34,7 +35,6 @@ public class HostProfile extends javax.swing.JPanel {
                 hostlabel.setText("Anfitrión");
             }
         }
-
     }
 
     /**
@@ -347,7 +347,7 @@ public class HostProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_userpfpActionPerformed
 
     private void editUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserButtonActionPerformed
-// Verificar el texto actual del botón
+        // Verificar el texto actual del botón
         if (editUserButton.getText().equals("Editar datos")) {
             // Si el botón está en modo "Editar datos"
             // Establecer los campos de texto como editables
@@ -416,12 +416,12 @@ public class HostProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_errorLabel1PropertyChange
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        Aplicacion.loadMainScreen();
+        App.loadMainScreen();
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void signOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutButtonActionPerformed
         Sesion.cerrarSesion();
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
+        App.cardLayout.show(App.cards, "Pantalla login");
     }//GEN-LAST:event_signOutButtonActionPerformed
 
 
