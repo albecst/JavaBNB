@@ -103,6 +103,8 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         bedTextField.setText(Integer.toString(inmueble.getDatosInmueble().getCamas()));
         bathTextField.setText(Integer.toString(inmueble.getDatosInmueble().getBaños()));
         serviceTextField.setText(inmueble.getServicios());
+        markTextField.setText(String.valueOf(inmueble.getCalificacion()));
+
     }
 
     /**
@@ -152,6 +154,9 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         serviceLabel = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         descriptionTextPanel = new javax.swing.JTextPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        markTextField = new javax.swing.JTextPane();
+        markLabel = new javax.swing.JLabel();
         previousButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
         errorNextLabel = new javax.swing.JLabel();
@@ -227,7 +232,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 250, 248));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel2.setMinimumSize(new java.awt.Dimension(580, 499));
-        jPanel2.setPreferredSize(new java.awt.Dimension(370, 640));
+        jPanel2.setPreferredSize(new java.awt.Dimension(370, 700));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         titleLabel.setText("Título:");
@@ -459,6 +464,28 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 38);
         jPanel2.add(jScrollPane5, gridBagConstraints);
+
+        jScrollPane6.setMinimumSize(new java.awt.Dimension(300, 50));
+        jScrollPane6.setPreferredSize(new java.awt.Dimension(64, 22));
+
+        markTextField.setMinimumSize(new java.awt.Dimension(64, 22));
+        markTextField.setPreferredSize(new java.awt.Dimension(64, 22));
+        jScrollPane6.setViewportView(markTextField);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 144;
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 38);
+        jPanel2.add(jScrollPane6, gridBagConstraints);
+
+        markLabel.setText("Calificación:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.insets = new java.awt.Insets(28, 16, 0, 0);
+        jPanel2.add(markLabel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -806,8 +833,11 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JButton logoButton;
     private javax.swing.JLabel logoLabel;
+    private javax.swing.JLabel markLabel;
+    private javax.swing.JTextPane markTextField;
     private javax.swing.JButton nextButton;
     private javax.swing.JLabel numberLabel;
     private javax.swing.JTextField numberTextField;
