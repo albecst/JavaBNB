@@ -613,6 +613,14 @@ public class BuildingView extends javax.swing.JPanel {
         LocalDate salida = convertToLocalDate(fieldsalida.getValue());
 
         Reserva reserva = new Reserva((Particular) Sesion.user, i, llegada, salida);
+        System.out.println("El inmueble está disponible: " + i.estaDisponible(llegada, salida));
+        System.out.println(((Particular) Sesion.user).getSaldo() > reserva.calcularPrecioTotal());
+
+        if (((Particular) Sesion.user).getSaldo() <= reserva.calcularPrecioTotal()) {
+            JOptionPane.showMessageDialog(this, "No tienes suficiente dinero para hacer esta reserva", "Dinero insuficiente", JOptionPane.WARNING_MESSAGE);
+
+        }
+
         if ((i.estaDisponible(llegada, salida)) && (((Particular) Sesion.user).getSaldo() > reserva.calcularPrecioTotal())) {
 
             String textoconfirmacion = "¿Quieres confirmar la reserva de este inmueble del " + llegada + " al " + salida + " por un coste total de " + reserva.calcularPrecioTotal() + " euros?";
@@ -638,6 +646,7 @@ public class BuildingView extends javax.swing.JPanel {
             }
         } else {
             errordisponible.setVisible(true);
+            System.out.println("ERROR");
         }
 
 
