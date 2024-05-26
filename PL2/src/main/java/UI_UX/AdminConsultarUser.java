@@ -9,8 +9,10 @@ import Logica.Cliente;
 import Logica.Inmueble;
 import Logica.JavaBNB;
 import Logica.Particular;
+import Logica.Reserva;
 import Logica.Validacion;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
@@ -446,8 +448,19 @@ public class AdminConsultarUser extends javax.swing.JPanel {
             if (objcli instanceof Particular) {
                 Particular particular = (Particular) objcli;
                 JavaBNB.eliminarParticular(objcli);
-                // Eliminar todas las reservas del particular
-                // particular.getReservas().clear();
+
+                //Tengo que eliminar las reservas asociadas a ese particuar
+                ArrayList<Inmueble> inmuebles = JavaBNB.getInmuebles();
+                for (Inmueble i : inmuebles) {
+                    ArrayList<Reserva> reservas = i.getReservas();
+                    Iterator<Reserva> iterator = reservas.iterator();
+                    while (iterator.hasNext()) {
+                        Reserva reserva = iterator.next();
+                        if (reserva.getParticular().getDni().equals(objcli.getDni())) {
+                            iterator.remove(); // Utilizar el método remove() del iterador
+                        }
+                    }
+                }
 
             } else if (objcli instanceof Anfitrion) {
                 Anfitrion anfitrion = (Anfitrion) objcli;
@@ -468,9 +481,11 @@ public class AdminConsultarUser extends javax.swing.JPanel {
                 // Actualizar las vistas
                 Aplicacion.adminconsultarreservas.actualizar();
                 Aplicacion.admincheckbuildings.actualizar();
+                Aplicacion.adminconsultaruser.actualizar();
             } catch (Exception e) {
                 System.out.println("Está vacío, no se puede eliminar más");
             }
+
         }
 
 
