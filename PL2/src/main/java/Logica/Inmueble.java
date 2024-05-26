@@ -84,11 +84,16 @@ public class Inmueble implements Serializable {
     }
 
     public boolean estaDisponible(LocalDate fechaEntrada, LocalDate fechaSalida) {
+        // Verificar que las fechas no sean nulas
+        if (fechaEntrada == null || fechaSalida == null) {
+            return false; // o lanza una excepción, dependiendo de tus requisitos
+        }
+
         boolean disponible = true;
         if (fechaEntrada.isAfter(fechaSalida) || fechaEntrada.isBefore(LocalDate.now()) || fechaSalida.isBefore(LocalDate.now())) {
             disponible = false;
         }
-        for (Reserva reserva : this.reservas) {
+        for (Reserva reserva : reservas) {
             if (this.equals(reserva.getInmueble()) && (!comprobarFechasLibres(reserva, fechaEntrada, fechaSalida))) {
                 disponible = false;
             }
@@ -98,37 +103,29 @@ public class Inmueble implements Serializable {
         return disponible;
     }
 
-    //TODO: si son iguales no lo pilla. 
     public boolean comprobarFechasLibres(Reserva reserva, LocalDate fechaEntrada, LocalDate fechaSalida) {
-
-        boolean estalibre = true;
-
-        if (reserva.getFechaInicio().isBefore(fechaSalida) && reserva.getFechaFin().isAfter(fechaSalida)) //si quiero reservar para fecha final ya pillada
-        {
-            estalibre = false;
-        }
-        if (reserva.getFechaInicio().equals(fechaEntrada) || reserva.getFechaInicio().equals(fechaSalida) || reserva.getFechaFin().equals(fechaEntrada) || reserva.getFechaFin().equals(fechaSalida)) {
-            estalibre = false;
-        }
-        if (reserva.getFechaInicio().isBefore(fechaEntrada) && reserva.getFechaFin().isAfter(fechaEntrada)) //reservar para fecha inicial ya pillada
-        {
-            estalibre = false;
-        }
-        if (reserva.getFechaInicio().isBefore(fechaSalida) && reserva.getFechaFin().isAfter(fechaSalida)) { //si quiero reservar para fecha final ya pillada
-            estalibre = false;
-        }
-        if (reserva.getFechaInicio().isAfter(fechaEntrada) && reserva.getFechaFin().isBefore(fechaSalida)) //reservar para periodo de tiempo con reserva en medio
-        {
-            estalibre = false;
-        }
-        if (reserva.getFechaInicio().isBefore(fechaEntrada) && reserva.getFechaFin().isAfter(fechaEntrada)) { //reservar para fecha inicial ya pillada
-            estalibre = false;
-        }
-        if (reserva.getFechaInicio().isAfter(fechaEntrada) && reserva.getFechaFin().isBefore(fechaSalida)) { //reservar para periodo de tiempo con reserva en medio
-            estalibre = false;
+        // Verificar si las fechas de inicio y fin de la reserva son iguales a las fechas solicitadas
+        if (reserva.getFechaInicio().equals(fechaEntrada) || reserva.getFechaFin().equals(fechaSalida)) {
+            return false; // No está libre si las fechas son iguales
         }
 
-        return estalibre;
+        // Verificar si la fecha de inicio de la reserva está dentro del rango de fechas solicitadas
+        if (reserva.getFechaInicio().isAfter(fechaEntrada) && reserva.getFechaInicio().isBefore(fechaSalida)) {
+            return false; // No está libre si la fecha de inicio de la reserva está dentro del rango de fechas solicitadas
+        }
+
+        // Verificar si la fecha de fin de la reserva está dentro del rango de fechas solicitadas
+        if (reserva.getFechaFin().isAfter(fechaEntrada) && reserva.getFechaFin().isBefore(fechaSalida)) {
+            return false; // No está libre si la fecha de fin de la reserva está dentro del rango de fechas solicitadas
+        }
+
+        // Verificar si la reserva cubre completamente el período solicitado
+        if (reserva.getFechaInicio().isBefore(fechaEntrada) && reserva.getFechaFin().isAfter(fechaSalida)) {
+            return false; // No está libre si la reserva cubre completamente el período solicitado
+        }
+
+        // Si no se cumple ninguna de las condiciones anteriores, entonces está libre
+        return true;
     }
 
     // Getters & Setters
