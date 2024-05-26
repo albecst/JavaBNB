@@ -2,11 +2,20 @@ package Logica;
 
 import UI_UX.Aplicacion;
 
+/**
+ * La clase Sesion maneja la gestión de la sesión del usuario en la aplicación JavaBNB.
+ * Permite iniciar y cerrar sesión, actualizar información del usuario y registrar nuevos clientes.
+ */
 public class Sesion {
 
     public static Cliente user;
     public static boolean esAnfitrion;
 
+    /**
+     * Inicia una nueva sesión con el cliente proporcionado.
+     *
+     * @param cliente el cliente que inicia la sesión
+     */
     public static void nuevaSesion(Cliente cliente) {
         if (cliente != null) {
             user = cliente;
@@ -17,10 +26,20 @@ public class Sesion {
         }
     }
 
+    /**
+     * Devuelve el cliente actual de la sesión.
+     *
+     * @return el cliente actual
+     */
     public static Cliente devolverCliente() {
         return user;
     }
 
+    /**
+     * Actualiza el nombre del usuario en la sesión actual.
+     *
+     * @param data el nuevo nombre
+     */
     public static void updatenombre(String data) {
         if (!Validacion.validarNombre(data)) {
             return;
@@ -34,10 +53,11 @@ public class Sesion {
     }
 
     /**
+     * Inicia sesión con el correo y la clave proporcionados.
      *
-     * @param correo
-     * @param clave
-     * @return int referente a qué tipo de "persona" es.
+     * @param correo el correo del cliente
+     * @param clave la clave del cliente
+     * @return un entero que indica el tipo de usuario (1: administrador, 2: cliente, 3: anfitrión, 0: no encontrado)
      */
     public static int iniciarSesion(String correo, String clave) {
         boolean isHost = false;
@@ -58,11 +78,19 @@ public class Sesion {
         return 0;
     }
 
+    /**
+     * Cierra la sesión actual.
+     */
     public static void cerrarSesion() {
         user = null;
         esAnfitrion = false;
     }
 
+    /**
+     * Registra un nuevo cliente en la aplicación.
+     *
+     * @param cliente el nuevo cliente a registrar
+     */
     public static void registrarCliente(Cliente cliente) {
         if (Validacion.comprobarExistenciaCliente(cliente.getCorreo(), cliente.getDni(), cliente.getTelefono())) {
             return;
@@ -72,6 +100,12 @@ public class Sesion {
         System.out.println(cliente.toString());
     }
 
+    /**
+     * Hace VIP al usuario actual si el código promocional es válido.
+     *
+     * @param promocode el código promocional
+     * @return true si el código es válido y el usuario se convierte en VIP, false en caso contrario
+     */
     public static boolean hacerVipSiPromocodeValido(String promocode) {
         if (user instanceof Particular && "JAVABNB2024".equals(promocode)) {
             ((Particular) user).setVip(true);
@@ -80,12 +114,15 @@ public class Sesion {
         return false;
     }
 
-    // Nuevo método para verificar si el usuario actual es VIP
+    /**
+     * Verifica si el usuario actual es VIP.
+     *
+     * @return true si el usuario es VIP, false en caso contrario
+     */
     public static boolean esUsuarioVip() {
         if (user instanceof Particular) {
             return ((Particular) user).isVip();
         }
         return false;
     }
-
 }
