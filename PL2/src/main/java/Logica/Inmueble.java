@@ -89,18 +89,25 @@ public class Inmueble implements Serializable {
             return false; // o lanza una excepción, dependiendo de tus requisitos
         }
 
-        boolean disponible = true;
-        if (fechaEntrada.isAfter(fechaSalida) || fechaEntrada.isBefore(LocalDate.now()) || fechaSalida.isBefore(LocalDate.now())) {
-            disponible = false;
+        // Verificar que la fecha de entrada sea anterior a la fecha de salida
+        if (fechaEntrada.isAfter(fechaSalida)) {
+            return false;
         }
+
+        // Verificar que las fechas solicitadas estén dentro del rango correcto
+        if (fechaEntrada.isBefore(LocalDate.now()) || fechaSalida.isBefore(LocalDate.now())) {
+            return false;
+        }
+
+        // Verificar la disponibilidad en base a las reservas existentes
         for (Reserva reserva : reservas) {
-            if (this.equals(reserva.getInmueble()) && (!comprobarFechasLibres(reserva, fechaEntrada, fechaSalida))) {
-                disponible = false;
+            if (!comprobarFechasLibres(reserva, fechaEntrada, fechaSalida)) {
+                return false; // No está disponible si hay conflicto de reserva
             }
-
         }
 
-        return disponible;
+        // Si pasa todas las verificaciones, entonces está disponible
+        return true;
     }
 
     public boolean comprobarFechasLibres(Reserva reserva, LocalDate fechaEntrada, LocalDate fechaSalida) {
