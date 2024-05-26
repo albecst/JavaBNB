@@ -31,38 +31,38 @@ public class BuildingView extends javax.swing.JPanel {
      */
     public BuildingView() {
         initComponents();
-        errordisponible.setVisible(false);
+        errorLabel1.setVisible(false);
     }
 
     public void actualizar() {
         if (Sesion.esAnfitrion) {
             panelreservas.setVisible(false);
-            calificarboton.setVisible(false);
+            gradeButton.setVisible(false);
         } else {
             panelreservas.setVisible(true);
-            calificarboton.setVisible(true);
+            gradeButton.setVisible(true);
         }
-        titulolabel.setText(i.getTitulo());
-        tipolabel.setText(i.getTipo());
-        descripcionarea.setText(i.getDescripcion());
-        preciolabel.setText(Double.toString(i.getPrecioNoche()) + "€ por noche");
+        titleLabel.setText(i.getTitulo());
+        typeLabel.setText(i.getTipo());
+        descriptionTextArea.setText(i.getDescripcion());
+        priceLabel.setText(Double.toString(i.getPrecioNoche()) + "€ por noche");
 
-        anfitrionlabel.setText("Anfitrion: " + i.getAnfitrion().getNombre());
+        hostLabel.setText("Anfitrion: " + i.getAnfitrion().getNombre());
         if (i.getAnfitrion().isSuperAnfitrion()) {
-            superanfitrionLabel.setVisible(true);
+            superhostLabel.setVisible(true);
         } else {
-            superanfitrionLabel.setVisible(false);
+            superhostLabel.setVisible(false);
         }
 
-        nhuespedes.setText(Integer.toString(i.getDatosInmueble().getMaxHuespedes()));
-        nhabitaciones.setText(Integer.toString(i.getDatosInmueble().getHabitaciones()));
-        nbanos.setText(Integer.toString(i.getDatosInmueble().getBaños()));
-        ncamas.setText(Integer.toString(i.getDatosInmueble().getCamas()));
+        guestsLabel.setText(Integer.toString(i.getDatosInmueble().getMaxHuespedes()));
+        roomsLabel.setText(Integer.toString(i.getDatosInmueble().getHabitaciones()));
+        bathsLabel.setText(Integer.toString(i.getDatosInmueble().getBaños()));
+        bedsLabel.setText(Integer.toString(i.getDatosInmueble().getCamas()));
 
-        direccionarea.setText(i.getDireccion().toString());
-        serviciosarea.setText("los servicios de este inmueble son " + i.getServicios());
-        calificacionlabel.setText("Calificación: " + Double.toString(i.getCalificacion()));
-        numvaloracioneslabel.setText("Calificado por " + Integer.toString(i.getValoraciones()) + " personas");
+        directionTextArea.setText(i.getDireccion().toString());
+        servicesTextArea.setText("los servicios de este inmueble son " + i.getServicios());
+        markLabel.setText("Calificación: " + Double.toString(i.getCalificacion()));
+        numbermarksLabel.setText("Calificado por " + Integer.toString(i.getValoraciones()) + " personas");
 
         fotoboton.setIcon(resizeIMG(i.getFotografia()));
         estrella1.setIcon(i.getCalificacion() >= 1 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
@@ -124,48 +124,48 @@ public class BuildingView extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         fotoboton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        starsPanel = new javax.swing.JPanel();
         estrella1 = new javax.swing.JButton();
         estrella2 = new javax.swing.JButton();
         estrella3 = new javax.swing.JButton();
         estrella4 = new javax.swing.JButton();
         estrella5 = new javax.swing.JButton();
-        titulolabel = new javax.swing.JLabel();
-        preciolabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        descripcionarea = new javax.swing.JTextArea();
-        barraarriba = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        logo = new javax.swing.JButton();
         titleLabel = new javax.swing.JLabel();
-        tipolabel = new javax.swing.JLabel();
+        priceLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descriptionTextArea = new javax.swing.JTextArea();
+        barraarriba = new javax.swing.JPanel();
+        returnButton = new javax.swing.JButton();
+        logoButton = new javax.swing.JButton();
+        logoLabel = new javax.swing.JLabel();
+        typeLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        serviciosarea = new javax.swing.JTextArea();
+        servicesTextArea = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
-        direccionarea = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        nhuespedes = new javax.swing.JLabel();
-        nhabitaciones = new javax.swing.JLabel();
-        nbanos = new javax.swing.JLabel();
-        ncamas = new javax.swing.JLabel();
+        directionTextArea = new javax.swing.JTextArea();
+        guestLabel = new javax.swing.JLabel();
+        bathLabel = new javax.swing.JLabel();
+        roomLabel = new javax.swing.JLabel();
+        bedLabel = new javax.swing.JLabel();
+        guestsLabel = new javax.swing.JLabel();
+        roomsLabel = new javax.swing.JLabel();
+        bathsLabel = new javax.swing.JLabel();
+        bedsLabel = new javax.swing.JLabel();
         panelreservas = new javax.swing.JPanel();
-        reservaya = new javax.swing.JLabel();
-        reservarboton = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        fieldsalida = new javax.swing.JFormattedTextField();
-        fieldllegada = new javax.swing.JFormattedTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        errordisponible = new javax.swing.JLabel();
-        calificacionlabel = new javax.swing.JLabel();
-        calificarboton = new javax.swing.JButton();
-        numvaloracioneslabel = new javax.swing.JLabel();
-        anfitrionlabel = new javax.swing.JLabel();
-        superanfitrionLabel = new javax.swing.JLabel();
+        reservenowLabel = new javax.swing.JLabel();
+        reserveButton = new javax.swing.JButton();
+        startDateLabel = new javax.swing.JLabel();
+        endDateLabel = new javax.swing.JLabel();
+        endDateFormattedField = new javax.swing.JFormattedTextField();
+        startDateFormattedField = new javax.swing.JFormattedTextField();
+        daymonthyearLabel2 = new javax.swing.JLabel();
+        daymonthyearLabel1 = new javax.swing.JLabel();
+        errorLabel1 = new javax.swing.JLabel();
+        markLabel = new javax.swing.JLabel();
+        gradeButton = new javax.swing.JButton();
+        numbermarksLabel = new javax.swing.JLabel();
+        hostLabel = new javax.swing.JLabel();
+        superhostLabel = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -173,8 +173,8 @@ public class BuildingView extends javax.swing.JPanel {
 
         fotoboton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/casa1.jpg"))); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        starsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        starsPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         estrella1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrella50roja.png"))); // NOI18N
         estrella1.setToolTipText("");
@@ -201,11 +201,11 @@ public class BuildingView extends javax.swing.JPanel {
         estrella5.setToolTipText("");
         estrella5.setBorderPainted(false);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout starsPanelLayout = new javax.swing.GroupLayout(starsPanel);
+        starsPanel.setLayout(starsPanelLayout);
+        starsPanelLayout.setHorizontalGroup(
+            starsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(starsPanelLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addComponent(estrella1)
                 .addGap(6, 6, 6)
@@ -218,11 +218,11 @@ public class BuildingView extends javax.swing.JPanel {
                 .addComponent(estrella5)
                 .addContainerGap(8, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        starsPanelLayout.setVerticalGroup(
+            starsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(starsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(starsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(estrella1)
                     .addComponent(estrella2)
                     .addComponent(estrella3)
@@ -231,53 +231,53 @@ public class BuildingView extends javax.swing.JPanel {
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        titulolabel.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
-        titulolabel.setText("Titulo");
+        titleLabel.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        titleLabel.setText("Titulo");
 
-        preciolabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        preciolabel.setText("precio $/noche");
+        priceLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        priceLabel.setText("precio $/noche");
 
-        descripcionarea.setEditable(false);
-        descripcionarea.setBackground(new java.awt.Color(255, 250, 248));
-        descripcionarea.setColumns(20);
-        descripcionarea.setRows(5);
-        descripcionarea.setText("Descripcion : Casa preciosa en Gandía");
-        descripcionarea.setAutoscrolls(false);
-        descripcionarea.setBorder(null);
-        descripcionarea.setCaretPosition(0);
-        descripcionarea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(descripcionarea);
+        descriptionTextArea.setEditable(false);
+        descriptionTextArea.setBackground(new java.awt.Color(255, 250, 248));
+        descriptionTextArea.setColumns(20);
+        descriptionTextArea.setRows(5);
+        descriptionTextArea.setText("Descripcion : Casa preciosa en Gandía");
+        descriptionTextArea.setAutoscrolls(false);
+        descriptionTextArea.setBorder(null);
+        descriptionTextArea.setCaretPosition(0);
+        descriptionTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(descriptionTextArea);
 
         barraarriba.setBackground(new java.awt.Color(255, 250, 248));
         barraarriba.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 153));
-        jButton2.setText("Volver");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        returnButton.setBackground(new java.awt.Color(255, 153, 153));
+        returnButton.setText("Volver");
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                returnButtonActionPerformed(evt);
             }
         });
 
-        logo.setBackground(new java.awt.Color(255, 153, 153));
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
-        logo.setBorderPainted(false);
-        logo.setContentAreaFilled(false);
-        logo.setDefaultCapable(false);
-        logo.setFocusPainted(false);
-        logo.setFocusable(false);
-        logo.setRequestFocusEnabled(false);
-        logo.setRolloverEnabled(false);
-        logo.setVerifyInputWhenFocusTarget(false);
-        logo.addActionListener(new java.awt.event.ActionListener() {
+        logoButton.setBackground(new java.awt.Color(255, 153, 153));
+        logoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
+        logoButton.setBorderPainted(false);
+        logoButton.setContentAreaFilled(false);
+        logoButton.setDefaultCapable(false);
+        logoButton.setFocusPainted(false);
+        logoButton.setFocusable(false);
+        logoButton.setRequestFocusEnabled(false);
+        logoButton.setRolloverEnabled(false);
+        logoButton.setVerifyInputWhenFocusTarget(false);
+        logoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoActionPerformed(evt);
+                logoButtonActionPerformed(evt);
             }
         });
 
-        titleLabel.setFont(new java.awt.Font("Serif", 3, 24)); // NOI18N
-        titleLabel.setForeground(new java.awt.Color(255, 90, 95));
-        titleLabel.setText("JavaBNB");
+        logoLabel.setFont(new java.awt.Font("Serif", 3, 24)); // NOI18N
+        logoLabel.setForeground(new java.awt.Color(255, 90, 95));
+        logoLabel.setText("JavaBNB");
 
         javax.swing.GroupLayout barraarribaLayout = new javax.swing.GroupLayout(barraarriba);
         barraarriba.setLayout(barraarribaLayout);
@@ -285,11 +285,11 @@ public class BuildingView extends javax.swing.JPanel {
             barraarribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraarribaLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(titleLabel)
+                .addComponent(logoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(returnButton)
                 .addGap(64, 64, 64))
         );
         barraarribaLayout.setVerticalGroup(
@@ -298,89 +298,89 @@ public class BuildingView extends javax.swing.JPanel {
                 .addGroup(barraarribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(barraarribaLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(barraarribaLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(barraarribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(logoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraarribaLayout.createSequentialGroup()
-                                .addComponent(titleLabel)
+                                .addComponent(logoLabel)
                                 .addGap(21, 21, 21)))))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        tipolabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tipolabel.setText("tipo");
+        typeLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        typeLabel.setText("tipo");
 
-        serviciosarea.setEditable(false);
-        serviciosarea.setBackground(new java.awt.Color(255, 250, 248));
-        serviciosarea.setColumns(20);
-        serviciosarea.setRows(5);
-        serviciosarea.setText("Los servicios de este inmueble son blablabla");
-        serviciosarea.setBorder(null);
-        jScrollPane3.setViewportView(serviciosarea);
+        servicesTextArea.setEditable(false);
+        servicesTextArea.setBackground(new java.awt.Color(255, 250, 248));
+        servicesTextArea.setColumns(20);
+        servicesTextArea.setRows(5);
+        servicesTextArea.setText("Los servicios de este inmueble son blablabla");
+        servicesTextArea.setBorder(null);
+        jScrollPane3.setViewportView(servicesTextArea);
 
-        direccionarea.setEditable(false);
-        direccionarea.setBackground(new java.awt.Color(255, 250, 248));
-        direccionarea.setColumns(20);
-        direccionarea.setRows(5);
-        direccionarea.setText("Calle Ponferrada,  nº1, Alcalá de henares. CP:28804");
-        direccionarea.setBorder(null);
-        jScrollPane4.setViewportView(direccionarea);
+        directionTextArea.setEditable(false);
+        directionTextArea.setBackground(new java.awt.Color(255, 250, 248));
+        directionTextArea.setColumns(20);
+        directionTextArea.setRows(5);
+        directionTextArea.setText("Calle Ponferrada,  nº1, Alcalá de henares. CP:28804");
+        directionTextArea.setBorder(null);
+        jScrollPane4.setViewportView(directionTextArea);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Nº máximo de huéspedes:");
+        guestLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        guestLabel.setText("Nº máximo de huéspedes:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Baños:");
+        bathLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bathLabel.setText("Baños:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Habitaciones:");
+        roomLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        roomLabel.setText("Habitaciones:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Camas:");
+        bedLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bedLabel.setText("Camas:");
 
-        nhuespedes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        nhuespedes.setText("1");
+        guestsLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        guestsLabel.setText("1");
 
-        nhabitaciones.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        nhabitaciones.setText("1");
+        roomsLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        roomsLabel.setText("1");
 
-        nbanos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        nbanos.setText("1");
+        bathsLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        bathsLabel.setText("1");
 
-        ncamas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ncamas.setText("1");
+        bedsLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        bedsLabel.setText("1");
 
         panelreservas.setBackground(new java.awt.Color(255, 250, 248));
         panelreservas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        reservaya.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
-        reservaya.setText("Reserva ya");
+        reservenowLabel.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        reservenowLabel.setText("Reserva ya");
 
-        reservarboton.setText("Reservar");
-        reservarboton.addActionListener(new java.awt.event.ActionListener() {
+        reserveButton.setText("Reservar");
+        reserveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reservarbotonActionPerformed(evt);
+                reserveButtonActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Fecha de llegada");
+        startDateLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        startDateLabel.setText("Fecha de llegada");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("Fecha de salida");
+        endDateLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        endDateLabel.setText("Fecha de salida");
 
-        fieldsalida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        endDateFormattedField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
-        fieldllegada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        startDateFormattedField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
-        jLabel8.setText("dd/MM/yyyy");
+        daymonthyearLabel2.setText("dd/MM/yyyy");
 
-        jLabel9.setText("dd/MM/yyyy");
+        daymonthyearLabel1.setText("dd/MM/yyyy");
 
-        errordisponible.setForeground(new java.awt.Color(255, 102, 102));
-        errordisponible.setText("El inmueble no está disponible para estas fechas");
+        errorLabel1.setForeground(new java.awt.Color(255, 102, 102));
+        errorLabel1.setText("El inmueble no está disponible para estas fechas");
 
         javax.swing.GroupLayout panelreservasLayout = new javax.swing.GroupLayout(panelreservas);
         panelreservas.setLayout(panelreservasLayout);
@@ -388,81 +388,81 @@ public class BuildingView extends javax.swing.JPanel {
             panelreservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelreservasLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(reservaya)
+                .addComponent(reservenowLabel)
                 .addGap(116, 116, 116))
             .addGroup(panelreservasLayout.createSequentialGroup()
                 .addGroup(panelreservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelreservasLayout.createSequentialGroup()
                         .addGap(135, 135, 135)
-                        .addComponent(reservarboton))
+                        .addComponent(reserveButton))
                     .addGroup(panelreservasLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(panelreservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelreservasLayout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(daymonthyearLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(86, 86, 86)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(daymonthyearLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(9, 9, 9))
-                            .addComponent(errordisponible)))
+                            .addComponent(errorLabel1)))
                     .addGroup(panelreservasLayout.createSequentialGroup()
                         .addGroup(panelreservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelreservasLayout.createSequentialGroup()
                                 .addGap(33, 33, 33)
-                                .addComponent(fieldllegada, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(startDateFormattedField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(53, 53, 53))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelreservasLayout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
+                                .addComponent(startDateLabel)
                                 .addGap(67, 67, 67)))
                         .addGroup(panelreservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fieldsalida))))
+                            .addComponent(endDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(endDateFormattedField))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelreservasLayout.setVerticalGroup(
             panelreservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelreservasLayout.createSequentialGroup()
                 .addGap(9, 9, 9)
-                .addComponent(reservaya)
+                .addComponent(reservenowLabel)
                 .addGap(18, 18, 18)
                 .addGroup(panelreservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(startDateLabel)
+                    .addComponent(endDateLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelreservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                    .addComponent(daymonthyearLabel2)
+                    .addComponent(daymonthyearLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelreservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldllegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldsalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(startDateFormattedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endDateFormattedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(errordisponible)
+                .addComponent(errorLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reservarboton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(reserveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
-        calificacionlabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        calificacionlabel.setText("Calificación: 2.5");
+        markLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        markLabel.setText("Calificación: 2.5");
 
-        calificarboton.setBackground(new java.awt.Color(255, 102, 102));
-        calificarboton.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        calificarboton.setForeground(new java.awt.Color(255, 255, 255));
-        calificarboton.setText("Calificar");
-        calificarboton.addActionListener(new java.awt.event.ActionListener() {
+        gradeButton.setBackground(new java.awt.Color(255, 102, 102));
+        gradeButton.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        gradeButton.setForeground(new java.awt.Color(255, 255, 255));
+        gradeButton.setText("Calificar");
+        gradeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calificarbotonActionPerformed(evt);
+                gradeButtonActionPerformed(evt);
             }
         });
 
-        numvaloracioneslabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        numvaloracioneslabel.setText("Calificado por x personas");
+        numbermarksLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        numbermarksLabel.setText("Calificado por x personas");
 
-        anfitrionlabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        anfitrionlabel.setText("Anfitrion:");
+        hostLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        hostLabel.setText("Anfitrion:");
 
-        superanfitrionLabel.setText("Superanfitrión");
+        superhostLabel.setText("Superanfitrión");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -474,10 +474,10 @@ public class BuildingView extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(calificacionlabel)
-                            .addComponent(calificarboton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numvaloracioneslabel))
+                            .addComponent(markLabel)
+                            .addComponent(gradeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(starsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numbermarksLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelreservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -486,7 +486,7 @@ public class BuildingView extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(199, 199, 199)
-                                .addComponent(preciolabel))
+                                .addComponent(priceLabel))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -496,10 +496,10 @@ public class BuildingView extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(217, 217, 217)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(titulolabel)
+                                    .addComponent(titleLabel)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(27, 27, 27)
-                                        .addComponent(tipolabel))))
+                                        .addComponent(typeLabel))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -508,28 +508,28 @@ public class BuildingView extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
+                                        .addComponent(bedLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(ncamas, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(bedsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
+                                        .addComponent(guestLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(nhuespedes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(guestsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
+                                                .addComponent(bathLabel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(nbanos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(jLabel4))
+                                                .addComponent(bathsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(roomLabel))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(nhabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(roomsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(62, 62, 62)
-                                .addComponent(anfitrionlabel))
+                                .addComponent(hostLabel))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(102, 102, 102)
-                                .addComponent(superanfitrionLabel)))
+                                .addComponent(superhostLabel)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -542,23 +542,23 @@ public class BuildingView extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(nhuespedes))
+                                    .addComponent(guestLabel)
+                                    .addComponent(guestsLabel))
                                 .addGap(10, 10, 10)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(nbanos)))
+                                    .addComponent(bathLabel)
+                                    .addComponent(bathsLabel)))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(nhabitaciones))
+                                    .addComponent(roomLabel)
+                                    .addComponent(roomsLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(ncamas)))
+                                    .addComponent(bedLabel)
+                                    .addComponent(bedsLabel)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(5, 5, 5))))
@@ -567,11 +567,11 @@ public class BuildingView extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(titulolabel)
+                                .addComponent(titleLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tipolabel)
+                                .addComponent(typeLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(preciolabel)
+                                .addComponent(priceLabel)
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -580,18 +580,18 @@ public class BuildingView extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panelreservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(starsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(calificacionlabel)
+                                .addComponent(markLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(numvaloracioneslabel)
+                                .addComponent(numbermarksLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(calificarboton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(gradeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(anfitrionlabel)
+                        .addComponent(hostLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(superanfitrionLabel)))
+                        .addComponent(superhostLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -602,20 +602,20 @@ public class BuildingView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_estrella4ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         if (Sesion.user != null) {
             App.loadMainScreen();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_returnButtonActionPerformed
 
-    private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
+    private void logoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_logoActionPerformed
+    }//GEN-LAST:event_logoButtonActionPerformed
 
-    private void reservarbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservarbotonActionPerformed
-        errordisponible.setVisible(false);
-        LocalDate llegada = convertToLocalDate(fieldllegada.getValue());
-        LocalDate salida = convertToLocalDate(fieldsalida.getValue());
+    private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
+        errorLabel1.setVisible(false);
+        LocalDate llegada = convertToLocalDate(startDateFormattedField.getValue());
+        LocalDate salida = convertToLocalDate(endDateFormattedField.getValue());
 
         Reserva reserva = new Reserva((Particular) Sesion.user, i, llegada, salida);
         System.out.println("El inmueble está disponible: " + i.estaDisponible(llegada, salida));
@@ -650,14 +650,14 @@ public class BuildingView extends javax.swing.JPanel {
                 System.out.println("Ninguna Opción");
             }
         } else {
-            errordisponible.setVisible(true);
+            errorLabel1.setVisible(true);
             System.out.println("ERROR");
         }
 
 
-    }//GEN-LAST:event_reservarbotonActionPerformed
+    }//GEN-LAST:event_reserveButtonActionPerformed
 
-    private void calificarbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificarbotonActionPerformed
+    private void gradeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeButtonActionPerformed
         double nota = 0;
         boolean reservaHecha = false;
         // Obtener todas las reservas asociadas al inmueble
@@ -703,53 +703,53 @@ public class BuildingView extends javax.swing.JPanel {
         }
 
 
-    }//GEN-LAST:event_calificarbotonActionPerformed
+    }//GEN-LAST:event_gradeButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel anfitrionlabel;
     private javax.swing.JPanel barraarriba;
-    private javax.swing.JLabel calificacionlabel;
-    private javax.swing.JButton calificarboton;
-    private javax.swing.JTextArea descripcionarea;
-    private javax.swing.JTextArea direccionarea;
-    private javax.swing.JLabel errordisponible;
+    private javax.swing.JLabel bathLabel;
+    private javax.swing.JLabel bathsLabel;
+    private javax.swing.JLabel bedLabel;
+    private javax.swing.JLabel bedsLabel;
+    private javax.swing.JLabel daymonthyearLabel1;
+    private javax.swing.JLabel daymonthyearLabel2;
+    private javax.swing.JTextArea descriptionTextArea;
+    private javax.swing.JTextArea directionTextArea;
+    private javax.swing.JFormattedTextField endDateFormattedField;
+    private javax.swing.JLabel endDateLabel;
+    private javax.swing.JLabel errorLabel1;
     private javax.swing.JButton estrella1;
     private javax.swing.JButton estrella2;
     private javax.swing.JButton estrella3;
     private javax.swing.JButton estrella4;
     private javax.swing.JButton estrella5;
-    private javax.swing.JFormattedTextField fieldllegada;
-    private javax.swing.JFormattedTextField fieldsalida;
     private javax.swing.JButton fotoboton;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton gradeButton;
+    private javax.swing.JLabel guestLabel;
+    private javax.swing.JLabel guestsLabel;
+    private javax.swing.JLabel hostLabel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JButton logo;
-    private javax.swing.JLabel nbanos;
-    private javax.swing.JLabel ncamas;
-    private javax.swing.JLabel nhabitaciones;
-    private javax.swing.JLabel nhuespedes;
-    private javax.swing.JLabel numvaloracioneslabel;
+    private javax.swing.JButton logoButton;
+    private javax.swing.JLabel logoLabel;
+    private javax.swing.JLabel markLabel;
+    private javax.swing.JLabel numbermarksLabel;
     private javax.swing.JPanel panelreservas;
-    private javax.swing.JLabel preciolabel;
-    private javax.swing.JButton reservarboton;
-    private javax.swing.JLabel reservaya;
-    private javax.swing.JTextArea serviciosarea;
-    private javax.swing.JLabel superanfitrionLabel;
-    private javax.swing.JLabel tipolabel;
+    private javax.swing.JLabel priceLabel;
+    private javax.swing.JButton reserveButton;
+    private javax.swing.JLabel reservenowLabel;
+    private javax.swing.JButton returnButton;
+    private javax.swing.JLabel roomLabel;
+    private javax.swing.JLabel roomsLabel;
+    private javax.swing.JTextArea servicesTextArea;
+    private javax.swing.JPanel starsPanel;
+    private javax.swing.JFormattedTextField startDateFormattedField;
+    private javax.swing.JLabel startDateLabel;
+    private javax.swing.JLabel superhostLabel;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JLabel titulolabel;
+    private javax.swing.JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
 }

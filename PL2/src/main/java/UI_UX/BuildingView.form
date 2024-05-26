@@ -37,10 +37,10 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="calificacionlabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="calificarboton" min="-2" pref="120" max="-2" attributes="0"/>
-                              <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="numvaloracioneslabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="markLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="gradeButton" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="starsPanel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="numbermarksLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="panelreservas" max="32767" attributes="0"/>
@@ -52,7 +52,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
-                                  <Component id="preciolabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="priceLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -66,10 +66,10 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="titulolabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Component id="tipolabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -82,36 +82,36 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                          <Component id="bedLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="ncamas" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="bedsLabel" min="-2" pref="35" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="guestLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="nhuespedes" min="-2" pref="29" max="-2" attributes="0"/>
+                                          <Component id="guestsLabel" min="-2" pref="29" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="bathLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="nbanos" max="32767" attributes="0"/>
+                                                  <Component id="bathsLabel" max="32767" attributes="0"/>
                                               </Group>
-                                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                              <Component id="roomLabel" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="nhabitaciones" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="roomsLabel" min="-2" pref="25" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                                  <Component id="anfitrionlabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="hostLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                                  <Component id="superanfitrionLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="superhostLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -130,13 +130,13 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="nhuespedes" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="guestLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="guestsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="nbanos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="bathLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="bathsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="jScrollPane3" min="-2" pref="52" max="-2" attributes="0"/>
@@ -145,13 +145,13 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="nhabitaciones" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="roomLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="roomsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                      <Component id="ncamas" min="-2" max="-2" attributes="0"/>
+                                      <Component id="bedLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="bedsLabel" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
@@ -165,11 +165,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="fotoboton" alignment="0" min="-2" pref="331" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="titulolabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tipolabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="preciolabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="priceLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jScrollPane1" min="-2" pref="55" max="-2" attributes="0"/>
                               </Group>
@@ -182,21 +182,21 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="panelreservas" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="starsPanel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="calificacionlabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="markLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="numvaloracioneslabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="numbermarksLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="calificarboton" min="-2" pref="66" max="-2" attributes="0"/>
+                                  <Component id="gradeButton" min="-2" pref="66" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="anfitrionlabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="hostLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="superanfitrionLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="superhostLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -212,7 +212,7 @@
             </Property>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="starsPanel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -309,7 +309,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="titulolabel">
+        <Component class="javax.swing.JLabel" name="titleLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Serif" size="36" style="1"/>
@@ -317,7 +317,7 @@
             <Property name="text" type="java.lang.String" value="Titulo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="preciolabel">
+        <Component class="javax.swing.JLabel" name="priceLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -332,7 +332,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="descripcionarea">
+            <Component class="javax.swing.JTextArea" name="descriptionTextArea">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -370,11 +370,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="logo" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="logoButton" min="-2" pref="71" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="logoLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="returnButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -385,14 +385,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="returnButton" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="logo" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Component id="logoButton" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="logoLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -404,7 +404,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="returnButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="ff" type="rgb"/>
@@ -412,10 +412,10 @@
                 <Property name="text" type="java.lang.String" value="Volver"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="returnButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="logo">
+            <Component class="javax.swing.JButton" name="logoButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="ff" type="rgb"/>
@@ -433,10 +433,10 @@
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="titleLabel">
+            <Component class="javax.swing.JLabel" name="logoLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="24" style="3"/>
@@ -449,7 +449,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="tipolabel">
+        <Component class="javax.swing.JLabel" name="typeLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -464,7 +464,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="serviciosarea">
+            <Component class="javax.swing.JTextArea" name="servicesTextArea">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -487,7 +487,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="direccionarea">
+            <Component class="javax.swing.JTextArea" name="directionTextArea">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -503,7 +503,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="guestLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -511,7 +511,7 @@
             <Property name="text" type="java.lang.String" value="N&#xba; m&#xe1;ximo de hu&#xe9;spedes:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="bathLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -519,7 +519,7 @@
             <Property name="text" type="java.lang.String" value="Ba&#xf1;os:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="roomLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -527,7 +527,7 @@
             <Property name="text" type="java.lang.String" value="Habitaciones:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="bedLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -535,7 +535,7 @@
             <Property name="text" type="java.lang.String" value="Camas:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nhuespedes">
+        <Component class="javax.swing.JLabel" name="guestsLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -543,7 +543,7 @@
             <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nhabitaciones">
+        <Component class="javax.swing.JLabel" name="roomsLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -551,7 +551,7 @@
             <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nbanos">
+        <Component class="javax.swing.JLabel" name="bathsLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -559,7 +559,7 @@
             <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="ncamas">
+        <Component class="javax.swing.JLabel" name="bedsLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -584,43 +584,43 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="reservaya" min="-2" max="-2" attributes="0"/>
+                      <Component id="reservenowLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="reservarboton" min="-2" max="-2" attributes="0"/>
+                              <Component id="reserveButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jLabel9" min="-2" pref="75" max="-2" attributes="0"/>
+                                      <Component id="daymonthyearLabel1" min="-2" pref="75" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                                      <Component id="jLabel8" min="-2" pref="75" max="-2" attributes="0"/>
+                                      <Component id="daymonthyearLabel2" min="-2" pref="75" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="errordisponible" min="-2" max="-2" attributes="0"/>
+                                  <Component id="errorLabel1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                      <Component id="fieldllegada" min="-2" pref="114" max="-2" attributes="0"/>
+                                      <Component id="startDateFormattedField" min="-2" pref="114" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <Component id="startDateLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="fieldsalida" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="endDateLabel" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="endDateFormattedField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -632,33 +632,33 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      <Component id="reservaya" min="-2" max="-2" attributes="0"/>
+                      <Component id="reservenowLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="startDateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="endDateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="daymonthyearLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="daymonthyearLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="fieldllegada" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldsalida" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="startDateFormattedField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="endDateFormattedField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="10" max="32767" attributes="0"/>
-                      <Component id="errordisponible" min="-2" max="-2" attributes="0"/>
+                      <Component id="errorLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="reservarboton" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="reserveButton" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="reservaya">
+            <Component class="javax.swing.JLabel" name="reservenowLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="24" style="1"/>
@@ -666,15 +666,15 @@
                 <Property name="text" type="java.lang.String" value="Reserva ya"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="reservarboton">
+            <Component class="javax.swing.JButton" name="reserveButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reservar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reservarbotonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reserveButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel6">
+            <Component class="javax.swing.JLabel" name="startDateLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
@@ -682,7 +682,7 @@
                 <Property name="text" type="java.lang.String" value="Fecha de llegada"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel7">
+            <Component class="javax.swing.JLabel" name="endDateLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
@@ -690,31 +690,31 @@
                 <Property name="text" type="java.lang.String" value="Fecha de salida"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="fieldsalida">
+            <Component class="javax.swing.JFormattedTextField" name="endDateFormattedField">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                   <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="fieldllegada">
+            <Component class="javax.swing.JFormattedTextField" name="startDateFormattedField">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                   <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel8">
+            <Component class="javax.swing.JLabel" name="daymonthyearLabel2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="dd/MM/yyyy"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel9">
+            <Component class="javax.swing.JLabel" name="daymonthyearLabel1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="dd/MM/yyyy"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="errordisponible">
+            <Component class="javax.swing.JLabel" name="errorLabel1">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="ff" type="rgb"/>
@@ -724,7 +724,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="calificacionlabel">
+        <Component class="javax.swing.JLabel" name="markLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
@@ -732,7 +732,7 @@
             <Property name="text" type="java.lang.String" value="Calificaci&#xf3;n: 2.5"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="calificarboton">
+        <Component class="javax.swing.JButton" name="gradeButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="ff" type="rgb"/>
@@ -746,10 +746,10 @@
             <Property name="text" type="java.lang.String" value="Calificar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="calificarbotonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gradeButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="numvaloracioneslabel">
+        <Component class="javax.swing.JLabel" name="numbermarksLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -757,7 +757,7 @@
             <Property name="text" type="java.lang.String" value="Calificado por x personas"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="anfitrionlabel">
+        <Component class="javax.swing.JLabel" name="hostLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -765,7 +765,7 @@
             <Property name="text" type="java.lang.String" value="Anfitrion:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="superanfitrionLabel">
+        <Component class="javax.swing.JLabel" name="superhostLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Superanfitri&#xf3;n"/>
           </Properties>

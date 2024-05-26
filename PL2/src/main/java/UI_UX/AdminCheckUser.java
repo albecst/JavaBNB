@@ -27,8 +27,8 @@ public class AdminCheckUser extends javax.swing.JPanel {
      */
     public AdminCheckUser() {
         initComponents();
-        errorNoSig.setVisible(false);
-        errorNoAnt.setVisible(false);
+        errorNextLabel.setVisible(false);
+        errorPreviousLabel.setVisible(false);
         nameTextField.setEditable(false);
         dniTextField.setEditable(false);
         emailTextField.setEditable(false);
@@ -41,8 +41,8 @@ public class AdminCheckUser extends javax.swing.JPanel {
      * Actualiza la vista y los datos de los usuarios.
      */
     public void actualizar() {
-        errorNoSig.setVisible(false);
-        errorNoAnt.setVisible(false);
+        errorNextLabel.setVisible(false);
+        errorPreviousLabel.setVisible(false);
         consultarTodo();
     }
 
@@ -51,22 +51,22 @@ public class AdminCheckUser extends javax.swing.JPanel {
      */
     private void consultarTodo() {
         try {
-            errorNoSig.setVisible(false);
-            errorNoAnt.setVisible(false);
+            errorNextLabel.setVisible(false);
+            errorPreviousLabel.setVisible(false);
 
             if (JavaBNB.getClientes() != null) {
                 clientesaux = JavaBNB.getClientes();
 
                 li = clientesaux.listIterator();
                 if (clientesaux.size() < 1) {
-                    jButtonSig.setEnabled(false);
-                    jButtonAnt.setEnabled(false);
+                    nextButton.setEnabled(false);
+                    previousButton.setEnabled(false);
                     deleteUserButton.setEnabled(false);
                     editUserButton.setEnabled(false);
                     return;
                 } else {
-                    jButtonSig.setEnabled(true);
-                    jButtonAnt.setEnabled(true);
+                    nextButton.setEnabled(true);
+                    previousButton.setEnabled(true);
                     deleteUserButton.setEnabled(true);
                     editUserButton.setEnabled(true);
                 }
@@ -74,12 +74,12 @@ public class AdminCheckUser extends javax.swing.JPanel {
                 if (li.hasNext()) {
                     objcli = li.next();
                 } else {
-                    errorNoSig.setVisible(true);
+                    errorNextLabel.setVisible(true);
                 }
                 if (objcli != null) {
                     presenta(objcli);
                 } else {
-                    errorNoSig.setVisible(true);
+                    errorNextLabel.setVisible(true);
                 }
             }
         } catch (Exception e) {
@@ -119,9 +119,9 @@ public class AdminCheckUser extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         barraarriba1 = new javax.swing.JPanel();
-        logo1 = new javax.swing.JButton();
-        titleLabel1 = new javax.swing.JLabel();
-        mainscr = new javax.swing.JButton();
+        logoButton = new javax.swing.JButton();
+        logoLabel = new javax.swing.JLabel();
+        returnButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         dniLabel = new javax.swing.JLabel();
@@ -137,10 +137,10 @@ public class AdminCheckUser extends javax.swing.JPanel {
         tlfTextField = new javax.swing.JTextField();
         deleteUserButton = new javax.swing.JButton();
         editUserButton = new javax.swing.JButton();
-        jButtonAnt = new javax.swing.JButton();
-        jButtonSig = new javax.swing.JButton();
-        errorNoSig = new javax.swing.JLabel();
-        errorNoAnt = new javax.swing.JLabel();
+        previousButton = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
+        errorNextLabel = new javax.swing.JLabel();
+        errorPreviousLabel = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -150,19 +150,19 @@ public class AdminCheckUser extends javax.swing.JPanel {
         barraarriba1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         barraarriba1.setLayout(new java.awt.GridBagLayout());
 
-        logo1.setBackground(new java.awt.Color(255, 153, 153));
-        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
-        logo1.setBorderPainted(false);
-        logo1.setContentAreaFilled(false);
-        logo1.setDefaultCapable(false);
-        logo1.setFocusPainted(false);
-        logo1.setFocusable(false);
-        logo1.setRequestFocusEnabled(false);
-        logo1.setRolloverEnabled(false);
-        logo1.setVerifyInputWhenFocusTarget(false);
-        logo1.addActionListener(new java.awt.event.ActionListener() {
+        logoButton.setBackground(new java.awt.Color(255, 153, 153));
+        logoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
+        logoButton.setBorderPainted(false);
+        logoButton.setContentAreaFilled(false);
+        logoButton.setDefaultCapable(false);
+        logoButton.setFocusPainted(false);
+        logoButton.setFocusable(false);
+        logoButton.setRequestFocusEnabled(false);
+        logoButton.setRolloverEnabled(false);
+        logoButton.setVerifyInputWhenFocusTarget(false);
+        logoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logo1ActionPerformed(evt);
+                logoButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -173,28 +173,28 @@ public class AdminCheckUser extends javax.swing.JPanel {
         gridBagConstraints.ipady = -32;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 69, 7, 0);
-        barraarriba1.add(logo1, gridBagConstraints);
+        barraarriba1.add(logoButton, gridBagConstraints);
 
-        titleLabel1.setFont(new java.awt.Font("Serif", 3, 24)); // NOI18N
-        titleLabel1.setForeground(new java.awt.Color(255, 90, 95));
-        titleLabel1.setText("JavaBNB");
+        logoLabel.setFont(new java.awt.Font("Serif", 3, 24)); // NOI18N
+        logoLabel.setForeground(new java.awt.Color(255, 90, 95));
+        logoLabel.setText("JavaBNB");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(35, 18, 0, 0);
-        barraarriba1.add(titleLabel1, gridBagConstraints);
+        barraarriba1.add(logoLabel, gridBagConstraints);
 
-        mainscr.setBackground(new java.awt.Color(255, 90, 95));
-        mainscr.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        mainscr.setForeground(new java.awt.Color(255, 255, 255));
-        mainscr.setText("Volver");
-        mainscr.setBorderPainted(false);
-        mainscr.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        mainscr.setPreferredSize(new java.awt.Dimension(80, 30));
-        mainscr.addActionListener(new java.awt.event.ActionListener() {
+        returnButton.setBackground(new java.awt.Color(255, 90, 95));
+        returnButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        returnButton.setForeground(new java.awt.Color(255, 255, 255));
+        returnButton.setText("Volver");
+        returnButton.setBorderPainted(false);
+        returnButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        returnButton.setPreferredSize(new java.awt.Dimension(80, 30));
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainscrActionPerformed(evt);
+                returnButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -204,7 +204,7 @@ public class AdminCheckUser extends javax.swing.JPanel {
         gridBagConstraints.ipady = 23;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(21, 479, 0, 175);
-        barraarriba1.add(mainscr, gridBagConstraints);
+        barraarriba1.add(returnButton, gridBagConstraints);
 
         jPanel3.setBackground(new java.awt.Color(255, 250, 248));
 
@@ -344,33 +344,33 @@ public class AdminCheckUser extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(17, 25, 0, 0);
         jPanel2.add(editUserButton, gridBagConstraints);
 
-        jButtonAnt.setBackground(new java.awt.Color(255, 153, 153));
-        jButtonAnt.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jButtonAnt.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonAnt.setText("Anterior");
-        jButtonAnt.addActionListener(new java.awt.event.ActionListener() {
+        previousButton.setBackground(new java.awt.Color(255, 153, 153));
+        previousButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        previousButton.setForeground(new java.awt.Color(255, 255, 255));
+        previousButton.setText("Anterior");
+        previousButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAntActionPerformed(evt);
+                previousButtonActionPerformed(evt);
             }
         });
 
-        jButtonSig.setBackground(new java.awt.Color(255, 153, 153));
-        jButtonSig.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jButtonSig.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonSig.setText("Siguiente");
-        jButtonSig.addActionListener(new java.awt.event.ActionListener() {
+        nextButton.setBackground(new java.awt.Color(255, 153, 153));
+        nextButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        nextButton.setForeground(new java.awt.Color(255, 255, 255));
+        nextButton.setText("Siguiente");
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSigActionPerformed(evt);
+                nextButtonActionPerformed(evt);
             }
         });
 
-        errorNoSig.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        errorNoSig.setForeground(new java.awt.Color(255, 102, 102));
-        errorNoSig.setText("No hay un siguiente usuario");
+        errorNextLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        errorNextLabel.setForeground(new java.awt.Color(255, 102, 102));
+        errorNextLabel.setText("No hay un siguiente usuario");
 
-        errorNoAnt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        errorNoAnt.setForeground(new java.awt.Color(255, 102, 102));
-        errorNoAnt.setText("No hay un usuario anterior");
+        errorPreviousLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        errorPreviousLabel.setForeground(new java.awt.Color(255, 102, 102));
+        errorPreviousLabel.setText("No hay un usuario anterior");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -380,17 +380,17 @@ public class AdminCheckUser extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(193, 193, 193)
-                        .addComponent(jButtonAnt)
+                        .addComponent(previousButton)
                         .addGap(54, 54, 54)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
-                        .addComponent(jButtonSig))
+                        .addComponent(nextButton))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(395, 395, 395)
-                        .addComponent(errorNoSig))
+                        .addComponent(errorNextLabel))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(401, 401, 401)
-                        .addComponent(errorNoAnt)))
+                        .addComponent(errorPreviousLabel)))
                 .addGap(255, 255, 255))
         );
         jPanel3Layout.setVerticalGroup(
@@ -400,15 +400,15 @@ public class AdminCheckUser extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonAnt)
-                            .addComponent(jButtonSig)))
+                            .addComponent(previousButton)
+                            .addComponent(nextButton)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38)
-                .addComponent(errorNoSig)
+                .addComponent(errorNextLabel)
                 .addGap(6, 6, 6)
-                .addComponent(errorNoAnt))
+                .addComponent(errorPreviousLabel))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -433,33 +433,33 @@ public class AdminCheckUser extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSigActionPerformed
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         if (li.hasNext()) {
             objcli = li.next();
-            errorNoSig.setVisible(false);
-            errorNoAnt.setVisible(false);
+            errorNextLabel.setVisible(false);
+            errorPreviousLabel.setVisible(false);
             presenta(objcli);
 
         } else {
-            errorNoSig.setVisible(true);
+            errorNextLabel.setVisible(true);
         }
-    }//GEN-LAST:event_jButtonSigActionPerformed
+    }//GEN-LAST:event_nextButtonActionPerformed
 
-    private void jButtonAntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAntActionPerformed
+    private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousButtonActionPerformed
         if (li.hasPrevious()) {
             objcli = li.previous();
-            errorNoSig.setVisible(false);
-            errorNoAnt.setVisible(false);
+            errorNextLabel.setVisible(false);
+            errorPreviousLabel.setVisible(false);
             presenta(objcli);
 
         } else {
-            errorNoAnt.setVisible(true);
+            errorPreviousLabel.setVisible(true);
         }
-    }//GEN-LAST:event_jButtonAntActionPerformed
+    }//GEN-LAST:event_previousButtonActionPerformed
 
-    private void logo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logo1ActionPerformed
+    private void logoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_logo1ActionPerformed
+    }//GEN-LAST:event_logoButtonActionPerformed
 
     private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
         if (objcli != null) {
@@ -509,9 +509,9 @@ public class AdminCheckUser extends javax.swing.JPanel {
 
     }//GEN-LAST:event_deleteUserButtonActionPerformed
 
-    private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         App.cardLayout.show(App.cards, "Pantalla adminscreen");
-    }//GEN-LAST:event_mainscrActionPerformed
+    }//GEN-LAST:event_returnButtonActionPerformed
 
     private void editUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserButtonActionPerformed
         // Verificar el texto actual del botón
@@ -583,20 +583,20 @@ public class AdminCheckUser extends javax.swing.JPanel {
     private javax.swing.JButton editUserButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
-    private javax.swing.JLabel errorNoAnt;
-    private javax.swing.JLabel errorNoSig;
-    private javax.swing.JButton jButtonAnt;
-    private javax.swing.JButton jButtonSig;
+    private javax.swing.JLabel errorNextLabel;
+    private javax.swing.JLabel errorPreviousLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JButton logo1;
-    private javax.swing.JButton mainscr;
+    private javax.swing.JButton logoButton;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JButton nextButton;
     private javax.swing.JLabel passLabel;
     private javax.swing.JTextField passTextField;
-    private javax.swing.JLabel titleLabel1;
+    private javax.swing.JButton previousButton;
+    private javax.swing.JButton returnButton;
     private javax.swing.JLabel tlfLabel;
     private javax.swing.JTextField tlfTextField;
     private javax.swing.JLabel typeLabel;
