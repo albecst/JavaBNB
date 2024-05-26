@@ -59,29 +59,21 @@ public class Aplicacion {
         // Establecer el tamaño mínimo de la ventana.
         frame.setMinimumSize(Toolkit.getDefaultToolkit().getScreenSize());
         frame.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
+        frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         frame.setLocationRelativeTo(null);
 
         // Crear un JScrollPane y agregar el panel cards para permitir el desplazamiento.
         JScrollPane scrollPane = new JScrollPane(cards);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        // Agregar los paneles a cards.
+        // Agregar los paneles que no tienen "load" a cards.
         cards.add(login, "Pantalla login");
         cards.add(register, "Pantalla register");
         cards.add(privacypolicy, "Pantalla privacypolicy");
-        loadAdminCheckBuildings();
-        loadHostCheckBuildings();
-        loadHostCheckReserves();
-        loadGuestCheckReserves();
         cards.add(adminscreen, "Pantalla adminscreen");
         cards.add(addbuildings, "Pantalla addbuildings");
         cards.add(hostcheckreserves, "Pantalla hostcheckreserves");
-
-        loadBuildingView();
-        loadHostProfile();
-        loadClientProfile();
-        loadMainScreen();
-
+        
         // Establecer el contenido del JFrame como el JScrollPane.
         frame.setContentPane(scrollPane);
         // Configurar el comportamiento de cierre del JFrame.

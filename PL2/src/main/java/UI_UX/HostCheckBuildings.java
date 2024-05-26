@@ -110,6 +110,8 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         previousButton.setEnabled(enabled);
         deleteBuildingButton.setEnabled(enabled);
         checkReservesButton.setEnabled(enabled);
+        editBuildingButton.setEnabled(enabled);
+        editfoto1.setEnabled(enabled);
     }
 
     private void presenta(Inmueble inmueble) {

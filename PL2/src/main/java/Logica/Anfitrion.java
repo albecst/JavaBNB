@@ -29,7 +29,7 @@ public class Anfitrion extends Cliente {
         int calificacion = 0;
         int cantidad = 0;
         for (Inmueble i : JavaBNB.getInmuebles()) {
-            if (i.getCliente().getDni().equals(i.getCliente().getDni())) {
+            if (i.getAnfitrion().getDni().equals(this.getDni())) {
                 calificacion += i.getCalificacion();
                 cantidad++;
             }

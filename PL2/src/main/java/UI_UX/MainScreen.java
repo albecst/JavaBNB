@@ -823,7 +823,6 @@ public class MainScreen extends javax.swing.JPanel {
         filterComboBox.setSelectedItem("Filtrar por:");
 
         this.estado = 0;
-        deleteBuildings();
         insertAllBuildings();
     }//GEN-LAST:event_showAllBuildingsButtonActionPerformed
 
@@ -833,6 +832,7 @@ public class MainScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        deleteBuildings();
         try {
             Desktop.getDesktop().browse(new URI("https://www.instagram.com/javabnb/"));
         } catch (IOException | URISyntaxException e1) {

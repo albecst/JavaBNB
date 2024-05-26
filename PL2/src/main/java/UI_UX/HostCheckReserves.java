@@ -2,14 +2,11 @@ package UI_UX;
 
 import Logica.Inmueble;
 import Logica.JavaBNB;
-import Logica.Particular;
 import Logica.Reserva;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ListIterator;
-import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
 
 public class HostCheckReserves extends javax.swing.JPanel {
@@ -146,8 +143,8 @@ public class HostCheckReserves extends javax.swing.JPanel {
         name = new javax.swing.JTextField();
         pLabel = new javax.swing.JLabel();
         preciototal = new javax.swing.JTextField();
-        inmueblelabel = new javax.swing.JLabel();
         recibo = new javax.swing.JButton();
+        inmueblelabel = new javax.swing.JTextField();
         jButtonAnt = new javax.swing.JButton();
         jButtonSig = new javax.swing.JButton();
         errorNoSig = new javax.swing.JLabel();
@@ -221,22 +218,108 @@ public class HostCheckReserves extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel2.setMinimumSize(new java.awt.Dimension(325, 400));
         jPanel2.setPreferredSize(new java.awt.Dimension(325, 400));
+        jPanel2.setLayout(new java.awt.GridBagLayout());
 
         feLabel.setText("Fecha de llegada:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 18, 0, 0);
+        jPanel2.add(feLabel, gridBagConstraints);
 
         frLabel.setText("Fecha de reserva:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 18, 0, 0);
+        jPanel2.add(frLabel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 104;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 23, 0, 0);
+        jPanel2.add(fechallegada, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 104;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 23, 0, 0);
+        jPanel2.add(fechareserva, gridBagConstraints);
 
         dnilabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        dnilabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dnilabel.setText("DNI");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 17;
+        gridBagConstraints.ipadx = 252;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 18, 0, 13);
+        jPanel2.add(dnilabel, gridBagConstraints);
 
         fsLabel.setText("Fecha de salida:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 18, 0, 0);
+        jPanel2.add(fsLabel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 104;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 23, 0, 0);
+        jPanel2.add(fechasalida, gridBagConstraints);
 
         nLabel.setText("Nombre:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 18, 0, 0);
+        jPanel2.add(nLabel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 104;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 23, 0, 0);
+        jPanel2.add(name, gridBagConstraints);
 
         pLabel.setText("Precio total:");
-
-        inmueblelabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        inmueblelabel.setText("inmueble");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 14, 0, 0);
+        jPanel2.add(pLabel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 104;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 23, 0, 0);
+        jPanel2.add(preciototal, gridBagConstraints);
 
         recibo.setBackground(new java.awt.Color(255, 102, 102));
         recibo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -247,80 +330,27 @@ public class HostCheckReserves extends javax.swing.JPanel {
                 reciboActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.ipadx = 44;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 12, 8, 0);
+        jPanel2.add(recibo, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(feLabel)
-                                    .addComponent(frLabel)
-                                    .addComponent(fsLabel)
-                                    .addComponent(nLabel)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(pLabel)))
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fechareserva, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(fechallegada)
-                            .addComponent(fechasalida)
-                            .addComponent(name)
-                            .addComponent(preciototal)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(inmueblelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dnilabel, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(11, 11, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(recibo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(dnilabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inmueblelabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(frLabel)
-                    .addComponent(fechareserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(feLabel)
-                    .addComponent(fechallegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(fsLabel))
-                    .addComponent(fechasalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(nLabel))
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(pLabel))
-                    .addComponent(preciototal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(recibo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        inmueblelabel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inmueblelabel.setText("Inmueble");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 17;
+        gridBagConstraints.ipadx = 224;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 24, 0, 13);
+        jPanel2.add(inmueblelabel, gridBagConstraints);
 
         jButtonAnt.setBackground(new java.awt.Color(255, 153, 153));
         jButtonAnt.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
@@ -362,13 +392,14 @@ public class HostCheckReserves extends javax.swing.JPanel {
                         .addGap(418, 418, 418)
                         .addComponent(jButtonSig))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(336, 336, 336)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(411, 411, 411)
+                        .addComponent(errorNoSig))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(390, 390, 390)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(errorNoSig)
-                            .addComponent(errorNoAnt))))
+                        .addGap(422, 422, 422)
+                        .addComponent(errorNoAnt))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(273, 273, 273)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(255, 255, 255))
         );
         jPanel3Layout.setVerticalGroup(
@@ -378,13 +409,12 @@ public class HostCheckReserves extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonAnt)
                     .addComponent(jButtonSig))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(errorNoSig)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorNoAnt)
-                .addContainerGap())
+                .addGap(6, 6, 6)
+                .addComponent(errorNoAnt))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -406,11 +436,11 @@ public class HostCheckReserves extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -475,7 +505,7 @@ public class HostCheckReserves extends javax.swing.JPanel {
     private javax.swing.JTextField fechasalida;
     private javax.swing.JLabel frLabel;
     private javax.swing.JLabel fsLabel;
-    private javax.swing.JLabel inmueblelabel;
+    private javax.swing.JTextField inmueblelabel;
     private javax.swing.JButton jButtonAnt;
     private javax.swing.JButton jButtonSig;
     private javax.swing.JPanel jPanel1;

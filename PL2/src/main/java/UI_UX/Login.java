@@ -44,20 +44,25 @@ public class Login extends javax.swing.JPanel {
         privacypolicyLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 250, 248));
-        setMinimumSize(new java.awt.Dimension(500, 500));
-        setPreferredSize(new java.awt.Dimension(500, 500));
+        setMaximumSize(new java.awt.Dimension(888, 676));
+        setMinimumSize(new java.awt.Dimension(888, 676));
+        setPreferredSize(new java.awt.Dimension(888, 676));
+        setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
+        jPanel1.setMaximumSize(new java.awt.Dimension(888, 676));
+        jPanel1.setMinimumSize(new java.awt.Dimension(888, 676));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         titleLabel.setFont(new java.awt.Font("Serif", 0, 48)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(255, 90, 95));
         titleLabel.setText("¡Bienvenid@ a javabnb!");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.insets = new java.awt.Insets(16, 0, 0, 0);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(16, 209, 0, 210);
         jPanel1.add(titleLabel, gridBagConstraints);
 
         photoLabel.setBackground(new java.awt.Color(255, 90, 95));
@@ -76,42 +81,44 @@ public class Login extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 99, 0, 0);
         jPanel1.add(photoLabel, gridBagConstraints);
 
         loginLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         loginLabel.setForeground(new java.awt.Color(255, 0, 0));
         loginLabel.setText("INICIO DE SESIÓN");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.ipady = 15;
-        gridBagConstraints.weighty = 5.0;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 56, 0, 0);
         jPanel1.add(loginLabel, gridBagConstraints);
 
         userLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userLabel.setForeground(new java.awt.Color(102, 102, 102));
         userLabel.setText("Correo *");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.ipady = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(43, 209, 0, 0);
         jPanel1.add(userLabel, gridBagConstraints);
 
         passwordLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         passwordLabel.setForeground(new java.awt.Color(102, 102, 102));
         passwordLabel.setText("Contraseña *");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 17;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(11, 0, 11, 30);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 209, 0, 0);
         jPanel1.add(passwordLabel, gridBagConstraints);
 
         emailTextField.setToolTipText("");
@@ -128,22 +135,23 @@ public class Login extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 11;
         gridBagConstraints.ipadx = 357;
         gridBagConstraints.ipady = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(10, 12, 2, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 221, 0, 0);
         jPanel1.add(emailTextField, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.ipady = 18;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel1.add(space5, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 17;
-        gridBagConstraints.ipady = 32;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel1.add(space6, gridBagConstraints);
 
         passwordTextField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -154,12 +162,13 @@ public class Login extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 11;
         gridBagConstraints.ipadx = 357;
         gridBagConstraints.ipady = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(0, 12, 10, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 221, 0, 0);
         jPanel1.add(passwordTextField, gridBagConstraints);
 
         loginButton.setBackground(new java.awt.Color(255, 90, 95));
@@ -172,11 +181,13 @@ public class Login extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 21;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 35;
         gridBagConstraints.ipady = 21;
-        gridBagConstraints.insets = new java.awt.Insets(16, 0, 0, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(16, 99, 0, 0);
         jPanel1.add(loginButton, gridBagConstraints);
 
         registerLabel.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -189,9 +200,11 @@ public class Login extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 23;
-        gridBagConstraints.insets = new java.awt.Insets(18, 0, 19, 0);
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 86, 0, 0);
         jPanel1.add(registerLabel, gridBagConstraints);
 
         errorLabel.setText("Usuario o contraseña incorrectos.");
@@ -202,25 +215,32 @@ public class Login extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 19;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 65, 0, 0);
         jPanel1.add(errorLabel, gridBagConstraints);
 
         statementLabel.setForeground(new java.awt.Color(102, 102, 102));
         statementLabel.setText("Nota: se deben rellenar todos los campos obligatorios (marcados con *)");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 20;
-        gridBagConstraints.insets = new java.awt.Insets(11, 0, 0, 0);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 252, 0, 0);
         jPanel1.add(statementLabel, gridBagConstraints);
 
         subtitleLabel.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         subtitleLabel.setForeground(new java.awt.Color(255, 90, 95));
         subtitleLabel.setText("Vista al mar o a la montaña: ¡elija usted mismo!");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(12, 0, 0, 0);
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 3, 0, 0);
         jPanel1.add(subtitleLabel, gridBagConstraints);
 
         privacypolicyLabel.setBackground(new java.awt.Color(0, 0, 0));
@@ -234,20 +254,14 @@ public class Login extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(19, 93, 58, 0);
         jPanel1.add(privacypolicyLabel, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1104, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed

@@ -216,7 +216,7 @@ public class JavaBNB implements Serializable {
      * particular.getReservas().clear(); } else if (cliente instanceof
      * Anfitrion) { Anfitrion anfitrion = (Anfitrion) cliente;
      * ArrayList<Inmueble> inmueblesAnfitrion = new ArrayList<>(); for (Inmueble
-     * inmueble : inmuebles) { if (inmueble.getCliente().equals(anfitrion)) {
+     * inmueble : inmuebles) { if (inmueble.getAnfitrion().equals(anfitrion)) {
      * inmueblesAnfitrion.add(inmueble); } } for (Inmueble inmueble :
      * inmueblesAnfitrion) { inmueble.getReservas().clear();
      * inmuebles.remove(inmueble); } } clientes.remove(cliente); guardarDatos();
@@ -225,7 +225,7 @@ public class JavaBNB implements Serializable {
     public static void eliminarAnfitrion(Cliente cliente) {
         Anfitrion anfitrion = (Anfitrion) cliente;
         for (Inmueble inmueble : inmuebles) {
-            if (inmueble.getCliente().equals(anfitrion)) {
+            if (inmueble.getAnfitrion().equals(anfitrion)) {
                 inmueble.getReservas().clear();
                 inmuebles.remove(inmueble);
             }
@@ -252,12 +252,10 @@ public class JavaBNB implements Serializable {
     public static ArrayList<Inmueble> filtrarInmueblesPorAnfitrion(Cliente anfitrion) {
         inmueblesAnfitrion = new ArrayList<>();
         for (Inmueble inmueble : inmuebles) {
-            if (inmueble.getCliente().getDni().equals(anfitrion.getDni())) {
+            if (inmueble.getAnfitrion().getDni().equals(anfitrion.getDni())) {
                 inmueblesAnfitrion.add(inmueble);
             }
         }
-        //System.out.println(inmueblesAnfitrion);
-
         return inmueblesAnfitrion;
     }
 

@@ -29,7 +29,7 @@ public class IconoInmueble extends javax.swing.JPanel {
         precio.setText(String.valueOf(this.i.getPrecioNoche()) + "€/noche");
         fotoboton.setIcon(resizeIMG(this.i.getFotografia()));
         calificacionlabel.setText("Calificación: " + Double.toString(i.getCalificacion()));
-        ciudadlabel.setText(this.i.getDireccion().getCiudad());
+        ciudadlabel.setText("Ciudad: "+this.i.getDireccion().getCiudad());
 
     }
 
@@ -84,15 +84,19 @@ public class IconoInmueble extends javax.swing.JPanel {
         });
 
         nombre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        nombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombre.setText("Titulo");
 
         precio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        precio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         precio.setText("Precio €/noche");
 
         calificacionlabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        calificacionlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         calificacionlabel.setText("Calificación: 4.5");
 
         ciudadlabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ciudadlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ciudadlabel.setText("Ciudad");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -100,23 +104,17 @@ public class IconoInmueble extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(calificacionlabel)
-                            .addComponent(precio)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ciudadlabel)
-                                .addGap(40, 40, 40))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108))
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(precio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(calificacionlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)))
+                    .addComponent(ciudadlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,9 +127,9 @@ public class IconoInmueble extends javax.swing.JPanel {
                 .addComponent(precio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(calificacionlabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(ciudadlabel)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -150,6 +148,7 @@ public class IconoInmueble extends javax.swing.JPanel {
 
     private void fotobotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotobotonActionPerformed
         Aplicacion.loadBuildingView(this.i);
+        Aplicacion.mainscreen.deleteBuildings();
 
     }//GEN-LAST:event_fotobotonActionPerformed
 

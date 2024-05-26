@@ -539,8 +539,7 @@ public class AdminConsultarUser extends javax.swing.JPanel {
                 tlfTextField.setText("");
                 datosValidos = false;
 
-            } else {
-            }
+            } 
 
             // Si todos los datos son válidos, guardar los cambios
             if (datosValidos) {

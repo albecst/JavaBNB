@@ -11,20 +11,10 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,-24,0,0,3,-77"/>
   </AuxValues>
 
-  <Layout>
-    <DimensionLayout dim="0">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
-      </Group>
-    </DimensionLayout>
-    <DimensionLayout dim="1">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
-      </Group>
-    </DimensionLayout>
-  </Layout>
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel3">
       <Properties>
@@ -32,8 +22,32 @@
           <Color blue="f8" green="fa" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="Center"/>
+        </Constraint>
+      </Constraints>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="52" max="32767" attributes="0"/>
+              </Group>
+              <Component id="barraarriba" alignment="0" pref="947" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Component id="barraarriba" min="-2" pref="96" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="barraarriba">
           <Properties>
@@ -46,11 +60,6 @@
               </Border>
             </Property>
           </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="47" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="18" weightX="0.0" weightY="0.0"/>
-            </Constraint>
-          </Constraints>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
@@ -130,11 +139,6 @@
               <Color blue="f8" green="fa" red="ff" type="rgb"/>
             </Property>
           </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="10" insetsLeft="0" insetsBottom="119" insetsRight="0" anchor="18" weightX="0.0" weightY="0.0"/>
-            </Constraint>
-          </Constraints>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -161,7 +165,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
-                      <Component id="data" min="-2" pref="649" max="-2" attributes="0"/>
+                      <Component id="data" min="-2" pref="720" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -214,7 +218,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="bathLabel" min="-2" max="-2" attributes="0"/>
@@ -265,28 +269,24 @@
                                                       </Group>
                                                   </Group>
                                               </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                              <Component id="guestSpinner" alignment="0" max="32767" attributes="0"/>
-                                                              <Component id="bedroomSpinner" max="32767" attributes="0"/>
-                                                              <Component id="bedSpinner" max="32767" attributes="0"/>
-                                                              <Component id="bathSpinner" max="32767" attributes="0"/>
-                                                              <Component id="priceTextField" alignment="0" max="32767" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="bedroomError" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="bathError" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="bedError" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="guestError" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                  <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="guestSpinner" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="bedroomSpinner" max="32767" attributes="0"/>
+                                                          <Component id="bedSpinner" max="32767" attributes="0"/>
+                                                          <Component id="bathSpinner" max="32767" attributes="0"/>
+                                                          <Component id="priceTextField" alignment="0" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="bedroomError" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="bathError" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="bedError" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="guestError" alignment="1" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
-                                                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                                                  <Component id="serviceError" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="photoButton" min="-2" pref="164" max="-2" attributes="0"/>
@@ -302,6 +302,7 @@
                                                       </Group>
                                                   </Group>
                                               </Group>
+                                              <Component id="serviceError" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="titleLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -309,14 +310,13 @@
                                       <Component id="descriptionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="streetLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
                                   <Component id="createBuildingButton" min="-2" pref="158" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="37" pref="37" max="-2" attributes="0"/>
+                          <EmptySpace pref="11" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -413,23 +413,16 @@
                               <Component id="photoButton" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="bathError1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="servicesLabel" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane4" min="-2" pref="32" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace pref="22" max="32767" attributes="0"/>
-                                  <Component id="createBuildingButton" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="serviceError" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="servicesLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="serviceError" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="37" max="32767" attributes="0"/>
+                          <Component id="createBuildingButton" min="-2" pref="43" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

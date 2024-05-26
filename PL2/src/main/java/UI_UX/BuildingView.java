@@ -47,8 +47,12 @@ public class BuildingView extends javax.swing.JPanel {
         descripcionarea.setText(i.getDescripcion());
         preciolabel.setText(Double.toString(i.getPrecioNoche()) + "€ por noche");
 
-        anfitrionlabel.setText("Anfitrion: " + i.getCliente().getNombre());
-        //TODO: añadir si es superanfitrion###############################################
+        anfitrionlabel.setText("Anfitrion: " + i.getAnfitrion().getNombre());
+        if (i.getAnfitrion().isSuperAnfitrion()) {
+            superanfitrionLabel.setVisible(true);
+        } else {
+            superanfitrionLabel.setVisible(false);
+        }
 
         nhuespedes.setText(Integer.toString(i.getDatosInmueble().getMaxHuespedes()));
         nhabitaciones.setText(Integer.toString(i.getDatosInmueble().getHabitaciones()));
@@ -161,6 +165,9 @@ public class BuildingView extends javax.swing.JPanel {
         calificarboton = new javax.swing.JButton();
         numvaloracioneslabel = new javax.swing.JLabel();
         anfitrionlabel = new javax.swing.JLabel();
+        superanfitrionLabel = new javax.swing.JLabel();
+
+        setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 250, 248));
 
@@ -453,7 +460,9 @@ public class BuildingView extends javax.swing.JPanel {
         numvaloracioneslabel.setText("Calificado por x personas");
 
         anfitrionlabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        anfitrionlabel.setText("anfitrion:");
+        anfitrionlabel.setText("Anfitrion:");
+
+        superanfitrionLabel.setText("Superanfitrión");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -481,7 +490,7 @@ public class BuildingView extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 15, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -494,8 +503,8 @@ public class BuildingView extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane4)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane3))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -517,7 +526,10 @@ public class BuildingView extends javax.swing.JPanel {
                                         .addComponent(nhabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(62, 62, 62)
-                                .addComponent(anfitrionlabel)))
+                                .addComponent(anfitrionlabel))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(102, 102, 102)
+                                .addComponent(superanfitrionLabel)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -577,20 +589,13 @@ public class BuildingView extends javax.swing.JPanel {
                                 .addComponent(calificarboton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(anfitrionlabel)))
-                .addContainerGap(107, Short.MAX_VALUE))
+                        .addComponent(anfitrionlabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(superanfitrionLabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void estrella4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estrella4ActionPerformed
@@ -680,15 +685,15 @@ public class BuildingView extends javax.swing.JPanel {
                 i.setCalificacion(nota);
 
                 // Obtener el anfitrión del inmueble
-                Cliente anfitrion = i.getCliente();
-
+                Anfitrion anfitrion = i.getAnfitrion();
+                anfitrion.setSuperAnfitrion();
                 // Actualizar el estado de superAnfitrion del anfitrión si es una instancia de Anfitrion
-                if (anfitrion instanceof Anfitrion) {
-                    ((Anfitrion) anfitrion).setSuperAnfitrion();
-                    System.out.println(anfitrion);
-                    System.out.println("El anfitrión es superanfitrión: " + ((Anfitrion) anfitrion).isSuperAnfitrion());
+                //if (anfitrion instanceof Anfitrion) {
+                    //((Anfitrion) anfitrion).setSuperAnfitrion();
+                    //System.out.println(anfitrion);
+                    //System.out.println("El anfitrión es superanfitrión: " + ((Anfitrion) anfitrion).isSuperAnfitrion());
 
-                }
+                //}
 
                 actualizar();
 
@@ -749,6 +754,7 @@ public class BuildingView extends javax.swing.JPanel {
     private javax.swing.JButton reservarboton;
     private javax.swing.JLabel reservaya;
     private javax.swing.JTextArea serviciosarea;
+    private javax.swing.JLabel superanfitrionLabel;
     private javax.swing.JLabel tipolabel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel titulolabel;

@@ -60,7 +60,7 @@ public class PrivacyPolicy extends javax.swing.JPanel {
         add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         okButton.setBackground(new java.awt.Color(255, 90, 95));
-        okButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        okButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         okButton.setForeground(new java.awt.Color(255, 255, 255));
         okButton.setText("Entendido");
         okButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED)));

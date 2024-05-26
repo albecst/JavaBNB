@@ -222,11 +222,11 @@ public class Inmueble implements Serializable {
         JavaBNB.guardarDatos();
     }
 
-    public Cliente getCliente() {
+    public Anfitrion getAnfitrion() {
         return anfitrion;
     }
 
-    public void setCliente(Anfitrion anfitrion) {
+    public void setAnfitrion(Anfitrion anfitrion) {
         this.anfitrion = anfitrion;
         JavaBNB.guardarDatos();
     }
