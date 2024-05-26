@@ -543,7 +543,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="titleLabel1">
+                <Component class="javax.swing.JLabel" name="markLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Calificaci&#xf3;n:"/>
                   </Properties>
@@ -573,7 +573,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextPane" name="calificacionfield">
+                    <Component class="javax.swing.JTextPane" name="markTextField">
                       <Properties>
                         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[64, 22]"/>

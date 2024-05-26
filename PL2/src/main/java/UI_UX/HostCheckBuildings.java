@@ -126,6 +126,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         bedTextField.setText(Integer.toString(inmueble.getDatosInmueble().getCamas()));
         bathTextField.setText(Integer.toString(inmueble.getDatosInmueble().getBaños()));
         serviceTextField.setText(inmueble.getServicios());
+        markTextField.setText(String.valueOf(inmueble.getCalificacion()));
     }
 
     private void clearFields() {
@@ -142,7 +143,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         bedTextField.setText("");
         bathTextField.setText("");
         serviceTextField.setText("");
-        calificacionfield.setText("");
+        markTextField.setText("");
     }
 
     public File openImage() {
@@ -250,9 +251,9 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         serviceLabel = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         descriptionTextPanel = new javax.swing.JTextPane();
-        titleLabel1 = new javax.swing.JLabel();
+        markLabel = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        calificacionfield = new javax.swing.JTextPane();
+        markTextField = new javax.swing.JTextPane();
         checkReservesButton = new javax.swing.JButton();
         editfoto1 = new javax.swing.JButton();
         previousButton = new javax.swing.JButton();
@@ -621,21 +622,21 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 54);
         jPanel2.add(jScrollPane5, gridBagConstraints);
 
-        titleLabel1.setText("Calificación:");
+        markLabel.setText("Calificación:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 22, 0, 0);
-        jPanel2.add(titleLabel1, gridBagConstraints);
+        jPanel2.add(markLabel, gridBagConstraints);
 
         jScrollPane6.setMinimumSize(new java.awt.Dimension(300, 50));
         jScrollPane6.setPreferredSize(new java.awt.Dimension(64, 22));
 
-        calificacionfield.setMinimumSize(new java.awt.Dimension(64, 22));
-        calificacionfield.setPreferredSize(new java.awt.Dimension(64, 22));
-        jScrollPane6.setViewportView(calificacionfield);
+        markTextField.setMinimumSize(new java.awt.Dimension(64, 22));
+        markTextField.setPreferredSize(new java.awt.Dimension(64, 22));
+        jScrollPane6.setViewportView(markTextField);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
@@ -794,7 +795,6 @@ public class HostCheckBuildings extends javax.swing.JPanel {
     }//GEN-LAST:event_logoButtonActionPerformed
 
     private void deleteBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBuildingButtonActionPerformed
-
         if (objInm != null) {
             JavaBNB.eliminarInmueble(objInm); // Llamar al método para eliminar el inmueble
 
@@ -1034,7 +1034,6 @@ public class HostCheckBuildings extends javax.swing.JPanel {
     private javax.swing.JTextField bathTextField;
     private javax.swing.JLabel bedLabel;
     private javax.swing.JTextField bedTextField;
-    private javax.swing.JTextPane calificacionfield;
     private javax.swing.JButton checkReservesButton;
     private javax.swing.JLabel cityLabel;
     private javax.swing.JTextField cityTextField;
@@ -1058,6 +1057,8 @@ public class HostCheckBuildings extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JButton logoButton;
     private javax.swing.JLabel logoLabel;
+    private javax.swing.JLabel markLabel;
+    private javax.swing.JTextPane markTextField;
     private javax.swing.JButton nextButton;
     private javax.swing.JLabel numberLabel;
     private javax.swing.JTextField numberTextField;
@@ -1072,7 +1073,6 @@ public class HostCheckBuildings extends javax.swing.JPanel {
     private javax.swing.JLabel streetLabel;
     private javax.swing.JTextField streetTextField;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JLabel titleLabel1;
     private javax.swing.JTextPane titleTextPanel;
     private javax.swing.JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
