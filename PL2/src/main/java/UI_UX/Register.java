@@ -799,7 +799,7 @@ public class Register extends javax.swing.JPanel {
             Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre, correo.toLowerCase(), clave, telefono);
             Sesion.registrarCliente(nuevoAnfitrion);
             resetText();
-            Aplicacion.loadMainScreen();
+            App.loadMainScreen();
         } else if (selectedOption.equals("Anfitrion") && !valido) {
             noselectLabel.setVisible(true);
 
@@ -852,7 +852,7 @@ public class Register extends javax.swing.JPanel {
                 Particular nuevoParticular = new Particular(tarjeta, vip, dni, nombre, correo.toLowerCase(), clave, telefono);
                 Sesion.registrarCliente(nuevoParticular);
                 resetText();
-                Aplicacion.loadMainScreen();
+                App.loadMainScreen();
                 return;
             }
             noselectLabel.setVisible(true);
@@ -864,7 +864,7 @@ public class Register extends javax.swing.JPanel {
 
     private void existaccLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_existaccLabelMouseClicked
         resetText();
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
+        App.cardLayout.show(App.cards, "Pantalla login");
     }//GEN-LAST:event_existaccLabelMouseClicked
 
     private void tlfTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tlfTextFieldMousePressed

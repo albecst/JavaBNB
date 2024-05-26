@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 
 public class MainScreen extends javax.swing.JPanel {
 
-    public ArrayList<IconoInmueble> buildingsicon;
+    public ArrayList<BuildingIcon> buildingsicon;
     private ArrayList<Inmueble> buildings;
     private ArrayList<Inmueble> allBuildings;
     int estado;
@@ -67,7 +67,7 @@ public class MainScreen extends javax.swing.JPanel {
                 fila += 400;//el tamaño de la ventana  del widget= [295, 400] 
                 x = 50;
             }
-            IconoInmueble iconoinm = new IconoInmueble();
+            BuildingIcon iconoinm = new BuildingIcon();
             iconoinm.init(inmueble);
             //AbsoluteConstraints constr = new org.netbeans.lib.awtextra.AbsoluteConstraints(295*x, fila, -1, -1);  //-1 en altura y anchura para que nos de la predeterminada del widget añadido
             buildingsicon.add(iconoinm);
@@ -97,7 +97,7 @@ public class MainScreen extends javax.swing.JPanel {
                 fila += 400;
                 x = 50;
             }
-            IconoInmueble iconoinm = new IconoInmueble();
+            BuildingIcon iconoinm = new BuildingIcon();
             iconoinm.init(inmueble);
             //AbsoluteConstraints constr = new org.netbeans.lib.awtextra.AbsoluteConstraints(295*x, fila, -1, -1);  //-1 en altura y anchura para que nos de la predeterminada del widget añadido
             buildingsicon.add(iconoinm);
@@ -110,7 +110,7 @@ public class MainScreen extends javax.swing.JPanel {
     }
 
     public void deleteBuildings() {
-        for (IconoInmueble ii : buildingsicon) {
+        for (BuildingIcon ii : buildingsicon) {
             this.buildingsContainer.remove(ii);
         }
         buildingsicon.clear(); // Limpia la lista de widgets de edificios después de eliminarlos
@@ -739,9 +739,9 @@ public class MainScreen extends javax.swing.JPanel {
     private void hostProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostProfileActionPerformed
         deleteBuildings();
         if (Sesion.esAnfitrion) {
-            Aplicacion.loadHostProfile();
+            App.loadHostProfile();
         } else {
-            Aplicacion.loadClientProfile();
+            App.loadClientProfile();
         }
     }//GEN-LAST:event_hostProfileActionPerformed
 
@@ -751,13 +751,13 @@ public class MainScreen extends javax.swing.JPanel {
 
     private void addBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBuildingsButtonActionPerformed
         deleteBuildings();
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla addbuildings");
+        App.cardLayout.show(App.cards, "Pantalla addbuildings");
 
     }//GEN-LAST:event_addBuildingsButtonActionPerformed
 
     private void myBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myBuildingsButtonActionPerformed
         deleteBuildings();
-        Aplicacion.loadHostCheckBuildings();
+        App.loadHostCheckBuildings();
         if (Sesion.user != null) {
             ArrayList<Inmueble> inmueblesAnfitrion = JavaBNB.filtrarInmueblesPorAnfitrion((Anfitrion) Sesion.user);
             for (Inmueble inmueble : inmueblesAnfitrion) {
@@ -828,7 +828,7 @@ public class MainScreen extends javax.swing.JPanel {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         deleteBuildings();
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla privacypolicy");
+        App.cardLayout.show(App.cards, "Pantalla privacypolicy");
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -901,7 +901,7 @@ public class MainScreen extends javax.swing.JPanel {
 
     private void misReservasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_misReservasButtonActionPerformed
         deleteBuildings();
-        Aplicacion.loadGuestCheckReserves();
+        App.loadGuestCheckReserves();
     }//GEN-LAST:event_misReservasButtonActionPerformed
 
 

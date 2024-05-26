@@ -1,6 +1,6 @@
 package Logica;
 
-import UI_UX.Aplicacion;
+import UI_UX.App;
 
 /**
  * La clase Sesion maneja la gestión de la sesión del usuario en la aplicación JavaBNB.
@@ -70,8 +70,8 @@ public class Sesion {
             isHost = (cliente instanceof Anfitrion);
 
             if (cliente.getCorreo().equals(correo.toLowerCase()) && cliente.getClave().equals(clave)) {
-                Aplicacion.sesion.nuevaSesion(cliente);
-                System.out.println("Sesión iniciada por " + Aplicacion.sesion.user);
+                App.sesion.nuevaSesion(cliente);
+                System.out.println("Sesión iniciada por " + App.sesion.user);
                 return isHost ? 3 : 2;
             }
         }
@@ -96,7 +96,7 @@ public class Sesion {
             return;
         }
         JavaBNB.getClientes().add(cliente);
-        Aplicacion.sesion.nuevaSesion(cliente);
+        App.sesion.nuevaSesion(cliente);
         System.out.println(cliente.toString());
     }
 
