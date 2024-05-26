@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.nio.file.Paths;
 
 /**
  * La clase Reserva representa una reserva realizada por un cliente para un
@@ -120,8 +121,33 @@ public class Reserva implements Serializable {
 
         // Nombre del archivo basado en el DNI del particular y el título del inmueble
         String nombreFichero = this.particular.getDni() + "_" + this.inmueble.getTitulo();
+
+        // Reemplazar caracteres especiales y eliminar caracteres no permitidos
+        nombreFichero = nombreFichero
+                .replaceAll("[ñ]", "n")
+                .replaceAll("[á]", "a")
+                .replaceAll("[é]", "e")
+                .replaceAll("[í]", "i")
+                .replaceAll("[ó]", "o")
+                .replaceAll("[ú]", "u")
+                .replaceAll("[Ñ]", "N")
+                .replaceAll("[Á]", "A")
+                .replaceAll("[É]", "E")
+                .replaceAll("[Í]", "I")
+                .replaceAll("[Ó]", "O")
+                .replaceAll("[Ú]", "U")
+                .replaceAll("[<>:\"/\\|?*]", "")
+                .replaceAll("\\s+", "_"); // Reemplaza espacios por guiones bajos
+
+        // Limitar la longitud del nombre del archivo
+        if (nombreFichero.length() > 50) {
+            nombreFichero = nombreFichero.substring(0, 50);
+        }
+
         // Crear el archivo para escribir la información
-        PrintWriter salida = new PrintWriter(new BufferedWriter(new FileWriter(directorio + nombreFichero + ".txt")));
+        String filePath = Paths.get(directorio, nombreFichero + ".txt").toString();
+        PrintWriter salida = new PrintWriter(new BufferedWriter(new FileWriter(filePath)));
+
         // Formateador de fechas
         DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 

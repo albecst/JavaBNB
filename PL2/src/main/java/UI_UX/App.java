@@ -165,11 +165,13 @@ public class App {
     public static void loadHostCheckReserves() {
         cards.add(hostcheckreserves, "Pantalla hostcheckreserves");
         hostcheckreserves.actualizar();
+        cardLayout.show(cards, "Pantalla hostcheckreserves");
     }
 
     /**
      * Carga la pantalla de consulta de los inmuebles
-     * @param inmueble 
+     *
+     * @param inmueble
      */
     public static void loadBuildingView(Inmueble inmueble) {
         cards.add(buildingview, "Pantalla buildingview");
@@ -177,7 +179,6 @@ public class App {
         cardLayout.show(cards, "Pantalla buildingview");
     }
 
-    
     /**
      * Carga la pantalla de consulta de los inmuebles
      */
@@ -186,7 +187,6 @@ public class App {
         cardLayout.show(cards, "Pantalla buildingview");
     }
 
-    
     /**
      * Carga la pantalla principal de la aplicación
      */

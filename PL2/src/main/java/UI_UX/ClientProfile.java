@@ -25,7 +25,7 @@ public class ClientProfile extends javax.swing.JPanel {
         errorLabel1.setVisible(false);
         requirementsLabel.setVisible(false);
         emailTextField.setEditable(false);
-        clave.setEditable(false);
+        passPasswordField.setEditable(false);
         tlfTextField.setEditable(false);
         promocodeTextField.setEditable(false);
         CCTextField.setEditable(false);
@@ -43,9 +43,9 @@ public class ClientProfile extends javax.swing.JPanel {
         if (Sesion.user != null) {
             // Establecer los campos de texto con la información del usuario actual
             dniTextField.setText(Sesion.user.getDni());
-            username.setText(Sesion.user.getNombre().toUpperCase());
+            usernameLabel.setText(Sesion.user.getNombre().toUpperCase());
             emailTextField.setText(Sesion.user.getCorreo());
-            clave.setText(Sesion.user.getClave());
+            passPasswordField.setText(Sesion.user.getClave());
             tlfTextField.setText(Sesion.user.getTelefono());
             if (Sesion.esUsuarioVip()) {
                 promocodeTextField.setText("JAVABNB2024");
@@ -78,11 +78,11 @@ public class ClientProfile extends javax.swing.JPanel {
 
         jPanel2 = new javax.swing.JPanel();
         uppermenu = new javax.swing.JPanel();
-        appname = new javax.swing.JLabel();
+        logoLabel = new javax.swing.JLabel();
         logo = new javax.swing.JButton();
-        logo1 = new javax.swing.JButton();
-        mainscr = new javax.swing.JButton();
-        cerrarsesion = new javax.swing.JButton();
+        logoButton = new javax.swing.JButton();
+        returnButton = new javax.swing.JButton();
+        signOutButton = new javax.swing.JButton();
         addMoneyButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         data = new javax.swing.JPanel();
@@ -90,8 +90,8 @@ public class ClientProfile extends javax.swing.JPanel {
         dniLabel = new javax.swing.JLabel();
         tlfLabel = new javax.swing.JLabel();
         passLabel = new javax.swing.JLabel();
-        clave = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        passPasswordField = new javax.swing.JPasswordField();
+        editButton = new javax.swing.JButton();
         emailTextField = new javax.swing.JTextField();
         dniTextField = new javax.swing.JTextField();
         tlfTextField = new javax.swing.JTextField();
@@ -112,9 +112,9 @@ public class ClientProfile extends javax.swing.JPanel {
         moneyLabel = new javax.swing.JLabel();
         moneyTextField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        userpfp = new javax.swing.JButton();
-        username = new javax.swing.JLabel();
-        ParLabel = new javax.swing.JLabel();
+        userphotoButton = new javax.swing.JButton();
+        usernameLabel = new javax.swing.JLabel();
+        typeLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 250, 248));
         setLayout(new java.awt.BorderLayout());
@@ -125,15 +125,15 @@ public class ClientProfile extends javax.swing.JPanel {
         uppermenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         uppermenu.setLayout(new java.awt.GridBagLayout());
 
-        appname.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        appname.setForeground(new java.awt.Color(255, 90, 95));
-        appname.setText("JavaBNB");
+        logoLabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        logoLabel.setForeground(new java.awt.Color(255, 90, 95));
+        logoLabel.setText("JavaBNB");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(30, 18, 0, 0);
-        uppermenu.add(appname, gridBagConstraints);
+        uppermenu.add(logoLabel, gridBagConstraints);
 
         logo.setBackground(new java.awt.Color(255, 153, 153));
         logo.setBorderPainted(false);
@@ -151,16 +151,16 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
         uppermenu.add(logo, gridBagConstraints);
 
-        logo1.setBackground(new java.awt.Color(255, 153, 153));
-        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
-        logo1.setBorderPainted(false);
-        logo1.setContentAreaFilled(false);
-        logo1.setDefaultCapable(false);
-        logo1.setFocusPainted(false);
-        logo1.setFocusable(false);
-        logo1.setRequestFocusEnabled(false);
-        logo1.setRolloverEnabled(false);
-        logo1.setVerifyInputWhenFocusTarget(false);
+        logoButton.setBackground(new java.awt.Color(255, 153, 153));
+        logoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
+        logoButton.setBorderPainted(false);
+        logoButton.setContentAreaFilled(false);
+        logoButton.setDefaultCapable(false);
+        logoButton.setFocusPainted(false);
+        logoButton.setFocusable(false);
+        logoButton.setRequestFocusEnabled(false);
+        logoButton.setRolloverEnabled(false);
+        logoButton.setVerifyInputWhenFocusTarget(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -169,18 +169,18 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.ipady = -24;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(7, 101, 3, 0);
-        uppermenu.add(logo1, gridBagConstraints);
+        uppermenu.add(logoButton, gridBagConstraints);
 
-        mainscr.setBackground(new java.awt.Color(255, 90, 95));
-        mainscr.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        mainscr.setForeground(new java.awt.Color(255, 255, 255));
-        mainscr.setText("Volver");
-        mainscr.setBorderPainted(false);
-        mainscr.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        mainscr.setPreferredSize(new java.awt.Dimension(80, 30));
-        mainscr.addActionListener(new java.awt.event.ActionListener() {
+        returnButton.setBackground(new java.awt.Color(255, 90, 95));
+        returnButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        returnButton.setForeground(new java.awt.Color(255, 255, 255));
+        returnButton.setText("Volver");
+        returnButton.setBorderPainted(false);
+        returnButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        returnButton.setPreferredSize(new java.awt.Dimension(80, 30));
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainscrActionPerformed(evt);
+                returnButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -190,15 +190,15 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.ipady = 16;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(23, 68, 0, 50);
-        uppermenu.add(mainscr, gridBagConstraints);
+        uppermenu.add(returnButton, gridBagConstraints);
 
-        cerrarsesion.setBackground(new java.awt.Color(255, 90, 95));
-        cerrarsesion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cerrarsesion.setForeground(new java.awt.Color(255, 255, 255));
-        cerrarsesion.setText("Cerrar sesión");
-        cerrarsesion.addActionListener(new java.awt.event.ActionListener() {
+        signOutButton.setBackground(new java.awt.Color(255, 90, 95));
+        signOutButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        signOutButton.setForeground(new java.awt.Color(255, 255, 255));
+        signOutButton.setText("Cerrar sesión");
+        signOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cerrarsesionActionPerformed(evt);
+                signOutButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -208,7 +208,7 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.ipady = 16;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(23, 611, 0, 0);
-        uppermenu.add(cerrarsesion, gridBagConstraints);
+        uppermenu.add(signOutButton, gridBagConstraints);
 
         addMoneyButton.setBackground(new java.awt.Color(255, 90, 95));
         addMoneyButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -275,7 +275,7 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(18, 21, 0, 0);
         data.add(passLabel, gridBagConstraints);
 
-        clave.setText("contraseña1");
+        passPasswordField.setText("contraseña1");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 13;
         gridBagConstraints.gridy = 20;
@@ -284,15 +284,15 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 79;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
-        data.add(clave, gridBagConstraints);
+        data.add(passPasswordField, gridBagConstraints);
 
-        jButton1.setBackground(new java.awt.Color(255, 90, 95));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Editar datos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editButton.setBackground(new java.awt.Color(255, 90, 95));
+        editButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        editButton.setForeground(new java.awt.Color(255, 255, 255));
+        editButton.setText("Editar datos");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -303,7 +303,7 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.ipady = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(40, 67, 0, 0);
-        data.add(jButton1, gridBagConstraints);
+        data.add(editButton, gridBagConstraints);
 
         emailTextField.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -543,20 +543,20 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(40, 67, 0, 0);
         data.add(jButton2, gridBagConstraints);
 
-        userpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
-        userpfp.addActionListener(new java.awt.event.ActionListener() {
+        userphotoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
+        userphotoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userpfpActionPerformed(evt);
+                userphotoButtonActionPerformed(evt);
             }
         });
 
-        username.setFont(new java.awt.Font("Serif", 0, 30)); // NOI18N
-        username.setForeground(new java.awt.Color(255, 90, 95));
-        username.setText("XXXXXX");
+        usernameLabel.setFont(new java.awt.Font("Serif", 0, 30)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(255, 90, 95));
+        usernameLabel.setText("XXXXXX");
 
-        ParLabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        ParLabel.setForeground(new java.awt.Color(102, 102, 102));
-        ParLabel.setText("Cliente");
+        typeLabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        typeLabel.setForeground(new java.awt.Color(102, 102, 102));
+        typeLabel.setText("Cliente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -565,13 +565,13 @@ public class ClientProfile extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userpfp, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userphotoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addComponent(username))
+                        .addComponent(usernameLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(102, 102, 102)
-                        .addComponent(ParLabel)))
+                        .addComponent(typeLabel)))
                 .addGap(70, 70, 70)
                 .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -580,11 +580,11 @@ public class ClientProfile extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(userpfp, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(userphotoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
-                        .addComponent(username)
+                        .addComponent(usernameLabel)
                         .addGap(14, 14, 14)
-                        .addComponent(ParLabel))
+                        .addComponent(typeLabel))
                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(114, Short.MAX_VALUE))
         );
@@ -596,8 +596,8 @@ public class ClientProfile extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(295, Short.MAX_VALUE))
-            .addComponent(uppermenu, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(uppermenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1231, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -611,15 +611,15 @@ public class ClientProfile extends javax.swing.JPanel {
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userpfpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userpfpActionPerformed
+    private void userphotoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userphotoButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userpfpActionPerformed
+    }//GEN-LAST:event_userphotoButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jButton1.getText().equals("Editar datos")) {
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        if (editButton.getText().equals("Editar datos")) {
             // Si el botón está en modo "Editar datos", establece los campos de texto como editables
             emailTextField.setEditable(true);
-            clave.setEditable(true);
+            passPasswordField.setEditable(true);
             tlfTextField.setEditable(true);
             if (Sesion.esUsuarioVip()) {
 
@@ -628,18 +628,18 @@ public class ClientProfile extends javax.swing.JPanel {
                 promocodeTextField.setEditable(true);
             }
             // Cambiar el texto del botón a "Aceptar"
-            jButton1.setText("Aceptar");
+            editButton.setText("Aceptar");
         } else {
             // Si el botón está en modo "Aceptar", establece los campos de texto como no editables
             emailTextField.setEditable(false);
-            clave.setEditable(false);
+            passPasswordField.setEditable(false);
             tlfTextField.setEditable(false);
             promocodeTextField.setEditable(false);
 
-            jButton1.setText("Editar datos");
+            editButton.setText("Editar datos");
 
             String email = emailTextField.getText();
-            char[] passwordCharArray = clave.getPassword();
+            char[] passwordCharArray = passPasswordField.getPassword();
             String password = new String(passwordCharArray);
             String telefono = tlfTextField.getText();
             String promocode = promocodeTextField.getText();
@@ -654,7 +654,7 @@ public class ClientProfile extends javax.swing.JPanel {
             } // Verificar la contraseña            
             else if (!Validacion.validarContraseña(password)) {
                 errorLabel1.setVisible(true);
-                clave.setText("");
+                passPasswordField.setText("");
                 valido = false;
             } // Verificar el teléfono
             else if (!Validacion.validarTelefono(telefono)) {
@@ -691,7 +691,7 @@ public class ClientProfile extends javax.swing.JPanel {
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_editButtonActionPerformed
 
     private void errorLabel1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabel1PropertyChange
         // TODO add your handling code here:
@@ -717,14 +717,14 @@ public class ClientProfile extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_moneyTextFieldActionPerformed
 
-    private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         App.loadMainScreen();
-    }//GEN-LAST:event_mainscrActionPerformed
+    }//GEN-LAST:event_returnButtonActionPerformed
 
-    private void cerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarsesionActionPerformed
+    private void signOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutButtonActionPerformed
         Sesion.cerrarSesion();
         App.cardLayout.show(App.cards, "Pantalla login");
-    }//GEN-LAST:event_cerrarsesionActionPerformed
+    }//GEN-LAST:event_signOutButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -769,11 +769,7 @@ public class ClientProfile extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CCLabel;
     private javax.swing.JTextField CCTextField;
-    private javax.swing.JLabel ParLabel;
     private javax.swing.JButton addMoneyButton;
-    private javax.swing.JLabel appname;
-    private javax.swing.JButton cerrarsesion;
-    private javax.swing.JPasswordField clave;
     private javax.swing.JLabel cvvLabel;
     private javax.swing.JTextField cvvTextField;
     private javax.swing.JPanel data;
@@ -781,29 +777,33 @@ public class ClientProfile extends javax.swing.JPanel {
     private javax.swing.JTextField dayTextField;
     private javax.swing.JLabel dniLabel;
     private javax.swing.JTextField dniTextField;
+    private javax.swing.JButton editButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel errorLabel1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logo;
-    private javax.swing.JButton logo1;
-    private javax.swing.JButton mainscr;
+    private javax.swing.JButton logoButton;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JLabel moneyLabel;
     private javax.swing.JTextField moneyTextField;
     private javax.swing.JLabel monthLabel;
     private javax.swing.JTextField monthTextField;
     private javax.swing.JLabel passLabel;
+    private javax.swing.JPasswordField passPasswordField;
     private javax.swing.JLabel promocodeLabel;
     private javax.swing.JTextField promocodeTextField;
     private javax.swing.JLabel requirementsLabel;
+    private javax.swing.JButton returnButton;
+    private javax.swing.JButton signOutButton;
     private javax.swing.JLabel tlfLabel;
     private javax.swing.JTextField tlfTextField;
+    private javax.swing.JLabel typeLabel;
     private javax.swing.JPanel uppermenu;
-    private javax.swing.JLabel username;
-    private javax.swing.JButton userpfp;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JButton userphotoButton;
     private javax.swing.JLabel yearLabel;
     private javax.swing.JTextField yearTextField;
     // End of variables declaration//GEN-END:variables
