@@ -39,9 +39,9 @@ public class HostCheckReserves extends javax.swing.JPanel {
             errorNoAnt.setVisible(false);
 
             if (JavaBNB.getClientes() != null) {
-                if (Aplicacion.hostcheckbuildings != null) {
+                if (App.hostcheckbuildings != null) {
                     // Obtener el inmueble actual desde HostCheckBuildings
-                    Inmueble inmuebleActual = Aplicacion.hostcheckbuildings.getInmuebleActual();
+                    Inmueble inmuebleActual = App.hostcheckbuildings.getInmuebleActual();
                     if (inmuebleActual != null) {
                         System.out.println("Inmueble actual: " + inmuebleActual.getTitulo());
 
@@ -477,7 +477,7 @@ public class HostCheckReserves extends javax.swing.JPanel {
         hcb.setInmuebleActual(null);
         System.out.println("Estas observando el inmueble: " + hcb.getInmuebleActual());
 
-        Aplicacion.loadMainScreen();
+        App.loadMainScreen();
 
     }//GEN-LAST:event_mainscrActionPerformed
 

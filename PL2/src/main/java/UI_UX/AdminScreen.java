@@ -175,19 +175,19 @@ public class AdminScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkUsersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkUsersButtonActionPerformed
-        Aplicacion.loadAdminConsultarUser();
+        App.loadAdminConsultarUser();
     }//GEN-LAST:event_checkUsersButtonActionPerformed
 
     private void checkBookingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBookingsButtonActionPerformed
-        Aplicacion.loadAdminConsultarReservas();
+        App.loadAdminConsultarReservas();
     }//GEN-LAST:event_checkBookingsButtonActionPerformed
 
     private void checkBuildingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBuildingsButtonActionPerformed
-        Aplicacion.loadAdminCheckBuildings();
+        App.loadAdminCheckBuildings();
     }//GEN-LAST:event_checkBuildingsButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
+        App.cardLayout.show(App.cards, "Pantalla login");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
