@@ -445,25 +445,17 @@ public class AdminConsultarUser extends javax.swing.JPanel {
         if (objcli != null) {
             if (objcli instanceof Particular) {
                 Particular particular = (Particular) objcli;
-                   JavaBNB.eliminarParticular(objcli);
+                JavaBNB.eliminarParticular(objcli);
                 // Eliminar todas las reservas del particular
-               // particular.getReservas().clear();
+                // particular.getReservas().clear();
 
             } else if (objcli instanceof Anfitrion) {
                 Anfitrion anfitrion = (Anfitrion) objcli;
-                //ArrayList<Inmueble> inmuebles = JavaBNB.getInmuebles();
-                
-                
-                JavaBNB.eliminarAnfitrion(objcli);
-                // Eliminar todas las reservas de los inmuebles del anfitrión
-                
-                /**
-                for (Inmueble inmueble : inmuebles) {
-                    inmueble.getReservas().clear();
-                }
+                ArrayList<Inmueble> inmuebles = JavaBNB.getInmuebles();
 
-                // Eliminar todos los inmuebles de este anfitrión
-                JavaBNB.getInmuebles().removeAll(inmuebles);*/
+                JavaBNB.eliminarAnfitrion(objcli);
+
+                JavaBNB.getInmuebles().removeAll(inmuebles);
             }
 
             try {

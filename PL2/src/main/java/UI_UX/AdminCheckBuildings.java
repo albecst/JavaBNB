@@ -87,6 +87,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         bedTextField.setText("");
         bathTextField.setText("");
         serviceTextField.setText("");
+        markTextField.setText("");
     }
 
     private void presenta(Inmueble inmueble) {
@@ -232,7 +233,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 250, 248));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel2.setMinimumSize(new java.awt.Dimension(580, 499));
-        jPanel2.setPreferredSize(new java.awt.Dimension(370, 700));
+        jPanel2.setPreferredSize(new java.awt.Dimension(370, 750));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         titleLabel.setText("Título:");
