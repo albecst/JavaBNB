@@ -778,7 +778,7 @@ public class AddBuildings extends javax.swing.JPanel {
 
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
         // Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
-        Aplicacion.loadMainScreen();
+        App.loadMainScreen();
     }//GEN-LAST:event_mainscrActionPerformed
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed

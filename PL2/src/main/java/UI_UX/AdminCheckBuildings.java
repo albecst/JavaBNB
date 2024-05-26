@@ -641,7 +641,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteBuildingButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
+        App.cardLayout.show(App.cards, "Pantalla adminscreen");
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void editBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBuildingButtonActionPerformed
