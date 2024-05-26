@@ -2,14 +2,24 @@ package UI_UX;
 
 import Logica.*;
 
+/**
+ * Panel que permite al usuario iniciar sesión.
+ */
 public class Login extends javax.swing.JPanel {
 
+    /**
+     * Crea un nuevo panel de inicio de sesión.
+     */
     public Login() {
         initComponents();
         errorLabel.setVisible(false);
     }
 
-    //TODO: Si vamos a otra pestaña y volvemos deberia ejecutar esto. es como los otros metodos "actualizar"
+    /**
+     * Restablece los campos de texto del formulario. Este método se utiliza
+     * para limpiar los campos de texto cuando se cambia de pestaña o se vuelve
+     * a este panel.
+     */
     private void resetText() {
         emailTextField.setText("");
         passwordTextField.setText("");
@@ -276,10 +286,10 @@ public class Login extends javax.swing.JPanel {
         errorLabel.setVisible(false);
         //Inicializamos atributos
         String correo = emailTextField.getText();
-        
+
         //no utilizar getText en la passwordField porque esta "deprecated"
         char[] passwordCharArray = passwordTextField.getPassword();
-        String clave = new String(passwordCharArray); 
+        String clave = new String(passwordCharArray);
         int tipo = Sesion.iniciarSesion(correo, clave);
         resetText();
         switch (tipo) {
@@ -288,15 +298,15 @@ public class Login extends javax.swing.JPanel {
                 break;
             case 1:
                 System.out.println("Admin");
-                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla adminscreen");
+                App.cardLayout.show(App.cards, "Pantalla adminscreen");
                 break;
             case 2:
                 System.out.println("Client");
-                Aplicacion.loadMainScreen();
+                App.loadMainScreen();
                 break;
             case 3:
                 System.out.println("Anfitrión");
-                Aplicacion.loadMainScreen();
+                App.loadMainScreen();
                 break;
             default:
                 break;
@@ -314,12 +324,12 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_errorLabelPropertyChange
 
     private void registerLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLabelMouseClicked
-         resetText();
-        Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla register");
+        resetText();
+        App.cardLayout.show(App.cards, "Pantalla register");
     }//GEN-LAST:event_registerLabelMouseClicked
 
     private void privacypolicyLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_privacypolicyLabelMouseClicked
-                Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla privacypolicy");
+        App.cardLayout.show(App.cards, "Pantalla privacypolicy");
     }//GEN-LAST:event_privacypolicyLabelMouseClicked
 
     private void photoLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoLabelActionPerformed
