@@ -7,12 +7,20 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
+/**
+ * La clase AdminCheckBuildings permite al administrador revisar y gestionar los
+ * inmuebles registrados en la aplicación.
+ */
 public class AdminCheckBuildings extends javax.swing.JPanel {
 
     private ArrayList<Inmueble> buildings; // Referencia al ArrayList de inmuebles de la clase JavaBNB
     private ListIterator<Inmueble> li; // Iterador para recorrer el ArrayList en ambas direcciones
     private Inmueble objInm; // Referencia a un objeto de tipo inmueble del ArrayList
 
+    /**
+     * Constructor de AdminCheckBuildings que inicializa los componentes y carga
+     * los inmuebles.
+     */
     public AdminCheckBuildings() {
         initComponents();
         errorNextLabel.setVisible(false);
@@ -34,12 +42,18 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         consultarTodo();
     }
 
+    /**
+     * Actualiza la vista y los datos de los inmuebles.
+     */
     public void actualizar() {
         errorNextLabel.setVisible(false);
         errorPreviousLabel.setVisible(false);
         consultarTodo();
     }
 
+    /**
+     * Consulta y carga todos los inmuebles de JavaBNB en la lista local.
+     */
     private void consultarTodo() {
         try {
             errorNextLabel.setVisible(false);
@@ -73,6 +87,9 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Limpia los campos de texto en el panel de administración.
+     */
     private void limpiarCampos() {
         typeLabel.setText("");
         titleTextPanel.setText("");
@@ -90,6 +107,12 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         markTextField.setText("");
     }
 
+    /**
+     * Presenta los detalles del inmueble en los campos de texto
+     * correspondientes.
+     *
+     * @param inmueble el inmueble cuyos detalles se van a mostrar
+     */
     private void presenta(Inmueble inmueble) {
         typeLabel.setText(inmueble.getTipo());
         titleTextPanel.setText(inmueble.getTitulo());
@@ -105,7 +128,6 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         bathTextField.setText(Integer.toString(inmueble.getDatosInmueble().getBaños()));
         serviceTextField.setText(inmueble.getServicios());
         markTextField.setText(String.valueOf(inmueble.getCalificacion()));
-
     }
 
     /**
@@ -599,7 +621,6 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
     private void deleteBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBuildingButtonActionPerformed
         if (objInm != null) {
             JavaBNB.eliminarInmueble(objInm); // Llamar al método para eliminar el inmueble
-
             li.remove();
 
             if (li.hasNext()) {
@@ -711,6 +732,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
                 valido = false;
 
             }
+
             boolean cpp = false;
             int cpInt = 0;
             if (!cp.isEmpty() && cp.length() == 5) {
@@ -801,10 +823,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
                 objInm.getDatosInmueble().setCamas(camas);
                 objInm.getDatosInmueble().setBaños(baños);
                 objInm.setServicios(servicios);
-
                 editBuildingButton.setText("Editar inmueble");
-
-                //System.out.println(objInm.toString());
             }
         }
     }//GEN-LAST:event_editBuildingButtonActionPerformed
