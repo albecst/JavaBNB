@@ -1,12 +1,15 @@
 package UI_UX;
 
 import Logica.Sesion;
-import UI_UX.Aplicacion;
+import UI_UX.App;
 
+/**
+ * Panel que muestra la política de privacidad de la aplicación.
+ */
 public class PrivacyPolicy extends javax.swing.JPanel {
 
     /**
-     * Creates new form PrivacyPolicy
+     * Crea un nuevo panel para mostrar la política de privacidad.
      */
     public PrivacyPolicy() {
         initComponents();
@@ -75,9 +78,9 @@ public class PrivacyPolicy extends javax.swing.JPanel {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         if (Sesion.user != null) {
-            Aplicacion.loadMainScreen();
+            App.loadMainScreen();
         } else {
-            Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla login");
+            App.cardLayout.show(App.cards, "Pantalla login");
         }
     }//GEN-LAST:event_okButtonActionPerformed
 
