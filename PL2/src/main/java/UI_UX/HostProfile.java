@@ -24,15 +24,15 @@ public class HostProfile extends javax.swing.JPanel {
     public void actualizar() {
         if (Sesion.user != null) {
             dniTextField.setText(Sesion.user.getDni());
-            username.setText(Sesion.user.getNombre().toUpperCase());
+            usernameLabel.setText(Sesion.user.getNombre().toUpperCase());
             emailTextField.setText(Sesion.user.getCorreo());
             passTextField.setText(Sesion.user.getClave());
             tlfTextField.setText(Sesion.user.getTelefono());
 
             if (((Anfitrion) Sesion.user).isSuperAnfitrion()) {
-                hostlabel.setText("Super anfitrión");
+                typeLabel.setText("Super anfitrión");
             } else {
-                hostlabel.setText("Anfitrión");
+                typeLabel.setText("Anfitrión");
             }
         }
     }
@@ -48,8 +48,8 @@ public class HostProfile extends javax.swing.JPanel {
 
         jPanel2 = new javax.swing.JPanel();
         uppermenu = new javax.swing.JPanel();
-        appname = new javax.swing.JLabel();
-        logo = new javax.swing.JButton();
+        logoLabel = new javax.swing.JLabel();
+        logoButton = new javax.swing.JButton();
         signOutButton = new javax.swing.JButton();
         returnButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -65,9 +65,9 @@ public class HostProfile extends javax.swing.JPanel {
         tlfTextField = new javax.swing.JTextField();
         errorLabel1 = new javax.swing.JLabel();
         requirementsLabel = new javax.swing.JLabel();
-        userpfp = new javax.swing.JButton();
-        username = new javax.swing.JLabel();
-        hostlabel = new javax.swing.JLabel();
+        userphotoButton = new javax.swing.JButton();
+        usernameLabel = new javax.swing.JLabel();
+        typeLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 250, 248));
         setMaximumSize(new java.awt.Dimension(1020, 828));
@@ -83,20 +83,20 @@ public class HostProfile extends javax.swing.JPanel {
         uppermenu.setBackground(new java.awt.Color(255, 250, 248));
         uppermenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        appname.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        appname.setForeground(new java.awt.Color(255, 90, 95));
-        appname.setText("JavaBNB");
+        logoLabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        logoLabel.setForeground(new java.awt.Color(255, 90, 95));
+        logoLabel.setText("JavaBNB");
 
-        logo.setBackground(new java.awt.Color(255, 153, 153));
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
-        logo.setBorderPainted(false);
-        logo.setContentAreaFilled(false);
-        logo.setDefaultCapable(false);
-        logo.setFocusPainted(false);
-        logo.setFocusable(false);
-        logo.setRequestFocusEnabled(false);
-        logo.setRolloverEnabled(false);
-        logo.setVerifyInputWhenFocusTarget(false);
+        logoButton.setBackground(new java.awt.Color(255, 153, 153));
+        logoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/airbnb logo - 100x100.png"))); // NOI18N
+        logoButton.setBorderPainted(false);
+        logoButton.setContentAreaFilled(false);
+        logoButton.setDefaultCapable(false);
+        logoButton.setFocusPainted(false);
+        logoButton.setFocusable(false);
+        logoButton.setRequestFocusEnabled(false);
+        logoButton.setRolloverEnabled(false);
+        logoButton.setVerifyInputWhenFocusTarget(false);
 
         signOutButton.setBackground(new java.awt.Color(255, 90, 95));
         signOutButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -130,9 +130,9 @@ public class HostProfile extends javax.swing.JPanel {
             uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(uppermenuLayout.createSequentialGroup()
                 .addGap(192, 192, 192)
-                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(appname)
+                .addComponent(logoLabel)
                 .addGap(143, 143, 143)
                 .addComponent(signOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -145,11 +145,11 @@ public class HostProfile extends javax.swing.JPanel {
                 .addGap(5, 5, 5)
                 .addGroup(uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, uppermenuLayout.createSequentialGroup()
-                        .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(logoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, uppermenuLayout.createSequentialGroup()
                         .addGroup(uppermenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(appname)
+                            .addComponent(logoLabel)
                             .addComponent(signOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25))))
@@ -239,7 +239,7 @@ public class HostProfile extends javax.swing.JPanel {
                         .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(requirementsLabel)
                             .addComponent(errorLabel1))))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         dataLayout.setVerticalGroup(
             dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,20 +269,20 @@ public class HostProfile extends javax.swing.JPanel {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        userpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
-        userpfp.addActionListener(new java.awt.event.ActionListener() {
+        userphotoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
+        userphotoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userpfpActionPerformed(evt);
+                userphotoButtonActionPerformed(evt);
             }
         });
 
-        username.setFont(new java.awt.Font("Serif", 0, 30)); // NOI18N
-        username.setForeground(new java.awt.Color(255, 90, 95));
-        username.setText("PEPE RICO");
+        usernameLabel.setFont(new java.awt.Font("Serif", 0, 30)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(255, 90, 95));
+        usernameLabel.setText("PEPE RICO");
 
-        hostlabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        hostlabel.setForeground(new java.awt.Color(102, 102, 102));
-        hostlabel.setText("Anfitrión");
+        typeLabel.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        typeLabel.setForeground(new java.awt.Color(102, 102, 102));
+        typeLabel.setText("Anfitrión");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -292,14 +292,14 @@ public class HostProfile extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(userpfp, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(userphotoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(74, 74, 74))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(hostlabel))
-                            .addComponent(username))
+                                .addComponent(typeLabel))
+                            .addComponent(usernameLabel))
                         .addGap(121, 121, 121)))
                 .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
@@ -309,14 +309,14 @@ public class HostProfile extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(userpfp, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(userphotoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(username))
+                        .addComponent(usernameLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hostlabel)
+                .addComponent(typeLabel)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -342,9 +342,9 @@ public class HostProfile extends javax.swing.JPanel {
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userpfpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userpfpActionPerformed
+    private void userphotoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userphotoButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userpfpActionPerformed
+    }//GEN-LAST:event_userphotoButtonActionPerformed
 
     private void editUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserButtonActionPerformed
         // Verificar el texto actual del botón
@@ -426,7 +426,6 @@ public class HostProfile extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel appname;
     private javax.swing.JPanel data;
     private javax.swing.JLabel dniLabel;
     private javax.swing.JTextField dniTextField;
@@ -434,10 +433,10 @@ public class HostProfile extends javax.swing.JPanel {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel errorLabel1;
-    private javax.swing.JLabel hostlabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton logo;
+    private javax.swing.JButton logoButton;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JLabel passLabel;
     private javax.swing.JPasswordField passTextField;
     private javax.swing.JLabel requirementsLabel;
@@ -445,8 +444,9 @@ public class HostProfile extends javax.swing.JPanel {
     private javax.swing.JButton signOutButton;
     private javax.swing.JLabel tlfLabel;
     private javax.swing.JTextField tlfTextField;
+    private javax.swing.JLabel typeLabel;
     private javax.swing.JPanel uppermenu;
-    private javax.swing.JLabel username;
-    private javax.swing.JButton userpfp;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JButton userphotoButton;
     // End of variables declaration//GEN-END:variables
 }

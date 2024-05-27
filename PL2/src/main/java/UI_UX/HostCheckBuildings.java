@@ -146,7 +146,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         deleteBuildingButton.setEnabled(enabled);
         checkReservesButton.setEnabled(enabled);
         editBuildingButton.setEnabled(enabled);
-        editfoto1.setEnabled(enabled);
+        editphotoButton.setEnabled(enabled);
     }
 
     /**
@@ -296,7 +296,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         jScrollPane6 = new javax.swing.JScrollPane();
         markTextField = new javax.swing.JTextPane();
         checkReservesButton = new javax.swing.JButton();
-        editfoto1 = new javax.swing.JButton();
+        editphotoButton = new javax.swing.JButton();
         previousButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
         errorNextLabel = new javax.swing.JLabel();
@@ -707,13 +707,13 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(17, 30, 0, 0);
         jPanel2.add(checkReservesButton, gridBagConstraints);
 
-        editfoto1.setBackground(new java.awt.Color(255, 90, 95));
-        editfoto1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        editfoto1.setForeground(new java.awt.Color(255, 255, 255));
-        editfoto1.setText("Cambiar foto");
-        editfoto1.addActionListener(new java.awt.event.ActionListener() {
+        editphotoButton.setBackground(new java.awt.Color(255, 90, 95));
+        editphotoButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        editphotoButton.setForeground(new java.awt.Color(255, 255, 255));
+        editphotoButton.setText("Cambiar foto");
+        editphotoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editfoto1ActionPerformed(evt);
+                editphotoButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -722,7 +722,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 28;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(17, 30, 0, 0);
-        jPanel2.add(editfoto1, gridBagConstraints);
+        jPanel2.add(editphotoButton, gridBagConstraints);
 
         previousButton.setBackground(new java.awt.Color(255, 153, 153));
         previousButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
@@ -1058,7 +1058,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
 
      }//GEN-LAST:event_checkReservesButtonActionPerformed
 
-    private void editfoto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editfoto1ActionPerformed
+    private void editphotoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editphotoButtonActionPerformed
         File f = openImage();
         if (f != null) {
             fotografia = saveImage(f);
@@ -1066,7 +1066,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
 
         } else {
             System.out.println("no existe la ruta");
-        }    }//GEN-LAST:event_editfoto1ActionPerformed
+        }    }//GEN-LAST:event_editphotoButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1084,7 +1084,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextPane descriptionTextPanel;
     private javax.swing.JButton editBuildingButton;
-    private javax.swing.JButton editfoto1;
+    private javax.swing.JButton editphotoButton;
     private javax.swing.JLabel errorNextLabel;
     private javax.swing.JLabel errorPreviousLabel;
     private javax.swing.JLabel guestLabel;

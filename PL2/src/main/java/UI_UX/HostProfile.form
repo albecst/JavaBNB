@@ -89,9 +89,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="192" max="-2" attributes="0"/>
-                      <Component id="logo" min="-2" pref="75" max="-2" attributes="0"/>
+                      <Component id="logoButton" min="-2" pref="75" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="appname" min="-2" max="-2" attributes="0"/>
+                      <Component id="logoLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                       <Component id="signOutButton" min="-2" pref="109" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -106,12 +106,12 @@
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="logo" min="-2" pref="83" max="-2" attributes="0"/>
+                              <Component id="logoButton" min="-2" pref="83" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="appname" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="logoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="signOutButton" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                   <Component id="returnButton" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                               </Group>
@@ -123,7 +123,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="appname">
+            <Component class="javax.swing.JLabel" name="logoLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="24" style="0"/>
@@ -134,7 +134,7 @@
                 <Property name="text" type="java.lang.String" value="JavaBNB"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="logo">
+            <Component class="javax.swing.JButton" name="logoButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="ff" type="rgb"/>
@@ -216,16 +216,16 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="userpfp" min="-2" pref="284" max="-2" attributes="0"/>
+                              <Component id="userphotoButton" min="-2" pref="284" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                      <Component id="hostlabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="username" min="-2" max="-2" attributes="0"/>
+                                  <Component id="usernameLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                           </Group>
@@ -240,9 +240,9 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="userpfp" min="-2" pref="262" max="-2" attributes="0"/>
+                              <Component id="userphotoButton" min="-2" pref="262" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="username" min="-2" max="-2" attributes="0"/>
+                              <Component id="usernameLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -250,7 +250,7 @@
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="hostlabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="typeLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="32" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -453,17 +453,17 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="userpfp">
+            <Component class="javax.swing.JButton" name="userphotoButton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/user (2).jpg"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userpfpActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userphotoButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="username">
+            <Component class="javax.swing.JLabel" name="usernameLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="30" style="0"/>
@@ -474,7 +474,7 @@
                 <Property name="text" type="java.lang.String" value="PEPE RICO"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="hostlabel">
+            <Component class="javax.swing.JLabel" name="typeLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="24" style="0"/>

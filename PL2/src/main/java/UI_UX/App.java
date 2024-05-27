@@ -92,7 +92,7 @@ public class App {
     }
 
     // Métodos para cargar diferentes paneles en la aplicación.
-    
+
     /**
      * Carga el perfil del anfitrión.
      */
@@ -162,11 +162,12 @@ public class App {
     public static void loadHostCheckReserves() {
         cards.add(hostcheckreserves, "Pantalla hostcheckreserves");
         hostcheckreserves.actualizar();
+        cardLayout.show(cards, "Pantalla hostcheckreserves");
     }
 
     /**
      * Carga la pantalla de consulta de cada uno de los inmuebles.
-     * @param inmueble. El inmueble a mostrar.
+     * @param inmueble . El inmueble a mostrar.
      */
     public static void loadBuildingView(Inmueble inmueble) {
         cards.add(buildingview, "Pantalla buildingview");
@@ -174,8 +175,14 @@ public class App {
         cardLayout.show(cards, "Pantalla buildingview");
     }
 
+    /**
+     * Carga la pantalla de consulta de los inmuebles
+     */
+    public static void loadBuildingView() {
+        cards.add(buildingview, "Pantalla buildingview");
+        cardLayout.show(cards, "Pantalla buildingview");
+    }
 
-    
     /**
      * Carga la pantalla principal de la aplicación y actualiza sus datos.
      */
