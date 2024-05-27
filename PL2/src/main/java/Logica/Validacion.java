@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Validacion {
 
     /**
-     * Valida que el nombre solo contenga letras y espacios en blanco.
+     * Comprueba que el nombre no solo contenga espacios en blanco o letras .
      *
      * @param nombre el nombre a validar
      * @return true si el nombre es válido, false en caso contrario
@@ -161,7 +161,7 @@ public class Validacion {
     }
 
     /**
-     * Valida si el código promocional es válido.
+     * Valida si el código promocional es válido o está vacío.
      *
      * @param promocode el código promocional
      * @return true si el código es válido o está vacío, false en caso contrario

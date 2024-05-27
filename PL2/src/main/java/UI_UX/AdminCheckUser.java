@@ -13,7 +13,7 @@ import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
 /**
- * La clase AdminConsultarUser permite al administrador consultar y gestionar
+ * La clase AdminCheckUser permite al administrador consultar y gestionar
  * los usuarios registrados en la aplicación.
  */
 public class AdminCheckUser extends javax.swing.JPanel {

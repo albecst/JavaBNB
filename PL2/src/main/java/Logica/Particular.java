@@ -29,13 +29,35 @@ public class Particular extends Cliente implements Serializable {
     }
 
     /**
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
      * Método para disminuir el saldo de la tarjeta de crédito.
      * Si el cliente es VIP, se aplica un descuento del 10%.
      *
      * @param cantidad la cantidad a disminuir del saldo
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * return innecesario
      * @return un mensaje con el saldo actual
      */
-    public String disminuirSaldo(double cantidad) {
+    public void disminuirSaldo(double cantidad) {
         Double saldo = tarjetaCredito.getSaldo();
         if (vip) {
             saldo -= cantidad * 0.9;
@@ -43,10 +65,26 @@ public class Particular extends Cliente implements Serializable {
             saldo -= cantidad;
         }
         tarjetaCredito.setSaldo(saldo);
-        return "El saldo actual es: " + saldo + "€";
+        //return "El saldo actual es: " + saldo + "€";
     }
 
     /**
+     * same thing
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
      * Método para aumentar el saldo de la tarjeta de crédito.
      *
      * @param cantidad la cantidad a aumentar al saldo

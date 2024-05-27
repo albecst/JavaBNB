@@ -39,6 +39,11 @@ public class AddBuildings extends javax.swing.JPanel {
         bathError1.setVisible(false);
     }
 
+    /**
+     * Permite al usuario seleccionar una imagen cualquiera.
+     *
+     * @return el File de la imagen seleccionada.
+     */
     public File openImage() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Selecciona una imagen");
@@ -54,17 +59,25 @@ public class AddBuildings extends javax.swing.JPanel {
         return null; // No file was selected or the user cancelled
     }
 
+    /**
+     * Método para guardar la imagen introducida en los archivos del proyecto,
+     * en la carpeta "fotoinmuebles".
+     *
+     * @param archivofoto el File de la imagen a guardar.
+     * @return el String con la ruta a la imagen guardada.
+     */
     public String saveImage(File archivofoto) {
         String directoriodestino = "./src/main/resources/fotosinmuebles"; // Directorio de destino fijo
+        //la ruta al archivo guardado será el directorio de la carpeta en el proyecto + el nombre de la imagen original
         Path pathdestino = Paths.get(directoriodestino, archivofoto.getName());
 
         try {
-            // Asegúrate de que el directorio exista
+            // Asegurarse de que el directorio exista
             if (!Files.exists(Paths.get(directoriodestino))) {
                 Files.createDirectories(Paths.get(directoriodestino));
             }
 
-            // Copia el archivo al directorio especificado
+            // Copia el archivo al directorio especificado, reemplazando cualquier imagen dentro con la misma ruta
             Files.copy(archivofoto.toPath(), pathdestino, StandardCopyOption.REPLACE_EXISTING);
             System.out.println("Imagen guardada en: " + pathdestino);
             return pathdestino.toString(); // Devuelve la ruta de la imagen como String
@@ -587,6 +600,15 @@ public class AddBuildings extends javax.swing.JPanel {
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Al pulsar el botón de crear inmueble, se validarán todos los datos
+     * introducidos y se mostrarán los respectivos mensajes de error si algún
+     * dato no fuera válido. Si el usuario no ha seleccionado ninguna
+     * fotografía, se llamará al método para añadirla de forma automática.
+     *
+     *
+     */
+
     private void createBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBuildingButtonActionPerformed
         Anfitrion anfitrion = (Anfitrion) Sesion.devolverCliente();
         if (anfitrion == null) {
@@ -636,7 +658,7 @@ public class AddBuildings extends javax.swing.JPanel {
             descriptionError.setVisible(false);
         }
 
-        // Validar calle
+        // Validar calle. "calle.matches(".*\\d.*") evalúa si la cadena ciudad contiene algún número.
         if (calle.isEmpty() || calle.matches(".*\\d.*")) {
             JOptionPane.showMessageDialog(this, "La calle no puede estar vacía ni contener números.", "Error en la calle", JOptionPane.WARNING_MESSAGE);
             valido = false;
@@ -659,7 +681,7 @@ public class AddBuildings extends javax.swing.JPanel {
             }
         }
 
-        // Validar ciudad
+        // Validar ciudad. "ciudad.matches(".*\\d.*") evalúa si la cadena ciudad contiene algún número.
         if (ciudad.isEmpty() || ciudad.matches(".*\\d.*")) {
             JOptionPane.showMessageDialog(this, "La ciudad no puede estar vacía ni contener números.", "Error en la ciudad", JOptionPane.WARNING_MESSAGE);
             valido = false;
@@ -682,14 +704,20 @@ public class AddBuildings extends javax.swing.JPanel {
         // Validar precio
         try {
             String priceText = priceTextField.getText().trim();
+
+            // "priceText.matches(".*\\d.*") evalúa si el precio es un número con hasta dos decimales, separado por un punto.
+            // \\d+ significa que la "cadena" debe empezar por uno o más números
+            // El resto indica que la cadena puede o no tener más digitos decimales (hasta 2)
             if (priceText.isEmpty() || !priceText.matches("\\d+(\\.\\d{1,2})?")) {
                 throw new NumberFormatException("El precio debe ser un número válido con hasta dos decimales.");
             }
             precio = Double.parseDouble(priceText);
+
             if (precio <= 0) {
                 throw new NumberFormatException("El precio debe ser mayor que 0.");
             }
             priceError.setVisible(false);
+
         } catch (NumberFormatException e) {
             priceError.setVisible(true);
             valido = false;
@@ -777,7 +805,6 @@ public class AddBuildings extends javax.swing.JPanel {
     }//GEN-LAST:event_photoButtonActionPerformed
 
     private void mainscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscrActionPerformed
-        // Aplicacion.cardLayout.show(Aplicacion.cards, "Pantalla mainscreenhost");
         App.loadMainScreen();
     }//GEN-LAST:event_mainscrActionPerformed
 

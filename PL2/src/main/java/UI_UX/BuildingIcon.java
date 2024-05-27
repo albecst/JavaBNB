@@ -12,6 +12,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+
+/**
+ *  Vista en icono o "widget" de un inmueble para mostrarlos como contenido dinámico.
+ */
 public class BuildingIcon extends javax.swing.JPanel {
 
     private Inmueble i;

@@ -29,7 +29,8 @@ public class Reserva implements Serializable {
      * @param particular El cliente que realiza la reserva
      * @param inmueble El inmueble que se reserva
      * @param fechaInicio La fecha de inicio de la estancia
-     * @param fechaFin La fecha de fin de la estancia
+     * @param fechaFin La fecha de fin de la estancia La fecha de reserva será
+     * la fecha del momento en el que se llame al constructor
      */
     public Reserva(Particular particular, Inmueble inmueble, LocalDate fechaInicio, LocalDate fechaFin) {
         this.inmueble = inmueble;
@@ -46,11 +47,10 @@ public class Reserva implements Serializable {
      */
     public double calcularPrecioTotal() {
         if (fechaInicio == null || fechaFin == null) {
-            // Manejar el caso en que una de las fechas sea null
+            // TODO: Manejar el caso en que una de las fechas sea null
             // Por ejemplo, lanzar una excepción o devolver un valor predeterminado
             return 0.0; // Cambiar según sea necesario
         }
-
         long diasEstancia = ChronoUnit.DAYS.between(fechaInicio, fechaFin); // Calcula el número de días entre la fecha de inicio y la fecha de fin
         double costoTotal = diasEstancia * inmueble.getPrecioNoche(); // Calcula el costo total de la estancia
         if (particular.isVip()) { // Aplica un descuento del 10% si el cliente es VIP

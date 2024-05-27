@@ -18,8 +18,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
     private Inmueble objInm; // Referencia a un objeto de tipo inmueble del ArrayList
 
     /**
-     * Constructor de AdminCheckBuildings que inicializa los componentes y carga
-     * los inmuebles.
+     * Constructor de AdminCheckBuildings que inicializa los componentes y carga los inmuebles.
      */
     public AdminCheckBuildings() {
         initComponents();
@@ -52,7 +51,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
     }
 
     /**
-     * Consulta y carga todos los inmuebles de JavaBNB en la lista local.
+     * Consulta y carga todos los inmuebles de JavaBNB en la lista local, y se instancia un iterador para recorrerla.
      */
     private void consultarTodo() {
         try {
@@ -645,13 +644,11 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void editBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBuildingButtonActionPerformed
-// ActionListener para el botón
+
         //Verificar el texto actual del botón
         if (editBuildingButton.getText().equals("Editar inmueble")) {
-            // Si el botón está en modo "Editar datos"
-            // Establecer los campos de texto como editables
-            // Si el botón está en modo "Aceptar"
-            // Establecer los campos de texto como no editables
+            // Si el botón está en modo "Editar datos", establecer los campos de texto como editables
+           
             titleTextPanel.setEditable(true);
             descriptionTextPanel.setEditable(true);
             streetTextField.setEditable(true);
@@ -668,9 +665,8 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
             // Cambiar el texto del botón a "Aceptar"
             editBuildingButton.setText("Aceptar");
         } else {
-
-            // Si el botón está en modo "Aceptar"
-            // Establecer los campos de texto como no editables
+            // Si el botón está en modo "Aceptar", establecer los campos de texto como no editables
+            
             titleTextPanel.setEditable(false);
             descriptionTextPanel.setEditable(false);
             streetTextField.setEditable(false);
@@ -684,8 +680,10 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
             bathTextField.setEditable(false);
             serviceTextField.setEditable(false);
 
+            // Cambiar el texto del botón a "Editar datos"
             editBuildingButton.setText("Editar datos");
-
+            
+            // Comprobar que los datos introducidos sean correctos
             String titulo = titleTextPanel.getText();
             String descripcion = descriptionTextPanel.getText();
             String calle = streetTextField.getText();

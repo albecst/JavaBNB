@@ -7,16 +7,14 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
 
-/**
- * Clase principal que representa la aplicación de usuario.
- */
+
 class WindowEventHandler extends WindowAdapter {
 
     /**
      * Método que se ejecuta cuando se cierra la ventana. Guarda los datos
      * utilizando la clase JavaBNB.
      *
-     * @param evt Evento de ventana.
+     * @param evt Evento de cierre de ventana.
      */
     @Override
     public void windowClosing(WindowEvent evt) {
@@ -25,7 +23,7 @@ class WindowEventHandler extends WindowAdapter {
 }
 
 /**
- * Clase principal de la aplicación.
+ * Clase principal de la aplicación para crear y gestionar las pantallas y paneles necesarios.
  */
 public class App {
 
@@ -58,8 +56,6 @@ public class App {
     /**
      * Método principal que inicia la aplicación.
      *
-     * @param args Argumentos de la línea de comandos (no se utilizan en este
-     * caso).
      */
     public static void main(String[] args) {
         JavaBNB.inicializadorJavaBNB();
@@ -96,6 +92,7 @@ public class App {
     }
 
     // Métodos para cargar diferentes paneles en la aplicación.
+    
     /**
      * Carga el perfil del anfitrión.
      */
@@ -115,7 +112,7 @@ public class App {
     }
 
     /**
-     * Carga la pantalla de consulta de usuarios administradores.
+     * Carga la pantalla de consulta de usuarios del administrador y actualiza sus datos.
      */
     public static void loadAdminConsultarUser() {
         cards.add(adminconsultaruser, "Pantalla adminconsultaruser");
@@ -124,7 +121,7 @@ public class App {
     }
 
     /**
-     * Carga la pantalla de consulta de reservas administrativas.
+     * Carga la pantalla de consulta de reservas del administrador y actualiza sus datos.
      */
     public static void loadAdminConsultarReservas() {
         cards.add(adminconsultarreservas, "Pantalla adminconsultarreservas");
@@ -133,7 +130,7 @@ public class App {
     }
 
     /**
-     * Carga la pantalla de consulta de reservas de invitados.
+     * Carga la pantalla de consulta de reservas de particulares y actualiza sus datos.
      */
     public static void loadGuestCheckReserves() {
         cards.add(guestcheckreserves, "Pantalla guestcheckreserves");
@@ -142,7 +139,7 @@ public class App {
     }
 
     /**
-     * Carga la pantalla de consulta de edificios administrativos.
+     * Carga la pantalla de consulta de edificios del administrador, y actualiza sus datos.
      */
     public static void loadAdminCheckBuildings() {
         cards.add(admincheckbuildings, "Pantalla admincheckbuildings");
@@ -151,7 +148,7 @@ public class App {
     }
 
     /**
-     * Carga la pantalla de consulta de edificios de anfitriones.
+     * Carga la pantalla de consulta de edificios de anfitriones y actualiza sus datos.
      */
     public static void loadHostCheckBuildings() {
         cards.add(hostcheckbuildings, "Pantalla hostcheckbuildings");
@@ -160,7 +157,7 @@ public class App {
     }
 
     /**
-     * Carga la pantalla de consulta de reservas de anfitriones.
+     * Carga la pantalla de consulta de reservas de anfitriones y actualiza sus datos.
      */
     public static void loadHostCheckReserves() {
         cards.add(hostcheckreserves, "Pantalla hostcheckreserves");
@@ -168,8 +165,8 @@ public class App {
     }
 
     /**
-     * Carga la pantalla de consulta de los inmuebles
-     * @param inmueble 
+     * Carga la pantalla de consulta de cada uno de los inmuebles.
+     * @param inmueble. El inmueble a mostrar.
      */
     public static void loadBuildingView(Inmueble inmueble) {
         cards.add(buildingview, "Pantalla buildingview");
@@ -177,18 +174,10 @@ public class App {
         cardLayout.show(cards, "Pantalla buildingview");
     }
 
-    
-    /**
-     * Carga la pantalla de consulta de los inmuebles
-     */
-    public static void loadBuildingView() {
-        cards.add(buildingview, "Pantalla buildingview");
-        cardLayout.show(cards, "Pantalla buildingview");
-    }
 
     
     /**
-     * Carga la pantalla principal de la aplicación
+     * Carga la pantalla principal de la aplicación y actualiza sus datos.
      */
     public static void loadMainScreen() {
         cards.add(mainscreen, "Pantalla mainscreen");

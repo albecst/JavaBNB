@@ -10,19 +10,22 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * Clase que contiene los ArrayLists estáticos principales de inmuebles y clientes de la aplicación y varios
+ * métodos estáticos importantes de búsqueda, serialización... 
+ *
+ */
 public class JavaBNB implements Serializable {
 
     private static ArrayList<Inmueble> inmuebles;
     private static ArrayList<Cliente> clientes;
-    private static ArrayList<Inmueble> inmueblesAnfitrion;
 
+    /**
+     * Inicializador de los ArrayLists de la aplicación
+     */
     public static void inicializadorJavaBNB() {
         inmuebles = new ArrayList<>();
         clientes = new ArrayList<>();
-        inmueblesAnfitrion = new ArrayList<>();
-        System.out.println(inmuebles);
-        System.out.println(inmueblesAnfitrion);
-
     }
 
     public static ArrayList<Inmueble> getInmuebles() {
@@ -33,6 +36,14 @@ public class JavaBNB implements Serializable {
         return clientes;
     }
 
+    /**
+     * Método para añadir un inmueble a la lista de inmuebles, si no existe ya
+     * uno con la misma dirección.
+     *
+     * @param inmueble. El inmueble añadido a la lista.
+     * @return booleano indicando si el inmueble que se intentó añadir ya
+     * existía o no.
+     */
     public static boolean añadirInmueble(Inmueble inmueble) {
         boolean existeInmuebleConMismaDireccion = inmuebles.stream()
                 .anyMatch(inmuebleExistente -> inmuebleExistente.getDireccion().equals(inmueble.getDireccion()));
@@ -45,33 +56,52 @@ public class JavaBNB implements Serializable {
         return !existeInmuebleConMismaDireccion;
     }
 
-    public static boolean añadirCliente(Cliente cliente) {
-        boolean existeClienteConMismoDni = clientes.stream()
-                .anyMatch(clienteExistente -> clienteExistente.getDni().equals(cliente.getDni()));
+    
+   
 
-        if (!existeClienteConMismoDni) {
-            clientes.add(cliente);
-        } else {
-            System.out.println("El cliente ya está añadido");
-        }
-        return !existeClienteConMismoDni;
-    }
-
+    /**
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * pq funciona para añadir tb si la fecha esta vacia?
+     * 
+     */
     public static ArrayList<Inmueble> buscarInmuebles(String ciudad, LocalDate fechaEntrada, LocalDate fechaSalida) {
-        ArrayList<Inmueble> inmueblesDisponiblesEnCiudad = new ArrayList<>();
+        ArrayList<Inmueble> inmueblesDisponibles = new ArrayList<>();
 
         for (Inmueble inmueble : inmuebles) {
             boolean coincideCiudad = ciudad.isEmpty() || inmueble.getDireccion().getCiudad().equalsIgnoreCase(ciudad);
             boolean coincideDisponibilidad = (fechaEntrada == null && fechaSalida == null) || (fechaEntrada != null && fechaSalida != null && inmueble.estaDisponible(fechaEntrada, fechaSalida));
 
             if (coincideCiudad && coincideDisponibilidad) {
-                inmueblesDisponiblesEnCiudad.add(inmueble);
+                inmueblesDisponibles.add(inmueble);
             }
         }
 
-        return inmueblesDisponiblesEnCiudad;
+        return inmueblesDisponibles;
     }
 
+   
     public static void ordenarPorPrecioAscSF() {
         if (inmuebles != null) {
             inmuebles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
@@ -102,6 +132,9 @@ public class JavaBNB implements Serializable {
         }
     }
 
+    /**
+     * Método para ordenar la lista de inmuebles según su precio de 
+     */
     public static void ordenarPorPrecioAscCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
         if (inmueblesDisponiblesEnCiudad != null) {
             inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
@@ -120,6 +153,12 @@ public class JavaBNB implements Serializable {
         }
     }
 
+    /**
+     * Método para filtrar la lista de inmuebles disponibles según tipo.
+     * 
+     * @param inmueblesDisponibles
+     * @return un ArrayList con solamente los inmuebles disponibles que sean de tipo "casa".
+     */
     public static ArrayList<Inmueble> filtrarCasas(ArrayList<Inmueble> inmueblesDisponibles) {
         ArrayList<Inmueble> casas = new ArrayList<>();
         for (Inmueble inmueble : inmueblesDisponibles) {
@@ -130,6 +169,12 @@ public class JavaBNB implements Serializable {
         return casas;
     }
 
+    /**
+     * Método para filtrar la lista de inmuebles disponibles según tipo.
+     * 
+     * @param inmueblesDisponibles
+     * @return un ArrayList con solamente los inmuebles disponibles que sean de tipo "Apartamento".
+     */
     public static ArrayList<Inmueble> filtrarApartamentos(ArrayList<Inmueble> inmueblesDisponibles) {
         ArrayList<Inmueble> apartamentos = new ArrayList<>();
         for (Inmueble inmueble : inmueblesDisponibles) {
@@ -140,18 +185,33 @@ public class JavaBNB implements Serializable {
         return apartamentos;
     }
 
-    public static void ordenarPorCalificacionAscCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
-        if (inmueblesDisponiblesEnCiudad != null) {
-            inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getCalificacion));
+     /**
+     * Método para ordenar la lista de inmuebles disponibles según su calificación de forma ascendente.
+     * 
+     * @param inmueblesDisponibles
+     */
+    public static void ordenarPorCalificacionAscCF(ArrayList<Inmueble> inmueblesDisponibles) {
+        if (inmueblesDisponibles != null) {
+            inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getCalificacion));
         }
     }
 
-    public static void ordenarPorCalificacionDescCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
-        if (inmueblesDisponiblesEnCiudad != null) {
-            inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getCalificacion).reversed());
+    /**
+     * Método para ordenar la lista de inmuebles disponibles según su calificación de forma descendente.
+     * 
+     * @param inmueblesDisponibles
+     */
+    public static void ordenarPorCalificacionDescCF(ArrayList<Inmueble> inmueblesDisponibles) {
+        if (inmueblesDisponibles != null) {
+            inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getCalificacion).reversed());
         }
     }
 
+    
+    /**
+     * Método para cargar los datos serializados a los ArrayLists de clientes e inmuebles de la aplicación
+     * 
+     */
     public static void cargarDatos() {
         try {
             FileInputStream istreamClientes = new FileInputStream("./src/main/resources/data/copiasegClientes.dat");
@@ -180,6 +240,10 @@ public class JavaBNB implements Serializable {
         }
     }
 
+    /**
+     * Método para serializar los ArrayLists estáticos de clientes e inmuebles de la aplicación
+     * 
+     */
     public static void guardarDatos() {
         try {
             if (!clientes.isEmpty()) {
@@ -211,16 +275,10 @@ public class JavaBNB implements Serializable {
     }
 
     /**
-     * public static void eliminarCliente(Cliente cliente) { if (cliente
-     * instanceof Particular) { Particular particular = (Particular) cliente; //
-     * particular.getReservas().clear(); } else if (cliente instanceof
-     * Anfitrion) { Anfitrion anfitrion = (Anfitrion) cliente;
-     * ArrayList<Inmueble> inmueblesAnfitrion = new ArrayList<>(); for (Inmueble
-     * inmueble : inmuebles) { if (inmueble.getAnfitrion().equals(anfitrion)) {
-     * inmueblesAnfitrion.add(inmueble); } } for (Inmueble inmueble :
-     * inmueblesAnfitrion) { inmueble.getReservas().clear();
-     * inmuebles.remove(inmueble); } } clientes.remove(cliente); guardarDatos();
-     * }
+     * Método para eliminar de la aplicación a un anfitrión, todos sus inmuebles y sus respectivas reservas. 
+     * Una vez eliminado el anfitrión, se serializan los datos cambiados.
+     * 
+     * @param cliente instancia de la clase Anfitrion.
      */
     public static void eliminarAnfitrion(Cliente cliente) {
         Anfitrion anfitrion = (Anfitrion) cliente;
@@ -234,6 +292,12 @@ public class JavaBNB implements Serializable {
         guardarDatos();
     }
 
+    /**
+     * Método para eliminar de la aplicación a un cliente particular, y todas las reservas que haya hecho. 
+     * Una vez eliminado el particular, se serializan los datos cambiados.
+     * 
+     * @param cliente instancia de la clase Particular.
+     */
     public static void eliminarParticular(Cliente cliente) {
         Particular particular = (Particular) cliente;
         for (Inmueble inmueble : inmuebles) {
@@ -249,8 +313,42 @@ public class JavaBNB implements Serializable {
 
     }
 
-    public static ArrayList<Inmueble> filtrarInmueblesPorAnfitrion(Cliente anfitrion) {
-        inmueblesAnfitrion = new ArrayList<>();
+    /**
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * antes Cliente anfitrion
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * Método que filtra los inmuebles de la aplicación y devuelve los de un solo anfitrión.
+     * 
+     * @param anfitrion del que queramos conseguir los inmuebles.
+     * @return un ArrayList con los inmuebles del anfitrión introducido
+     */
+    public static ArrayList<Inmueble> filtrarInmueblesPorAnfitrion(Anfitrion anfitrion) {
+        ArrayList<Inmueble> inmueblesAnfitrion = new ArrayList<>();
         for (Inmueble inmueble : inmuebles) {
             if (inmueble.getAnfitrion().getDni().equals(anfitrion.getDni())) {
                 inmueblesAnfitrion.add(inmueble);
@@ -258,14 +356,14 @@ public class JavaBNB implements Serializable {
         }
         return inmueblesAnfitrion;
     }
+    
 
-    public static void eliminarReservasDeInmueble(Inmueble inmueble) {
-        System.out.println("Eliminando reservas asociadas al inmueble (2): " + inmueble.getTitulo());
-        //for (Reserva reserva : inmueble.getReservas()) {System.out.println("Eliminando reserva: " + reserva);reserva.getParticular().getReservas().remove(reserva);}
-        inmueble.getReservas().clear();
-        System.out.println("Reservas eliminadas correctamente.");
-    }
-
+    /**
+     * Método para eliminar de la aplicación un inmueble y todas sus reservas asociadas. 
+     * Una vez eliminado el particular, se serializan los datos cambiados.
+     * 
+     * @param inmueble a eliminar
+     */
     public static void eliminarInmueble(Inmueble inmueble) {
         // Eliminar el inmueble de la lista de inmuebles
         System.out.println("Se ha eliminado el inmueble: " + inmueble.toString());
@@ -273,7 +371,7 @@ public class JavaBNB implements Serializable {
         inmuebles.remove(inmueble);
 
         // borrar las reservas asociadas al inmueble
-        eliminarReservasDeInmueble(inmueble);
+        inmueble.getReservas().clear();
 
         // Guardar los cambios en el archivo de datos
         guardarDatos();

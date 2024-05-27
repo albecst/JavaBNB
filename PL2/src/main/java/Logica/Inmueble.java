@@ -32,8 +32,7 @@ public class Inmueble implements Serializable {
      * @param titulo el título del inmueble
      * @param descripcion la descripción del inmueble
      * @param direccion la dirección del inmueble
-     * @param datosInmueble los datos del inmueble (capacidad, habitaciones,
-     * etc.)
+     * @param datosInmueble los datos del inmueble 
      * @param tipo el tipo de inmueble (casa o apartamento)
      * @param precioNoche el precio por noche del inmueble
      * @param fotografia la fotografía del inmueble

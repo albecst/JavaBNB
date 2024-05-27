@@ -5,7 +5,6 @@
 package UI_UX;
 
 import Logica.Anfitrion;
-import Logica.Cliente;
 import Logica.Inmueble;
 import Logica.Particular;
 import Logica.Reserva;
@@ -27,14 +26,19 @@ public class BuildingView extends javax.swing.JPanel {
     Inmueble i;
 
     /**
-     * Creates new form PantallaInmueble
+     * Creates new form BuildingView
      */
     public BuildingView() {
         initComponents();
         errorLabel1.setVisible(false);
     }
 
+    /**
+     * Presenta los detalles del inmueble en los campos de texto
+     * correspondientes.
+     */
     public void actualizar() {
+        //Solo muestra los botones de calificar y reservar si el usuario activo de la sesión es un particular.
         if (Sesion.esAnfitrion) {
             panelreservas.setVisible(false);
             gradeButton.setVisible(false);
@@ -76,9 +80,16 @@ public class BuildingView extends javax.swing.JPanel {
     public void setInmueble(Inmueble inmueble) {
         this.i = inmueble;
         this.actualizar(); // Llamar al método actualizar() para actualizar la vista con el nuevo inmueble
-
     }
 
+    /**
+     * Convierte el String de la ruta a una imagen en un "ImageIcon" para
+     * utilizarlo como imagen en la interfaz.
+     *
+     * @param img. Ruta a la imagen.
+     * @return la imagen convertida en icono.
+     *
+     */
     public ImageIcon imagenIcon(String img) {
         try {
             Image image = ImageIO.read(new File(img));
@@ -90,6 +101,30 @@ public class BuildingView extends javax.swing.JPanel {
         }
     }
 
+    /**
+     *
+     *
+     * ver comentarios
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     * Redimensiona una imagen al tamaño del "botón" donde se mostrará en la
+     * ventana.
+     */
     public ImageIcon resizeIMG(String img) {
         try {
             File imagePath = new File(img);
@@ -105,8 +140,16 @@ public class BuildingView extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Convierte un objeto de tipo "Date" en LocalDate.
+     *
+     */
     public LocalDate convertToLocalDate(Object dateObject) {
         if (dateObject instanceof Date) {
+            //Se hace un cast del objeto a Date. 
+            //Entonces, se transforma en "Instant" (punto en la línea de tiempo, en milisegundos).
+            //Después se convierte en ZonedDateTime, usando la zona horaria por defecto del sistema donde se ejecute el código.
+            //Por último, esto se convierte en LocalDate.
             return ((Date) dateObject).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         } else {
             return null;
@@ -612,8 +655,17 @@ public class BuildingView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_logoButtonActionPerformed
 
+    /**
+     *
+     * Al presionar el botón de reservar se validarán los datos de las fechas y
+     * el saldo. Si todo es correcto, se le preguntará al usuario si desea
+     * finalizar la reserva. Si se selecciona aceptar, se crea la reserva y se
+     * efectúa el pago correspondiente.
+     *
+     */
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
         errorLabel1.setVisible(false);
+        //Las fechas de los formatted field se transforman en LocalDates
         LocalDate llegada = convertToLocalDate(startDateFormattedField.getValue());
         LocalDate salida = convertToLocalDate(endDateFormattedField.getValue());
 
@@ -626,22 +678,19 @@ public class BuildingView extends javax.swing.JPanel {
 
         }
 
-        if ((i.estaDisponible(llegada, salida)) && (((Particular) Sesion.user).getSaldo() > reserva.calcularPrecioTotal())) {
+        if ((i.estaDisponible(llegada, salida)) && (((Particular) Sesion.user).getSaldo() > reserva.calcularPrecioTotal())
+                && reserva.calcularPrecioTotal() > 0.0) {
 
             String textoconfirmacion = "¿Quieres confirmar la reserva de este inmueble del " + llegada + " al " + salida + " por un coste total de " + reserva.calcularPrecioTotal() + " euros?";
             int n = JOptionPane.showConfirmDialog(this, textoconfirmacion, "ConfirmDialog", JOptionPane.YES_NO_CANCEL_OPTION);
             if (n == JOptionPane.YES_OPTION) {
                 System.out.println("SI. Haciendo reserva ");
                 ArrayList<Reserva> reservass = i.getReservas();
-                //((Particular) Sesion.user).addReserva(reserva);
-                //añade la reserva a la lista de reservas y se realiza el "pago"
 
+                //Añade la reserva a la lista de reservas y se realiza el "pago"
                 i.agregarReserva(reserva);
                 ((Particular) Sesion.user).disminuirSaldo(reserva.calcularPrecioTotal());
-                for (Reserva reservaa : reservass) {
-                    System.out.println("Reserva :" + reservaa.toString());
-                }
-
+                
             } else if (n == JOptionPane.NO_OPTION) {
                 System.out.println("NO");
             } else if (n == JOptionPane.CANCEL_OPTION) {
@@ -657,6 +706,12 @@ public class BuildingView extends javax.swing.JPanel {
 
     }//GEN-LAST:event_reserveButtonActionPerformed
 
+    /**
+     *
+     * Al presionar el botón de calificar se verificará que el usuario, particular, activo
+     * en la sesión tenga alguna reserva hecha del inmueble. En caso afirmativo, se podrá calificar el inmueble.
+     *
+     */
     private void gradeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeButtonActionPerformed
         double nota = 0;
         boolean reservaHecha = false;
@@ -681,10 +736,10 @@ public class BuildingView extends javax.swing.JPanel {
                     nota = Double.parseDouble(notaIntroducida);
                 } while (nota < 0 || nota > 5);
 
-                // Asignar la calificación al inmueble
+                // Modificar la calificación del inmueble
                 i.setCalificacion(nota);
 
-                // Obtener el anfitrión del inmueble
+                // Obtener el anfitrión del inmueble y actualizar su estado de "Superanfitrión".
                 Anfitrion anfitrion = i.getAnfitrion();
                 anfitrion.setSuperAnfitrion();
 
