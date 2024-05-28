@@ -25,7 +25,7 @@ public class Inmueble implements Serializable {
     private ArrayList<Resenia> resenias; //Arraylist que guarda los comentarios y calificaciones individuales que se añadan
     private ArrayList<Reserva> reservas; // ArrayList para almacenar las reservas asociadas al inmueble
     private Anfitrion anfitrion;
-    private static final long serialVersionUID = 6795168503584728871L;
+    private static final long serialVersionUID = 6795168503584728871L; // Necesario para no tener problemas con la serialización de inmuebles
 
     /**
      * Constructor de la clase Inmueble.
