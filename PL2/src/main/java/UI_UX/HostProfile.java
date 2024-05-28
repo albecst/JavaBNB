@@ -3,11 +3,24 @@ package UI_UX;
 import Logica.Anfitrion;
 import Logica.Sesion;
 import Logica.Validacion;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 /**
  * Panel que muestra el perfil del anfitrión actual.
  */
 public class HostProfile extends javax.swing.JPanel {
+
+    String fotografia;
 
     /**
      * Crea un nuevo panel para mostrar el perfil del anfitrión.
@@ -23,6 +36,15 @@ public class HostProfile extends javax.swing.JPanel {
      */
     public void actualizar() {
         if (Sesion.user != null) {
+            
+            if (Sesion.user.getFotoperfil()!=null) {
+                fotografia = Sesion.user.getFotoperfil();
+                fotoboton.setIcon(resizeIMG(fotografia));
+            } else {
+                fotografia=null;
+                fotoboton.setIcon(resizeIMG("./src/main/resources/images/user (2).JPG"));
+               
+            }
             dniTextField.setText(Sesion.user.getDni());
             usernameLabel.setText(Sesion.user.getNombre().toUpperCase());
             emailTextField.setText(Sesion.user.getCorreo());
@@ -34,6 +56,76 @@ public class HostProfile extends javax.swing.JPanel {
             } else {
                 typeLabel.setText("Anfitrión");
             }
+        }
+    }
+
+    /**
+     * Abre un cuadro de diálogo para seleccionar una imagen y la devuelve.
+     *
+     * @return El archivo de imagen seleccionado, o null si no se selecciona
+     * ningún archivo.
+     */
+    public File openImage() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Selecciona una imagen");
+        fileChooser.setAcceptAllFileFilterUsed(false); // Deshabilitar la opción "Todos los archivos"
+        fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif", "bmp"));
+
+        int result = fileChooser.showOpenDialog(null); // Mostrar el diálogo de selección y capturar la respuesta
+
+        // Procesar la respuesta
+        if (result == JFileChooser.APPROVE_OPTION) {
+            return fileChooser.getSelectedFile();
+        }
+        return null; // No se selecciona ningún archivo
+    }
+
+    /**
+     * Método para guardar la imagen introducida en los archivos del proyecto,
+     * en la carpeta "fotosperfil".
+     *
+     * @param archivofoto el File de la imagen a guardar.
+     * @return el String con la ruta a la imagen guardada.
+     */
+    public String saveImage(File archivofoto) {
+        String directoriodestino = "./src/main/resources/fotosperfil"; // Directorio de destino fijo
+        Path pathdestino = Paths.get(directoriodestino, archivofoto.getName());
+
+        try {
+            // Asegúrate de que el directorio exista
+            if (!Files.exists(Paths.get(directoriodestino))) {
+                Files.createDirectories(Paths.get(directoriodestino));
+            }
+
+            // Copia el archivo al directorio especificado
+            Files.copy(archivofoto.toPath(), pathdestino, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Imagen guardada en: " + pathdestino);
+            return pathdestino.toString(); // Devuelve la ruta de la imagen como String
+        } catch (IOException ex) {
+            System.out.println("Error al guardar la imagen: " + ex.getMessage());
+            return null; // Devuelve null si hay un error
+        }
+    }
+
+    /**
+     * Redimensiona una imagen al tamaño del "botón" donde se mostrará en la
+     * ventana.
+     *
+     * @param img. La ruta a la imagen introducida
+     * @return el ImageIcon para mostrarlo de icono del botón
+     */
+    public ImageIcon resizeIMG(String img) {
+        try {
+            File imagePath = new File(img);
+            BufferedImage originalImage = ImageIO.read(imagePath);
+            int width = 306;
+            int height = 307;
+            Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(resizedImage);
+            return imageIcon;
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
+            return null;
         }
     }
 
@@ -65,7 +157,7 @@ public class HostProfile extends javax.swing.JPanel {
         tlfTextField = new javax.swing.JTextField();
         errorLabel1 = new javax.swing.JLabel();
         requirementsLabel = new javax.swing.JLabel();
-        userphotoButton = new javax.swing.JButton();
+        fotoboton = new javax.swing.JButton();
         usernameLabel = new javax.swing.JLabel();
         typeLabel = new javax.swing.JLabel();
 
@@ -239,7 +331,7 @@ public class HostProfile extends javax.swing.JPanel {
                         .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(requirementsLabel)
                             .addComponent(errorLabel1))))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         dataLayout.setVerticalGroup(
             dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,10 +361,10 @@ public class HostProfile extends javax.swing.JPanel {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        userphotoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
-        userphotoButton.addActionListener(new java.awt.event.ActionListener() {
+        fotoboton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
+        fotoboton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userphotoButtonActionPerformed(evt);
+                fotobotonActionPerformed(evt);
             }
         });
 
@@ -292,7 +384,7 @@ public class HostProfile extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(userphotoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(74, 74, 74))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +401,7 @@ public class HostProfile extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(userphotoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(usernameLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -342,9 +434,16 @@ public class HostProfile extends javax.swing.JPanel {
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userphotoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userphotoButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userphotoButtonActionPerformed
+    private void fotobotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotobotonActionPerformed
+        File f = openImage();
+        if (f != null) {
+            fotografia = saveImage(f);
+            Sesion.user.setFotoperfil(fotografia);
+            actualizar();
+        } else {
+            System.out.println("no existe la ruta");
+        }
+    }//GEN-LAST:event_fotobotonActionPerformed
 
     private void editUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserButtonActionPerformed
         // Verificar el texto actual del botón
@@ -433,6 +532,7 @@ public class HostProfile extends javax.swing.JPanel {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel errorLabel1;
+    private javax.swing.JButton fotoboton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logoButton;
@@ -447,6 +547,5 @@ public class HostProfile extends javax.swing.JPanel {
     private javax.swing.JLabel typeLabel;
     private javax.swing.JPanel uppermenu;
     private javax.swing.JLabel usernameLabel;
-    private javax.swing.JButton userphotoButton;
     // End of variables declaration//GEN-END:variables
 }

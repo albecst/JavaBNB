@@ -102,35 +102,17 @@ public class BuildingView extends javax.swing.JPanel {
     }
 
     /**
-     *
-     *
-     * ver comentarios
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
      * Redimensiona una imagen al tamaño del "botón" donde se mostrará en la
      * ventana.
+     * @param img. La ruta a la imagen introducida
+     * @return el ImageIcon para mostrarlo de icono del botón
      */
     public ImageIcon resizeIMG(String img) {
         try {
             File imagePath = new File(img);
             BufferedImage originalImage = ImageIO.read(imagePath);
-            int width = 560;//fotoboton.getWidth();
-            int height = 331;//fotoboton.getHeight();
+            int width = 560;
+            int height = 331;
             Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
             ImageIcon imageIcon = new ImageIcon(resizedImage);
             return imageIcon;

@@ -25,6 +25,8 @@ public class Inmueble implements Serializable {
     private ArrayList<Reserva> reservas; // ArrayList para almacenar las reservas asociadas al inmueble
     private Anfitrion anfitrion;
     private static final long serialVersionUID = 6795168503584728871L;
+    
+    
 
     /**
      * Constructor de la clase Inmueble.
@@ -85,33 +87,7 @@ public class Inmueble implements Serializable {
         return reservas;
     }
 
-    /**
-     * Método para comprobar si un inmueble está disponible en unas fechas
-     * concretas.
-     *
-     * @param fechaEntrada Fecha de entrada.
-     * @param fechaSalida Fecha de salida.
-     * @return True si está disponible, false si no lo está.
-     */
-    public boolean estaDisponible2(LocalDate fechaEntrada, LocalDate fechaSalida) {
-        if (fechaEntrada.isAfter(fechaSalida) || fechaEntrada.isBefore(LocalDate.now()) || fechaSalida.isBefore(LocalDate.now())) {
-            return false;
-        }
 
-        for (Reserva reserva : reservas) {
-            if (!comprobarFechasLibres(reserva, fechaEntrada, fechaSalida)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean comprobarFechasLibres2(Reserva reserva, LocalDate fechaEntrada, LocalDate fechaSalida) {
-        if (reserva.getFechaInicio().isBefore(fechaSalida) && reserva.getFechaFin().isAfter(fechaEntrada)) {
-            return false;
-        }
-        return true;
-    }
 
     /**
      * Método para comprobar si un inmueble está disponible en unas fechas
@@ -124,7 +100,7 @@ public class Inmueble implements Serializable {
     public boolean estaDisponible(LocalDate fechaEntrada, LocalDate fechaSalida) {
         // Verificar que las fechas no sean nulas
         if (fechaEntrada == null || fechaSalida == null) {
-            return false; // o lanza una excepción, dependiendo de tus requisitos
+            return false; 
         }
 
         // Verificar que la fecha de entrada sea anterior a la fecha de salida

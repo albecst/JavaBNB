@@ -1,7 +1,6 @@
 package UI_UX;
 
 import Logica.JavaBNB;
-import Logica.Particular;
 import Logica.Reserva;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -87,9 +86,7 @@ public class AdminCheckReserves extends javax.swing.JPanel {
         }
     }
 
-    /**
-     * Limpia los campos de texto en el panel de administración.
-     */
+    
     private void limpiarCampos() {
         fechallegada.setText("");
         fechareserva.setText("");

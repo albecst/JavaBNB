@@ -59,39 +59,13 @@ public class JavaBNB implements Serializable {
     
    
 
-    /**
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * pq funciona para añadir tb si la fecha esta vacia?
-     * 
-     */
+   
     public static ArrayList<Inmueble> buscarInmuebles(String ciudad, LocalDate fechaEntrada, LocalDate fechaSalida) {
         ArrayList<Inmueble> inmueblesDisponibles = new ArrayList<>();
 
         for (Inmueble inmueble : inmuebles) {
             boolean coincideCiudad = ciudad.isEmpty() || inmueble.getDireccion().getCiudad().equalsIgnoreCase(ciudad);
-            boolean coincideDisponibilidad = (fechaEntrada == null && fechaSalida == null) || (fechaEntrada != null && fechaSalida != null && inmueble.estaDisponible(fechaEntrada, fechaSalida));
+            boolean coincideDisponibilidad = (fechaEntrada == null && fechaSalida == null) || (inmueble.estaDisponible(fechaEntrada, fechaSalida));
 
             if (coincideCiudad && coincideDisponibilidad) {
                 inmueblesDisponibles.add(inmueble);
@@ -314,34 +288,6 @@ public class JavaBNB implements Serializable {
     }
 
     /**
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * antes Cliente anfitrion
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
-     * 
      * Método que filtra los inmuebles de la aplicación y devuelve los de un solo anfitrión.
      * 
      * @param anfitrion del que queramos conseguir los inmuebles.
@@ -370,7 +316,7 @@ public class JavaBNB implements Serializable {
 
         inmuebles.remove(inmueble);
 
-        // borrar las reservas asociadas al inmueble
+        // Borrar las reservas asociadas al inmueble
         inmueble.getReservas().clear();
 
         // Guardar los cambios en el archivo de datos

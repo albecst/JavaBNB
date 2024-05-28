@@ -61,7 +61,7 @@ public class AddBuildings extends javax.swing.JPanel {
 
     /**
      * Método para guardar la imagen introducida en los archivos del proyecto,
-     * en la carpeta "fotoinmuebles".
+     * en la carpeta "fotosinmuebles".
      *
      * @param archivofoto el File de la imagen a guardar.
      * @return el String con la ruta a la imagen guardada.

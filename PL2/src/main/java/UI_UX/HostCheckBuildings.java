@@ -37,7 +37,6 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         errorNextLabel.setVisible(false);
         errorPreviousLabel.setVisible(false);
         setEditableFields(false);
-
         consultarTodo();
     }
 
@@ -193,6 +192,13 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         return null; // No se selecciona ningún archivo
     }
 
+    /**
+     * Método para guardar la imagen introducida en los archivos del proyecto,
+     * en la carpeta "fotosinmuebles".
+     *
+     * @param archivofoto el File de la imagen a guardar.
+     * @return el String con la ruta a la imagen guardada.
+     */
     public String saveImage(File archivofoto) {
         String directoriodestino = "./src/main/resources/fotosinmuebles"; // Directorio de destino fijo
         Path pathdestino = Paths.get(directoriodestino, archivofoto.getName());
@@ -210,19 +216,6 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         } catch (IOException ex) {
             System.out.println("Error al guardar la imagen: " + ex.getMessage());
             return null; // Devuelve null si hay un error
-        }
-    }
-
-    /**
-     * Abre un cuadro de diálogo para seleccionar una imagen y la asigna al
-     * inmueble actual.
-     *
-     * @param i El inmueble al que se le asignará la imagen.
-     */
-    public void changeImage(Inmueble i) {
-        File fotoFile = openImage();
-        if (fotoFile != null) {
-            i.setFotografia(saveImage(fotoFile));
         }
     }
 

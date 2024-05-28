@@ -727,6 +727,10 @@ public class Register extends javax.swing.JPanel {
     private void passwordTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextFieldMousePressed
     }//GEN-LAST:event_passwordTextFieldMousePressed
 
+    /**
+     * Este método validará todos los campos introducidos, mostrando los mensajes de error correspondientes si
+     * encuentra algún dato no válido o registrando al cliente si todos son correctos.
+     */
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
 
         //Inicializamos atributos
@@ -794,6 +798,7 @@ public class Register extends javax.swing.JPanel {
             userExiste.setVisible(true);
             noselectLabel.setVisible(false);
 
+            
         } else if (selectedOption.equals("Anfitrion") && valido) {
             noselectLabel.setVisible(false);
             Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre, correo.toLowerCase(), clave, telefono);
@@ -803,6 +808,7 @@ public class Register extends javax.swing.JPanel {
         } else if (selectedOption.equals("Anfitrion") && !valido) {
             noselectLabel.setVisible(true);
 
+            
         } else if (selectedOption.equals("Particular")) {
             try {
             if (!monthTextField.getText().isEmpty()) {

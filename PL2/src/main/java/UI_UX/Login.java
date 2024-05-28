@@ -287,7 +287,6 @@ public class Login extends javax.swing.JPanel {
         //Inicializamos atributos
         String correo = emailTextField.getText();
 
-        //no utilizar getText en la passwordField porque esta "deprecated"
         char[] passwordCharArray = passwordTextField.getPassword();
         String clave = new String(passwordCharArray);
         int tipo = Sesion.iniciarSesion(correo, clave);

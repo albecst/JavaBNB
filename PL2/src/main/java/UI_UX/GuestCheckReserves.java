@@ -11,6 +11,10 @@ import java.util.ListIterator;
 import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
 
+/**
+ * La clase GuestCheckReserves permite al particular consultar y gestionar
+ * las reservas de la aplicación.
+ */
 public class GuestCheckReserves extends javax.swing.JPanel {
 
     private ArrayList<Reserva> reservas = new ArrayList<>();
@@ -35,6 +39,9 @@ public class GuestCheckReserves extends javax.swing.JPanel {
         consultarTodo();
     }
 
+    /**
+     * Consulta y carga todas las reservas del particular en la lista local, y se instancia un iterador para recorrerla.
+     */
     private void consultarTodo() {
         try {
             errorNoSig.setVisible(false);
@@ -51,7 +58,7 @@ public class GuestCheckReserves extends javax.swing.JPanel {
                         .collect(Collectors.toList());
 
                 reservas.addAll(nuevasReservas);
-                System.out.println(reservas);
+                
                 li = reservas.listIterator();
                 if (reservas.size() < 1) {
                     jButtonSig.setEnabled(false);
@@ -92,6 +99,10 @@ public class GuestCheckReserves extends javax.swing.JPanel {
         inmueblelabel.setText("");
     }
 
+    /**
+     * Presenta los detalles de la reserva "actual" en los campos de texto correspondientes.
+     *
+     */
     private void presenta() {
         DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         fechallegada.setText(objreserva.getFechaInicio().format(formatoCorto));
@@ -103,6 +114,12 @@ public class GuestCheckReserves extends javax.swing.JPanel {
         inmueblelabel.setText(objreserva.getInmueble().getTitulo());
     }
 
+    /**
+     * Abre un cuadro de diálogo para seleccionar un directorio
+     *
+     * @return el directorio seleccionado, o null si no se selecciona
+     * ningún archivo.
+     */
     public String seleccionarPath() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Seleccione una ruta para guardar su factura");
@@ -473,6 +490,10 @@ public class GuestCheckReserves extends javax.swing.JPanel {
         App.loadMainScreen();
     }//GEN-LAST:event_mainscrActionPerformed
 
+    /**
+     * Al pulsar el botón se permitirá guardar la factura de la reserva que "se esté viendo" en ese momento
+     * en el directorio que el usuario seleccione
+     */
     private void reciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reciboActionPerformed
         try {
             String path = seleccionarPath();

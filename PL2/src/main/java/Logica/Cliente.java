@@ -10,6 +10,7 @@ public class Cliente implements Serializable {
     private String correo;
     private String clave;
     private String telefono;
+    private String fotoperfil;
     
     public Cliente(String dni, String nombre, String correo, String clave, String telefono) {
         this.dni = dni;
@@ -17,6 +18,7 @@ public class Cliente implements Serializable {
         this.correo = correo;
         this.clave = clave;
         this.telefono = telefono;
+        this.fotoperfil=null;
     }
 
     //G&S
@@ -109,6 +111,15 @@ public class Cliente implements Serializable {
     public void setDni(String dni) {
         this.dni = dni;
     }
+
+    public String getFotoperfil() {
+        return fotoperfil;
+    }
+
+    public void setFotoperfil(String fotoperfil) {
+        this.fotoperfil = fotoperfil;
+    }
+    
     
     
 

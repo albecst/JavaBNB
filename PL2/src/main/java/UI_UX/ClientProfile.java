@@ -4,14 +4,25 @@ import Logica.Particular;
 import Logica.Sesion;
 import Logica.Tarjeta;
 import Logica.Validacion;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
  * Panel que muestra el perfil del cliente actual.
  */
 public class ClientProfile extends javax.swing.JPanel {
-
+String fotografia;
     /**
      * El cliente particular actual.
      */
@@ -41,6 +52,14 @@ public class ClientProfile extends javax.swing.JPanel {
      */
     public void actualizar() {
         if (Sesion.user != null) {
+            //establecer la foto del usuario
+        }
+            if (Sesion.user.getFotoperfil()!=null) {
+                fotografia = Sesion.user.getFotoperfil();
+                fotoboton.setIcon(resizeIMG(fotografia));
+            } else {
+                fotografia=null;
+                fotoboton.setIcon(resizeIMG("./src/main/resources/images/user (2).JPG"));
             // Establecer los campos de texto con la información del usuario actual
             dniTextField.setText(Sesion.user.getDni());
             usernameLabel.setText(Sesion.user.getNombre().toUpperCase());
@@ -65,6 +84,78 @@ public class ClientProfile extends javax.swing.JPanel {
             }
         }
     }
+    
+    
+    /**
+     * Abre un cuadro de diálogo para seleccionar una imagen y la devuelve.
+     *
+     * @return El archivo de imagen seleccionado, o null si no se selecciona
+     * ningún archivo.
+     */
+    public File openImage() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Selecciona una imagen");
+        fileChooser.setAcceptAllFileFilterUsed(false); // Deshabilitar la opción "Todos los archivos"
+        fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif", "bmp"));
+
+        int result = fileChooser.showOpenDialog(null); // Mostrar el diálogo de selección y capturar la respuesta
+
+        // Procesar la respuesta
+        if (result == JFileChooser.APPROVE_OPTION) {
+            return fileChooser.getSelectedFile();
+        }
+        return null; // No se selecciona ningún archivo
+    }
+
+    /**
+     * Método para guardar la imagen introducida en los archivos del proyecto,
+     * en la carpeta "fotosperfil".
+     *
+     * @param archivofoto el File de la imagen a guardar.
+     * @return el String con la ruta a la imagen guardada.
+     */
+    public String saveImage(File archivofoto) {
+        String directoriodestino = "./src/main/resources/fotosperfil"; // Directorio de destino fijo
+        Path pathdestino = Paths.get(directoriodestino, archivofoto.getName());
+
+        try {
+            // Asegúrate de que el directorio exista
+            if (!Files.exists(Paths.get(directoriodestino))) {
+                Files.createDirectories(Paths.get(directoriodestino));
+            }
+
+            // Copia el archivo al directorio especificado
+            Files.copy(archivofoto.toPath(), pathdestino, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Imagen guardada en: " + pathdestino);
+            return pathdestino.toString(); // Devuelve la ruta de la imagen como String
+        } catch (IOException ex) {
+            System.out.println("Error al guardar la imagen: " + ex.getMessage());
+            return null; // Devuelve null si hay un error
+        }
+    }
+
+    /**
+     * Redimensiona una imagen al tamaño del "botón" donde se mostrará en la
+     * ventana.
+     *
+     * @param img. La ruta a la imagen introducida
+     * @return el ImageIcon para mostrarlo de icono del botón
+     */
+    public ImageIcon resizeIMG(String img) {
+        try {
+            File imagePath = new File(img);
+            BufferedImage originalImage = ImageIO.read(imagePath);
+            int width = 306;
+            int height = 307;
+            Image resizedImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(resizedImage);
+            return imageIcon;
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
+            return null;
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,7 +203,7 @@ public class ClientProfile extends javax.swing.JPanel {
         moneyLabel = new javax.swing.JLabel();
         moneyTextField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        userphotoButton = new javax.swing.JButton();
+        fotoboton = new javax.swing.JButton();
         usernameLabel = new javax.swing.JLabel();
         typeLabel = new javax.swing.JLabel();
 
@@ -543,10 +634,10 @@ public class ClientProfile extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(40, 67, 0, 0);
         data.add(jButton2, gridBagConstraints);
 
-        userphotoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
-        userphotoButton.addActionListener(new java.awt.event.ActionListener() {
+        fotoboton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
+        fotoboton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userphotoButtonActionPerformed(evt);
+                fotobotonActionPerformed(evt);
             }
         });
 
@@ -565,7 +656,7 @@ public class ClientProfile extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userphotoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(usernameLabel))
@@ -580,7 +671,7 @@ public class ClientProfile extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(userphotoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(usernameLabel)
                         .addGap(14, 14, 14)
@@ -611,9 +702,16 @@ public class ClientProfile extends javax.swing.JPanel {
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userphotoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userphotoButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userphotoButtonActionPerformed
+    private void fotobotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotobotonActionPerformed
+        File f = openImage();
+        if (f != null) {
+            fotografia = saveImage(f);
+            Sesion.user.setFotoperfil(fotografia);
+            actualizar();
+        } else {
+            System.out.println("no existe la ruta");
+        }
+    }//GEN-LAST:event_fotobotonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         if (editButton.getText().equals("Editar datos")) {
@@ -781,6 +879,7 @@ public class ClientProfile extends javax.swing.JPanel {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel errorLabel1;
+    private javax.swing.JButton fotoboton;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -803,7 +902,6 @@ public class ClientProfile extends javax.swing.JPanel {
     private javax.swing.JLabel typeLabel;
     private javax.swing.JPanel uppermenu;
     private javax.swing.JLabel usernameLabel;
-    private javax.swing.JButton userphotoButton;
     private javax.swing.JLabel yearLabel;
     private javax.swing.JTextField yearTextField;
     // End of variables declaration//GEN-END:variables

@@ -216,7 +216,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="userphotoButton" min="-2" pref="284" max="-2" attributes="0"/>
+                              <Component id="fotoboton" min="-2" pref="284" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -240,7 +240,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="userphotoButton" min="-2" pref="262" max="-2" attributes="0"/>
+                              <Component id="fotoboton" min="-2" pref="262" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="usernameLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -317,7 +317,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="115" max="32767" attributes="0"/>
+                          <EmptySpace pref="112" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -453,14 +453,14 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="userphotoButton">
+            <Component class="javax.swing.JButton" name="fotoboton">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/user (2).jpg"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userphotoButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fotobotonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="usernameLabel">
