@@ -500,6 +500,7 @@ public class HostProfile extends javax.swing.JPanel {
             if (datosValidos) {
                 errorLabel1.setVisible(false);
                 Sesion.user.setNombre(nombre);
+                usernameLabel.setText(nombre);
                 Sesion.user.setCorreo(email);
                 Sesion.user.setTelefono(telefono);
                 Sesion.user.setClave(password);

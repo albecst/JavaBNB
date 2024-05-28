@@ -770,6 +770,8 @@ public class ClientProfile extends javax.swing.JPanel {
                 errorLabel1.setVisible(false);
 
                 Sesion.user.setNombre(nombre);
+                usernameLabel.setText(nombre);
+
                 Sesion.user.setCorreo(email);
                 Sesion.user.setTelefono(telefono);
                 Sesion.user.setClave(password);
