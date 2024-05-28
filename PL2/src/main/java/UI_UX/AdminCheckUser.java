@@ -450,7 +450,7 @@ public class AdminCheckUser extends javax.swing.JPanel {
                 Particular particular = (Particular) objcli;
                 JavaBNB.eliminarParticular(objcli);
 
-                //Tengo que eliminar las reservas asociadas a ese particuar
+                // Tengo que eliminar las reservas asociadas a ese particular
                 ArrayList<Inmueble> inmuebles = JavaBNB.getInmuebles();
                 for (Inmueble i : inmuebles) {
                     ArrayList<Reserva> reservas = i.getReservas();
@@ -469,7 +469,14 @@ public class AdminCheckUser extends javax.swing.JPanel {
 
                 JavaBNB.eliminarAnfitrion(objcli);
 
-                JavaBNB.getInmuebles().removeAll(inmuebles);
+                // Aquí se deberían eliminar solo los inmuebles del anfitrión, no todos
+                Iterator<Inmueble> iterator = inmuebles.iterator();
+                while (iterator.hasNext()) {
+                    Inmueble inmueble = iterator.next();
+                    if (inmueble.getAnfitrion().equals(anfitrion)) {
+                        iterator.remove();
+                    }
+                }
             }
 
             try {
@@ -486,7 +493,6 @@ public class AdminCheckUser extends javax.swing.JPanel {
             } catch (Exception e) {
                 System.out.println("Está vacío, no se puede eliminar más");
             }
-
         }
 
 
