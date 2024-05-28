@@ -62,11 +62,11 @@ public class JavaBNB implements Serializable {
    
     public static ArrayList<Inmueble> buscarInmuebles(String ciudad, LocalDate fechaEntrada, LocalDate fechaSalida) {
         ArrayList<Inmueble> inmueblesDisponibles = new ArrayList<>();
-
+    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         for (Inmueble inmueble : inmuebles) {
             boolean coincideCiudad = ciudad.isEmpty() || inmueble.getDireccion().getCiudad().equalsIgnoreCase(ciudad);
             boolean coincideDisponibilidad = (fechaEntrada == null && fechaSalida == null) || (inmueble.estaDisponible(fechaEntrada, fechaSalida));
-
+            System.out.println(inmueble.estaDisponible(fechaEntrada, fechaSalida)+ "   "+ inmueble.toString());
             if (coincideCiudad && coincideDisponibilidad) {
                 inmueblesDisponibles.add(inmueble);
             }

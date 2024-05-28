@@ -145,13 +145,15 @@ public class MainScreen extends javax.swing.JPanel {
      * donde se ejecute el código. Por último, esto se transforma en un
      * LocalDate
      *
-     * @param dateObject , objeto que contiene una fecha, que será "casteado" a
-     * "Date"
+     * @param dateObject , objeto que contiene una fecha
      * @return el valor en LocalDate
      */
     public LocalDate convertToLocalDate(Object dateObject) {
         if (dateObject instanceof Date) {
-
+            //Se hace un cast del objeto a Date. 
+            //Entonces, se transforma en "Instant" (punto en la línea de tiempo, en milisegundos).
+            //Después se convierte en ZonedDateTime, usando la zona horaria por defecto del sistema donde se ejecute el código.
+            //Por último, esto se convierte en LocalDate.
             return ((Date) dateObject).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         } else {
             return null;
@@ -806,6 +808,7 @@ public class MainScreen extends javax.swing.JPanel {
      * para mostrarlos.
      */
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        deleteBuildings();
         filterComboBox.setSelectedItem("Filtrar por:");
         this.estado = 1;
         // Obtener los valores de los campos de texto y eliminar espacios en blanco de inicio y final
@@ -815,23 +818,12 @@ public class MainScreen extends javax.swing.JPanel {
         LocalDate fechaSalida = null;
 
         // Verificar si los campos de fecha no están vacíos antes de intentar convertir
-        String fechaEntradaTexto = startDateTextField.getText().trim();
-        String fechaSalidaTexto = endDateTextField.getText().trim();
-
-        if (!fechaEntradaTexto.isEmpty()) {
+        if (!startDateTextField.getText().isEmpty() && !endDateTextField.getText().isEmpty()) {
             try {
-                fechaEntrada = convertToLocalDate(fechaEntradaTexto);
+                fechaEntrada = convertToLocalDate(startDateTextField.getValue());
+                fechaSalida = convertToLocalDate(endDateTextField.getValue());
             } catch (DateTimeParseException e) {
                 JOptionPane.showMessageDialog(this, "Por favor, introduce la fecha de inicio en el formato DD/MM/YYYY", "Formato de fecha inválido", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
-
-        if (!fechaSalidaTexto.isEmpty()) {
-            try {
-                fechaSalida = convertToLocalDate(fechaSalidaTexto);
-            } catch (DateTimeParseException e) {
-                JOptionPane.showMessageDialog(this, "Por favor, introduce la fecha final en el formato DD/MM/YYYY", "Formato de fecha inválido", JOptionPane.ERROR_MESSAGE);
                 return;
             }
         }

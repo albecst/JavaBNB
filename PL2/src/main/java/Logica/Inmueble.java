@@ -105,11 +105,13 @@ public class Inmueble implements Serializable {
 
         // Verificar que la fecha de entrada sea anterior a la fecha de salida
         if (fechaEntrada.isAfter(fechaSalida)) {
+            System.out.println("esta antes: "+fechaEntrada.isAfter(fechaSalida));
             return false;
         }
 
         // Verificar que las fechas solicitadas estén dentro del rango correcto
         if (fechaEntrada.isBefore(LocalDate.now()) || fechaSalida.isBefore(LocalDate.now())) {
+            System.out.println("fecha pasada: "+fechaEntrada.isAfter(fechaSalida));
             return false;
         }
 
