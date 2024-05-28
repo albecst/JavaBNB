@@ -1,17 +1,18 @@
+
 package UI_UX;
 
 import Logica.*;
+import UI_UX.ClientProfile;
 
 // Panel que permite al usuario iniciar sesión.
+
 public class Login extends javax.swing.JPanel {
 
-    
     public Login() {
         initComponents();
         errorLabel.setVisible(false);
     }
 
-    
     private void resetText() {
         emailTextField.setText("");
         passwordTextField.setText("");
@@ -302,6 +303,8 @@ public class Login extends javax.swing.JPanel {
             default:
                 break;
         }
+        
+    
 
 
     }//GEN-LAST:event_loginButtonActionPerformed
