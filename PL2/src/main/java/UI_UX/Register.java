@@ -13,9 +13,6 @@ import java.time.LocalDate;
 
 public class Register extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Register
-     */
     public Register() {
         initComponents();
         errorLabel.setVisible(false);
@@ -46,8 +43,8 @@ public class Register extends javax.swing.JPanel {
         userExiste.setVisible(false);
         statementLabel.setVisible(false);
     }
-    
-    public void resetText(){
+
+    public void resetText() {
         userTextField1.setText("");
         DNITextField.setText("");
         emailTextField.setText("");
@@ -60,7 +57,7 @@ public class Register extends javax.swing.JPanel {
         dayTextField.setText("");
         yearTextField.setText("");
         selectComboBox.setSelectedItem("Seleccione entre:");
-    
+
     }
 
     /**
@@ -727,17 +724,15 @@ public class Register extends javax.swing.JPanel {
     private void passwordTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextFieldMousePressed
     }//GEN-LAST:event_passwordTextFieldMousePressed
 
-    /**
-     * Este método validará todos los campos introducidos, mostrando los mensajes de error correspondientes si
-     * encuentra algún dato no válido o registrando al cliente si todos son correctos.
-     */
+    // Este método validará todos los campos introducidos, mostrando los mensajes de error correspondientes si
+    // encuentra algún dato no válido o registrando al cliente si todos son correctos.
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
 
         //Inicializamos atributos
         String nombre = userTextField1.getText();
         String dni = DNITextField.getText();
         String correo = emailTextField.getText();
-       
+
         char[] passwordCharArray = passwordTextField.getPassword();
         String clave = new String(passwordCharArray);
         String telefono = tlfTextField.getText();
@@ -751,41 +746,46 @@ public class Register extends javax.swing.JPanel {
         int mes = -1;
         int año = -1;
 
-                
-
         if (!Validacion.validarNombre(nombre)) {
             errorLabel4.setVisible(true);
             valido = false;
             promocodeTextField.setText("");
-        } else {errorLabel4.setVisible(false);}
+        } else {
+            errorLabel4.setVisible(false);
+        }
 
         if (!Validacion.validarDNI(dni)) {
             errorLabel2.setVisible(true);
             valido = false;
             DNITextField.setText("");
-        } else { errorLabel2.setVisible(false);}
+        } else {
+            errorLabel2.setVisible(false);
+        }
 
         if (!Validacion.validarEmail(correo)) {
             errorLabel6.setVisible(true);
             valido = false;
             emailTextField.setText("");
-        } else {errorLabel6.setVisible(false);}
+        } else {
+            errorLabel6.setVisible(false);
+        }
 
         if (!Validacion.validarTelefono(telefono)) {
             errorLabel5.setVisible(true);
             valido = false;
             tlfTextField.setText("");
-        } else { errorLabel5.setVisible(false);}
+        } else {
+            errorLabel5.setVisible(false);
+        }
 
         if (!Validacion.validarContraseña(clave)) {
             errorLabel3.setVisible(true);
             requirementsLabel.setVisible(true);
             passwordTextField.setText("");
             valido = false;
-        } else {  errorLabel3.setVisible(false); }
-        
-      
-
+        } else {
+            errorLabel3.setVisible(false);
+        }
 
         String selectedOption = (String) selectComboBox.getSelectedItem();
         boolean usuarioExiste = Validacion.comprobarExistenciaCliente(correo.toLowerCase(), dni, telefono);
@@ -798,7 +798,6 @@ public class Register extends javax.swing.JPanel {
             userExiste.setVisible(true);
             noselectLabel.setVisible(false);
 
-            
         } else if (selectedOption.equals("Anfitrion") && valido) {
             noselectLabel.setVisible(false);
             Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre, correo.toLowerCase(), clave, telefono);
@@ -808,27 +807,32 @@ public class Register extends javax.swing.JPanel {
         } else if (selectedOption.equals("Anfitrion") && !valido) {
             noselectLabel.setVisible(true);
 
-            
         } else if (selectedOption.equals("Particular")) {
             try {
-            if (!monthTextField.getText().isEmpty()) {
-                mes = Integer.parseInt(monthTextField.getText());
-            } else {System.err.println("El campo de día está vacío."); }
-            
-            if (!dayTextField.getText().isEmpty()) {
-                dia = Integer.parseInt(dayTextField.getText());
-            } else { System.err.println("El campo de mes está vacío.");}
-            
-            if (!yearTextField.getText().isEmpty()) {
-                año = Integer.parseInt(yearTextField.getText());
-            } else {  System.err.println("El campo de año está vacío.");}
-            
-        } catch (NumberFormatException e) {
-            System.err.println("Error al convertir el texto a número.");
-            dia = -1;
-            mes = -1;
-            año = -1;
-        }
+                if (!monthTextField.getText().isEmpty()) {
+                    mes = Integer.parseInt(monthTextField.getText());
+                } else {
+                    System.err.println("El campo de día está vacío.");
+                }
+
+                if (!dayTextField.getText().isEmpty()) {
+                    dia = Integer.parseInt(dayTextField.getText());
+                } else {
+                    System.err.println("El campo de mes está vacío.");
+                }
+
+                if (!yearTextField.getText().isEmpty()) {
+                    año = Integer.parseInt(yearTextField.getText());
+                } else {
+                    System.err.println("El campo de año está vacío.");
+                }
+
+            } catch (NumberFormatException e) {
+                System.err.println("Error al convertir el texto a número.");
+                dia = -1;
+                mes = -1;
+                año = -1;
+            }
 
             if (!Validacion.validarTarjeta(numtarjeta, dia, mes, año, cvv)) {
                 errorLabel1.setVisible(true);
@@ -838,7 +842,7 @@ public class Register extends javax.swing.JPanel {
                 yearTextField.setText("");
                 cvvTextField.setText("");
             } else {
-                
+
                 errorLabel1.setVisible(false);
             }
 

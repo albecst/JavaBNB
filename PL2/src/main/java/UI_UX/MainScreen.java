@@ -19,14 +19,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-/**
- * La clase MainScreen constituye la interfaz principal de la aplicación.
- * Contiene los botones para "redirigir" al usuario al resto de ventanas, y
- * utiliza contenido dinámico para mostrar, según los parámetros de búsqueda
- * introducidos por el usuario, los distintos inmuebles mostrados en forma de
- * widget.
- *
- */
+//La clase MainScreen constituye la interfaz principal de la aplicación.
+// Contiene los botones para "redirigir" al usuario al resto de ventanas, y
+// utiliza contenido dinámico para mostrar, según los parámetros de búsqueda
+// introducidos por el usuario, los distintos inmuebles mostrados en forma de
+// widget.
+//
 public class MainScreen extends javax.swing.JPanel {
 
     public ArrayList<BuildingIcon> buildingsicon; //ArrayList para contener los distintos widgets
@@ -34,9 +32,6 @@ public class MainScreen extends javax.swing.JPanel {
     private ArrayList<Inmueble> allBuildings; //ArrayList con todos los inmuebles
     int estado;
 
-    /**
-     * Creates new form MainScreen
-     */
     public MainScreen() {
         initComponents();
         buildingsLabel.setVisible(false);
@@ -59,12 +54,10 @@ public class MainScreen extends javax.swing.JPanel {
         }
     }
 
-    /**
-     * Se utiliza contenido dinámico para mostrar todos los inmuebles de la
-     * aplicación. Una vez "limpiado" de búsquedas anteriores el panel que
-     * contendrá los widgets, se muestra el contenido de la lista "allBuildings"
-     * mediante paneles del tipo BuildingIcon con cada uno de estos inmuebles.
-     */
+    // Se utiliza contenido dinámico para mostrar todos los inmuebles de la
+    // aplicación. Una vez "limpiado" de búsquedas anteriores el panel que
+    // contendrá los widgets, se muestra el contenido de la lista "allBuildings"
+    // mediante paneles del tipo BuildingIcon con cada uno de estos inmuebles.
     public void insertAllBuildings() {
         buildingsLabel.setVisible(true);
         deleteBuildings(); // Borra cualquier widget de edificio existente antes de insertar nuevos si es posible
@@ -94,12 +87,10 @@ public class MainScreen extends javax.swing.JPanel {
         buildings = allBuildings;
     }
 
-    /**
-     * Se utiliza contenido dinámico para mostrar los inmuebles de la lista
-     * "buildings". Una vez "limpiado" de búsquedas anteriores el panel que
-     * contendrá los widgets, se muestra el contenido de "buildings" mediante
-     * paneles del tipo BuildingIcon con cada uno de estos inmuebles.
-     */
+    // Se utiliza contenido dinámico para mostrar los inmuebles de la lista
+    // "buildings". Una vez "limpiado" de búsquedas anteriores el panel que
+    // contendrá los widgets, se muestra el contenido de "buildings" mediante
+    // paneles del tipo BuildingIcon con cada uno de estos inmuebles.
     public void insertBuildings() {
         buildingsLabel.setVisible(true);
         if (buildings == null | buildings.isEmpty()) {
@@ -137,17 +128,7 @@ public class MainScreen extends javax.swing.JPanel {
         buildingsContainer.repaint();   // Repinta el contenedor para asegurar que los cambios sean visibles
     }
 
-    /**
-     * Conversión de un valor "Date" a "LocalDate". Primero, se convierte el
-     * Date en un Instant, que representa un punto instantáneo en la línea de
-     * tiempo, normalmente medido en milisegundos. Después se convierte el
-     * Instant en ZonedDateTime usando la zona horaria por defecto del sistema
-     * donde se ejecute el código. Por último, esto se transforma en un
-     * LocalDate
-     *
-     * @param dateObject , objeto que contiene una fecha
-     * @return el valor en LocalDate
-     */
+    // Conversión de un valor "Date" a "LocalDate". 
     public LocalDate convertToLocalDate(Object dateObject) {
         if (dateObject instanceof Date) {
             //Se hace un cast del objeto a Date. 
@@ -803,11 +784,8 @@ public class MainScreen extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_endDateTextFieldActionPerformed
 
-    /**
-     * Al pulsar el botón de buscar, se actualizará la lista "buildings" con los
-     * inmuebles que cumplan los requisitos establecidos y se llamará al método
-     * para mostrarlos.
-     */
+    // Al pulsar el botón de buscar, se actualizará la lista "buildings" con los
+    // inmuebles que cumplan los requisitos establecidos y se llamará al método para mostrarlos. 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         deleteBuildings();
         filterComboBox.setSelectedItem("Filtrar por:");
@@ -856,9 +834,10 @@ public class MainScreen extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         deleteBuildings();
         try {
+            //Abrir un enlace externo en el navegador al pulsar un botón 
             Desktop.getDesktop().browse(new URI("https://www.instagram.com/javabnb/"));
-        } catch (IOException | URISyntaxException e1) {
-            e1.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -15,35 +15,27 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
-/**
- * Panel que muestra el perfil del anfitrión actual.
- */
+//Panel que muestra el perfil del anfitrión actual.
 public class HostProfile extends javax.swing.JPanel {
 
     String fotografia;
 
-    /**
-     * Crea un nuevo panel para mostrar el perfil del anfitrión.
-     */
     public HostProfile() {
         initComponents();
         errorLabel1.setVisible(false);
         requirementsLabel.setVisible(false);
     }
 
-    /**
-     * Actualiza la información mostrada en el perfil del anfitrión.
-     */
     public void actualizar() {
         if (Sesion.user != null) {
-            
-            if (Sesion.user.getFotoperfil()!=null) {
+
+            if (Sesion.user.getFotoperfil() != null) {
                 fotografia = Sesion.user.getFotoperfil();
                 fotoboton.setIcon(resizeIMG(fotografia));
             } else {
-                fotografia=null;
+                fotografia = null;
                 fotoboton.setIcon(resizeIMG("./src/main/resources/images/user (2).JPG"));
-               
+
             }
             dniTextField.setText(Sesion.user.getDni());
             usernameLabel.setText(Sesion.user.getNombre().toUpperCase());
@@ -59,12 +51,8 @@ public class HostProfile extends javax.swing.JPanel {
         }
     }
 
-    /**
-     * Abre un cuadro de diálogo para seleccionar una imagen y la devuelve.
-     *
-     * @return El archivo de imagen seleccionado, o null si no se selecciona
-     * ningún archivo.
-     */
+    // Abre un cuadro de diálogo para seleccionar una imagen. Devuelve el archivo de imagen seleccionado, 
+    //o null si no se selecciona ningún archivo.
     public File openImage() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Selecciona una imagen");
@@ -80,13 +68,7 @@ public class HostProfile extends javax.swing.JPanel {
         return null; // No se selecciona ningún archivo
     }
 
-    /**
-     * Método para guardar la imagen introducida en los archivos del proyecto,
-     * en la carpeta "fotosperfil".
-     *
-     * @param archivofoto el File de la imagen a guardar.
-     * @return el String con la ruta a la imagen guardada.
-     */
+    //Método para guardar la imagen introducida en los archivos del proyecto, en la carpeta "fotosperfil".
     public String saveImage(File archivofoto) {
         String directoriodestino = "./src/main/resources/fotosperfil"; // Directorio de destino fijo
         Path pathdestino = Paths.get(directoriodestino, archivofoto.getName());
@@ -107,13 +89,7 @@ public class HostProfile extends javax.swing.JPanel {
         }
     }
 
-    /**
-     * Redimensiona una imagen al tamaño del "botón" donde se mostrará en la
-     * ventana.
-     *
-     * @param img. La ruta a la imagen introducida
-     * @return el ImageIcon para mostrarlo de icono del botón
-     */
+    //Redimensiona una imagen al tamaño del "botón" donde se mostrará en la ventana.
     public ImageIcon resizeIMG(String img) {
         try {
             File imagePath = new File(img);

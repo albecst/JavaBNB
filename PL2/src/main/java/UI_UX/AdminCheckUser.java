@@ -12,19 +12,13 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
-/**
- * La clase AdminCheckUser permite al administrador consultar y gestionar
- * los usuarios registrados en la aplicación.
- */
+//La clase AdminCheckUser permite al administrador consultar y gestionar los usuarios registrados en la aplicación.
 public class AdminCheckUser extends javax.swing.JPanel {
 
     private ArrayList<Cliente> clientesaux; // Referencia al ArrayList de personas de la clase JavaBNB
     private ListIterator<Cliente> li; // Iterador para recorrer el ArrayList en ambas direcciones
     private Cliente objcli; // Referencia a un objeto de tipo cliente del ArrayList
 
-    /**
-     * Crea un nuevo formulario AdminConsultarUser.
-     */
     public AdminCheckUser() {
         initComponents();
         errorNextLabel.setVisible(false);
@@ -37,18 +31,13 @@ public class AdminCheckUser extends javax.swing.JPanel {
         consultarTodo();
     }
 
-    /**
-     * Actualiza la vista y los datos de los usuarios.
-     */
     public void actualizar() {
         errorNextLabel.setVisible(false);
         errorPreviousLabel.setVisible(false);
         consultarTodo();
     }
 
-    /**
-     * Consulta y carga todos los usuarios de JavaBNB en la lista local.
-     */
+    //Consulta y carga todos los usuarios de JavaBNB en la lista local.
     private void consultarTodo() {
         try {
             errorNextLabel.setVisible(false);
@@ -87,12 +76,6 @@ public class AdminCheckUser extends javax.swing.JPanel {
         }
     }
 
-    /**
-     * Presenta los detalles del usuario en los campos de texto
-     * correspondientes.
-     *
-     * @param per el usuario cuyos detalles se van a mostrar
-     */
     private void presenta(Cliente per) {
         String tipo = per.getClass().getSimpleName();
         dniTextField.setText(objcli.getDni());

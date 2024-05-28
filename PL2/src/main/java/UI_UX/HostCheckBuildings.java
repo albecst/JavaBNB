@@ -17,10 +17,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import UI_UX.App;
 
-/**
- * Panel para que el anfitrión revise sus inmuebles y realice acciones
- * relacionadas.
- */
+// Panel para que el anfitrión revise sus inmuebles y realice acciones relacionadas.
 public class HostCheckBuildings extends javax.swing.JPanel {
 
     private ArrayList<Inmueble> buildings; // Referencia al ArrayList de inmuebles del anfitrión de la sesión
@@ -29,9 +26,6 @@ public class HostCheckBuildings extends javax.swing.JPanel {
     private Inmueble inmuebleActual;
     private String fotografia = "";
 
-    /**
-     * Crea un nuevo panel para que el anfitrión revise sus inmuebles.
-     */
     public HostCheckBuildings() {
         initComponents();
         errorNextLabel.setVisible(false);
@@ -40,9 +34,6 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         consultarTodo();
     }
 
-    /**
-     * Actualiza la vista de los inmuebles del anfitrión.
-     */
     public void actualizar() {
         errorNextLabel.setVisible(false);
         errorPreviousLabel.setVisible(false);
@@ -50,27 +41,14 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         consultarTodo();
     }
 
-    /**
-     * Obtiene el inmueble actual que se muestra en el panel.
-     *
-     * @return El inmueble actual.
-     */
     public Inmueble getInmuebleActual() {
         return inmuebleActual;
     }
 
-    /**
-     * Establece el inmueble actual que se mostrará en el panel.
-     *
-     * @param inmuebleActual El inmueble actual.
-     */
     public void setInmuebleActual(Inmueble inmuebleActual) {
         this.inmuebleActual = inmuebleActual;
     }
 
-    /**
-     * Consulta todos los inmuebles del anfitrión y los muestra en la vista.
-     */
     private void consultarTodo() {
         if (Sesion.user != null) {
             try {
@@ -111,12 +89,6 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         }
     }
 
-    /**
-     * Establece si los campos editables del formulario están habilitados o no.
-     *
-     * @param editable true si los campos deben ser editables, false de lo
-     * contrario.
-     */
     private void setEditableFields(boolean editable) {
         titleTextPanel.setEditable(editable);
         descriptionTextPanel.setEditable(editable);
@@ -133,12 +105,6 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         serviceTextField.setEditable(editable);
     }
 
-    /**
-     * Establece si los botones del formulario están habilitados o no.
-     *
-     * @param enabled true si los botones deben estar habilitados, false de lo
-     * contrario.
-     */
     private void setButtonsEnabled(boolean enabled) {
         nextButton.setEnabled(enabled);
         previousButton.setEnabled(enabled);
@@ -148,12 +114,6 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         editphotoButton.setEnabled(enabled);
     }
 
-    /**
-     * Muestra la información de un inmueble en los campos correspondientes del
-     * formulario.
-     *
-     * @param inmueble El inmueble a mostrar.
-     */
     private void presenta(Inmueble inmueble) {
         typeLabel.setText(inmueble.getTipo());
         titleTextPanel.setText(inmueble.getTitulo());
@@ -171,12 +131,8 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         markTextField.setText(String.valueOf(inmueble.getCalificacion()));
     }
 
-    /**
-     * Abre un cuadro de diálogo para seleccionar una imagen y la devuelve.
-     *
-     * @return El archivo de imagen seleccionado, o null si no se selecciona
-     * ningún archivo.
-     */
+    // Abre un cuadro de diálogo para seleccionar una imagen. Devuelve el archivo de imagen seleccionado, 
+    //o null si no se selecciona ningún archivo.
     public File openImage() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Selecciona una imagen");
@@ -192,13 +148,7 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         return null; // No se selecciona ningún archivo
     }
 
-    /**
-     * Método para guardar la imagen introducida en los archivos del proyecto,
-     * en la carpeta "fotosinmuebles".
-     *
-     * @param archivofoto el File de la imagen a guardar.
-     * @return el String con la ruta a la imagen guardada.
-     */
+    //Método para guardar la imagen introducida en los archivos del proyecto, en la carpeta "fotosinmuebles".
     public String saveImage(File archivofoto) {
         String directoriodestino = "./src/main/resources/fotosinmuebles"; // Directorio de destino fijo
         Path pathdestino = Paths.get(directoriodestino, archivofoto.getName());
@@ -219,9 +169,6 @@ public class HostCheckBuildings extends javax.swing.JPanel {
         }
     }
 
-    /**
-     * Limpia todos los campos de texto en el formulario.
-     */
     private void limpiarCampos() {
         typeLabel.setText("");
         titleTextPanel.setText("");

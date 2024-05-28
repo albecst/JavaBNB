@@ -38,11 +38,7 @@ public class AddBuildings extends javax.swing.JPanel {
         bathError1.setVisible(false);
     }
 
-    /**
-     * Permite al usuario seleccionar una imagen cualquiera.
-     *
-     * @return el File de la imagen seleccionada.
-     */
+    //Permite al usuario seleccionar una imagen cualquiera y devuelve su "File".
     public File openImage() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Selecciona una imagen");
@@ -58,13 +54,8 @@ public class AddBuildings extends javax.swing.JPanel {
         return null; // No file was selected or the user cancelled
     }
 
-    /**
-     * Método para guardar la imagen introducida en los archivos del proyecto,
-     * en la carpeta "fotosinmuebles".
-     *
-     * @param archivofoto el File de la imagen a guardar.
-     * @return el String con la ruta a la imagen guardada.
-     */
+    //Método para guardar la imagen introducida en los archivos del proyecto,en la carpeta "fotosinmuebles".
+    //Devuelve el String con la ruta a la imagen guardada.
     public String saveImage(File archivofoto) {
         String directoriodestino = "./src/main/resources/fotosinmuebles"; // Directorio de destino fijo
         //la ruta al archivo guardado será el directorio de la carpeta en el proyecto + el nombre de la imagen original
@@ -599,15 +590,10 @@ public class AddBuildings extends javax.swing.JPanel {
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Al pulsar el botón de crear inmueble, se validarán todos los datos
-     * introducidos y se mostrarán los respectivos mensajes de error si algún
-     * dato no fuera válido. Si el usuario no ha seleccionado ninguna
-     * fotografía, se llamará al método para añadirla de forma automática.
-     *
-     *
-     */
-
+    //Al pulsar el botón de crear inmueble, se validarán todos los datos
+    // introducidos y se mostrarán los respectivos mensajes de error si algún
+    //dato no fuera válido. Si el usuario no ha seleccionado ninguna
+    //fotografía, se llamará al método para añadirla de forma automática.
     private void createBuildingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBuildingButtonActionPerformed
         Anfitrion anfitrion = (Anfitrion) Sesion.devolverCliente();
         if (anfitrion == null) {

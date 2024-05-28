@@ -9,10 +9,7 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JFileChooser;
 
-/**
- * La clase HostCheckReserves permite al anfitrión consultar y gestionar las
- * reservas de sus inmuebles.
- */
+//La clase HostCheckReserves permite al anfitrión consultar y gestionar las reservas de sus inmuebles.
 public class HostCheckReserves extends javax.swing.JPanel {
 
     private ArrayList<Reserva> reservas = new ArrayList<>(); //Referencia al ArrayList de reservas de la clase JavaBNB
@@ -37,10 +34,8 @@ public class HostCheckReserves extends javax.swing.JPanel {
         consultarTodo();
     }
 
-    /**
-     * Consulta y carga todas las reservas de todos los inmuebles del anfitrión en la lista local, 
-     * y se instancia un iterador para recorrerla.
-     */
+    //Consulta y carga todas las reservas de todos los inmuebles del anfitrión en la lista local, 
+    // y se instancia un iterador para recorrerla.
     private void consultarTodo() {
         try {
             errorNoSig.setVisible(false);
@@ -96,11 +91,6 @@ public class HostCheckReserves extends javax.swing.JPanel {
         inmueblelabel.setText("");
     }
 
-    /**
-     * Presenta los detalles de la reserva "actual" en los campos de texto
-     * correspondientes.
-     *
-     */
     private void presenta() {
         DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         fechallegada.setText(objreserva.getFechaInicio().format(formatoCorto));
@@ -112,12 +102,8 @@ public class HostCheckReserves extends javax.swing.JPanel {
         inmueblelabel.setText(objreserva.getInmueble().getTitulo());
     }
 
-    /**
-     * Abre un cuadro de diálogo para seleccionar un directorio
-     *
-     * @return el directorio seleccionado, o null si no se selecciona
-     * ningún archivo.
-     */
+    //Abre un cuadro de diálogo para seleccionar un directorio. Devuelve el directorio seleccionado, 
+    //o null si no se selecciona nada
     public String seleccionarPath() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Seleccione una ruta para guardar su factura");

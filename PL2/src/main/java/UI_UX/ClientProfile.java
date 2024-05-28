@@ -18,19 +18,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-/**
- * Panel que muestra el perfil del cliente actual.
- */
 public class ClientProfile extends javax.swing.JPanel {
-String fotografia;
-    /**
-     * El cliente particular actual.
-     */
-    public Particular particular;
 
-    /**
-     * Crea un nuevo panel de perfil de cliente.
-     */
+    String fotografia; //la fotografía de usuario mostrada
+    public Particular particular; //el particular actual de la sesión
+
     public ClientProfile() {
         initComponents();
         errorLabel1.setVisible(false);
@@ -47,19 +39,16 @@ String fotografia;
         cvvTextField.setEditable(false);
     }
 
-    /**
-     * Actualiza la información mostrada en el perfil del cliente.
-     */
     public void actualizar() {
         if (Sesion.user != null) {
             //establecer la foto del usuario
         }
-            if (Sesion.user.getFotoperfil()!=null) {
-                fotografia = Sesion.user.getFotoperfil();
-                fotoboton.setIcon(resizeIMG(fotografia));
-            } else {
-                fotografia=null;
-                fotoboton.setIcon(resizeIMG("./src/main/resources/images/user (2).JPG"));
+        if (Sesion.user.getFotoperfil() != null) {
+            fotografia = Sesion.user.getFotoperfil();
+            fotoboton.setIcon(resizeIMG(fotografia));
+        } else {
+            fotografia = null;
+            fotoboton.setIcon(resizeIMG("./src/main/resources/images/user (2).JPG"));
             // Establecer los campos de texto con la información del usuario actual
             dniTextField.setText(Sesion.user.getDni());
             usernameLabel.setText(Sesion.user.getNombre().toUpperCase());
@@ -84,14 +73,9 @@ String fotografia;
             }
         }
     }
-    
-    
-    /**
-     * Abre un cuadro de diálogo para seleccionar una imagen y la devuelve.
-     *
-     * @return El archivo de imagen seleccionado, o null si no se selecciona
-     * ningún archivo.
-     */
+
+    //Abre un cuadro de diálogo para seleccionar una imagen. Se devuelve el archivo de imagen seleccionado, 
+    //o null si no se selecciona ningún archivo.
     public File openImage() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Selecciona una imagen");
@@ -134,13 +118,7 @@ String fotografia;
         }
     }
 
-    /**
-     * Redimensiona una imagen al tamaño del "botón" donde se mostrará en la
-     * ventana.
-     *
-     * @param img. La ruta a la imagen introducida
-     * @return el ImageIcon para mostrarlo de icono del botón
-     */
+    ///Redimensiona una imagen al tamaño del "botón" donde se mostrará en la ventana.
     public ImageIcon resizeIMG(String img) {
         try {
             File imagePath = new File(img);
@@ -155,7 +133,6 @@ String fotografia;
             return null;
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

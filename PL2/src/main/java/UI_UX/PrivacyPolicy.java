@@ -3,14 +3,9 @@ package UI_UX;
 import Logica.Sesion;
 import UI_UX.App;
 
-/**
- * Panel que muestra la política de privacidad de la aplicación.
- */
+// Panel que muestra la política de privacidad de la aplicación.
 public class PrivacyPolicy extends javax.swing.JPanel {
 
-    /**
-     * Crea un nuevo panel para mostrar la política de privacidad.
-     */
     public PrivacyPolicy() {
         initComponents();
     }

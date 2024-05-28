@@ -8,19 +8,13 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.stream.Collectors;
 
-/**
- * La clase AdminCheckReserves permite al administrador consultar y gestionar
- * las reservas de la aplicación.
- */
+//La clase AdminCheckReserves permite al administrador consultar y gestionar las reservas de la aplicación.
 public class AdminCheckReserves extends javax.swing.JPanel {
 
     private ArrayList<Reserva> reservas = new ArrayList<>(); //Referencia al ArrayList de personas de la clase JavaBNB
     private ListIterator<Reserva> li; //Iterador para recorrer el ArrayList en ambas direcciones
     private Reserva objreserva; //Referencia a un objeto de tipo cliente del ArrayList
-    
-    /**
-     * Constructor de AdminCheckReserves que inicializa los componentes y carga las reservas.
-     */
+
     public AdminCheckReserves() {
         initComponents();
         errorNoSig.setVisible(false);
@@ -39,9 +33,7 @@ public class AdminCheckReserves extends javax.swing.JPanel {
         consultarTodo();
     }
 
-    /**
-     * Consulta y carga todas las reservas de la aplicación en la lista local, y se instancia un iterador para recorrerla.
-     */
+    //Consulta y carga todas las reservas de la aplicación en la lista local, y se instancia un iterador para recorrerla.
     private void consultarTodo() {
         try {
             errorNoSig.setVisible(false);
@@ -86,7 +78,6 @@ public class AdminCheckReserves extends javax.swing.JPanel {
         }
     }
 
-    
     private void limpiarCampos() {
         fechallegada.setText("");
         fechareserva.setText("");
@@ -97,10 +88,6 @@ public class AdminCheckReserves extends javax.swing.JPanel {
         inmueblelabel.setText("");
     }
 
-    /**
-     * Presenta los detalles de la reserva "actual" en los campos de texto correspondientes.
-     *
-     */
     private void presenta() {
         DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         fechallegada.setText(objreserva.getFechaInicio().format(formatoCorto));

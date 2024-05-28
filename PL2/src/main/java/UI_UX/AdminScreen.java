@@ -4,14 +4,11 @@
  */
 package UI_UX;
 
-/**
- * La clase AdminScreen muestra la interfaz de usuario principal del administrador
- */
+//La clase AdminScreen muestra la interfaz de usuario principal del administrador
+ 
 public class AdminScreen extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AdminScreen
-     */
+    
     public AdminScreen() {
         initComponents();
     }

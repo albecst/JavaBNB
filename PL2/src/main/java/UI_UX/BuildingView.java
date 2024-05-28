@@ -30,18 +30,11 @@ public class BuildingView extends javax.swing.JPanel {
     private ListIterator<Resenia> li; // Iterador para recorrer el ArrayList en ambas direcciones
     private Resenia resenia; // Referencia a un objeto de tipo inmueble del ArrayList
 
-    /**
-     * Creates new form BuildingView
-     */
     public BuildingView() {
         initComponents();
         errorLabel1.setVisible(false);
     }
 
-    /**
-     * Presenta los detalles del inmueble en los campos de texto
-     * correspondientes.
-     */
     public void actualizar() {
         //Solo muestra los botones de calificar y reservar si el usuario activo de la sesión es un particular.
         if (Sesion.esAnfitrion) {
@@ -88,14 +81,7 @@ public class BuildingView extends javax.swing.JPanel {
         this.actualizar(); // Llamar al método actualizar() para actualizar la vista con el nuevo inmueble
     }
 
-    /**
-     * Convierte el String de la ruta a una imagen en un "ImageIcon" para
-     * utilizarlo como imagen en la interfaz.
-     *
-     * @param img. Ruta a la imagen.
-     * @return la imagen convertida en icono.
-     *
-     */
+// Convierte el String de la ruta a una imagen en un "ImageIcon" para utilizarlo como imagen en la interfaz.
     public ImageIcon imagenIcon(String img) {
         try {
             Image image = ImageIO.read(new File(img));
@@ -107,13 +93,7 @@ public class BuildingView extends javax.swing.JPanel {
         }
     }
 
-    /**
-     * Redimensiona una imagen al tamaño del "botón" donde se mostrará en la
-     * ventana.
-     *
-     * @param img. La ruta a la imagen introducida
-     * @return el ImageIcon para mostrarlo de icono del botón
-     */
+    //Redimensiona una imagen al tamaño del "botón" donde se mostrará en la ventana.
     public ImageIcon resizeIMG(String img) {
         try {
             File imagePath = new File(img);
@@ -129,10 +109,7 @@ public class BuildingView extends javax.swing.JPanel {
         }
     }
 
-    /**
-     * Convierte un objeto de tipo "Date" en LocalDate.
-     *
-     */
+    // Convierte un objeto de tipo "Date" en LocalDate.
     public LocalDate convertToLocalDate(Object dateObject) {
         if (dateObject instanceof Date) {
             //Se hace un cast del objeto a Date. 
@@ -788,14 +765,6 @@ public class BuildingView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_logoButtonActionPerformed
 
-    /**
-     *
-     * Al presionar el botón de reservar se validarán los datos de las fechas y
-     * el saldo. Si todo es correcto, se le preguntará al usuario si desea
-     * finalizar la reserva. Si se selecciona aceptar, se crea la reserva y se
-     * efectúa el pago correspondiente.
-     *
-     */
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
         errorLabel1.setVisible(false);
         //Las fechas de los formatted field se transforman en LocalDates
@@ -839,13 +808,6 @@ public class BuildingView extends javax.swing.JPanel {
 
     }//GEN-LAST:event_reserveButtonActionPerformed
 
-    /**
-     *
-     * Al presionar el botón de calificar se verificará que el usuario,
-     * particular, activo en la sesión tenga alguna reserva hecha del inmueble.
-     * En caso afirmativo, se podrá calificar el inmueble.
-     *
-     */
     private void gradeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeButtonActionPerformed
         double nota = 0;
         boolean reservaHecha = false;
@@ -880,23 +842,23 @@ public class BuildingView extends javax.swing.JPanel {
                 }
 
                 // Modificar la calificación del inmueble
-                    i.setCalificacion(nota);
+                i.setCalificacion(nota);
 
-                    // Obtener el anfitrión del inmueble y actualizar su estado de "Superanfitrión".
-                    Anfitrion anfitrion = i.getAnfitrion();
-                    anfitrion.setSuperAnfitrion();
+                // Obtener el anfitrión del inmueble y actualizar su estado de "Superanfitrión".
+                Anfitrion anfitrion = i.getAnfitrion();
+                anfitrion.setSuperAnfitrion();
 
-                    actualizar();
+                actualizar();
 
-                    System.out.println("calificacion=" + nota);
-                    System.out.println("nota del inmueble= " + i.getCalificacion());
-                } catch (NumberFormatException nfe) {
-                    System.out.println("Error del formato: " + nfe.getMessage());
-                } catch (Exception e) {
-                    System.out.println("Error: " + e.getMessage());
+                System.out.println("calificacion=" + nota);
+                System.out.println("nota del inmueble= " + i.getCalificacion());
+            } catch (NumberFormatException nfe) {
+                System.out.println("Error del formato: " + nfe.getMessage());
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
 
-                }
-            }else {
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Solo los usuarios que han realizado al menos una reserva en este inmueble pueden calificarlo.");
         }
 

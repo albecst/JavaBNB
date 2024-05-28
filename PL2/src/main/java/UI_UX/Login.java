@@ -2,24 +2,16 @@ package UI_UX;
 
 import Logica.*;
 
-/**
- * Panel que permite al usuario iniciar sesión.
- */
+// Panel que permite al usuario iniciar sesión.
 public class Login extends javax.swing.JPanel {
 
-    /**
-     * Crea un nuevo panel de inicio de sesión.
-     */
+    
     public Login() {
         initComponents();
         errorLabel.setVisible(false);
     }
 
-    /**
-     * Restablece los campos de texto del formulario. Este método se utiliza
-     * para limpiar los campos de texto cuando se cambia de pestaña o se vuelve
-     * a este panel.
-     */
+    
     private void resetText() {
         emailTextField.setText("");
         passwordTextField.setText("");

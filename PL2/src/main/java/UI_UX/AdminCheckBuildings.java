@@ -7,19 +7,13 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
-/**
- * La clase AdminCheckBuildings permite al administrador revisar y gestionar los
- * inmuebles registrados en la aplicación.
- */
+//La clase AdminCheckBuildings permite al administrador revisar y gestionar losinmuebles registrados en la aplicación.
 public class AdminCheckBuildings extends javax.swing.JPanel {
 
     private ArrayList<Inmueble> buildings; // Referencia al ArrayList de inmuebles de la clase JavaBNB
     private ListIterator<Inmueble> li; // Iterador para recorrer el ArrayList en ambas direcciones
     private Inmueble objInm; // Referencia a un objeto de tipo inmueble del ArrayList
 
-    /**
-     * Constructor de AdminCheckBuildings que inicializa los componentes y carga los inmuebles.
-     */
     public AdminCheckBuildings() {
         initComponents();
         errorNextLabel.setVisible(false);
@@ -41,18 +35,15 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         consultarTodo();
     }
 
-    /**
-     * Actualiza la vista y los datos de los inmuebles.
-     */
     public void actualizar() {
         errorNextLabel.setVisible(false);
         errorPreviousLabel.setVisible(false);
         consultarTodo();
     }
 
-    /**
-     * Consulta y carga todos los inmuebles de JavaBNB en la lista local, y se instancia un iterador para recorrerla.
-     */
+    
+     //Consulta y carga todos los inmuebles de JavaBNB en la lista local, y se instancia un iterador para recorrerla.
+     
     private void consultarTodo() {
         try {
             errorNextLabel.setVisible(false);
@@ -86,9 +77,6 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         }
     }
 
-    /**
-     * Limpia los campos de texto en el panel de administración.
-     */
     private void limpiarCampos() {
         typeLabel.setText("");
         titleTextPanel.setText("");
@@ -106,12 +94,8 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         markTextField.setText("");
     }
 
-    /**
-     * Presenta los detalles del inmueble en los campos de texto
-     * correspondientes.
-     *
-     * @param inmueble el inmueble cuyos detalles se van a mostrar
-     */
+    
+      //Presenta los detalles del inmueble en los campos de texto correspondientes.
     private void presenta(Inmueble inmueble) {
         typeLabel.setText(inmueble.getTipo());
         titleTextPanel.setText(inmueble.getTitulo());
@@ -648,7 +632,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
         //Verificar el texto actual del botón
         if (editBuildingButton.getText().equals("Editar inmueble")) {
             // Si el botón está en modo "Editar datos", establecer los campos de texto como editables
-           
+
             titleTextPanel.setEditable(true);
             descriptionTextPanel.setEditable(true);
             streetTextField.setEditable(true);
@@ -666,7 +650,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
             editBuildingButton.setText("Aceptar");
         } else {
             // Si el botón está en modo "Aceptar", establecer los campos de texto como no editables
-            
+
             titleTextPanel.setEditable(false);
             descriptionTextPanel.setEditable(false);
             streetTextField.setEditable(false);
@@ -682,7 +666,7 @@ public class AdminCheckBuildings extends javax.swing.JPanel {
 
             // Cambiar el texto del botón a "Editar datos"
             editBuildingButton.setText("Editar datos");
-            
+
             // Comprobar que los datos introducidos sean correctos
             String titulo = titleTextPanel.getText();
             String descripcion = descriptionTextPanel.getText();
