@@ -1,0 +1,45 @@
+@options
+@packages
+-classpath
+'C:/Users/alber/.m2/repository/org/netbeans/external/AbsoluteLayout/RELEASE210/AbsoluteLayout-RELEASE210.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'21'
+-sourcepath
+'C:/Users/alber/Documents/NetBeansProjects/JavaBNB terminado/Java_PL2/PL2/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/alber/Documents/NetBeansProjects/JavaBNB terminado/Java_PL2/PL2/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Java_PL2 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'Java_PL2 1.0-SNAPSHOT API'
+Logica
+UI_UX
+C:\Users\alber\.m2\repository\org\netbeans\external\AbsoluteLayout\RELEASE210\AbsoluteLayout-RELEASE210.jar = 1713805190577
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\src\main\java = 1716906846414
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\allclasses-index.html = 1716922449869
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\allpackages-index.html = 1716922449871
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\element-list = 1716922449596
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\help-doc.html = 1716922449915
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\index-all.html = 1716922449900
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\index.html = 1716922449845
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\member-search-index.js = 1716922449875
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\module-search-index.js = 1716922449872
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\overview-summary.html = 1716922449908
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\overview-tree.html = 1716922449842
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\package-search-index.js = 1716922449873
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\search.html = 1716922449904
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\serialized-form.html = 1716922449711
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\tag-search-index.js = 1716922449877
+C:\Users\alber\Documents\NetBeansProjects\JavaBNB terminado\Java_PL2\PL2\target\site\apidocs\type-search-index.js = 1716922449874
