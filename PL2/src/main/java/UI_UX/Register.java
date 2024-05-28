@@ -6,6 +6,7 @@ package UI_UX;
 
 import Logica.Anfitrion;
 import Logica.Particular;
+import Logica.Cliente;
 import Logica.Sesion;
 import Logica.Tarjeta;
 import Logica.Validacion;
@@ -152,6 +153,11 @@ public class Register extends javax.swing.JPanel {
         photoLabel.setRequestFocusEnabled(false);
         photoLabel.setRolloverEnabled(false);
         photoLabel.setVerifyInputWhenFocusTarget(false);
+        photoLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                photoLabelActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -733,6 +739,8 @@ public class Register extends javax.swing.JPanel {
         String dni = DNITextField.getText();
         String correo = emailTextField.getText();
 
+        String fotografia = ".\\src\\main\\resources\\fotosperfil\\user (2).jpg";
+
         char[] passwordCharArray = passwordTextField.getPassword();
         String clave = new String(passwordCharArray);
         String telefono = tlfTextField.getText();
@@ -801,6 +809,7 @@ public class Register extends javax.swing.JPanel {
         } else if (selectedOption.equals("Anfitrion") && valido) {
             noselectLabel.setVisible(false);
             Anfitrion nuevoAnfitrion = new Anfitrion(dni, nombre, correo.toLowerCase(), clave, telefono);
+            nuevoAnfitrion.setFotoperfil(fotografia); // Establecer la fotografía del perfil
             Sesion.registrarCliente(nuevoAnfitrion);
             resetText();
             App.loadMainScreen();
@@ -853,13 +862,14 @@ public class Register extends javax.swing.JPanel {
             } else {
                 errorLabel8.setVisible(false);
             }
-
             if (valido) {
                 noselectLabel.setVisible(false);
+
                 boolean vip = Validacion.validarVipPromocode(promocode);
                 LocalDate fechaCaducidad = LocalDate.of(año, mes, dia);
                 Tarjeta tarjeta = new Tarjeta(nombre, numtarjeta, dia, mes, año, fechaCaducidad, cvv, saldo);
                 Particular nuevoParticular = new Particular(tarjeta, vip, dni, nombre, correo.toLowerCase(), clave, telefono);
+                nuevoParticular.setFotoperfil(fotografia); // Establecer la fotografía del perfil
                 Sesion.registrarCliente(nuevoParticular);
                 resetText();
                 App.loadMainScreen();
@@ -1032,6 +1042,10 @@ public class Register extends javax.swing.JPanel {
     private void errorLabel4PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_errorLabel4PropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_errorLabel4PropertyChange
+
+    private void photoLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_photoLabelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
