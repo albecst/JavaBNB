@@ -11,6 +11,7 @@ public class Particular extends Cliente implements Serializable {
 
     private Tarjeta tarjetaCredito;
     private boolean vip;
+    private static final long serialVersionUID = -5515338684542348855L; // Necesario para no tener problemas con la serialización de particulares
 
     /**
      * Constructor de la clase Particular.
