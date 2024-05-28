@@ -3,6 +3,7 @@ package UI_UX;
 import Logica.Anfitrion;
 import Logica.Sesion;
 import Logica.Validacion;
+import static UI_UX.ClientProfile.fotografia;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -31,12 +32,13 @@ public class HostProfile extends javax.swing.JPanel {
 
             if (Sesion.user.getFotoperfil() != null) {
                 fotografia = Sesion.user.getFotoperfil();
-                fotoboton.setIcon(resizeIMG(fotografia));
+                photoButton.setIcon(resizeIMG(fotografia));
             } else {
                 fotografia = null;
-                fotoboton.setIcon(resizeIMG("./src/main/resources/images/user (2).JPG"));
+                photoButton.setIcon(resizeIMG("./src/main/resources/images/user (2).JPG"));
 
             }
+            nameTextField.setText(Sesion.user.getNombre());
             dniTextField.setText(Sesion.user.getDni());
             usernameLabel.setText(Sesion.user.getNombre().toUpperCase());
             emailTextField.setText(Sesion.user.getCorreo());
@@ -133,7 +135,9 @@ public class HostProfile extends javax.swing.JPanel {
         tlfTextField = new javax.swing.JTextField();
         errorLabel1 = new javax.swing.JLabel();
         requirementsLabel = new javax.swing.JLabel();
-        fotoboton = new javax.swing.JButton();
+        nameLabel = new javax.swing.JLabel();
+        nameTextField = new javax.swing.JTextField();
+        photoButton = new javax.swing.JButton();
         usernameLabel = new javax.swing.JLabel();
         typeLabel = new javax.swing.JLabel();
 
@@ -274,6 +278,11 @@ public class HostProfile extends javax.swing.JPanel {
         requirementsLabel.setForeground(new java.awt.Color(102, 102, 102));
         requirementsLabel.setText("Al menos una letra mayúscula, minúscula, dígitos y 8 caracteres de longitud");
 
+        nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nameLabel.setText("Nombre:");
+
+        nameTextField.setEditable(false);
+
         javax.swing.GroupLayout dataLayout = new javax.swing.GroupLayout(data);
         data.setLayout(dataLayout);
         dataLayout.setHorizontalGroup(
@@ -281,7 +290,15 @@ public class HostProfile extends javax.swing.JPanel {
             .addGroup(dataLayout.createSequentialGroup()
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dataLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(157, 157, 157)
+                        .addComponent(editUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dataLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(requirementsLabel)
+                            .addComponent(errorLabel1)))
+                    .addGroup(dataLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(dataLayout.createSequentialGroup()
                                 .addComponent(tlfLabel)
@@ -298,21 +315,21 @@ public class HostProfile extends javax.swing.JPanel {
                             .addGroup(dataLayout.createSequentialGroup()
                                 .addComponent(passLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(passTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(dataLayout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(editUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dataLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(requirementsLabel)
-                            .addComponent(errorLabel1))))
-                .addContainerGap(112, Short.MAX_VALUE))
+                                .addComponent(passTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dataLayout.createSequentialGroup()
+                                .addComponent(nameLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         dataLayout.setVerticalGroup(
             dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dataLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameLabel)
+                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLabel)
                     .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -328,19 +345,19 @@ public class HostProfile extends javax.swing.JPanel {
                 .addGroup(dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passLabel)
                     .addComponent(passTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(requirementsLabel)
-                .addGap(28, 28, 28)
+                .addGap(32, 32, 32)
                 .addComponent(editUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
 
-        fotoboton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
-        fotoboton.addActionListener(new java.awt.event.ActionListener() {
+        photoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
+        photoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fotobotonActionPerformed(evt);
+                photoButtonActionPerformed(evt);
             }
         });
 
@@ -360,7 +377,7 @@ public class HostProfile extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(photoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(74, 74, 74))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,17 +392,15 @@ public class HostProfile extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usernameLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(photoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(usernameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(typeLabel)
                 .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(data, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -410,7 +425,7 @@ public class HostProfile extends javax.swing.JPanel {
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fotobotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotobotonActionPerformed
+    private void photoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoButtonActionPerformed
         File f = openImage();
         if (f != null) {
             fotografia = saveImage(f);
@@ -419,7 +434,7 @@ public class HostProfile extends javax.swing.JPanel {
         } else {
             System.out.println("no existe la ruta");
         }
-    }//GEN-LAST:event_fotobotonActionPerformed
+    }//GEN-LAST:event_photoButtonActionPerformed
 
     private void editUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserButtonActionPerformed
         // Verificar el texto actual del botón
@@ -429,6 +444,7 @@ public class HostProfile extends javax.swing.JPanel {
             emailTextField.setEditable(true);
             passTextField.setEditable(true);
             tlfTextField.setEditable(true);
+            nameTextField.setEditable(true);
 
             // Cambiar el texto del botón a "Aceptar"
             editUserButton.setText("Aceptar");
@@ -449,9 +465,17 @@ public class HostProfile extends javax.swing.JPanel {
             char[] passwordCharArray = passTextField.getPassword();
             String password = new String(passwordCharArray);
             String telefono = tlfTextField.getText();
+            String nombre = nameTextField.getText();
+            nameTextField.setEditable(false);
 
             boolean datosValidos = true;
 
+            // Verificar el nombre
+            if (!Validacion.validarNombre(nombre)) {
+                errorLabel1.setVisible(true);
+                nameTextField.setText("");
+                datosValidos = false;
+            }
             // Verificar el correo electrónico
             if (!Validacion.validarEmail(email)) {
                 errorLabel1.setVisible(true);
@@ -475,6 +499,7 @@ public class HostProfile extends javax.swing.JPanel {
             // Si todos los datos son válidos, guardar los cambios
             if (datosValidos) {
                 errorLabel1.setVisible(false);
+                Sesion.user.setNombre(nombre);
                 Sesion.user.setCorreo(email);
                 Sesion.user.setTelefono(telefono);
                 Sesion.user.setClave(password);
@@ -508,13 +533,15 @@ public class HostProfile extends javax.swing.JPanel {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel errorLabel1;
-    private javax.swing.JButton fotoboton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logoButton;
     private javax.swing.JLabel logoLabel;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField nameTextField;
     private javax.swing.JLabel passLabel;
     private javax.swing.JPasswordField passTextField;
+    private javax.swing.JButton photoButton;
     private javax.swing.JLabel requirementsLabel;
     private javax.swing.JButton returnButton;
     private javax.swing.JButton signOutButton;
