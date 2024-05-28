@@ -124,7 +124,7 @@ public class Validacion {
         if (dia == -1) {
             return false;
         }
-        if (0 > tarjeta.length() || tarjeta.length() > 16) {
+        if (tarjeta.length() != 16) {
             System.out.println("Tarjeta no es válida");
             return false;
         } else if (año < LocalDate.now().getYear()) {
