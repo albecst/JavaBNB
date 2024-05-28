@@ -99,7 +99,6 @@ public class BuildingIcon extends javax.swing.JPanel {
         ciudadlabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         ciudadlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ciudadlabel.setText("Ciudad");
-        ciudadlabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
