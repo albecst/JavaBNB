@@ -7,6 +7,7 @@ package UI_UX;
 import Logica.Anfitrion;
 import Logica.Inmueble;
 import Logica.Particular;
+import Logica.Resenia;
 import Logica.Reserva;
 import Logica.Sesion;
 import java.awt.Image;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.ListIterator;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -24,6 +26,9 @@ import javax.swing.JOptionPane;
 public class BuildingView extends javax.swing.JPanel {
 
     Inmueble i;
+    private ArrayList<Resenia> resenias; // Referencia al ArrayList de reseñas del inmueble
+    private ListIterator<Resenia> li; // Iterador para recorrer el ArrayList en ambas direcciones
+    private Resenia resenia; // Referencia a un objeto de tipo inmueble del ArrayList
 
     /**
      * Creates new form BuildingView
@@ -75,6 +80,7 @@ public class BuildingView extends javax.swing.JPanel {
         estrella4.setIcon(i.getCalificacion() >= 4 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
         estrella5.setIcon(i.getCalificacion() >= 5 ? imagenIcon("./src/main/resources/images/estrella50roja.PNG") : (imagenIcon("./src/main/resources/images/estrella50.PNG")));
 
+        consultarTodo();
     }
 
     public void setInmueble(Inmueble inmueble) {
@@ -104,6 +110,7 @@ public class BuildingView extends javax.swing.JPanel {
     /**
      * Redimensiona una imagen al tamaño del "botón" donde se mostrará en la
      * ventana.
+     *
      * @param img. La ruta a la imagen introducida
      * @return el ImageIcon para mostrarlo de icono del botón
      */
@@ -136,6 +143,54 @@ public class BuildingView extends javax.swing.JPanel {
         } else {
             return null;
         }
+    }
+
+    private void consultarTodo() {
+        try {
+            errorNoMas.setVisible(false);
+            siguiente.setEnabled(false);
+            anterior.setEnabled(false);
+
+            if (i.getResenias() != null && !i.getResenias().isEmpty()) {
+                siguiente.setEnabled(true);
+                anterior.setEnabled(true);
+
+                resenias = i.getResenias();
+
+                li = resenias.listIterator();
+                if (resenias.isEmpty()) {
+                    errorNoMas.setEnabled(false);
+                    limpiarCampos();
+                    return;
+                } else {
+                    errorNoMas.setEnabled(true);
+                }
+
+                if (li.hasNext()) {
+                    resenia = li.next();
+                } else {
+                    errorNoMas.setVisible(true);
+                }
+                if (resenia != null) {
+                    presenta();
+                } else {
+                    limpiarCampos();
+                    errorNoMas.setVisible(true);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.toString());
+        }
+    }
+
+    private void limpiarCampos() {
+        frasecomentario.setText("");
+        notacomentario.setText("");
+    }
+
+    private void presenta() {
+        frasecomentario.setText(resenia.getComentario());
+        notacomentario.setText("Nota: " + Double.toString(resenia.getNota()));
     }
 
     /**
@@ -191,6 +246,13 @@ public class BuildingView extends javax.swing.JPanel {
         numbermarksLabel = new javax.swing.JLabel();
         hostLabel = new javax.swing.JLabel();
         superhostLabel = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        notacomentario = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        frasecomentario = new javax.swing.JTextArea();
+        siguiente = new javax.swing.JButton();
+        anterior = new javax.swing.JButton();
+        errorNoMas = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -198,24 +260,28 @@ public class BuildingView extends javax.swing.JPanel {
 
         fotoboton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/casa1.jpg"))); // NOI18N
 
-        starsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        starsPanel.setBackground(new java.awt.Color(255, 250, 248));
         starsPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         estrella1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrella50roja.png"))); // NOI18N
         estrella1.setToolTipText("");
         estrella1.setBorderPainted(false);
+        estrella1.setContentAreaFilled(false);
 
         estrella2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrella50roja.png"))); // NOI18N
         estrella2.setToolTipText("");
         estrella2.setBorderPainted(false);
+        estrella2.setContentAreaFilled(false);
 
         estrella3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrella50.png"))); // NOI18N
         estrella3.setToolTipText("");
         estrella3.setBorderPainted(false);
+        estrella3.setContentAreaFilled(false);
 
         estrella4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrella50.png"))); // NOI18N
         estrella4.setToolTipText("");
         estrella4.setBorderPainted(false);
+        estrella4.setContentAreaFilled(false);
         estrella4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estrella4ActionPerformed(evt);
@@ -225,6 +291,7 @@ public class BuildingView extends javax.swing.JPanel {
         estrella5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estrella50.png"))); // NOI18N
         estrella5.setToolTipText("");
         estrella5.setBorderPainted(false);
+        estrella5.setContentAreaFilled(false);
 
         javax.swing.GroupLayout starsPanelLayout = new javax.swing.GroupLayout(starsPanel);
         starsPanel.setLayout(starsPanelLayout);
@@ -442,7 +509,7 @@ public class BuildingView extends javax.swing.JPanel {
                         .addGroup(panelreservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(endDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(endDateFormattedField))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         panelreservasLayout.setVerticalGroup(
             panelreservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,7 +554,86 @@ public class BuildingView extends javax.swing.JPanel {
         hostLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         hostLabel.setText("Anfitrion:");
 
+        superhostLabel.setBackground(new java.awt.Color(255, 153, 153));
+        superhostLabel.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        superhostLabel.setForeground(new java.awt.Color(255, 102, 102));
         superhostLabel.setText("Superanfitrión");
+
+        jPanel2.setBackground(new java.awt.Color(255, 250, 248));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        notacomentario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        notacomentario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        notacomentario.setText("Nota:");
+
+        frasecomentario.setBackground(new java.awt.Color(255, 250, 248));
+        frasecomentario.setColumns(20);
+        frasecomentario.setRows(5);
+        jScrollPane2.setViewportView(frasecomentario);
+
+        siguiente.setBackground(new java.awt.Color(255, 102, 102));
+        siguiente.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
+        siguiente.setForeground(new java.awt.Color(255, 255, 255));
+        siguiente.setText("Siguiente");
+        siguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteActionPerformed(evt);
+            }
+        });
+
+        anterior.setBackground(new java.awt.Color(255, 102, 102));
+        anterior.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
+        anterior.setForeground(new java.awt.Color(255, 255, 255));
+        anterior.setText("Anterior");
+        anterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anteriorActionPerformed(evt);
+            }
+        });
+
+        errorNoMas.setForeground(new java.awt.Color(255, 102, 102));
+        errorNoMas.setText("No hay más comentarios");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(errorNoMas)
+                        .addGap(100, 100, 100))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(anterior)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(siguiente))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(notacomentario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(siguiente)
+                    .addComponent(anterior))
+                .addGap(9, 9, 9)
+                .addComponent(notacomentario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(errorNoMas)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -496,7 +642,8 @@ public class BuildingView extends javax.swing.JPanel {
             .addComponent(barraarriba, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(markLabel)
@@ -504,29 +651,28 @@ public class BuildingView extends javax.swing.JPanel {
                             .addComponent(starsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(numbermarksLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panelreservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(199, 199, 199)
+                                .addGap(175, 175, 175)
                                 .addComponent(priceLabel))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
+                                .addGap(1, 1, 1)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 89, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(217, 217, 217)
+                                .addGap(193, 193, 193)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(titleLabel)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(27, 27, 27)
                                         .addComponent(typeLabel))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
+                                .addGap(1, 1, 1)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                                     .addComponent(jScrollPane3))
@@ -548,14 +694,16 @@ public class BuildingView extends javax.swing.JPanel {
                                                 .addComponent(bathsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addComponent(roomLabel))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(roomsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(hostLabel))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(102, 102, 102)
-                                .addComponent(superhostLabel)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(roomsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hostLabel)
+                            .addComponent(superhostLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelreservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,9 +749,17 @@ public class BuildingView extends javax.swing.JPanel {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(hostLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(superhostLabel))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panelreservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelreservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(starsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -611,13 +767,8 @@ public class BuildingView extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(numbermarksLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(gradeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(hostLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(superhostLabel)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(gradeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -672,7 +823,7 @@ public class BuildingView extends javax.swing.JPanel {
                 //Añade la reserva a la lista de reservas y se realiza el "pago"
                 i.agregarReserva(reserva);
                 ((Particular) Sesion.user).disminuirSaldo(reserva.calcularPrecioTotal());
-                
+
             } else if (n == JOptionPane.NO_OPTION) {
                 System.out.println("NO");
             } else if (n == JOptionPane.CANCEL_OPTION) {
@@ -690,8 +841,9 @@ public class BuildingView extends javax.swing.JPanel {
 
     /**
      *
-     * Al presionar el botón de calificar se verificará que el usuario, particular, activo
-     * en la sesión tenga alguna reserva hecha del inmueble. En caso afirmativo, se podrá calificar el inmueble.
+     * Al presionar el botón de calificar se verificará que el usuario,
+     * particular, activo en la sesión tenga alguna reserva hecha del inmueble.
+     * En caso afirmativo, se podrá calificar el inmueble.
      *
      */
     private void gradeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeButtonActionPerformed
@@ -717,33 +869,65 @@ public class BuildingView extends javax.swing.JPanel {
                     String notaIntroducida = JOptionPane.showInputDialog(this, "Introduzca la calificación (entre 0 y 5):");
                     nota = Double.parseDouble(notaIntroducida);
                 } while (nota < 0 || nota > 5);
+                String comentario = JOptionPane.showInputDialog(this, "Introduzca el comentario:");
+                try {
+                    Resenia resenianueva = new Resenia(comentario, nota);
+                    if (resenianueva != null) {
+                        i.addResenias(resenianueva);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
 
                 // Modificar la calificación del inmueble
-                i.setCalificacion(nota);
+                    i.setCalificacion(nota);
 
-                // Obtener el anfitrión del inmueble y actualizar su estado de "Superanfitrión".
-                Anfitrion anfitrion = i.getAnfitrion();
-                anfitrion.setSuperAnfitrion();
+                    // Obtener el anfitrión del inmueble y actualizar su estado de "Superanfitrión".
+                    Anfitrion anfitrion = i.getAnfitrion();
+                    anfitrion.setSuperAnfitrion();
 
-                actualizar();
+                    actualizar();
 
-                System.out.println("calificacion=" + nota);
-                System.out.println("nota del inmueble= " + i.getCalificacion());
-            } catch (NumberFormatException nfe) {
-                System.out.println("Error del formato: " + nfe.getMessage());
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
+                    System.out.println("calificacion=" + nota);
+                    System.out.println("nota del inmueble= " + i.getCalificacion());
+                } catch (NumberFormatException nfe) {
+                    System.out.println("Error del formato: " + nfe.getMessage());
+                } catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
 
-            }
-        } else {
+                }
+            }else {
             JOptionPane.showMessageDialog(this, "Solo los usuarios que han realizado al menos una reserva en este inmueble pueden calificarlo.");
         }
 
 
     }//GEN-LAST:event_gradeButtonActionPerformed
 
+    private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
+        if (li.hasNext()) {
+            resenia = li.next();
+            errorNoMas.setVisible(false);
+            presenta();
+
+        } else {
+            errorNoMas.setVisible(true);
+        }
+    }//GEN-LAST:event_siguienteActionPerformed
+
+    private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
+        if (li.hasPrevious()) {
+            resenia = li.previous();
+            errorNoMas.setVisible(false);
+            presenta();
+
+        } else {
+            errorNoMas.setVisible(true);
+        }
+    }//GEN-LAST:event_anteriorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton anterior;
     private javax.swing.JPanel barraarriba;
     private javax.swing.JLabel bathLabel;
     private javax.swing.JLabel bathsLabel;
@@ -756,23 +940,28 @@ public class BuildingView extends javax.swing.JPanel {
     private javax.swing.JFormattedTextField endDateFormattedField;
     private javax.swing.JLabel endDateLabel;
     private javax.swing.JLabel errorLabel1;
+    private javax.swing.JLabel errorNoMas;
     private javax.swing.JButton estrella1;
     private javax.swing.JButton estrella2;
     private javax.swing.JButton estrella3;
     private javax.swing.JButton estrella4;
     private javax.swing.JButton estrella5;
     private javax.swing.JButton fotoboton;
+    private javax.swing.JTextArea frasecomentario;
     private javax.swing.JButton gradeButton;
     private javax.swing.JLabel guestLabel;
     private javax.swing.JLabel guestsLabel;
     private javax.swing.JLabel hostLabel;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton logoButton;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JLabel markLabel;
+    private javax.swing.JLabel notacomentario;
     private javax.swing.JLabel numbermarksLabel;
     private javax.swing.JPanel panelreservas;
     private javax.swing.JLabel priceLabel;
@@ -782,6 +971,7 @@ public class BuildingView extends javax.swing.JPanel {
     private javax.swing.JLabel roomLabel;
     private javax.swing.JLabel roomsLabel;
     private javax.swing.JTextArea servicesTextArea;
+    private javax.swing.JButton siguiente;
     private javax.swing.JPanel starsPanel;
     private javax.swing.JFormattedTextField startDateFormattedField;
     private javax.swing.JLabel startDateLabel;

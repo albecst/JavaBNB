@@ -107,7 +107,6 @@ public class Validacion {
                 hasDigit = true;
             }
         }
-
         return password.length() >= 8 && hasLower && hasUpper && hasDigit;
     }
 
@@ -151,7 +150,7 @@ public class Validacion {
     }
 
     /**
-     * Valida si el código promocional para VIP es válido.
+     * Valida si el código promocional para convertirse en VIP es válido.
      *
      * @param promocode el código promocional
      * @return true si el código es válido, false en caso contrario

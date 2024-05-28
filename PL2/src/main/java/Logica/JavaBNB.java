@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
- * Clase que contiene los ArrayLists estáticos principales de inmuebles y clientes de la aplicación y varios
- * métodos estáticos importantes de búsqueda, serialización... 
+ * Clase que contiene los ArrayLists estáticos principales de inmuebles y
+ * clientes de la aplicación y varios métodos estáticos importantes de búsqueda,
+ * serialización...
  *
  */
 public class JavaBNB implements Serializable {
@@ -56,17 +57,11 @@ public class JavaBNB implements Serializable {
         return !existeInmuebleConMismaDireccion;
     }
 
-    
-   
-
-   
     public static ArrayList<Inmueble> buscarInmuebles(String ciudad, LocalDate fechaEntrada, LocalDate fechaSalida) {
         ArrayList<Inmueble> inmueblesDisponibles = new ArrayList<>();
-    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         for (Inmueble inmueble : inmuebles) {
             boolean coincideCiudad = ciudad.isEmpty() || inmueble.getDireccion().getCiudad().equalsIgnoreCase(ciudad);
             boolean coincideDisponibilidad = (fechaEntrada == null && fechaSalida == null) || (inmueble.estaDisponible(fechaEntrada, fechaSalida));
-            System.out.println(inmueble.estaDisponible(fechaEntrada, fechaSalida)+ "   "+ inmueble.toString());
             if (coincideCiudad && coincideDisponibilidad) {
                 inmueblesDisponibles.add(inmueble);
             }
@@ -75,7 +70,9 @@ public class JavaBNB implements Serializable {
         return inmueblesDisponibles;
     }
 
-   
+    
+    //Métodos para ordenar los inmuebles según ciertos parámetros 
+    
     public static void ordenarPorPrecioAscSF() {
         if (inmuebles != null) {
             inmuebles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
@@ -106,32 +103,31 @@ public class JavaBNB implements Serializable {
         }
     }
 
-    /**
-     * Método para ordenar la lista de inmuebles según su precio de 
-     */
-    public static void ordenarPorPrecioAscCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
-        if (inmueblesDisponiblesEnCiudad != null) {
-            inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
+    public static void ordenarPorPrecioAscCF(ArrayList<Inmueble> inmueblesDisponibles) {
+        if (inmueblesDisponibles != null) {
+            inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche));
         }
     }
 
-    public static void ordenarPorPrecioDescCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
-        if (inmueblesDisponiblesEnCiudad != null) {
-            inmueblesDisponiblesEnCiudad.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche).reversed());
+    public static void ordenarPorPrecioDescCF(ArrayList<Inmueble> inmueblesDisponibles) {
+        if (inmueblesDisponibles != null) {
+            inmueblesDisponibles.sort(Comparator.comparingDouble(Inmueble::getPrecioNoche).reversed());
         }
     }
 
-    public static void ordenarPorTipoCF(ArrayList<Inmueble> inmueblesDisponiblesEnCiudad) {
-        if (inmueblesDisponiblesEnCiudad != null) {
-            inmueblesDisponiblesEnCiudad.sort(Comparator.comparing(Inmueble::getTipo));
+    public static void ordenarPorTipoCF(ArrayList<Inmueble> inmueblesDisponibles) {
+        if (inmueblesDisponibles != null) {
+            inmueblesDisponibles.sort(Comparator.comparing(Inmueble::getTipo));
         }
     }
 
+    
     /**
      * Método para filtrar la lista de inmuebles disponibles según tipo.
-     * 
+     *
      * @param inmueblesDisponibles
-     * @return un ArrayList con solamente los inmuebles disponibles que sean de tipo "casa".
+     * @return un ArrayList con solamente los inmuebles disponibles que sean de
+     * tipo "casa".
      */
     public static ArrayList<Inmueble> filtrarCasas(ArrayList<Inmueble> inmueblesDisponibles) {
         ArrayList<Inmueble> casas = new ArrayList<>();
@@ -145,9 +141,10 @@ public class JavaBNB implements Serializable {
 
     /**
      * Método para filtrar la lista de inmuebles disponibles según tipo.
-     * 
+     *
      * @param inmueblesDisponibles
-     * @return un ArrayList con solamente los inmuebles disponibles que sean de tipo "Apartamento".
+     * @return un ArrayList con solamente los inmuebles disponibles que sean de
+     * tipo "Apartamento".
      */
     public static ArrayList<Inmueble> filtrarApartamentos(ArrayList<Inmueble> inmueblesDisponibles) {
         ArrayList<Inmueble> apartamentos = new ArrayList<>();
@@ -159,9 +156,10 @@ public class JavaBNB implements Serializable {
         return apartamentos;
     }
 
-     /**
-     * Método para ordenar la lista de inmuebles disponibles según su calificación de forma ascendente.
-     * 
+    /**
+     * Método para ordenar la lista de inmuebles disponibles según su
+     * calificación de forma ascendente.
+     *
      * @param inmueblesDisponibles
      */
     public static void ordenarPorCalificacionAscCF(ArrayList<Inmueble> inmueblesDisponibles) {
@@ -171,8 +169,9 @@ public class JavaBNB implements Serializable {
     }
 
     /**
-     * Método para ordenar la lista de inmuebles disponibles según su calificación de forma descendente.
-     * 
+     * Método para ordenar la lista de inmuebles disponibles según su
+     * calificación de forma descendente.
+     *
      * @param inmueblesDisponibles
      */
     public static void ordenarPorCalificacionDescCF(ArrayList<Inmueble> inmueblesDisponibles) {
@@ -181,10 +180,10 @@ public class JavaBNB implements Serializable {
         }
     }
 
-    
     /**
-     * Método para cargar los datos serializados a los ArrayLists de clientes e inmuebles de la aplicación
-     * 
+     * Método para cargar los datos serializados a los ArrayLists de clientes e
+     * inmuebles de la aplicación
+     *
      */
     public static void cargarDatos() {
         try {
@@ -215,8 +214,9 @@ public class JavaBNB implements Serializable {
     }
 
     /**
-     * Método para serializar los ArrayLists estáticos de clientes e inmuebles de la aplicación
-     * 
+     * Método para serializar los ArrayLists estáticos de clientes e inmuebles
+     * de la aplicación
+     *
      */
     public static void guardarDatos() {
         try {
@@ -249,9 +249,10 @@ public class JavaBNB implements Serializable {
     }
 
     /**
-     * Método para eliminar de la aplicación a un anfitrión, todos sus inmuebles y sus respectivas reservas. 
-     * Una vez eliminado el anfitrión, se serializan los datos cambiados.
-     * 
+     * Método para eliminar de la aplicación a un anfitrión, todos sus inmuebles
+     * y sus respectivas reservas. Una vez eliminado el anfitrión, se serializan
+     * los datos cambiados.
+     *
      * @param cliente instancia de la clase Anfitrion.
      */
     public static void eliminarAnfitrion(Cliente cliente) {
@@ -267,9 +268,10 @@ public class JavaBNB implements Serializable {
     }
 
     /**
-     * Método para eliminar de la aplicación a un cliente particular, y todas las reservas que haya hecho. 
-     * Una vez eliminado el particular, se serializan los datos cambiados.
-     * 
+     * Método para eliminar de la aplicación a un cliente particular, y todas
+     * las reservas que haya hecho. Una vez eliminado el particular, se
+     * serializan los datos cambiados.
+     *
      * @param cliente instancia de la clase Particular.
      */
     public static void eliminarParticular(Cliente cliente) {
@@ -288,10 +290,11 @@ public class JavaBNB implements Serializable {
     }
 
     /**
-     * Método que filtra los inmuebles de la aplicación y devuelve los de un solo anfitrión.
-     * 
+     * Método que filtra los inmuebles de la aplicación y devuelve los de un
+     * solo anfitrión.
+     *
      * @param anfitrion del que queramos conseguir los inmuebles.
-     * @return un ArrayList con los inmuebles del anfitrión introducido
+     * @return un ArrayList con los inmuebles del anfitrión introducido.
      */
     public static ArrayList<Inmueble> filtrarInmueblesPorAnfitrion(Anfitrion anfitrion) {
         ArrayList<Inmueble> inmueblesAnfitrion = new ArrayList<>();
@@ -302,12 +305,12 @@ public class JavaBNB implements Serializable {
         }
         return inmueblesAnfitrion;
     }
-    
 
     /**
-     * Método para eliminar de la aplicación un inmueble y todas sus reservas asociadas. 
-     * Una vez eliminado el particular, se serializan los datos cambiados.
-     * 
+     * Método para eliminar de la aplicación un inmueble y todas sus reservas
+     * asociadas. Una vez eliminado el particular, se serializan los datos.
+     * cambiados.
+     *
      * @param inmueble a eliminar
      */
     public static void eliminarInmueble(Inmueble inmueble) {

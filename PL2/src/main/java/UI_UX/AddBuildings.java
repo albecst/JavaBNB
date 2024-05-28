@@ -11,7 +11,6 @@ import Logica.Inmueble;
 import Logica.JavaBNB;
 import Logica.Sesion;
 import javax.swing.*;
-import Logica.Validacion;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

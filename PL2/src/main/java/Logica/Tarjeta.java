@@ -3,10 +3,6 @@ package Logica;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-/**
- *
- * @author alber
- */
 public class Tarjeta implements Serializable {
 
     //Atributos
@@ -40,20 +36,10 @@ public class Tarjeta implements Serializable {
         this.saldo = saldo;
     }
 
-    /**
-     * Get the value of fechaCaducidad
-     *
-     * @return the value of fechaCaducidad
-     */
     public LocalDate getFechaCaducidad() {
         return fechaCaducidad;
     }
 
-    /**
-     * Set the value of fechaCaducidad
-     *
-     * @param fechaCaducidad new value of fechaCaducidad
-     */
     public void setFechaCaducidad(LocalDate fechaCaducidad) {
         this.fechaCaducidad = fechaCaducidad;
     }
@@ -66,38 +52,18 @@ public class Tarjeta implements Serializable {
         this.saldo += cantidad;
     }
 
-    /**
-     * Get the value of numeroTarjeta
-     *
-     * @return the value of numeroTarjeta
-     */
     public String getNumeroTarjeta() {
         return numeroTarjeta;
     }
 
-    /**
-     * Set the value of numeroTarjeta
-     *
-     * @param numeroTarjeta new value of numeroTarjeta
-     */
     public void setNumeroTarjeta(String numeroTarjeta) {
         this.numeroTarjeta = numeroTarjeta;
     }
 
-    /**
-     * Get the value of titular
-     *
-     * @return the value of titular
-     */
     public String getTitular() {
         return titular;
     }
 
-    /**
-     * Set the value of titular
-     *
-     * @param titular new value of titular
-     */
     public void setTitular(String titular) {
         this.titular = titular;
     }

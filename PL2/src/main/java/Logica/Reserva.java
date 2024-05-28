@@ -48,9 +48,7 @@ public class Reserva implements Serializable {
      */
     public double calcularPrecioTotal() {
         if (fechaInicio == null || fechaFin == null) {
-            // TODO: Manejar el caso en que una de las fechas sea null
-            // Por ejemplo, lanzar una excepción o devolver un valor predeterminado
-            return 0.0; // Cambiar según sea necesario
+            return 0.0; 
         }
         long diasEstancia = ChronoUnit.DAYS.between(fechaInicio, fechaFin); // Calcula el número de días entre la fecha de inicio y la fecha de fin
         double costoTotal = diasEstancia * inmueble.getPrecioNoche(); // Calcula el costo total de la estancia

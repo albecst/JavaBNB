@@ -18,15 +18,14 @@ public class Inmueble implements Serializable {
     private String tipo; // Casa o apartamento
     private double precioNoche;
     private String servicios;
-    private double calificacion;
+    private double calificacion; //calificación media del inmueble
     private String fotografia;
     private String descripcion;
     private int valoraciones;
+    private ArrayList<Resenia> resenias; //Arraylist que guarda los comentarios y calificaciones individuales que se añadan
     private ArrayList<Reserva> reservas; // ArrayList para almacenar las reservas asociadas al inmueble
     private Anfitrion anfitrion;
     private static final long serialVersionUID = 6795168503584728871L;
-    
-    
 
     /**
      * Constructor de la clase Inmueble.
@@ -34,7 +33,7 @@ public class Inmueble implements Serializable {
      * @param titulo el título del inmueble
      * @param descripcion la descripción del inmueble
      * @param direccion la dirección del inmueble
-     * @param datosInmueble los datos del inmueble 
+     * @param datosInmueble los datos del inmueble
      * @param tipo el tipo de inmueble (casa o apartamento)
      * @param precioNoche el precio por noche del inmueble
      * @param fotografia la fotografía del inmueble
@@ -54,40 +53,8 @@ public class Inmueble implements Serializable {
         this.valoraciones = 0;
         this.reservas = new ArrayList<>(); // Inicialización del ArrayList de reservas
         this.anfitrion = anfitrion;
+        this.resenias = new ArrayList<>();
     }
-
-    /**
-     * Método para agregar una reserva al inmueble.
-     *
-     * @param reserva la reserva a agregar
-     */
-    public void agregarReserva(Reserva reserva) {
-        if (!reservas.contains(reserva)) {
-            reservas.add(reserva);
-            JavaBNB.guardarDatos();
-        }
-    }
-
-    /**
-     * Método para eliminar una reserva del inmueble.
-     *
-     * @param reserva la reserva a eliminar
-     */
-    public void eliminarReserva(Reserva reserva) {
-        reservas.remove(reserva);
-        JavaBNB.guardarDatos();
-    }
-
-    /**
-     * Método para obtener todas las reservas asociadas al inmueble.
-     *
-     * @return una lista de reservas asociadas al inmueble
-     */
-    public ArrayList<Reserva> getReservas() {
-        return reservas;
-    }
-
-
 
     /**
      * Método para comprobar si un inmueble está disponible en unas fechas
@@ -100,18 +67,16 @@ public class Inmueble implements Serializable {
     public boolean estaDisponible(LocalDate fechaEntrada, LocalDate fechaSalida) {
         // Verificar que las fechas no sean nulas
         if (fechaEntrada == null || fechaSalida == null) {
-            return false; 
+            return false;
         }
 
         // Verificar que la fecha de entrada sea anterior a la fecha de salida
         if (fechaEntrada.isAfter(fechaSalida)) {
-            System.out.println("esta antes: "+fechaEntrada.isAfter(fechaSalida));
             return false;
         }
 
         // Verificar que las fechas solicitadas estén dentro del rango correcto
         if (fechaEntrada.isBefore(LocalDate.now()) || fechaSalida.isBefore(LocalDate.now())) {
-            System.out.println("fecha pasada: "+fechaEntrada.isAfter(fechaSalida));
             return false;
         }
 
@@ -161,30 +126,15 @@ public class Inmueble implements Serializable {
     }
 
     // Getters y Setters
-    /**
-     * Obtiene la fotografía del inmueble.
-     *
-     * @return la fotografía del inmueble
-     */
     public String getFotografia() {
         return fotografia;
     }
 
-    /**
-     * Establece la fotografía del inmueble.
-     *
-     * @param fotografia la nueva fotografía del inmueble
-     */
     public void setFotografia(String fotografia) {
         this.fotografia = fotografia;
         JavaBNB.guardarDatos();
     }
 
-    /**
-     * Obtiene la calificación del inmueble.
-     *
-     * @return la calificación del inmueble
-     */
     public double getCalificacion() {
         return calificacion;
     }
@@ -205,172 +155,127 @@ public class Inmueble implements Serializable {
         }
     }
 
-    /**
-     * Obtiene los servicios ofrecidos en el inmueble.
-     *
-     * @return los servicios ofrecidos en el inmueble
-     */
     public String getServicios() {
         return servicios;
     }
 
-    /**
-     * Establece los servicios ofrecidos en el inmueble.
-     *
-     * @param servicios los nuevos servicios ofrecidos en el inmueble
-     */
     public void setServicios(String servicios) {
         this.servicios = servicios;
         JavaBNB.guardarDatos();
     }
 
-    /**
-     * Obtiene el precio por noche del inmueble.
-     *
-     * @return el precio por noche del inmueble
-     */
     public double getPrecioNoche() {
         return precioNoche;
     }
 
-    /**
-     * Establece el precio por noche del inmueble.
-     *
-     * @param precioNoche el nuevo precio por noche del inmueble
-     */
     public void setPrecioNoche(double precioNoche) {
         this.precioNoche = precioNoche;
         JavaBNB.guardarDatos();
     }
 
-    /**
-     * Obtiene el tipo de inmueble (casa o apartamento).
-     *
-     * @return el tipo de inmueble
-     */
     public String getTipo() {
         return tipo;
     }
 
-    /**
-     * Establece el tipo de inmueble (casa o apartamento).
-     *
-     * @param tipo el nuevo tipo de inmueble
-     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
         JavaBNB.guardarDatos();
     }
 
-    /**
-     * Obtiene los datos del inmueble.
-     *
-     * @return los datos del inmueble
-     */
     public DatosInmueble getDatosInmueble() {
         return datosInmueble;
     }
 
-    /**
-     * Establece los datos del inmueble.
-     *
-     * @param datosInmueble los nuevos datos del inmueble
-     */
     public void setDatosInmueble(DatosInmueble datosInmueble) {
         this.datosInmueble = datosInmueble;
         JavaBNB.guardarDatos();
     }
 
-    /**
-     * Obtiene la dirección del inmueble.
-     *
-     * @return la dirección del inmueble
-     */
     public Direccion getDireccion() {
         return direccion;
     }
 
-    /**
-     * Establece la dirección del inmueble.
-     *
-     * @param direccion la nueva dirección del inmueble
-     */
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
         JavaBNB.guardarDatos();
     }
 
-    /**
-     * Obtiene el título del inmueble.
-     *
-     * @return el título del inmueble
-     */
     public String getTitulo() {
         return titulo;
     }
 
-    /**
-     * Establece el título del inmueble.
-     *
-     * @param titulo el nuevo título del inmueble
-     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
         JavaBNB.guardarDatos();
     }
 
-    /**
-     * Obtiene la descripción del inmueble.
-     *
-     * @return la descripción del inmueble
-     */
     public String getDescripcion() {
         return descripcion;
     }
 
-    /**
-     * Establece la descripción del inmueble.
-     *
-     * @param descripcion la nueva descripción del inmueble
-     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
         JavaBNB.guardarDatos();
     }
 
-    /**
-     * Obtiene el anfitrión del inmueble.
-     *
-     * @return el anfitrión del inmueble
-     */
     public Anfitrion getAnfitrion() {
         return anfitrion;
     }
 
-    /**
-     * Establece el anfitrión del inmueble.
-     *
-     * @param anfitrion el nuevo anfitrión del inmueble
-     */
     public void setAnfitrion(Anfitrion anfitrion) {
         this.anfitrion = anfitrion;
         JavaBNB.guardarDatos();
     }
 
-    /**
-     * Obtiene el número de valoraciones del inmueble.
-     *
-     * @return el número de valoraciones
-     */
     public int getValoraciones() {
         return valoraciones;
     }
 
+    public ArrayList<Resenia> getResenias() {
+        return resenias;
+    }
+
+    public void setResenias(ArrayList<Resenia> resenias) {
+        this.resenias = resenias;
+    }
+
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
+    }
+
     /**
-     * Devuelve una representación en cadena de los datos del inmueble.
+     * Método para agregar una reseña al inmueble.
      *
-     * @return una cadena que representa los datos del inmueble
+     * @param resenia la reseña a agregar
      */
+    public void addResenias(Resenia resenia) {
+        this.resenias.add(resenia);
+        JavaBNB.guardarDatos();
+    }
+
+    /**
+     * Método para agregar una reserva al inmueble.
+     *
+     * @param reserva la reserva a agregar
+     */
+    public void agregarReserva(Reserva reserva) {
+        if (!reservas.contains(reserva)) {
+            reservas.add(reserva);
+            JavaBNB.guardarDatos();
+        }
+    }
+
+    /**
+     * Método para eliminar una reserva del inmueble.
+     *
+     * @param reserva la reserva a eliminar
+     */
+    public void eliminarReserva(Reserva reserva) {
+        reservas.remove(reserva);
+        JavaBNB.guardarDatos();
+    }
+
+    
     @Override
     public String toString() {
         return "Inmueble{" + ", titulo=" + titulo + ", direccion=" + direccion + ", datosInmueble=" + datosInmueble + ", tipo=" + tipo + ", precioNoche=" + precioNoche + ", servicios=" + servicios + ", calificacion=" + calificacion + ", fotografia=" + fotografia + ", descripcion=" + descripcion + '}';

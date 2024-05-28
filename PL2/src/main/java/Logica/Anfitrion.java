@@ -27,11 +27,6 @@ public class Anfitrion extends Cliente {
         this.superAnfitrion = false;
     }
 
-    /**
-     * Obtiene el valor de superAnfitrion.
-     *
-     * @return el valor de superAnfitrion
-     */
     public boolean isSuperAnfitrion() {
         return superAnfitrion;
     }
@@ -63,29 +58,14 @@ public class Anfitrion extends Cliente {
         JavaBNB.guardarDatos();
     }
 
-    /**
-     * Obtiene el valor de fechaRegistro.
-     *
-     * @return el valor de fechaRegistro
-     */
     public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
 
-    /**
-     * Establece el valor de fechaRegistro.
-     *
-     * @param fechaRegistro el nuevo valor de fechaRegistro
-     */
     public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
-    /**
-     * Devuelve una representación en cadena de la información del anfitrión.
-     *
-     * @return una cadena que representa al anfitrión
-     */
     @Override
     public String toString() {
         return super.toString() + ", fecha de registro: " + fechaRegistro + ", Super anfitrión: " + superAnfitrion;
