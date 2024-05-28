@@ -2,7 +2,6 @@ package Logica;
 
 import java.io.Serializable;
 
-
 public class Cliente implements Serializable {
 
     private String dni;
@@ -11,14 +10,15 @@ public class Cliente implements Serializable {
     private String clave;
     private String telefono;
     private String fotoperfil;
-    
+    private static final long serialVersionUID = 3264960454695296686L; // Necesario para no tener problemas con la serialización de clientes
+
     public Cliente(String dni, String nombre, String correo, String clave, String telefono) {
         this.dni = dni;
         this.nombre = nombre;
         this.correo = correo;
         this.clave = clave;
         this.telefono = telefono;
-        this.fotoperfil=null;
+        this.fotoperfil = null;
     }
 
     //G&S
@@ -119,9 +119,6 @@ public class Cliente implements Serializable {
     public void setFotoperfil(String fotoperfil) {
         this.fotoperfil = fotoperfil;
     }
-    
-    
-    
 
     @Override
     public String toString() {
