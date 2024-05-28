@@ -71,7 +71,9 @@ public class JavaBNB implements Serializable {
     }
 
     
-    //Métodos para ordenar los inmuebles según ciertos parámetros 
+    /**
+     * Métodos para ordenar los inmuebles según ciertos parámetros 
+     */
     
     public static void ordenarPorPrecioAscSF() {
         if (inmuebles != null) {
