@@ -149,7 +149,7 @@
                       <Component id="logo" min="-2" pref="84" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="588" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="700" max="-2" attributes="0"/>
                       <Component id="misReservasButton" min="-2" pref="126" max="-2" attributes="0"/>
                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                       <Component id="addBuildingsButton" min="-2" pref="158" max="-2" attributes="0"/>
