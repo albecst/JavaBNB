@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
 
 public class ClientProfile extends javax.swing.JPanel {
 
-    String fotografia; //la fotografía de usuario mostrada
-    public Particular particular; //el particular actual de la sesión
+    static String fotografia; // La fotografía de usuario mostrada
+    public Particular particular; // El particular actual de la sesión
 
     public ClientProfile() {
         initComponents();
@@ -41,41 +41,44 @@ public class ClientProfile extends javax.swing.JPanel {
 
     public void actualizar() {
         if (Sesion.user != null) {
-            //establecer la foto del usuario
-        }
-        if (Sesion.user.getFotoperfil() != null) {
-            fotografia = Sesion.user.getFotoperfil();
-            fotoboton.setIcon(resizeIMG(fotografia));
-        } else {
-            fotografia = null;
-            fotoboton.setIcon(resizeIMG("./src/main/resources/images/user (2).JPG"));
-            // Establecer los campos de texto con la información del usuario actual
-            dniTextField.setText(Sesion.user.getDni());
-            usernameLabel.setText(Sesion.user.getNombre().toUpperCase());
-            emailTextField.setText(Sesion.user.getCorreo());
-            passPasswordField.setText(Sesion.user.getClave());
-            tlfTextField.setText(Sesion.user.getTelefono());
-            if (Sesion.esUsuarioVip()) {
-                promocodeTextField.setText("JAVABNB2024");
+            if (Sesion.user.getFotoperfil() != null) {
+                fotografia = Sesion.user.getFotoperfil();
+                photoButton.setIcon(resizeIMG(fotografia));
             } else {
-                promocodeTextField.setText("                    ");
+                fotografia = null;
+                photoButton.setIcon(resizeIMG("/images/user (2).jpg"));
             }
+        }
+        // Establecer los campos de texto con la información del usuario actual
+        nameTextField.setText(Sesion.user.getNombre());
+        dniTextField.setText(Sesion.user.getDni());
+        usernameLabel.setText(Sesion.user.getNombre().toUpperCase());
+        emailTextField.setText(Sesion.user.getCorreo());
+        passPasswordField.setText(Sesion.user.getClave());
+        tlfTextField.setText(Sesion.user.getTelefono());
+        if (Sesion.esUsuarioVip()) {
+            promocodeTextField.setText("JAVABNB2024");
+        } else {
+            promocodeTextField.setText("                    ");
+        }
 
-            Tarjeta tarjeta = ((Particular) Sesion.user).getTarjetaCredito();
-            if (tarjeta != null) {
-                CCTextField.setText(tarjeta.getNumeroTarjeta());
-                LocalDate fechaCaducidad = tarjeta.getFechaCaducidad();
-                dayTextField.setText(String.valueOf(fechaCaducidad.getDayOfMonth()));
-                monthTextField.setText(String.valueOf(fechaCaducidad.getMonthValue()));
-                yearTextField.setText(String.valueOf(fechaCaducidad.getYear()));
-                cvvTextField.setText(tarjeta.getCvv());
-                moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
-            }
+        Tarjeta tarjeta = ((Particular) Sesion.user).getTarjetaCredito();
+        if (tarjeta != null) {
+            CCTextField.setText(tarjeta.getNumeroTarjeta());
+            LocalDate fechaCaducidad = tarjeta.getFechaCaducidad();
+            dayTextField.setText(String.valueOf(fechaCaducidad.getDayOfMonth()));
+            monthTextField.setText(String.valueOf(fechaCaducidad.getMonthValue()));
+            yearTextField.setText(String.valueOf(fechaCaducidad.getYear()));
+            cvvTextField.setText(tarjeta.getCvv());
+            moneyTextField.setText(String.valueOf(tarjeta.getSaldo()));
         }
     }
 
-    //Abre un cuadro de diálogo para seleccionar una imagen. Se devuelve el archivo de imagen seleccionado, 
-    //o null si no se selecciona ningún archivo.
+    /**
+     * Método para poder cambiar la foto de perfil
+     *
+     * @return
+     */
     public File openImage() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Selecciona una imagen");
@@ -118,8 +121,13 @@ public class ClientProfile extends javax.swing.JPanel {
         }
     }
 
-    ///Redimensiona una imagen al tamaño del "botón" donde se mostrará en la ventana.
-    public ImageIcon resizeIMG(String img) {
+    /**
+     * Redimensiona la imagen, para que se puede ver en ese cuadrado.
+     *
+     * @param img
+     * @return
+     */
+    public static ImageIcon resizeIMG(String img) {
         try {
             File imagePath = new File(img);
             BufferedImage originalImage = ImageIO.read(imagePath);
@@ -179,8 +187,9 @@ public class ClientProfile extends javax.swing.JPanel {
         yearTextField = new javax.swing.JTextField();
         moneyLabel = new javax.swing.JLabel();
         moneyTextField = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        fotoboton = new javax.swing.JButton();
+        nameTextField = new javax.swing.JTextField();
+        nameLabel = new javax.swing.JLabel();
+        photoButton = new javax.swing.JButton();
         usernameLabel = new javax.swing.JLabel();
         typeLabel = new javax.swing.JLabel();
 
@@ -307,10 +316,10 @@ public class ClientProfile extends javax.swing.JPanel {
         emailLabel.setText("Correo electrónico:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 36;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 14;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(17, 21, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 21, 0, 0);
         data.add(emailLabel, gridBagConstraints);
 
         dniLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -345,13 +354,13 @@ public class ClientProfile extends javax.swing.JPanel {
 
         passPasswordField.setText("contraseña1");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 20;
         gridBagConstraints.gridwidth = 191;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 79;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 125, 0, 0);
         data.add(passPasswordField, gridBagConstraints);
 
         editButton.setBackground(new java.awt.Color(255, 90, 95));
@@ -364,9 +373,8 @@ public class ClientProfile extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 202;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 23;
-        gridBagConstraints.gridwidth = 286;
         gridBagConstraints.ipadx = 18;
         gridBagConstraints.ipady = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -375,34 +383,34 @@ public class ClientProfile extends javax.swing.JPanel {
 
         emailTextField.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 108;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 285;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 75;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 422;
+        gridBagConstraints.ipadx = 40;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(17, 2, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 144, 0, 0);
         data.add(emailTextField, gridBagConstraints);
 
         dniTextField.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 44;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 19;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 7, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 60, 0, 0);
         data.add(dniTextField, gridBagConstraints);
 
         tlfTextField.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 96;
         gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 32;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 2, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 95, 0, 0);
         data.add(tlfTextField, gridBagConstraints);
 
         errorLabel1.setBackground(new java.awt.Color(255, 90, 95));
@@ -415,22 +423,22 @@ public class ClientProfile extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 24;
         gridBagConstraints.gridwidth = 478;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 62, 53);
+        gridBagConstraints.insets = new java.awt.Insets(16, 33, 62, 53);
         data.add(errorLabel1, gridBagConstraints);
 
         requirementsLabel.setFont(new java.awt.Font("Segoe UI", 2, 8)); // NOI18N
         requirementsLabel.setForeground(new java.awt.Color(102, 102, 102));
         requirementsLabel.setText("Al menos una letra mayúscula, minúscula, dígitos y 8 caracteres de longitud");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 22;
         gridBagConstraints.gridwidth = 477;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 38, 0, 0);
         data.add(requirementsLabel, gridBagConstraints);
 
         promocodeLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -445,11 +453,12 @@ public class ClientProfile extends javax.swing.JPanel {
 
         promocodeTextField.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 202;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 13, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 81, 0, 0);
         data.add(promocodeTextField, gridBagConstraints);
 
         CCLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -464,13 +473,13 @@ public class ClientProfile extends javax.swing.JPanel {
 
         CCTextField.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 56;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 433;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 152;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 2, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 70, 0, 0);
         data.add(CCTextField, gridBagConstraints);
 
         dayLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -508,7 +517,7 @@ public class ClientProfile extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = 10;
         gridBagConstraints.gridheight = 2;
@@ -522,7 +531,7 @@ public class ClientProfile extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 12;
         gridBagConstraints.gridwidth = 10;
         gridBagConstraints.gridheight = 2;
@@ -536,7 +545,7 @@ public class ClientProfile extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 16;
         gridBagConstraints.gridwidth = 25;
         gridBagConstraints.gridheight = 2;
@@ -560,7 +569,7 @@ public class ClientProfile extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 14;
         gridBagConstraints.gridwidth = 25;
         gridBagConstraints.gridheight = 2;
@@ -584,37 +593,34 @@ public class ClientProfile extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 17;
         gridBagConstraints.gridwidth = 25;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
         data.add(moneyTextField, gridBagConstraints);
 
-        jButton2.setBackground(new java.awt.Color(255, 90, 95));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Editar datos");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        nameTextField.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 202;
-        gridBagConstraints.gridy = 23;
-        gridBagConstraints.gridwidth = 286;
-        gridBagConstraints.ipadx = 18;
-        gridBagConstraints.ipady = 11;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(40, 67, 0, 0);
-        data.add(jButton2, gridBagConstraints);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 43;
+        gridBagConstraints.insets = new java.awt.Insets(43, 10, 0, 0);
+        data.add(nameTextField, gridBagConstraints);
 
-        fotoboton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
-        fotoboton.addActionListener(new java.awt.event.ActionListener() {
+        nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nameLabel.setText("Nombre: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(43, 21, 0, 0);
+        data.add(nameLabel, gridBagConstraints);
+
+        photoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user (2).jpg"))); // NOI18N
+        photoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fotobotonActionPerformed(evt);
+                photoButtonActionPerformed(evt);
             }
         });
 
@@ -633,28 +639,31 @@ public class ClientProfile extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(photoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(usernameLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addComponent(typeLabel)))
-                .addGap(70, 70, 70)
-                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(216, 216, 216))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(fotoboton, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(photoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(usernameLabel)
                         .addGap(14, 14, 14)
                         .addComponent(typeLabel))
-                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(114, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -679,16 +688,17 @@ public class ClientProfile extends javax.swing.JPanel {
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fotobotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotobotonActionPerformed
+    private void photoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoButtonActionPerformed
         File f = openImage();
         if (f != null) {
             fotografia = saveImage(f);
             Sesion.user.setFotoperfil(fotografia);
             actualizar();
+            System.out.println(fotografia);
         } else {
             System.out.println("no existe la ruta");
         }
-    }//GEN-LAST:event_fotobotonActionPerformed
+    }//GEN-LAST:event_photoButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         if (editButton.getText().equals("Editar datos")) {
@@ -696,6 +706,8 @@ public class ClientProfile extends javax.swing.JPanel {
             emailTextField.setEditable(true);
             passPasswordField.setEditable(true);
             tlfTextField.setEditable(true);
+            nameTextField.setEditable(true);
+
             if (Sesion.esUsuarioVip()) {
 
                 promocodeTextField.setEditable(false);
@@ -710,9 +722,11 @@ public class ClientProfile extends javax.swing.JPanel {
             passPasswordField.setEditable(false);
             tlfTextField.setEditable(false);
             promocodeTextField.setEditable(false);
+            nameTextField.setEditable(false);
 
             editButton.setText("Editar datos");
 
+            String nombre = nameTextField.getText();
             String email = emailTextField.getText();
             char[] passwordCharArray = passPasswordField.getPassword();
             String password = new String(passwordCharArray);
@@ -721,8 +735,13 @@ public class ClientProfile extends javax.swing.JPanel {
 
             boolean valido = true;
 
-            // Verificar el correo electrónico
-            if (!Validacion.validarEmail(email)) {
+            // Verificar el nombre
+            if (!Validacion.validarNombre(nombre)) {
+                errorLabel1.setVisible(true);
+                nameTextField.setText("");
+                valido = false;
+            } // Verificar el correo electrónico
+            else if (!Validacion.validarEmail(email)) {
                 errorLabel1.setVisible(true);
                 emailTextField.setText("");
                 valido = false;
@@ -750,6 +769,7 @@ public class ClientProfile extends javax.swing.JPanel {
             if (valido) {
                 errorLabel1.setVisible(false);
 
+                Sesion.user.setNombre(nombre);
                 Sesion.user.setCorreo(email);
                 Sesion.user.setTelefono(telefono);
                 Sesion.user.setClave(password);
@@ -761,7 +781,7 @@ public class ClientProfile extends javax.swing.JPanel {
 
                 System.out.println(Sesion.user.toString());
             } else {
-                errorLabel1.setVisible(false);
+                errorLabel1.setVisible(true);
             }
         }
 
@@ -800,10 +820,6 @@ public class ClientProfile extends javax.swing.JPanel {
         Sesion.cerrarSesion();
         App.cardLayout.show(App.cards, "Pantalla login");
     }//GEN-LAST:event_signOutButtonActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void addMoneyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMoneyButtonActionPerformed
         // Verifica si el usuario actual es un Particular
@@ -856,8 +872,6 @@ public class ClientProfile extends javax.swing.JPanel {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel errorLabel1;
-    private javax.swing.JButton fotoboton;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logo;
@@ -867,8 +881,11 @@ public class ClientProfile extends javax.swing.JPanel {
     private javax.swing.JTextField moneyTextField;
     private javax.swing.JLabel monthLabel;
     private javax.swing.JTextField monthTextField;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField nameTextField;
     private javax.swing.JLabel passLabel;
     private javax.swing.JPasswordField passPasswordField;
+    private javax.swing.JButton photoButton;
     private javax.swing.JLabel promocodeLabel;
     private javax.swing.JTextField promocodeTextField;
     private javax.swing.JLabel requirementsLabel;
